@@ -33,12 +33,15 @@ var Templates = require('tpl');
 module.exports = View.extend({
 
 	props: {
+		parent: 'state',
+		index: ['number', false, 0],
 		_isActive: ['boolean', false, false]
 	},
 
 	session: {
 		// Position properties
 		offsetTop: ['number', false, 0],
+		offsetBottom: ['number', false, 0],
 		offsetWidth: ['number', false, 0],
 		offsetHeight: ['number', false, 0]
 	},
@@ -48,14 +51,14 @@ module.exports = View.extend({
 		isVisible: {
 			deps: ['offsetTop', 'parent._scrollPos', 'parent._windowHeight'],
 			fn: function() {
-				if ( !this.isScrollHiding ) return true;
-				return this.isDisplay && this.offsetTop <= (this.app.windowOffset + this.app.windowHeight * 0.85);
+				var viewportMid = this.parent._scrollPos + this.parent._windowHeight * 0.5;
+				return this.offsetTop <= viewportMid && this.offsetBottom >= viewportMid;
 			}
 		}
 	},
 
 	bindings: {
-		'_isActive': {
+		'isVisible': {
 			type: 'booleanClass',
 			name: '-is-active'
 		}
@@ -74,11 +77,12 @@ module.exports = View.extend({
 	_reflowHandler: function() {
 		var pos = Utils.DOM.getPosition( this.el );
 		this.offsetTop = pos.top;
+		this.offsetBottom = pos.top + pos.height;
 		this.offsetWidth = pos.width;
 		this.offsetHeight = pos.height;
 	},
 
-	_isVisibleBladeHandler: function( component ) {
+	_isVisibleBladeHandler: function() {
 		if ( !this.isVisible ) return;
 		FRONT.trigger( 'blade:visible', this );
 	},

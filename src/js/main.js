@@ -233,23 +233,23 @@ App.View = View.extend({
 		// new cssMatrix().translate(0,+(scrollPos * -1).toFixed(1),0);
 
 		
-		var introOpacityPrev = this.introOpacity || 1;
-		var tourOpacityPrev = this.tourOpacity || 0;
+		// var introOpacityPrev = this.introOpacity || 1;
+		// var tourOpacityPrev = this.tourOpacity || 0;
 
-		if ( this.$intro && scrollPos < windowHeight ) {
-			this.introOpacity = Utils.MATH.clamp( 1 - ( scrollPos / ( windowHeight * 0.5 )), 0, 1 );
-			if ( this.introOpacity !== introOpacityPrev ) {
-				this.$intro.style.opacity = this.introOpacity;
-			}
-		}
+		// if ( this.$intro && scrollPos < windowHeight ) {
+		// 	this.introOpacity = Utils.MATH.clamp( 1 - ( scrollPos / ( windowHeight * 0.5 )), 0, 1 );
+		// 	if ( this.introOpacity !== introOpacityPrev ) {
+		// 		this.$intro.style.opacity = this.introOpacity;
+		// 	}
+		// }
 
-		if ( this.$tour && scrollPos > windowHeight*0.2 && scrollPos < windowHeight * 4 ) {
-			var opacityOffset = +( Math.pow( scrollPos < windowHeight ? (scrollPos - windowHeight*0.2) / (windowHeight*0.75) : 1 - (( scrollPos - windowHeight*3.5 ) / (windowHeightHalf*0.75) ) , 3 )).toFixed(2);
-			this.tourOpacity = Utils.MATH.clamp( opacityOffset, 0, 1 );
-			if ( this.tourOpacity !== tourOpacityPrev ) {
-				this.$tour.style.opacity = this.tourOpacity;
-			}
-		}
+		// if ( this.$tour && scrollPos > windowHeight*0.2 && scrollPos < windowHeight * 4 ) {
+		// 	var opacityOffset = +( Math.pow( scrollPos < windowHeight ? (scrollPos - windowHeight*0.2) / (windowHeight*0.75) : 1 - (( scrollPos - windowHeight*3.5 ) / (windowHeightHalf*0.75) ) , 3 )).toFixed(2);
+		// 	this.tourOpacity = Utils.MATH.clamp( opacityOffset, 0, 1 );
+		// 	if ( this.tourOpacity !== tourOpacityPrev ) {
+		// 		this.$tour.style.opacity = this.tourOpacity;
+		// 	}
+		// }
 
 		for (var i = this.parallaxObjectsLength; i >= 0; i--) {
 			var item = this.$parallaxObjects[i];
@@ -296,7 +296,7 @@ App.View = View.extend({
 		var $blades = this.$page.querySelectorAll('[data-blade]');
 		
 		Utils.each( $blades, function( el, i ) {
-			var bladeView = new BladeView({ el: el });
+			var bladeView = new BladeView({ el: el, parent: _this });
 			_this.bladeObjects.push( bladeView );
 		});
 	},
@@ -360,15 +360,15 @@ App.View = View.extend({
 
 		// Temp scroll func
 
-		var bladeHeight = this._windowHeight;
-		var bladePrevIndex = this._bladeCurrentIndex;
+		// var bladeHeight = this._windowHeight;
+		// var bladePrevIndex = this._bladeCurrentIndex;
 
-		if ( scroll >= 0 ) this._bladeCurrentIndex = 0;
-		if ( scroll >= bladeHeight - ( bladeHeight/2 ) ) this._bladeCurrentIndex = 1;
-		if ( scroll >= bladeHeight*2 - ( bladeHeight/2 ) ) this._bladeCurrentIndex = 2;
-		if ( scroll >= bladeHeight*3 - ( bladeHeight/2 ) ) this._bladeCurrentIndex = 3;
-		if ( scroll >= bladeHeight*4 - ( bladeHeight/2 ) ) this._bladeCurrentIndex = 4;
-		if ( scroll >= bladeHeight*5 - ( bladeHeight/2 ) ) this._bladeCurrentIndex = 5;
+		// if ( scroll >= 0 ) this._bladeCurrentIndex = 0;
+		// if ( scroll >= bladeHeight - ( bladeHeight/2 ) ) this._bladeCurrentIndex = 1;
+		// if ( scroll >= bladeHeight*2 - ( bladeHeight/2 ) ) this._bladeCurrentIndex = 2;
+		// if ( scroll >= bladeHeight*3 - ( bladeHeight/2 ) ) this._bladeCurrentIndex = 3;
+		// if ( scroll >= bladeHeight*4 - ( bladeHeight/2 ) ) this._bladeCurrentIndex = 4;
+		// if ( scroll >= bladeHeight*5 - ( bladeHeight/2 ) ) this._bladeCurrentIndex = 5;
 
 		// if ( !this._isScrollDisabled && scrollDirDown && scroll > bladeHeight && bladePrevIndex < 1 ) {
 			// this._disableScroll();
@@ -381,12 +381,12 @@ App.View = View.extend({
 		// 	// this._setScroll( scroll );
 		// }
 
-		var prevActiveSlide = this._activeSlide || 0;
-		this._activeSlide = Utils.MATH.clamp( this._bladeCurrentIndex - 1, 0, 2 );
-		if ( prevActiveSlide !== this._activeSlide ) {
-			if ( this.slideObjects[ prevActiveSlide ] ) this.slideObjects[ prevActiveSlide ]._isActive = false;
-		}
-		if ( this.slideObjects[ this._activeSlide ] ) this.slideObjects[ this._activeSlide ]._isActive = true;
+		// var prevActiveSlide = this._activeSlide || 0;
+		// this._activeSlide = Utils.MATH.clamp( this._bladeCurrentIndex - 1, 0, 2 );
+		// if ( prevActiveSlide !== this._activeSlide ) {
+		// 	if ( this.slideObjects[ prevActiveSlide ] ) this.slideObjects[ prevActiveSlide ]._isActive = false;
+		// }
+		// if ( this.slideObjects[ this._activeSlide ] ) this.slideObjects[ this._activeSlide ]._isActive = true;
 
 		// -----------
 

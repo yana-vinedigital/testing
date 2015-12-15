@@ -75,12 +75,12 @@ Utils.DOM = {
 	getPosition: function( el ) {
 		if ( typeof el === 'undefined' ) return 0;
 		var rect = el.getBoundingClientRect();
-		var scrollTop = document.defaultView.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+		// var scrollTop = document.defaultView.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 		
 		return {
 			width: Math.round( rect.width || el.offsetWidth ),
 			height: Math.round( rect.height || el.offsetHeight ),
-			top: Math.round( rect.top + scrollTop )
+			top: Math.round( rect.top )
 		};
 	},
 

@@ -53,7 +53,7 @@
 					<div class="scroll-icon" data-parallax="-0.5"></div>
 
 					<section class="intro" data-blade="intro">
-						<!-- <div class="container" data-parallax="-0.75">
+						<div class="container" data-parallax="-0.75">
 							<div class="row">
 								<div class="col -full">
 									<h1>Tap into <br>business class</h1>
@@ -79,18 +79,18 @@
 
 						<div class="bg-video" data-parallax="-0.85">
 						 
-						http://mazwai.com/system/posts/videos/000/000/203/original/marseme.mp4?1446407520 
+						<!-- http://mazwai.com/system/posts/videos/000/000/203/original/marseme.mp4?1446407520 
 
 						http://a1.phobos.apple.com/us/r1000/000/Features/atv/AutumnResources/videos/b8-1.mov
 
-						http://static.videezy.com/system/resources/previews/000/002/430/original/airplane-window.mp4
+						http://static.videezy.com/system/resources/previews/000/002/430/original/airplane-window.mp4 -->
 						
-							<video src="http://a1.phobos.apple.com/us/r1000/000/Features/atv/AutumnResources/videos/b8-1.mov" autoplay muted></video>
-						</div> -->
+							<video src="http://mazwai.com/system/posts/videos/000/000/203/original/marseme.mp4?1446407520" autoplay muted></video>
+						</div>
 					</section>
 
 					<section class="tour" data-blade="tour">
-						<!-- <div class="tour-outline">
+						<div class="tour-outline">
 							
 							<article class="step1" data-hook="slide">
 								<div class="col slide-content">
@@ -134,12 +134,12 @@
 								<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step3.jpg');"></div>
 							</article>
 							
-						</div> -->
+						</div>
 					</section>
 
 					<section class="experience" data-blade="experience">
 
-						<!-- <div class="container">
+						<div class="container">
 							<div class="row">
 								<div class="col -full">
 									<h2>Experience <br>business class</h2>
@@ -169,7 +169,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="bg"></div> -->
+						<div class="bg"></div>
 
 					</section>
 
@@ -192,8 +192,13 @@
 
 					</section> -->
 
+<<<<<<< HEAD
 					<section class="footer" data-blade="footer">
-						<!-- <div class="container">
+						<div class="container" data-parallax="-1">
+=======
+					<section class="footer">
+						<div class="container">
+>>>>>>> develop
 							<div class="row">
 								<div class="col -full">
 									<h3>Share the love</h3>
@@ -221,7 +226,7 @@
 									</nav>
 								</div>
 							</div>
-						</div> -->
+						</div>
 
 						<!-- <div class="bg"></div> -->
 					</section>
