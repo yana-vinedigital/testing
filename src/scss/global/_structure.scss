@@ -219,9 +219,9 @@ html {
 					transform: translate3d(0,0,0); will-change: transform, opacity;
 
 					video {
-						width: auto; height: auto; min-width: 100%; min-height: 100%;
-						position: absolute; top: 0%; left: 0; z-index: 0;
-						opacity: 0.5;
+						width: auto; height: auto; min-width: 100%; min-height: 140%;
+						position: absolute; top: -20%; left: 0; z-index: 0;
+						opacity: 0.75;
 					}
 				}
 
@@ -234,34 +234,37 @@ html {
 				will-change: opacity;
 				// transform: skewY(-3deg);
 
-				&:before {
-					content: '';
-					width: 100%; height: lines(10);
-					position: absolute; top: -1px; left: 0; z-index: 40;
-					background-image: linear-gradient( 0deg, transparentize( $COLOR_BRAND_BASE, 1 ), $COLOR_BRAND_BASE );
-				}
+				// &:before {
+				// 	content: '';
+				// 	width: 100%; height: lines(10);
+				// 	position: absolute; top: -1px; left: 0; z-index: 40;
+				// 	background-image: linear-gradient( 0deg, transparentize( $COLOR_BRAND_BASE, 1 ), $COLOR_BRAND_BASE );
+				// }
 
-				&:after {
-					content: '';
-					width: 100%; height: lines(8);
-					position: absolute; bottom: -1px; left: 0; z-index: 40;
-					background-image: linear-gradient( 180deg, transparentize( $COLOR_BRAND_BASE, 1 ), $COLOR_BRAND_BASE 80% );
-				}
+				// &:after {
+				// 	content: '';
+				// 	width: 100%; height: lines(8);
+				// 	position: absolute; bottom: -1px; left: 0; z-index: 40;
+				// 	background-image: linear-gradient( 180deg, transparentize( $COLOR_BRAND_BASE, 1 ), $COLOR_BRAND_BASE 80% );
+				// }
 
 				.tour-outline {
 					width: 100%;
 					// position: absolute; top: lines(5); right: lines(0); bottom: lines(0); left: lines(0);
 					// background-color: $COLOR_GREY;
+					// background-color: $COLOR_WHITE;
+					
 				}
-					.tour-content-panel {
-						width: 50%;
-					}
+					// .tour-content-panel {
+					// 	width: 50%;
+					// }
 
 					article {
 						width: 100%; height: 100vh;
 						position: relative;
 						// position: absolute; top: 0; left: 0; z-index: 0;
 						// display: none;
+
 					}
 						.slide-content {
 							width: 50%;
@@ -269,7 +272,7 @@ html {
 							padding: 0 $GUTTER*6 0 $GUTTER*4; margin: -3px 0 -3px 0;
 							display: flex; align-items: center;
 							position: absolute; top: lines(0); bottom: lines(0); right: 0; z-index: 15; box-sizing: border-box;
-							color: $COLOR_WHITE; text-align: center;
+							color: $COLOR_BRAND_BASE; text-align: center;
 							
 							// box-shadow: 0 0 3px transparentize( $COLOR_BRAND_BASE, 0.3 );
 
@@ -278,6 +281,10 @@ html {
 								width: lines(3, gamma); height: lines(3, gamma);
 								border-radius: 50%;
 								border: 2px solid darken($COLOR_GREY, 30);
+							}
+
+							h1, h2 {
+								color: currentColor;
 							}
 
 							p {
@@ -291,16 +298,16 @@ html {
 						}
 
 						.slide-content-bg {
-							width: 50%; height: 100%;
-							position: absolute; top: 0; right: 0; z-index: 10;
+							width: 60%; height: 100%;
+							position: absolute; top: 0; right: -10%; z-index: 10;
 							opacity: 0;
 
 							&:after {
 								content: '';
 								width: 100%; height: 100%;
 								position: absolute; top: 0; left: 0;
-								background-color: $COLOR_BRAND_BASE;
-								transform: skewX(10deg);
+								background-color: $COLOR_WHITE;
+								transform: skewX(-10deg);
 							}
 
 						}
@@ -329,10 +336,11 @@ html {
 
 						.slide-bg {
 							width: 60%; height: 110%;
-							position: absolute; top: 0; left: 0; z-index: 0;
-							background-position: 33% 50%; background-repeat: no-repeat; background-size: cover;
+							position: absolute; top: -5%; left: 0; z-index: 0;
+							background-position: 50% 50%; background-repeat: no-repeat; background-size: cover;
 							opacity: 0;
 							transition: opacity 1s $EASE_IN_OUT_QUAD;
+							background-color: $COLOR_WHITE;
 							// transition-delay: 0s;
 						}
 
@@ -460,7 +468,7 @@ html {
 
 			section.footer {
 				display: block;
-				background-color: #1F2130;
+				// background-color: #1F2130;
 
 				h3 {
 					color: darken($COLOR_GREY,20); letter-spacing: 9px;

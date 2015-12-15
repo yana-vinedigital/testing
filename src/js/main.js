@@ -244,7 +244,7 @@ App.View = View.extend({
 		}
 
 		if ( this.$tour && scrollPos > windowHeight*0.2 && scrollPos < windowHeight * 4 ) {
-			var opacityOffset = +( Math.pow( scrollPos < windowHeight ? (scrollPos - windowHeight*0.2) / (windowHeight*0.75) : 1 - (( scrollPos - windowHeight*3.25 ) / windowHeightHalf ) , 3 )).toFixed(2);
+			var opacityOffset = +( Math.pow( scrollPos < windowHeight ? (scrollPos - windowHeight*0.2) / (windowHeight*0.75) : 1 - (( scrollPos - windowHeight*3.5 ) / (windowHeightHalf*0.75) ) , 3 )).toFixed(2);
 			this.tourOpacity = Utils.MATH.clamp( opacityOffset, 0, 1 );
 			if ( this.tourOpacity !== tourOpacityPrev ) {
 				this.$tour.style.opacity = this.tourOpacity;
