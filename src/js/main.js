@@ -19,7 +19,7 @@ require('browsernizr/test/touchevents');
 var FRONT = require('app');
 var Schema = require('./data/schema');
 var Utils = require('utils');
-var CSSMatrix = require('cssmatrix');
+// var CSSMatrix = xrequire('cssmatrix');
 
 //	Dependencies
 var Modernizr = require('browsernizr');
@@ -27,6 +27,9 @@ var Router = require('ampersand-controller-router');
 var Region = require('ampersand-view-switcher');
 var View = require('ampersand-view');
 var Templates = require('tpl');
+
+//	Views
+var BladeView = require('./views/blade');
 
 //
 //
@@ -86,7 +89,7 @@ App.View = View.extend({
 		_isScrollDisabled: ['boolean', false, false],
 		_isScrollTopSection: ['boolean', false, true],
 		_scrollFriction: ['number', true, 0.07],
-		_scrollTo: ['number', true, window.pageYOffset],
+		_scrollOffset: ['number', true, window.pageYOffset],
 		_scrollPos: ['number', true, 0],
 
 
@@ -97,9 +100,9 @@ App.View = View.extend({
 
 	derived: {
 		_scrollDiff: {
-			deps: ['_scrollTo', '_scrollPos'],
+			deps: ['_scrollOffset', '_scrollPos'],
 			fn: function() {
-				return +(this._scrollTo - this._scrollPos).toFixed(1);
+				return +(this._scrollOffset - this._scrollPos).toFixed(1);
 			}
 		},
 		_scrollVelocity: {
@@ -141,12 +144,15 @@ App.View = View.extend({
 	},
 
 	initialize: function() {
+		var _this = this;
 		this._transformProperty = Modernizr.prefixed('transform');
 		this._hasTransforms3d = Modernizr.csstransforms3d;
 		this._isTouch = Modernizr.touchevents;
 		this._scrollFrameRequested = false;
 		this._animFramePending = false;
+		
 		this.$parallaxObjects = [];
+		this.bladeObjects = [];
 		this.slideObjects = [];
 
 		// this._pageScrollProp = this.$page.style[ this._transformProperty ];
@@ -193,6 +199,11 @@ App.View = View.extend({
 		window.addEventListener( 'scroll', this._scrollHandler, false );
 		window.addEventListener( 'resize', this._viewportHandler, false );
 
+		this.listenTo( FRONT, 'blade:visible', function() {
+			_this._bladeCurrentIndex
+		});
+
+		this._setupBlades();
 		this._setupScroll(); // !this._isTouch && 
 	},
 
@@ -216,7 +227,7 @@ App.View = View.extend({
 		var _this = this;
 		var windowHeight = this._windowHeight;
 		var windowHeightHalf = windowHeight/2;
-		var scrollPos = this._scrollPos = this._isTouch ? this._scrollTo : +( this._scrollPos + this._scrollVelocity ).toFixed(1);
+		var scrollPos = this._scrollPos = this._isTouch ? this._scrollOffset : +( this._scrollPos + this._scrollVelocity ).toFixed(1);
 
 		this.$page.style[ this._transformProperty ] = 'translate3d(0,' + (scrollPos * -1) + 'px,0)';
 		// new cssMatrix().translate(0,+(scrollPos * -1).toFixed(1),0);
@@ -280,6 +291,16 @@ App.View = View.extend({
 	
 	//	Private Methods	 ----------------
 		
+	_setupBlades: function() {
+		var _this = this;
+		var $blades = this.$page.querySelectorAll('[data-blade]');
+		
+		Utils.each( $blades, function( el, i ) {
+			var bladeView = new BladeView({ el: el });
+			_this.bladeObjects.push( bladeView );
+		});
+	},
+
 	_setupScroll: function() {
 		var _this = this;
 		
@@ -330,12 +351,12 @@ App.View = View.extend({
 
 	_updateScroll: function() {
 		// debugger;
-		var scrollLast = this._scrollTo;
+		var scrollLast = this._scrollOffset;
 		var scroll = window.pageYOffset;
-		var scrollDelta = scrollLast - scroll;
-		var scrollDir = scrollDelta > 0 ? 1 : -1;
-		var scrollDirDown = scrollDelta < 0;
-		var scrollDirUp = scrollDelta > 0;
+		// var scrollDelta = scrollLast - scroll;
+		// var scrollDir = scrollDelta > 0 ? 1 : -1;
+		// var scrollDirDown = scrollDelta < 0;
+		// var scrollDirUp = scrollDelta > 0;
 
 		// Temp scroll func
 
@@ -370,7 +391,7 @@ App.View = View.extend({
 		// -----------
 
 		this._isScrollTopSection = ( scroll < this._windowHeight * 0.25 );
-		this._scrollTo = scroll;
+		this._scrollOffset = scroll;
 		this._scrollFrameRequested = false;
 	},
 
@@ -415,6 +436,9 @@ App.View = View.extend({
 
 
 });
+
+
+
 
 
 
