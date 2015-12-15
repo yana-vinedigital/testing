@@ -1,0 +1,221 @@
+
+//
+//	Vars
+//
+
+@import "_frontier/mixins/functions";
+
+
+
+
+/*
+ *	Vars: Colours
+ *	--------------------------------------------------
+ */
+
+// 	Brand Palette
+$COLOR_BRAND_MAIN: 		#E1E31A; //	Bright green
+$COLOR_BRAND_BASE: 		#272938; //	Midnight blue
+
+// 	...
+
+// 	Base Colours
+$COLOR_WHITE:			#ffffff;
+$COLOR_GREY:			#CBCBD0;
+	$COLOR_GREY_LIGHT:		#f3f5f8;
+	$COLOR_GREY_DARK:		#333333;
+$COLOR_BLACK:			#000000;
+
+
+//	Colour Settings
+$TEXT_COLOR:			$COLOR_GREY;
+	$LINK_COLOR:			$COLOR_BRAND_MAIN;
+	$LINK_COLOR_HOVER:		$COLOR_BRAND_MAIN;
+	$HEADINGS_COLOR:		$COLOR_WHITE;
+
+$BUTTON_COLOR:			$COLOR_BRAND_MAIN;
+	$BUTTON_TEXT_COLOR:		$COLOR_BRAND_MAIN;
+
+$BACKGROUND_COLOR:		$COLOR_BRAND_BASE;
+
+
+
+/*
+ *	Vars: Typography
+ *	--------------------------------------------------
+ */
+
+$FONT_PRIMARY:			"Lato", Arial, sans-serif;
+$FONT_SECONDARY:		"din-cond", Arial, sans-serif;
+
+$FONT_SIZE: 			16;
+$LINE_HEIGHT_RATIO: 	1.5;
+$LINE_HEIGHT: 			$FONT_SIZE * $LINE_HEIGHT_RATIO;
+
+$BASE_FONT_SIZE:		em($FONT_SIZE);
+$BASE_LINE_HEIGHT:		em($LINE_HEIGHT);
+
+$HEADINGS_FONT:			$FONT_SECONDARY;
+$BUTTON_FONT:			$FONT_SECONDARY;
+$ICON_FONT:				"";
+
+$TEXT_ALIGN:			center;
+
+
+//	Typographic scale
+
+$TYPE_SCALE: (
+	/*	title: 	(size (px) lines(baseline) ) */
+	alpha:				(96 4 h1),
+	beta: 				(72 3 h2),
+	gamma: 				(48 2 h3),
+	delta: 				(24 2 h4),
+		delta-beta: 	(22 1.5 '.lead'),
+
+	epsilon: 			(18 1.25 h5),
+	zeta: 				(14 1 h6),
+	eta: 				(12 0.75),
+	theta: 				(11 0.75),
+	omni: 				(9 0.5)
+);
+
+
+/*
+ *	Vars: Custom Fonts & Icons
+ *	--------------------------------------------------
+ */
+
+
+
+/*
+ *	Vars: Grid
+ *	--------------------------------------------------
+ */
+
+$COLUMN_WIDTH: 63;	/* The column-width of your grid in pixels */
+$GUTTER_WIDTH: 39;	/* The gutter-width of your grid in pixels */
+
+$COLUMN: em($COLUMN_WIDTH);
+$GUTTER: em($GUTTER_WIDTH);
+
+
+
+/*
+ *	Vars: Breakpoints
+ *	--------------------------------------------------
+ *	large-desktop	1920 +
+ *	med-desktop 	1440 +
+ *	DEFAULT 		1025...1439 (1128)
+ *	tablet-wide		- 1024
+ *	tablet			- 768 (fluid)
+ *	smartphone-wide	- 640 (fluid)
+ *	smartphone		- 480 (fluid)
+ *	mobile			- 320 (fluid)
+ */
+
+$TOTAL_COLUMNS_DEFAULT: 12;
+$TOTAL_COLUMNS: $TOTAL_COLUMNS_DEFAULT;
+$BODY_SCALE: -1;
+
+$BREAKPOINTS: (
+	/*	title: 	(mq pixels columns) */
+	default:			(min 1025 $TOTAL_COLUMNS $BODY_SCALE),
+	med-desktop: 		(min 1440 12 0),
+	large-desktop: 		(min 1920 14 0),
+
+	tablet-wide: 		(max 1024 12 -4),
+	tablet:				(max 768 8 -4),
+	smartphone-wide:	(max 640 6 -4),
+	smartphone: 		(max 480 4 -4),
+	mobile: 			(max 320 4 -4)
+
+);
+
+
+/*
+ *	Vars: Baseline
+ *	--------------------------------------------------
+ */
+
+$LINES_1: 	1 * $BASE_LINE_HEIGHT;
+$LINES_2: 	2 * $BASE_LINE_HEIGHT;
+$LINES_3: 	3 * $BASE_LINE_HEIGHT;
+$LINES_4: 	4 * $BASE_LINE_HEIGHT;
+$LINES_5: 	5 * $BASE_LINE_HEIGHT;
+$SEGMENT: 	3 * $BASE_LINE_HEIGHT;
+
+
+/*`
+ *	Vars: Golden Ratio
+ *	--------------------------------------------------
+ */
+
+
+// Pixels
+$GRP_1: $LINE_HEIGHT;			// 24
+$GRP_2: round(1.618 * $GRP_1);	// 39
+$GRP_3: round(1.618 * $GRP_2);	// 63
+$GRP_4: round(1.618 * $GRP_3);	// 102
+$GRP_5: round(1.618 * $GRP_4);	// 165
+$GRP_6: round(1.618 * $GRP_5);	// 267
+
+// Ems
+$GRE_1: em($GRP_1);		// 24
+$GRE_2: em($GRP_2);		// 39
+$GRE_3: em($GRP_3);		// 63
+$GRE_4: em($GRP_4);		// 102
+$GRE_5: em($GRP_5);		// 165
+$GRE_6: em($GRP_6);		// 267
+
+
+/*
+ *	Vars: Transitions
+ *	--------------------------------------------------
+ */
+
+$LINEAR:            cubic-bezier(0.250, 0.250, 0.750, 0.750) !default;
+$EASE:              cubic-bezier(0.250, 0.100, 0.250, 1.000) !default;
+
+$EASE_IN:           cubic-bezier(0.420, 0.000, 1.000, 1.000) !default;
+$EASE_OUT:          cubic-bezier(0.000, 0.000, 0.580, 1.000) !default;
+$EASE_IN_OUT:       cubic-bezier(0.420, 0.000, 0.580, 1.000) !default;
+
+$EASE_IN_QUAD:      cubic-bezier(0.550, 0.085, 0.680, 0.530) !default;
+$EASE_OUT_QUAD:     cubic-bezier(0.250, 0.460, 0.450, 0.940) !default;
+$EASE_IN_OUT_QUAD:  cubic-bezier(0.455, 0.030, 0.515, 0.955) !default;
+
+$EASE_IN_CUBIC:     cubic-bezier(0.550, 0.055, 0.675, 0.190) !default;
+$EASE_OUT_CUBIC:    cubic-bezier(0.215, 0.610, 0.355, 1.000) !default;
+$EASE_IN_OUT_CUBIC: cubic-bezier(0.645, 0.045, 0.355, 1.000) !default;
+
+$EASE_IN_QUART:     cubic-bezier(0.895, 0.030, 0.685, 0.220) !default;
+$EASE_OUT_QUART:    cubic-bezier(0.165, 0.840, 0.440, 1.000) !default;
+$EASE_IN_OUT_QUART: cubic-bezier(0.770, 0.000, 0.175, 1.000) !default;
+
+$EASE_IN_QUINT:     cubic-bezier(0.755, 0.050, 0.855, 0.060) !default;
+$EASE_OUT_QUINT:    cubic-bezier(0.230, 1.000, 0.320, 1.000) !default;
+$EASE_IN_OUT_QUINT: cubic-bezier(0.860, 0.000, 0.070, 1.000) !default;
+
+$EASE_IN_SINE:      cubic-bezier(0.470, 0.000, 0.745, 0.715) !default;
+$EASE_OUT_SINE:     cubic-bezier(0.390, 0.575, 0.565, 1.000) !default;
+$EASE_IN_OUT_SINE:  cubic-bezier(0.445, 0.050, 0.550, 0.950) !default;
+
+$EASE_IN_EXPO:      cubic-bezier(0.950, 0.050, 0.795, 0.035) !default;
+$EASE_OUT_EXPO:     cubic-bezier(0.190, 1.000, 0.220, 1.000) !default;
+$EASE_IN_OUT_EXPO:  cubic-bezier(1.000, 0.000, 0.000, 1.000) !default;
+
+$EASE_IN_CIRC:      cubic-bezier(0.600, 0.040, 0.980, 0.335) !default;
+$EASE_OUT_CIRC:     cubic-bezier(0.075, 0.820, 0.165, 1.000) !default;
+$EASE_IN_OUT_CIRC:  cubic-bezier(0.785, 0.135, 0.150, 0.860) !default;
+
+$EASE_DEFAULT:		$EASE_OUT_CUBIC;
+
+
+
+
+
+/*
+ *	Vars: Form
+ *	--------------------------------------------------
+ */
+

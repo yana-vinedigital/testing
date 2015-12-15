@@ -1,0 +1,642 @@
+
+//
+//	Global / Structure
+//
+
+
+
+/*
+ *	Structure: Core
+ *	--------------------------------------------------
+ */
+
+html {
+	&.no-js {
+		.page {
+			position: relative;
+
+			section {
+				opacity: 1;
+
+				.slide-content div,
+				.slide-content-bg,
+				.slide-bg {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+	body {
+		width: 100%; height: 100%;
+		position: relative;
+
+		&.-is-scroll-disabled {
+			overflow: hidden;
+		}
+
+
+	}
+
+
+
+/*
+ *	Structure: Website Base Containers
+ *	--------------------------------------------------
+ */
+
+.outline {
+
+
+}
+	.outline-header {
+		width: 100%; height: lines(5);
+		position: fixed; top: 0; z-index: 100;
+
+		.header {
+			// background-color: grey;
+		}
+			.logo {
+				margin: 0;
+			}
+	}
+
+	.outline-main {
+		height: 600vh;
+		position: relative; z-index: 0;
+	}
+		.page-nav {
+
+			position: fixed; top: 50%; left: 5%; z-index: 30;
+			transform: translateY( -50% );
+
+			ul {
+				margin: 0; padding: 0;
+				list-style-type: none;
+
+				li {
+					margin: 0 0 lines(1.5);
+
+					a {
+						width: 12px; height: 12px;
+						display: block; position: relative;
+						color: darken( $COLOR_BRAND_BASE, 10);
+						background-color: currentColor;
+						border-radius: 50%;
+						opacity: 0.5;
+
+						&:after {
+							content: '';
+							width: 20px; height: 20px;
+							display: block; position: absolute; top: -5px; left: -5px;
+							border: 1px solid currentColor; border-radius: 50%;
+							transform: scale(0.5);
+							transition: transform 0.5s;
+						}
+
+					}
+
+					&:nth-child(2),
+					&:nth-child(3) {
+						a:before {
+							content: '';
+							width: 1px; height: lines(1.75);
+							display: block; position: absolute; top: 50%; left: 50%;
+							background-color: currentColor;
+							opacity: 0.5;
+						}
+					}
+
+					&.-is-active {
+						a {
+							color: $COLOR_BRAND_MAIN;
+							opacity: 1;
+
+							&:after {
+								transform: scale(1);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.page {
+			min-height: 100vh;
+			position: fixed; top: 0; left: 0; right: 0;
+			will-change: transform;
+		
+			section {
+				min-height: 100vh;
+				padding: lines(6) 0 lines(4) 0;
+				display: flex; align-items: center;
+				box-sizing: border-box; position: relative; z-index: 10;
+				overflow: hidden;
+				// background-color: $BACKGROUND_COLOR;
+
+				.divider {
+					width: cols(1);
+					margin: lines(1.5) auto;
+					position: relative;
+
+					svg {
+						width: lines(1); height: lines(1);
+						fill: $COLOR_BRAND_MAIN;						
+					}
+
+					&:before, 
+					&:after {
+						content: '';
+						width: cols(1.5); height: 0;
+						display: block; position: absolute; top: lines(0.5);
+						border-bottom: 1px solid $COLOR_GREY;
+						opacity: 0.15;
+					}
+					&:before { left: 100%; }
+					&:after { right: 100%; }
+
+					
+				}
+
+				.bg {
+					width: 100%; height: 100%;
+					position: absolute; top: 0; left: 0; z-index: 0;
+					background-position: top center; background-repeat: no-repeat; background-size: 100%;
+					transform: translate3d(0,0,0);
+					will-change: transform;
+				}
+			}
+		}
+
+			.scroll-icon {
+				margin-left: lines(-0.5);
+				position: absolute; top: 120vh; left: 50%; z-index: 50;
+				
+				&:after {
+					content: '';
+					width: lines(1); height: lines(1);
+					display: block;
+					border: 2px solid $COLOR_GREY; border-width: 0 2px 2px 0;
+					opacity: 0;
+					transform: rotate(45deg);
+					transition: opacity 0.5s;
+				}
+
+				.-is-scroll-top & {
+					&:after {
+						opacity: 0.5;
+					}
+					
+				}
+			}
+
+			section.intro {
+				z-index: 0;
+				will-change: transform, opacity;
+				// transition: opacity 0.5s;
+
+				// .container {
+				// 	position:
+				// }
+
+				&:after {
+					content: '';
+					width: 100%; height: lines(10);
+					position: absolute; bottom: -1px; left: 0; z-index: 40;
+					background-image: linear-gradient( 180deg, transparentize( $COLOR_BRAND_BASE, 1 ), $COLOR_BRAND_BASE );
+				}
+
+				.bg {
+					z-index: 5;
+					// background-image: url("../img/bg-intro.jpg");
+					background-image: url("../img/bg-mask.png"); background-size: 100% 100%;
+					opacity: 0.8;
+				}
+
+				.bg-video {
+					width: 100%; height: 100%;
+					position: absolute; top: 0; left: 0; z-index: 0;
+					transform: translate3d(0,0,0); will-change: transform, opacity;
+
+					video {
+						width: auto; height: auto; min-width: 100%; min-height: 100%;
+						position: absolute; top: 0%; left: 0; z-index: 0;
+						opacity: 0.5;
+					}
+				}
+
+			}
+
+			section.tour {
+				height: 300vh;
+				background-color: transparent;
+				opacity: 0;
+				will-change: opacity;
+				// transform: skewY(-3deg);
+
+				&:before {
+					content: '';
+					width: 100%; height: lines(10);
+					position: absolute; top: -1px; left: 0; z-index: 40;
+					background-image: linear-gradient( 0deg, transparentize( $COLOR_BRAND_BASE, 1 ), $COLOR_BRAND_BASE );
+				}
+
+				&:after {
+					content: '';
+					width: 100%; height: lines(8);
+					position: absolute; bottom: -1px; left: 0; z-index: 40;
+					background-image: linear-gradient( 180deg, transparentize( $COLOR_BRAND_BASE, 1 ), $COLOR_BRAND_BASE 80% );
+				}
+
+				.tour-outline {
+					width: 100%;
+					// position: absolute; top: lines(5); right: lines(0); bottom: lines(0); left: lines(0);
+					// background-color: $COLOR_GREY;
+				}
+					.tour-content-panel {
+						width: 50%;
+					}
+
+					article {
+						width: 100%; height: 100vh;
+						position: relative;
+						// position: absolute; top: 0; left: 0; z-index: 0;
+						// display: none;
+					}
+						.slide-content {
+							width: 50%;
+							// height: 100%;
+							padding: 0 $GUTTER*6 0 $GUTTER*4; margin: -3px 0 -3px 0;
+							display: flex; align-items: center;
+							position: absolute; top: lines(0); bottom: lines(0); right: 0; z-index: 15; box-sizing: border-box;
+							color: $COLOR_WHITE; text-align: center;
+							
+							// box-shadow: 0 0 3px transparentize( $COLOR_BRAND_BASE, 0.3 );
+
+							.step-number {
+								@include font-setting-size( gamma, 3 );
+								width: lines(3, gamma); height: lines(3, gamma);
+								border-radius: 50%;
+								border: 2px solid darken($COLOR_GREY, 30);
+							}
+
+							p {
+								color: darken($COLOR_GREY, 30);
+							}
+							div {
+								opacity: 0;
+								margin-top: lines(-5);
+								transition: opacity 0.75s;
+							}
+						}
+
+						.slide-content-bg {
+							width: 50%; height: 100%;
+							position: absolute; top: 0; right: 0; z-index: 10;
+							opacity: 0;
+
+							&:after {
+								content: '';
+								width: 100%; height: 100%;
+								position: absolute; top: 0; left: 0;
+								background-color: $COLOR_BRAND_BASE;
+								transform: skewX(10deg);
+							}
+
+						}
+
+						.slide-overlay {
+							position: absolute; top: 0; left: 30%; z-index: 20;
+
+							div {
+								width: cols(2.5); height: cols(2.5);
+								box-sizing: border-box;
+								position: absolute; top: 0; left: 0;
+								display: flex; align-items: center; flex-direction: column; justify-content: center;
+								background-color: $COLOR_BRAND_BASE;
+								border-radius: 50%;
+								opacity: 0;
+								transform: scale(0.75);
+								transition: transform 0.65s, opacity 0.5s;
+								transition-timing-function: $EASE_IN_OUT_QUAD;
+							}
+
+							h1, h2, h3, h4 {
+								margin: 0 auto;
+								text-indent: 0; letter-spacing: 0;
+							}
+						}
+
+						.slide-bg {
+							width: 60%; height: 110%;
+							position: absolute; top: 0; left: 0; z-index: 0;
+							background-position: 33% 50%; background-repeat: no-repeat; background-size: cover;
+							opacity: 0;
+							transition: opacity 1s $EASE_IN_OUT_QUAD;
+							// transition-delay: 0s;
+						}
+
+					article {
+
+						&.step1 {
+
+						}
+
+						&.step2 {
+							.slide-overlay {
+								left: 10%;
+
+								div {
+									margin-top: lines(8);
+									padding-top: lines(0.5);
+								}
+									h4 {
+										margin-top: lines(-0.25);
+									}
+							}
+						}
+
+						&.step3 {
+
+						}
+					}
+
+					article.-is-active {
+						z-index: 10;
+
+						.slide-content div {
+							opacity: 1;
+							// transform: translate3d(0%,0,0);
+							// transition-delay: 0.5s;
+						}
+
+						.slide-content-bg {
+							opacity: 1;
+						}
+
+						.slide-overlay {
+							
+							// transition-delay: 0.75s;
+
+							div {
+								opacity: 1;
+								transform: scale(1);
+								// transition-duration: 0.5s;
+								// transition-timing-function: linear;
+							}
+						}
+
+						.slide-bg {
+							opacity: 1;
+							// transition-delay: 0.5s;
+						}
+					}
+
+				// &.slide-1 {
+				// 	.slide {
+				// 		.bg {
+				// 			background-image: url("../img/bg-slide-step1.jpg");
+				// 		}
+				// 	}
+				// }
+
+				// &.slide-2 {
+				// 	.slide {
+				// 		.bg {
+
+				// 		}
+				// 	}
+				// }
+
+				// &.slide-3 {
+				// 	.slide {
+				// 		.bg {
+
+				// 		}
+				// 	}
+				// }
+			}
+
+			section.experience {
+				height: 100vh;
+
+				&:before {
+					content: '';
+					width: 100%; height: lines(10);
+					position: absolute; top: -1px; left: 0; z-index: 40;
+					background-image: linear-gradient( 0deg, transparentize( $COLOR_BRAND_BASE, 1 ), $COLOR_BRAND_BASE );
+				}
+
+				svg {
+					width: cols(1); height: cols(1);
+					fill: #E8A262;
+				}
+
+				.bg {
+					background-image: url("../img/bg-experience.jpg");
+				}
+			}
+
+			section.airlines-intro {
+			
+				.bg {
+					background-image: url("../img/bg-airlines-intro.jpg");
+				}
+			}
+
+			section.airlines-innovation {
+			
+				.bg {
+					background-image: url("../img/bg-airlines-innovation.jpg");
+				}
+			}
+
+			section.airlines-seats {
+			
+				.bg {
+					background-image: url("../img/bg-airlines-seats.jpg");
+				}
+			}
+
+			section.footer {
+				display: block;
+				background-color: #1F2130;
+
+				h3 {
+					color: darken($COLOR_GREY,20); letter-spacing: 9px;
+				}
+				h4 {
+					letter-spacing: 6px;
+				}
+
+				.container {
+					padding-top: lines(6);
+				}
+
+					.footer-nav {
+						width: 100%;
+						padding-top: lines(5);
+						// position: absolute; bottom: 0; left: 0; z-index: 20;
+						text-align: left;
+
+						ul {
+							@include font-setting-size(16, 2);
+							margin: 0; padding: lines(1) 0;
+							list-style-type: none;
+							border-top: 1px solid transparentize($COLOR_GREY, 0.9);
+
+							li {
+								margin-right: $GUTTER;
+								display: inline-block;
+							}
+
+								a {
+									color: $COLOR_GREY;
+									opacity: 0.5;
+								}
+						}
+					}
+
+				.bg {
+					background-image: url("../img/bg-footer.jpg");
+				}
+			}
+
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1440 +
+ *	DEFAULT 		1025...1439 (1128)
+ *	tablet-wide		- 1024
+ *	tablet			- 768 (fluid)
+ *	smartphone-wide	- 640 (fluid)
+ *	smartphone		- 480 (fluid)
+ *	mobile			- 320 (fluid)
+ *
+ */
+
+
+/*
+ *	Breakpoint:	Default
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(default) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+}
+
+
+/*
+ *	Breakpoint:	med-desktop
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(med-desktop) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+}
+
+
+/*
+ *	Breakpoint:	large-desktop
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(large-desktop) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+}
+
+
+/*
+ *	Breakpoint:	tablet-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet-wide) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+}
+
+
+/*
+ *	Breakpoint:	tablet-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet-wide) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+}
+
+
+/*
+ *	Breakpoint:	tablet
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+
+}
+
+
+/*
+ *	Breakpoint:	smartphone-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(smartphone-wide) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+
+}
+
+
+/*
+ *	Breakpoint:	smartphone
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(smartphone) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+}
+
+
+/*
+ *	Breakpoint:	mobile
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(mobile) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+	
+}

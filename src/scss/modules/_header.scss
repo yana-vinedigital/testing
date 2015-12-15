@@ -1,0 +1,142 @@
+
+//
+//	Modules / Header
+//
+
+
+
+.outline-header {
+	
+	&:after {
+		content: '';
+		width: 100%; height: lines(10);
+		position: absolute; top: -1px; left: 0; z-index: 0;
+		background-image: linear-gradient( 0deg, transparentize( $COLOR_BRAND_BASE, 1 ), transparentize( $COLOR_BRAND_BASE, 0.1 ) 90% );
+	}
+
+	.header {
+		@include container;
+		position: relative; z-index: 10;
+		transform: translate3d( 0, lines(1.5), 0 );
+		transition: transform 0.5s;
+	}
+
+		.logo {
+
+			a {
+				text-decoration: none;
+			}
+			
+				h1 {
+					@include font-setting-size( delta-beta, 2 );
+					letter-spacing: 9px; text-align: left; text-indent: 0;
+
+					svg {
+						width: lines(1.5, delta-beta); height: lines(1, delta-beta);
+						margin: lines(0.5, delta-beta) $GUTTER/2 lines(0.5, delta-beta) 0;
+						float: left;
+						fill: $COLOR_BRAND_MAIN;
+					}
+				}
+			
+		}
+
+		nav {
+			position: absolute; top: 0; right: $GUTTER/2;
+
+			ul {
+				list-style-type: none;
+				@include font-setting-size(16, 2);
+
+				li {
+					margin: 0 0 0 $GUTTER;
+					display: inline-block;
+
+					a {
+						color: #9798A2;
+						position: relative;
+						transition: color 0.25s;
+
+						&:after {
+							content: '';
+							width: 100%;
+							position: absolute; bottom: em(-10); left: 0;
+							display: block;
+							border-bottom: 2px solid currentColor;
+							opacity: 0;
+							transition: opacity 0.25s;
+						}
+
+						&:hover {
+							color: $COLOR_BRAND_MAIN;
+							text-decoration: none;
+						}
+					}
+
+					&.-is-active {
+						a {
+							color: $COLOR_BRAND_MAIN;
+
+							&:after {
+								opacity: 1;
+							}
+							
+						}
+					}
+				}
+			}
+		}
+
+	.-is-scroll-top & {
+
+		.header {
+			transform: translate3d( 0, lines(3), 0 );
+		}
+		
+	}
+}
+
+
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1440 +
+ *	DEFAULT 		1025...1439 (1128)
+ *	tablet-wide		- 1024
+ *	tablet			- 768 (fluid)
+ *	smartphone-wide	- 640 (fluid)
+ *	smartphone		- 480 (fluid)
+ *	mobile			- 320 (fluid)
+ *
+ */
+
+
+
+/*
+ *	Breakpoint:	tablet-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(med-desktop) {
+
+	.outline-header {
+
+		.header {
+			transform: translate3d( 0, lines(1.5), 0 );
+		}
+		
+
+		.-is-scroll-top & {
+			.header {
+				transform: translate3d( 0, lines(3.5), 0 );
+			}
+		}
+	}
+
+}

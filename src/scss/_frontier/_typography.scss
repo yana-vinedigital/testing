@@ -1,0 +1,193 @@
+
+//
+//	Frontier / Typography
+//
+
+
+
+/*
+ *	Typography: Font Sizes
+ *	--------------------------------------------------
+ */
+
+@each $scale, $data in $TYPE_SCALE {
+	
+	$size: nth($data, 1);
+	$lines: nth($data, 2);
+	$element: if( length($data) > 2, nth($data, 3), "" );
+
+	.#{$scale} {
+		@include font-setting($size, $lines);
+	}
+	
+	@if $element != "" {
+		#{$element} { 
+			@extend .#{$scale}; 
+		}
+	}
+
+}
+
+
+/*
+ *	Typography: Headings
+ *	--------------------------------------------------
+ */
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $HEADINGS_FONT; font-weight: normal; color: $HEADINGS_COLOR;
+	text-rendering: optimizelegibility;
+
+	small {
+		@include font-setting(10, 1);
+	}
+
+	&.-alt {
+		color: darken($COLOR_GREY, 20);
+	}
+}
+
+
+/*
+ *	Typography: Paragraphs
+ *	--------------------------------------------------
+ */
+
+p {
+	@include font-setting(16, 1);
+
+	&.small {
+		@include font-setting(12, 1);
+
+	}
+}
+
+
+/*
+ *	Typography: Lists
+ *	--------------------------------------------------
+ */
+
+%unstyled {
+	margin: 0; padding: 0;
+	list-style: none;
+}
+
+ul {
+
+	&.unstyled {
+		@extend %unstyled;
+	}
+}
+
+
+/*
+ *	Typography: Global Options
+ *	--------------------------------------------------
+ */
+
+
+.light { font-weight: 100; }
+.regular { font-weight: 300; }
+.medium { font-weight: 500; }
+.bold { font-weight: 700; }
+.black { font-weight: 900; }
+
+
+//	Styles
+
+.underline { 
+	border-bottom: 1px solid currentColor;
+}
+.italic {
+	font-style: italic;
+}
+.caps {
+	text-transform: uppercase;
+}
+.border {
+	border-bottom: 2px solid currentColor;
+}
+.alt {
+	color: $HEADINGS_COLOR;
+}
+
+
+//	Alignment
+
+.align-center {
+	text-align: center;
+}
+.align-left {
+	text-align: left;
+}
+.align-right {
+	text-align: right;
+}
+
+
+//	Margins
+
+.half-margin {
+	& + * {
+		margin-top: 0;
+	}
+}
+.no-margin {
+	margin-bottom: 0;
+
+	& + * {
+		margin-top: 0;
+	}
+}
+
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1440 +
+ *	DEFAULT 		1025...1439 (1128)
+ *	tablet-wide		- 1024
+ *	tablet			- 768 (fluid)
+ *	smartphone-wide	- 640 (fluid)
+ *	smartphone		- 480 (fluid)
+ *	mobile			- 320 (fluid)
+ */
+
+
+/*
+ *	Breakpoint:	tablet-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet-wide) {
+
+}
+
+
+/*
+ *	Breakpoint:	smartphone
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(smartphone) {
+
+	// .alpha { @include font-setting(39, 2); }
+	// .gamma { @include font-setting(20, 1.25); }
+
+}
+
+
+/*
+ *	Breakpoint:	mobile
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(mobile) {
+
+}

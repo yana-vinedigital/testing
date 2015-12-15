@@ -1,0 +1,150 @@
+
+//
+//  Global / Defaults
+//
+
+
+
+/*
+ *	Defaults: Core
+ *	--------------------------------------------------
+ */
+
+html {
+	width: 100%; height: 100%;
+}
+	body {
+		width: 100%; height: 100%;
+		overflow-x: hidden;
+		font-family: $FONT_PRIMARY;
+		line-height: $BASE_LINE_HEIGHT; color: $TEXT_COLOR; text-align: $TEXT_ALIGN;
+		-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+		background-color: $BACKGROUND_COLOR;
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+	}
+
+
+
+/*
+ *	Defaults: Anchors
+ *	--------------------------------------------------
+ */
+
+a {
+	color: $LINK_COLOR;
+	font-weight: 500;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+	&.btn {
+		font-family: $BUTTON_FONT;
+	}
+}
+
+
+/*
+ *	Defaults: Nav
+ *	--------------------------------------------------
+ */
+
+nav {
+
+	ul {
+		margin: 0; padding: 0;
+		list-style-type: none;
+
+		li {
+			margin: 0; padding: 0;
+		}
+	}
+
+	&.nav--horizontal {
+
+		li {
+			margin-right: lines(1.5);
+			display: inline-block;
+		}
+	}
+}
+
+
+
+/*
+ *	Defaults: Typography
+ *	--------------------------------------------------
+ */
+
+
+h1, h2, h3, h4, h5, h6 {
+	color: $HEADINGS_COLOR;
+	text-transform: uppercase;
+}
+
+h1 {
+	margin-left: 18px; text-indent: 36px;
+	color: $HEADINGS_COLOR;
+	letter-spacing: 18px;
+}
+
+h2, h3 {
+	letter-spacing: -1px;
+}
+
+blockquote {
+	padding: lines(1.5);
+	border: 2px solid transparentize($COLOR_GREY, 0.75); border-radius: 3px;
+
+	p {
+		margin-bottom: lines(0.5);
+		@include font-setting-size(20, 1.25);
+	}
+
+	footer {
+		@include font-setting-size(14, 1);
+		color: $COLOR_GREY_DARK; font-weight: 500;
+
+		a {
+			margin-left: lines(0.25);
+
+			&::before {
+				content: " | ";
+				margin-right: lines(0.25);
+				display: inline;
+				color: transparentize($COLOR_GREY, 0.5);
+			}
+		}
+	}
+}
+
+
+/*
+ *	Defaults: Images
+ *	--------------------------------------------------
+ */
+
+
+img {
+	max-width: 100%;
+	display: block;
+}
+
+
+
+/*
+ *	Defaults: Fonts
+ *	--------------------------------------------------
+ */
+
+ @font-face {
+	font-family: 'din-cond';
+	font-style:   normal;
+	font-weight:  bold;
+	src: url('#{$DIR_FONTS}dincond-bold.eot'); /* IE9 Compat Modes */
+	src: url('#{$DIR_FONTS}dincond-bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		 url('#{$DIR_FONTS}dincond-bold.woff') format('woff'), /* Modern Browsers */
+		 url('#{$DIR_FONTS}dincond-bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+		 url('#{$DIR_FONTS}dincond-bold.svg#e0701c5af929bd67babc2defb9ce654c') format('svg'); /* Legacy iOS */
+}

@@ -1,0 +1,87 @@
+
+//
+//	UI / Buttons
+//
+
+
+.btn {
+	margin: 0 em(12) em(6) 0; padding: 0 $GUTTER;
+	box-sizing: border-box;
+	display: inline-block; position: relative;
+	color: $COLOR_GREY; text-transform: uppercase;
+	line-height: lines(2); font-weight: bold; letter-spacing: 4px;
+	background-color: transparent;
+	border: 1px solid $COLOR_GREY; border-radius: lines(1);
+	transition: background-color 0.2s, color 0.2s, opacity 0.2s;
+
+	&:hover {
+		text-decoration: none;
+		color: $COLOR_BRAND_BASE;
+		background-color: $COLOR_GREY;
+	}
+
+
+	// Styles
+
+	&.-alt {
+		color: $BUTTON_TEXT_COLOR;
+		border-color: $BUTTON_COLOR;
+		
+		&:hover {
+			color: $COLOR_BRAND_BASE;
+			background-color: $BUTTON_TEXT_COLOR;
+		}
+	}
+
+	&.-borderless {
+		border-color: transparent;
+		box-shadow: none;
+
+		&:hover {
+			background-color: transparentize($COLOR_BLACK, 0.5);
+		}
+	}
+
+	// Sizes
+
+	&.btn--tiny {
+		padding: 0 $GUTTER/4;
+		font-size: 0.825em; font-weight: bold; line-height: 1.25rem; text-transform: none;
+		border-width: 1px; border-radius: 3px;
+	}
+
+	&.btn--mini {
+		padding: 0 $GUTTER/2;
+		line-height: $LINES_1*1.5;
+		border-width: 2px; border-radius: 3px;
+	}
+
+	&.-small {
+		padding: 0 $GUTTER/2;
+		line-height: lines(1.5);
+	}
+
+	&.btn--large {
+		padding: 0 $GUTTER*2;
+		line-height: $LINES_3;
+	}
+
+	// States
+
+	&.btn--success {
+		color: $BUTTON_COLOR;
+		border-color: #B8E986;
+		background-color: #B8E986;
+	}
+
+	&.btn--error {
+		color: $BUTTON_COLOR;
+		border-color: #FF696C;
+		background-color: #FF696C;
+	}
+
+
+
+
+}
+

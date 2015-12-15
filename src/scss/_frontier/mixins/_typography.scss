@@ -1,0 +1,84 @@
+
+//
+//	Frontier / Mixins / Typography
+//
+
+
+
+/*
+ *	Function: Get font size by TYPE_SCALE name
+ *	--------------------------------------------------
+ */
+
+//	Return font size in PX from type-scale NAME.
+@function get-font-size( $name ) {
+	$type-data: map-get( $TYPE_SCALE, $name );
+	@return nth( $type-data, 1 );
+}
+
+//	Return font line-height in LINES from type-scale NAME.
+@function get-font-lines( $name ) {
+	$type-data: map-get( $TYPE_SCALE, $name );
+	@return nth( $type-data, 2 );
+}
+
+
+
+@function font-scale-px( $name, $context: $FONT_SIZE ) {
+	$font-size: if( type-of( $name ) == number, $name, get-font-size( $name ) );
+	$context-size: if( type-of( $context ) == number, $context, get-font-size( $context ) );
+	@return $font-size / $context-size;
+}
+
+//	Return font size in EMs with optional context NAME / PX.
+@function font-scale( $name, $context: $FONT_SIZE ) {
+	@return font-scale-px( $name, $context ) * 1em;
+}
+
+
+
+/*
+ *	Typography: Font Size
+ *	--------------------------------------------------
+ */
+
+//	Set font-size and line-height from type-scale NAME or PX, optional LINES override.
+@mixin font-setting-size( $font-size: $FONT_SIZE, $lines: null ) {
+	@if type-of( $font-size ) == string {
+		$font-size-px: get-font-size( $font-size );
+		@if $lines == null {
+			$lines: get-font-lines( $font-size );
+		}
+	
+	} @else {
+		$font-size-px: $font-size;
+		@if $lines == null { $lines: 1 }
+		// @if type-of( $lines ) == string {
+		// 	$lines: get-font-lines( $lines );
+		// }
+	}
+
+	// $context-size: if( type-of( $context ) == number, $context, get-font-size( $context ) );
+
+	font-size: em( $font-size-px );
+	line-height: ( $lines * $LINE_HEIGHT ) / $font-size-px * 1em;
+}
+
+//	Set font-size, line-height & margins from type-scale NAME / PX, optional LINES override.
+@mixin font-setting( $font-size: $FONT_SIZE, $lines: null ) {
+	@if type-of( $font-size ) == string {
+		$font-size-px: get-font-size( $font-size );
+
+		@if $lines == null {
+			$lines: get-font-lines( $font-size );
+		}
+		
+	} @else {
+		$font-size-px: $font-size;
+		@if $lines == null { $lines: 1 }
+	}
+
+	margin: ( $LINE_HEIGHT / $font-size-px ) * 1em auto;
+	&.half-margin { margin-bottom: ( $LINE_HEIGHT / $font-size-px ) * 0.5em; }
+	@include font-setting-size( $font-size, $lines );
+}
