@@ -15,10 +15,15 @@ var Utils = {
 	//	Lodash	 ------------------------
 	each: 		require('lodash/collection/each'),
 	extend: 	require('lodash/object/assign'),
+	find: 		require('lodash/collection/find'),
 	debounce: 	require('lodash/function/debounce'),
 	defaults: 	require('lodash/object/defaults'),
 	defer: 		require('lodash/function/defer'),
 	delay: 		require('lodash/function/delay'),
+
+	pluck: 		require('lodash/collection/pluck'),
+	sortBy: 	require('lodash/collection/sortBy'),
+	throttle: 	require('lodash/function/throttle'),
 	
 	
 	//	Misc	 ------------------------

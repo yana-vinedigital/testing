@@ -39,13 +39,14 @@
 				</section>
 			</header>
 			<div class="outline-main" data-region="main">
-				<div class="page-nav">
+				<div class="page-nav" data-hook="page-nav">
 					<ul>
-						<li class="-is-active"><a href="#"></a></li>
-						<li><a href="#blade-step1"></a></li>
-						<li><a href="#blade-step2"></a></li>
-						<li><a href="#blade-step3"></a></li>
-						<li><a href="#"></a></li>
+						<li data-nav-waypoint="0"><a href="#"></a></li>
+						<li data-nav-waypoint="1.0"><a href="#"></a></li>
+						<li data-nav-waypoint="1.1"><a href="#"></a></li>
+						<li data-nav-waypoint="1.2"><a href="#"></a></li>
+						<li data-nav-waypoint="2"><a href="#"></a></li>
+						<li data-nav-waypoint="3"><a href="#"></a></li>
 					</ul>
 				</div>
 				<div class="page" data-hook="page">
@@ -53,20 +54,29 @@
 					<div class="scroll-icon" data-parallax="-0.5"></div>
 
 					<section class="intro" data-blade="intro">
-						<!-- <div class="container" data-parallax="-0.75">
+						<div class="container" data-parallax="-0.75">
 							<div class="row">
 								<div class="col -full">
-									<h1>Tap into <br>business class</h1>
+									<h1>Upgrade <br>the day you fly</h1>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col -half -center">
-			
-									<p class="lead">With SeatFrog you don’t need tips, tricks, or sheer luck to score an upgrade. Now you choose when to jump from economy into business-class comfort.</p>
+									<p class="lead">Bid against the other passengers on your flight for a last minute upgrade to Business class with SeatFrog.</p>
 								</div>
-								<div class="col -full -center">
+								<div class="col -half -center">
 									<div class="divider"><svg><use xlink:href="#icon-plane"></use></svg></div>
-									<p><a href="#" class="btn">How it works</a> <a href="#" class="btn -alt">Sign up &rarr;</a></p>
+									<!-- <p><a href="#" class="btn">How it works</a> <a href="#" class="btn -alt">Sign up &rarr;</a></p> -->
+
+									<div>
+										<form>
+											<fieldset>
+												<label>
+													<input type="text" placeholder="email address"><a href="#" class="btn -alt">Sign up</a>
+												</label>
+											</fieldset>
+										</form>
+									</div>
 
 								</div>
 							</div>
@@ -79,24 +89,26 @@
 
 						<div class="bg-video" data-parallax="-0.85">
 						 
-						http://mazwai.com/system/posts/videos/000/000/203/original/marseme.mp4?1446407520 
+						<!-- http://mazwai.com/system/posts/videos/000/000/203/original/marseme.mp4?1446407520 
 
 						http://a1.phobos.apple.com/us/r1000/000/Features/atv/AutumnResources/videos/b8-1.mov
 
-						http://static.videezy.com/system/resources/previews/000/002/430/original/airplane-window.mp4
+						http://static.videezy.com/system/resources/previews/000/002/430/original/airplane-window.mp4 -->
 						
 							<video src="http://a1.phobos.apple.com/us/r1000/000/Features/atv/AutumnResources/videos/b8-1.mov" autoplay muted></video>
-						</div> -->
+						</div>
 					</section>
 
-					<section class="tour" data-blade="tour">
-						<!-- <div class="tour-outline">
+					<section class="tour" data-blade="tour" data-blade-type="tour">
+						<div class="tour-outline">
 							
-							<article class="step1" data-hook="slide">
+							<article class="step1" data-hook="slide" data-waypoint="1.1">
+								<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step1.jpg');"></div>
 								<div class="col slide-content">
 									<div data-parallax="-1">
-										<h3 class="-alt step-number">1</h3>
-										<h2>Check in</h2>
+										<h3 class="-alt -margin-half step-number">1</h3>
+										<h4 class="-alt">Step 1</h4>
+										<h2>Start your trip with SeatFrog</h2>
 										<p class="epsilon">Once you have a ticket, enter your details and SeatFrog will pull in your itenerary. Keep track of your travel information and be the first to know when the auction opens.</p>
 									</div>
 								</div>
@@ -104,72 +116,71 @@
 								<div class="slide-overlay" data-parallax="-0.8">
 									<div><h3>SYD&rarr;SFO</h3></div>
 								</div>
-								<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step1.jpg');"></div>
+								<div class="scroll-icon" data-parallax="-0.5"></div>
 							</article>
 
-							<article class="step2" data-hook="slide">
+							<article class="step2" data-hook="slide" data-waypoint="1.2">
+								<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step2.jpg');"></div>
 								<div class="col slide-content">
 									<div data-parallax="-1">
-										<h3 class="-alt step-number">2</h3>
+										<h3 class="-alt -margin-half step-number">2</h3>
+										<h4 class="-alt">Step 2</h4>
 										<h2>Secure your upgrade</h2>
-										<p class="epsilon">Once you have a ticket, enter your details and SeatFrog will pull in your itenerary. Keep track of your travel information and be the first to know when the auction opens.</p>
+										<h4>in just a few taps</h4>
+										<p class="epsilon">Bidding opens the day you fly. Out play your fellow passengers to claim your place in business class.</p>
 									</div>
 								</div>
 								<div class="slide-content-bg" data-parallax="-1"></div>
 								<div class="slide-overlay" data-parallax="-0.8">
 									<div><h2>$750</h2><h4 class="-alt">Your bid</h4></div>
 								</div>
-								<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step2.jpg');"></div>
 							</article>
 
-							<article class="step3" data-hook="slide">
+							<article class="step3" data-hook="slide" data-waypoint="1.3">
+								<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step3.jpg');"></div>
 								<div class="col slide-content">
 									<div data-parallax="-1">
-										<h3 class="-alt step-number">3</h3>
+										<h3 class="-alt -margin-half step-number">3</h3>
+										<h4 class="-alt">Step 3</h4>
 										<h2>Sit back &amp; relax</h2>
-										<p class="epsilon">Once you have a ticket, enter your details and SeatFrog will pull in your itenerary. Keep track of your travel information and be the first to know when the auction opens.</p>
+										<h4>Get upgraded in seconds</h4>
+										<p class="epsilon">We’ll send your new boarding pass straight to your phone, so you can jump the queue and make your way straight to your new seat.</p>
 									</div>
 								</div>
 								<div class="slide-content-bg" data-parallax="-1"></div>
-								<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step3.jpg');"></div>
 							</article>
 							
-						</div> -->
+						</div>
 					</section>
 
-					<section class="experience" data-blade="experience">
+					<section class="experience" data-blade="experience" data-waypoint="2">
 
-						<!-- <div class="container">
+						<div class="container">
 							<div class="row">
 								<div class="col -full">
 									<h2>Experience <br>business class</h2>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col -half -center">
-									<p class="lead">With SeatFrog you don’t need tips, tricks, or sheer luck to score an upgrade. Now you choose when to jump from economy into business-class comfort.</p>
-									<br>
-								</div>
-							</div>
+
 							<div class="row">
 								<div class="col -third">
 									<svg><use xlink:href="#logo"></use></svg>
-									<h4>Business class benefit</h4>
-									<p>With SeatFrog you don’t need tips, tricks, or sheer luck to score an upgrade. Now you choose when to jump from economy into business-class comfort.</p>
+									<h4>It’s all about Legroom</h4>
+									<p>Stretch those legs and never tuck them under the chair ever again because business class is all about your personal space, whether you do that upright or reclined.</p>
 								</div>
 								<div class="col -third">
 									<svg><use xlink:href="#logo"></use></svg>
-									<h4>Business class benefit</h4>
-									<p>With SeatFrog you don’t need tips, tricks, or sheer luck to score an upgrade. Now you choose when to jump from economy into business-class comfort.</p>
+									<h4>Wining and dining</h4>
+									<p>Feast and enjoy yourself. Choose from a selection of food and wine that includes more than just two options. Here you’ll have menus designed by leading chefs and sommeliers.</p>
 								</div>
 								<div class="col -third">
 									<svg><use xlink:href="#logo"></use></svg>
-									<h4>Business class benefit</h4>
-									<p>With SeatFrog you don’t need tips, tricks, or sheer luck to score an upgrade. Now you choose when to jump from economy into business-class comfort.</p>
+									<h4>Holiday starts sooner</h4>
+									<p>Turn your flights into one of the best parts of your holiday. As soon as you board, the pampering begins. Here your every thirst and hunger will be catered for in elegant style.</p>
 								</div>
 							</div>
 						</div>
-						<div class="bg"></div> -->
+						<div class="bg"></div>
 
 					</section>
 
@@ -193,7 +204,7 @@
 					</section> -->
 
 					<section class="footer" data-blade="footer">
-						<!-- <div class="container">
+						<div class="container">
 							<div class="row">
 								<div class="col -full">
 									<h3>Share the love</h3>
@@ -221,9 +232,9 @@
 									</nav>
 								</div>
 							</div>
-						</div> -->
+						</div>
 
-						<!-- <div class="bg"></div> -->
+						<div class="bg"></div>
 					</section>
 
 				</div>

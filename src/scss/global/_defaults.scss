@@ -148,3 +148,48 @@ img {
 		 url('#{$DIR_FONTS}dincond-bold.ttf')  format('truetype'), /* Safari, Android, iOS */
 		 url('#{$DIR_FONTS}dincond-bold.svg#e0701c5af929bd67babc2defb9ce654c') format('svg'); /* Legacy iOS */
 }
+
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1440 +
+ *	DEFAULT 		1025...1439 (1128)
+ *	tablet-wide		- 1024
+ *	tablet			- 768 (fluid)
+ *	smartphone-wide	- 640 (fluid)
+ *	smartphone		- 480 (fluid)
+ *	mobile			- 320 (fluid)
+ */
+
+
+/*
+ *	Breakpoint:	tablet-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet-wide) {
+
+}
+
+
+/*
+ *	Breakpoint:	smartphone
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(smartphone) {
+
+	.alpha {
+		margin-left: 5px;
+		text-indent: 14px;
+		letter-spacing: 10px;
+	}
+	// .gamma { @include font-setting(20, 1.25); }
+
+}

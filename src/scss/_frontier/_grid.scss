@@ -206,7 +206,7 @@
 		width: cols( $TOTAL_COLUMNS ) + $GUTTER;
 	}
 	
-	.col, .cols-fixed .col & {
+	.col, .cols-fixed .col {
 
 		//	Default Column	 ------------
 
@@ -216,6 +216,7 @@
 
 		&.-small, 
 		&.-quarter,
+		&.-third,
 		&.-half,
 		&.-wide,
 		&.-full {

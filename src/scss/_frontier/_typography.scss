@@ -128,12 +128,12 @@ ul {
 
 //	Margins
 
-.half-margin {
+.-margin-half {
 	& + * {
 		margin-top: 0;
 	}
 }
-.no-margin {
+.-margin-none {
 	margin-bottom: 0;
 
 	& + * {
@@ -177,7 +177,8 @@ ul {
 
 @include breakpoint(smartphone) {
 
-	// .alpha { @include font-setting(39, 2); }
+	.alpha { @include font-setting(56, 2.5); }
+	.beta { @include font-setting(56, 2.5); }
 	// .gamma { @include font-setting(20, 1.25); }
 
 }

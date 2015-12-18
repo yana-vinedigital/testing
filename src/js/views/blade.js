@@ -33,9 +33,10 @@ var Templates = require('tpl');
 module.exports = View.extend({
 
 	props: {
-		parent: 'state',
+		// parent: 'state',
 		index: ['number', false, 0],
-		_isActive: ['boolean', false, false]
+		_isBladeVisible: ['boolean', false, false]
+		// _isActive: ['boolean', false, false]
 	},
 
 	session: {
@@ -48,13 +49,14 @@ module.exports = View.extend({
 
 	derived: {
 		//	Is in viewport
-		isVisible: {
-			deps: ['offsetTop', 'parent._scrollPos', 'parent._windowHeight'],
-			fn: function() {
-				var viewportMid = this.parent._scrollPos + this.parent._windowHeight * 0.5;
-				return this.offsetTop <= viewportMid && this.offsetBottom >= viewportMid;
-			}
-		}
+
+		// isBladeVisible: {
+		// 	deps: ['app.viewportScrollMid', 'offsetTop'],
+		// 	fn: function() {
+		// 		log( 'blade visible', this.app.viewportScrollMid, this.offsetTop )
+		// 		return this.offsetTop <= this.app.viewportScrollMid && this.offsetBottom > this.app.viewportScrollMid;
+		// 	}
+		// }
 	},
 
 	bindings: {
@@ -65,26 +67,36 @@ module.exports = View.extend({
 	},
 
 	initialize: function() {
-		this._reflowHandler = this._reflowHandler.bind(this);
-		this._isVisibleBladeHandler = this._isVisibleBladeHandler.bind(this);
+		log( 'blade init', this );
+		// this.app = FRONT.app;
+		// this._reflowHandler = this._reflowHandler.bind(this);
+		// this._reflowHandler();
 
-		this.listenToAndRun( FRONT, 'window:reflow', this._reflowHandler );
-		this.on( 'change:isVisible', this._isVisibleBladeHandler );
+		// this.listenTo( this.model, 'all', log)
+		// this._isVisibleBladeHandler = this._isVisibleBladeHandler.bind(this);
+
+		this.listenTo( FRONT, 'window:reflow', this._reflowHandler );
+		// this.listenTo( FRONT.app, 'change:viewportScrollMid', this._isVisibleBladeHandler );
 	},
 
 	//	Event Handlers	 ----------------
 
 	_reflowHandler: function() {
+		log( 'reflow')
 		var pos = Utils.DOM.getPosition( this.el );
 		this.offsetTop = pos.top;
 		this.offsetBottom = pos.top + pos.height;
 		this.offsetWidth = pos.width;
 		this.offsetHeight = pos.height;
+
+		FRONT.app.registerWaypoint({ id: this.index, instance: this, top: this.offsetTop });
 	},
 
-	_isVisibleBladeHandler: function() {
-		if ( !this.isVisible ) return;
-		FRONT.trigger( 'blade:visible', this );
-	},
+	// _isVisibleBladeHandler: function( app, viewportScrollMid ) {
+	// 	var isBladeVisible = this._isBladeVisible = this.offsetTop <= viewportScrollMid && this.offsetBottom > viewportScrollMid;
+	// 	if ( !isBladeVisible ) return;
+	// 	FRONT.trigger( 'blade:visible', this.index );
+	// 	FRONT.trigger( 'waypoint:active', this.index );
+	// },
 
 });
