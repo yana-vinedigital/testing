@@ -4,15 +4,15 @@
 //
 
 
-.btn {
-	margin: 0 em(12) em(6) 0; padding: 0 $GUTTER;
-	box-sizing: border-box;
+.ui-btn {
+	margin: 0; padding: 0 $GUTTER*0.75; box-sizing: border-box;
 	display: inline-block; position: relative;
 	color: $COLOR_GREY; text-transform: uppercase;
-	line-height: lines(2); font-weight: bold; letter-spacing: 4px;
+	line-height: lines(2) - em(4); font-weight: bold; letter-spacing: 4px; text-indent: 4px;
+	white-space: nowrap;
 	background-color: transparent;
-	border: 1px solid $COLOR_GREY; border-radius: lines(1);
-	transition: background-color 0.2s, color 0.2s, opacity 0.2s;
+	border: 2px solid $COLOR_GREY; border-radius: lines(1);
+	transition: background-color 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
 
 	&:hover {
 		text-decoration: none;
@@ -20,68 +20,133 @@
 		background-color: $COLOR_GREY;
 	}
 
+	& + & {
+		margin-left: em(12);
+	}
 
-	// Styles
+
+	//	Styles	 ----------------
 
 	&.-alt {
-		color: $BUTTON_TEXT_COLOR;
-		border-color: $BUTTON_COLOR;
+		color: $COLOR_BRAND_BASE;
+		background-color: $BUTTON_TEXT_COLOR;
+		border-color: $BUTTON_TEXT_COLOR;
 		
 		&:hover {
 			color: $COLOR_BRAND_BASE;
-			background-color: $BUTTON_TEXT_COLOR;
+			border-color: darken($BUTTON_TEXT_COLOR, 15);
+			background-color: darken($BUTTON_TEXT_COLOR, 15);
 		}
 	}
 
-	&.-borderless {
-		border-color: transparent;
+	&.-border {
+		color: $COLOR_BRAND_MAIN;
+		border-color: currentColor;
+		background-color: transparent;
 		box-shadow: none;
 
 		&:hover {
-			background-color: transparentize($COLOR_BLACK, 0.5);
+			background-color: $COLOR_BRAND_MAIN;
+			border-color: $COLOR_BRAND_MAIN;
+		}
+
+		&.-alt {
+			
 		}
 	}
 
-	// Sizes
+	//	Sizes	 ----------------
 
-	&.btn--tiny {
+	&.-tiny {
 		padding: 0 $GUTTER/4;
 		font-size: 0.825em; font-weight: bold; line-height: 1.25rem; text-transform: none;
 		border-width: 1px; border-radius: 3px;
 	}
 
-	&.btn--mini {
+	&.-mini {
 		padding: 0 $GUTTER/2;
-		line-height: $LINES_1*1.5;
+		line-height: lines(1.5) - em(4);
 		border-width: 2px; border-radius: 3px;
 	}
 
 	&.-small {
 		padding: 0 $GUTTER/2;
-		line-height: lines(1.5);
+		line-height: lines(1.5) - em(4);
 	}
 
-	&.btn--large {
-		padding: 0 $GUTTER*2;
-		line-height: $LINES_3;
+	&.-large {
+		@include font-setting-size( epsilon );
+		line-height: lines(2.5, epsilon) - em(4, epsilon); letter-spacing: 6px; text-indent: 6px;
+		border-radius: lines(1.25, epsilon);
 	}
 
-	// States
+	&.-huge {
+		// @include font-setting-size( delta );
+		// padding: 0 $GUTTER*2;
+		line-height: lines(3, epsilon) - em(4, epsilon); letter-spacing: 6px; text-indent: 6px;
+		border-radius: lines(1.5, epsilon);
+	}
 
-	&.btn--success {
+	.btn-list & {
+		width: 100%;
+		margin-bottom: lines(0.5);
+	}
+
+	//	States	 ----------------
+
+	&.-is-success {
 		color: $BUTTON_COLOR;
 		border-color: #B8E986;
 		background-color: #B8E986;
-	}
+	} 
 
-	&.btn--error {
+	&.-is-error {
 		color: $BUTTON_COLOR;
 		border-color: #FF696C;
 		background-color: #FF696C;
 	}
 
 
-
+	//	Themes	 ----------------
+	
+	.-theme-light & {
+		color: $COLOR_BRAND_BASE;
+		border-color: $COLOR_BRAND_BASE;
+	}
 
 }
 
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1680 +
+ *	desktop 		1366 +
+ *	DEFAULT 		1025 > 1365
+ *	tablet-wide		- 1024
+ *	tablet			- 768
+ *	smartphone-wide	- 640
+ *	smartphone		- 480
+ *	mobile			- 320
+ *
+ */
+
+
+/*
+ *	Breakpoint:	tablet-wide 
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( tablet-wide ) {
+
+	.ui-btn {
+		padding-left: $GUTTER/2;
+		padding-right: $GUTTER/2;
+	}
+
+}

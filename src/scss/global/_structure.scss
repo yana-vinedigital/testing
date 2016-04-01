@@ -47,94 +47,16 @@ html {
 
 .outline {
 
-
 }
-	.outline-header {
-		width: 100%; height: lines(5);
-		position: fixed; top: 0; z-index: 100;
-
-		.header {
-			// background-color: grey;
-		}
-			.logo {
-				margin: 0;
-			}
-	}
-
 	.outline-main {
-		height: 600vh;
 		position: relative; z-index: 0;
-	}
-		.page-nav {
-
-			position: fixed; top: 50%; left: 5%; z-index: 30;
-			transform: translateY( -50% );
-
-			ul {
-				margin: 0; padding: 0;
-				list-style-type: none;
-
-				li {
-					margin: 0 0 lines(1.5);
-
-					a {
-						width: 12px; height: 12px;
-						display: block; position: relative;
-						color: darken( $COLOR_BRAND_BASE, 10);
-						background-color: currentColor;
-						border-radius: 50%;
-						opacity: 0.5;
-						transition: color 0.5s;
-
-						&:after {
-							content: '';
-							width: 20px; height: 20px;
-							display: block; position: absolute; top: -5px; left: -5px;
-							border: 1px solid currentColor; border-radius: 50%;
-							transform: scale(0.5);
-							transition: transform 0.5s;
-						}
-
-					}
-
-					&:nth-child(2),
-					&:nth-child(3) {
-						a:before {
-							content: '';
-							width: 1px; height: lines(1.8);
-							display: block; position: absolute; top: 50%; left: 50%;
-							background-color: currentColor;
-							opacity: 0.5;
-						}
-					}
-
-					&.-is-active {
-						a {
-							color: $COLOR_BRAND_MAIN;
-							opacity: 1;
-
-							&:after {
-								transform: scale(1);
-							}
-						}
-					}
-				}
-			}
-
-			&.-is-tour-active {
-				li {
-					&:nth-child(2),
-					&:nth-child(3),
-					&:nth-child(4) {
-						a {
-							color: $COLOR_BRAND_MAIN;
-							opacity: 1;
-						}
-					}
-				}
-			}
+		transition: filter 0.5s;
+	
+		.-is-menu-open &,
+		.-is-context-open & {
+			filter: blur(3px);
 		}
-
+	}
 		.page {
 			min-height: 100vh;
 			position: fixed; top: 0; left: 0; right: 0;
@@ -142,8 +64,8 @@ html {
 			will-change: transform;
 		
 			section {
-				width: 100%; min-height: 100vh;
-				padding: lines(6) 0 lines(4) 0;
+				width: 100%; //min-height: 100vh;
+				padding: lines(3) 0 lines(3) 0;
 				display: flex; align-items: center; float: left;
 				box-sizing: border-box; position: relative; z-index: 10;
 				overflow: hidden;
@@ -154,413 +76,120 @@ html {
 				// 	background-color: darken( $COLOR_BRAND_BASE, 5 );
 				// }
 
+				&.-section-auto {
+					height: auto; min-height: 0;
+					padding-top: lines(7);
+					padding-bottom: lines(7);
+				}
+
+				&.-section-thin {
+					padding: lines(1) 0 0;
+				}
+
+				&.-theme-light {
+					color: $COLOR_GREY_DARK;
+					background-color: $COLOR_WHITE;
+
+					h1, h2, h3, h4, h5, h6 {
+						color: $COLOR_BRAND_BASE;
+					}
+				}
+
+				// .section-half {
+				// 	padding: lines(0.5) 0 lines(1);
+				// 	width: 50%; min-height: lines(16);
+				// 	display: flex; align-items: center; float: left;
+				// 	box-sizing: border-box;
+
+				// 	&:nth-child(1) { padding-left: 3%; }
+				// 	&:nth-child(2) { padding-right: 3%; }
+				// }
+
+
 				.divider {
-					width: cols(1);
-					margin: lines(1.5) auto;
-					position: relative;
+					width: 100%;
+					position: relative; overflow: hidden;
+					text-align: center;
 
 					svg {
 						width: lines(1); height: lines(1);
-						fill: $COLOR_BRAND_MAIN;						
+						fill: $COLOR_BRAND_BASE;						
 					}
 
-					&:before, 
-					&:after {
-						content: '';
-						width: cols(1.5); height: 0;
-						display: block; position: absolute; top: lines(0.5);
-						border-bottom: 1px solid $COLOR_GREY;
-						opacity: 0.15;
+					.icon {
+						width: cols(1);
+						margin: lines(1.5) auto;
+						position: relative;
+						display: block;
+
+						&:before, 
+						&:after {
+							content: '';
+							width: cols(5); height: 0;
+							display: block; position: absolute; top: lines(0.5);
+							border-bottom: 1px solid $COLOR_GREY;
+							opacity: 0.5;
+						}
+						&:before { left: 100%; }
+						&:after { right: 100%; }
 					}
-					&:before { left: 100%; }
-					&:after { right: 100%; }
+
+					
 				}
 
 				.bg {
 					width: 100%; height: 100%;
 					position: absolute; top: 0; left: 0; z-index: 0;
-					background-position: top center; background-repeat: no-repeat; background-size: 100%;
+					background-position: center center; background-repeat: no-repeat; background-size: 100%;
 					transform: translate3d(0,0,0);
 					will-change: transform;
 				}
 
 				&.-is-active {
-					background-color: lighten( $COLOR_BRAND_BASE, 10);
+					z-index: 20;
+					// background-color: lighten( $COLOR_BRAND_BASE, 10);
+
 				}
 			}
+				.section-headline {
+					margin-bottom: 0;
+				}
+
 		}
 
 			.scroll-icon {
-				margin-left: lines(-0.5);
-				position: absolute; top: 120vh; left: 50%; z-index: 50;
-				
-				&:after {
-					content: '';
-					width: lines(1); height: lines(1);
-					display: block;
-					border: 2px solid $COLOR_GREY; border-width: 0 2px 2px 0;
-					opacity: 0;
-					transform: rotate(45deg);
-					transition: opacity 0.5s;
-				}
-
-				.-is-scroll-top & {
-					&:after {
-						opacity: 0.5;
-					}
-					
-				}
-			}
-
-			section.intro {
-				z-index: 0;
-				will-change: transform, opacity;
-				// transition: opacity 0.5s;
-
-				// .container {
-				// 	position:
-				// }
-
-				&:after {
-					content: '';
-					width: 100%; height: lines(5);
-					position: absolute; bottom: -1px; left: 0; z-index: 10;
-					background-image: linear-gradient( 180deg, transparentize( $COLOR_BRAND_BASE, 1 ), $COLOR_BRAND_BASE );
-				}
-
-				.bg {
-					z-index: 5;
-					// background-image: url("../img/bg-intro.jpg");
-					background-image: url("../img/bg-mask.png"); background-size: 100% 100%;
-					opacity: 0.8;
-				}
-
-				.bg-video {
-					width: 100%; height: 100%;
-					position: absolute; top: 0; left: 0; z-index: 0;
-					transform: translate3d(0,0,0); will-change: transform, opacity;
-
-					video {
-						width: auto; height: auto; min-width: 100%; min-height: 140%;
-						position: absolute; top: -20%; left: 0; z-index: 0;
-						opacity: 0.75;
-					}
-				}
-
-			}
-
-			section.tour {
-				height: 300vh;
-				padding: 0;
-				// background-color: transparent;
-				// opacity: 0;
-				will-change: opacity;
-				// transform: skewY(-3deg);
-
-				// &:before {
-				// 	content: '';
-				// 	width: 100%; height: lines(10);
-				// 	position: absolute; top: -1px; left: 0; z-index: 40;
-				// 	background-image: linear-gradient( 0deg, transparentize( $COLOR_BRAND_BASE, 1 ), $COLOR_BRAND_BASE );
-				// }
-
-				// &:after {
-				// 	content: '';
-				// 	width: 100%; height: lines(8);
-				// 	position: absolute; bottom: -1px; left: 0; z-index: 40;
-				// 	background-image: linear-gradient( 180deg, transparentize( $COLOR_BRAND_BASE, 1 ), $COLOR_BRAND_BASE 80% //);
-				//}
-
-				.tour-outline {
-					width: 100%;
-					overflow: hidden;
-					float: left; 
-					// position: absolute; top: lines(5); right: lines(0); bottom: lines(0); left: lines(0);
-					// background-color: $COLOR_GREY;
-					// background-color: $COLOR_WHITE;
-					
-				}
-					// .tour-content-panel {
-					// 	width: 50%;
-					// }
-
-					article {
-						width: 100%; height: 100vh;
-						position: relative;
-						float: left; display: block;
-						// position: absolute; top: 0; left: 0; z-index: 0;
-						// display: none;
-
-					}
-						.slide-content {
-							width: 50%;
-							// height: 100%;
-							padding: 0 $GUTTER*6 lines(5) $GUTTER*4; margin: -3px 0 -3px 0;
-							display: flex; align-items: center;
-							position: absolute; top: lines(0); bottom: lines(0); right: 0; z-index: 15; box-sizing: border-box;
-							color: $COLOR_BRAND_BASE; text-align: center;
-							opacity: 0;
-							transition: transform 0.5s $EASE_OUT_EXPO, opacity 0.5s $EASE_OUT_EXPO;
-							// transition-delay: 1.5s;
-
-							// transform: translate3d(0,lines(-3),0);
-
-							// .-dir-up & {  }
-							// .-dir-down & { transform: translate3d(0,lines(3),0); }
-							
-							// box-shadow: 0 0 3px transparentize( $COLOR_BRAND_BASE, 0.3 );
-
-							.step-number {
-								@include font-setting-size( gamma, 3 );
-								width: lines(3, gamma); height: lines(3, gamma);
-								border-radius: 50%;
-								border: 2px solid darken($COLOR_GREY, 30);
-							}
-
-							h1, h2, h3, h4, h5, h6 {
-								color: currentColor;
-
-								&.-alt {
-									color: darken($COLOR_GREY, 30);
-								}
-							}
-
-							p {
-								color: darken($COLOR_GREY, 30);
-							}
-							div {
-								// opacity: 0;
-								margin-top: lines(-5);
-								// transition: opacity 0.75s;
-							}
-						}
-
-						.slide-content-bg {
-							width: 60%; height: 100%;
-							position: absolute; top: 0; right: -10%; z-index: 10;
-							opacity: 0;
-
-							&:after {
-								content: '';
-								width: 100%; height: 100%;
-								position: absolute; top: 0; left: 0;
-								background-color: $COLOR_WHITE;
-								transform: skewX(-10deg);
-							}
-
-						}
-
-						.slide-overlay {
-							position: absolute; top: 0; left: 30%; z-index: 20;
-
-							div {
-								width: cols(2.5); height: cols(2.5);
-								box-sizing: border-box;
-								position: absolute; top: 0; left: 0;
-								display: flex; align-items: center; flex-direction: column; justify-content: center;
-								background-color: $COLOR_BRAND_BASE;
-								border-radius: 50%;
-								opacity: 0;
-								transform: scale(0.75);
-								transition: transform 0.65s, opacity 0.5s;
-								transition-timing-function: $EASE_IN_OUT_QUAD;
-							}
-
-							h1, h2, h3, h4 {
-								margin: 0 auto;
-								text-indent: 0; letter-spacing: 0;
-							}
-						}
-
-						.slide-bg {
-							width: 60%; height: 110%;
-							position: absolute; top: -5%; left: 0; z-index: 0;
-							background-position: 50% 50%; background-repeat: no-repeat; background-size: cover;
-							opacity: 0;
-							transition: opacity 1s $EASE_IN_OUT_QUAD;
-							background-color: $COLOR_WHITE;
-							// transition-delay: 0s;
-						}
-
-					article {
-
-						&.step1 {
-
-						}
-
-						&.step2 {
-							.slide-overlay {
-								left: 10%;
-
-								div {
-									margin-top: lines(8);
-									padding-top: lines(0.5);
-								}
-									h4 {
-										margin-top: lines(-0.25);
-									}
-							}
-						}
-
-						&.step3 {
-
-						}
-					}
-
-					// article.-is-prev {
-					// 	.slide-content {
-					// 		transition-delay: 0ms;
-					// 		transition-duration: 1.5s;
-					// 		.-dir-up & { transform: translate3d(0,lines(3),0); }
-					// 		.-dir-down & { transform: translate3d(0,lines(-3),0); }
-					// 	}
-					// }
-
-					article.-is-active {
-						z-index: 10;
-
-						.slide-content {
-							opacity: 1;
-							transform: translate3d(0,0,0);
-							transition-delay: 0ms;
-							transition-duration: 1.5s;
-							transition-timing-function: $EASE_OUT_EXPO;
-
-
-
-						}
-
-						.slide-content-bg {
-							opacity: 1;
-						}
-
-						.slide-overlay {
-							
-							// transition-delay: 0.75s;
-
-							div {
-								opacity: 1;
-								transform: scale(1);
-								// transition-duration: 0.5s;
-								// transition-timing-function: linear;
-							}
-						}
-
-						.slide-bg {
-							opacity: 1;
-							// transition-delay: 0.5s;
-						}
-					}
-
-				// &.slide-1 {
-				// 	.slide {
-				// 		.bg {
-				// 			background-image: url("../img/bg-slide-step1.jpg");
-				// 		}
-				// 	}
-				// }
-
-				// &.slide-2 {
-				// 	.slide {
-				// 		.bg {
-
-				// 		}
-				// 	}
-				// }
-
-				// &.slide-3 {
-				// 	.slide {
-				// 		.bg {
-
-				// 		}
-				// 	}
-				// }
-			}
-
-			section.experience {
-				height: 100vh;
-
-				&:before {
-					content: '';
-					width: 100%; height: lines(10);
-					position: absolute; top: -1px; left: 0; z-index: 40;
-					// background-image: linear-gradient( 0deg, transparentize( $COLOR_BRAND_BASE, 1 ), $COLOR_BRAND_BASE );
-				}
+				width: lines(2); height: lines(2);
+				margin-left: lines(-1);
+				position: absolute; top: 80vh; left: 50%; z-index: 50;
+				opacity: 0;
+				transition: opacity 0.5s;
 
 				svg {
-					width: cols(1); height: cols(1);
-					fill: #E8A262;
+					fill: $COLOR_BRAND_MAIN;
 				}
+				
+				// &:after {
+				// 	content: '';
+				// 	width: lines(1); height: lines(1);
+				// 	display: block;
+				// 	border: 2px solid $COLOR_GREY; border-width: 0 2px 2px 0;
+				// 	opacity: 0;
+				// 	transform: rotate(45deg);
+				// 	transition: opacity 0.5s;
+				// }
 
-				.bg {
-					background-image: url("../img/bg-experience.jpg");
+				.-is-scroll-top & {
+					opacity: 1;
 				}
 			}
 
-			section.airlines-intro {
+
+
+
+
 			
-				.bg {
-					background-image: url("../img/bg-airlines-intro.jpg");
-				}
-			}
 
-			section.airlines-innovation {
-			
-				.bg {
-					background-image: url("../img/bg-airlines-innovation.jpg");
-				}
-			}
 
-			section.airlines-seats {
-			
-				.bg {
-					background-image: url("../img/bg-airlines-seats.jpg");
-				}
-			}
-
-			section.footer {
-				display: block;
-				background-color: #1F2130;
-
-				h3 {
-					color: darken($COLOR_GREY,20); letter-spacing: 9px;
-				}
-				h4 {
-					letter-spacing: 6px;
-				}
-
-				.container {
-					padding-top: lines(6);
-				}
-
-					.footer-nav {
-						width: 100%;
-						padding-top: lines(5);
-						// position: absolute; bottom: 0; left: 0; z-index: 20;
-						text-align: left;
-
-						ul {
-							@include font-setting-size(16, 2);
-							margin: 0; padding: lines(1) 0;
-							list-style-type: none;
-							border-top: 1px solid transparentize($COLOR_GREY, 0.9);
-
-							li {
-								margin-right: $GUTTER;
-								display: inline-block;
-							}
-
-								a {
-									color: $COLOR_GREY;
-									opacity: 0.5;
-								}
-						}
-					}
-
-				.bg {
-					background-image: url("../img/bg-footer.jpg");
-				}
-			}
 
 
 
@@ -571,13 +200,14 @@ html {
  *	- Breakpoints
  *
  *	large-desktop	1920 +
- *	med-desktop 	1440 +
- *	DEFAULT 		1025...1439 (1128)
+ *	med-desktop 	1680 +
+ *	desktop 		1366 +
+ *	DEFAULT 		1025 > 1365
  *	tablet-wide		- 1024
- *	tablet			- 768 (fluid)
- *	smartphone-wide	- 640 (fluid)
- *	smartphone		- 480 (fluid)
- *	mobile			- 320 (fluid)
+ *	tablet			- 768
+ *	smartphone-wide	- 640
+ *	smartphone		- 480
+ *	mobile			- 320
  *
  */
 
@@ -592,6 +222,20 @@ html {
 	body {
 		font-size: em($FONT_SIZE + $BODY_SCALE);
 	}
+}
+
+
+/*
+ *	Breakpoint:	Desktop
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(desktop) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+
 }
 
 
@@ -631,19 +275,23 @@ html {
 	body {
 		font-size: em($FONT_SIZE + $BODY_SCALE);
 	}
-}
 
+	.outline-main {
 
-/*
- *	Breakpoint:	tablet-wide
- *	--------------------------------------------------
- */
-
-@include breakpoint(tablet-wide) {
-
-	body {
-		font-size: em($FONT_SIZE + $BODY_SCALE);
 	}
+		.page {
+			position: relative;
+
+			section {
+				// display: block;
+				opacity: 1;
+
+				.bg {
+					background-size: cover;
+				}
+			}
+		}
+	
 }
 
 
@@ -657,59 +305,16 @@ html {
 	body {
 		font-size: em($FONT_SIZE + $BODY_SCALE);
 	}
-
-	.page-nav {
-		display: none;
+	
+	.outline-main {
+		
 	}
-
-	.page {
-		position: relative;
-
-		section {
-			height: auto;
-		}
-	}
-		section.tour {
-			article {
-				height: auto;
+		.page {
+			section {
+				padding: lines(2) 0;
 			}
-				.slide-content {
-					width: 100%;
-					padding: lines(2) $GUTTER lines(3);
-					display: block; position: relative; float: left;
-					top: auto;
-					background-color: $COLOR_WHITE;
-					opacity: 1;
-
-					div {
-						width: 100%;
-						margin: 0;	
-					}
-				}
-
-				.slide-content-bg {
-					display: none;
-				}
-
-				.slide-overlay {
-					
-					// transition-delay: 0.75s;
-
-					div {
-						opacity: 1;
-						transform: scale(1);
-						// transition-duration: 0.5s;
-						// transition-timing-function: linear;
-					}
-				}
-
-				.slide-bg {
-					width: 100%; min-height: 40vh;
-					position: relative; top: auto; bottom: auto; float: left;
-					opacity: 1;
-					// transition-delay: 0.5s;
-				}
 		}
+	
 
 }
 
@@ -724,6 +329,21 @@ html {
 	body {
 		font-size: em($FONT_SIZE + $BODY_SCALE);
 	}
+
+	.outline-main {
+		
+	}
+		.page {
+			section {
+				padding: lines(1) 0;
+
+				&.-section-auto {
+					padding-top: lines(4);
+					padding-bottom: lines(4);
+				}
+			}
+		}
+		
 
 }
 

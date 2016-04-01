@@ -16,7 +16,6 @@ var Utils = require('utils');
 
 //	Dependencies
 var View = require('ampersand-view');
-var Templates = require('tpl');
 var BladeView = require('./blade');
 
 //
@@ -88,13 +87,13 @@ var SlideView = View.extend({
 	//	Event Handlers	 ----------------
 
 	_reflowHandler: function() {
-		var pos = Utils.DOM.getPosition( this.el );
+		var pos = Utils.DOM.getPosition( this.el, true );
 		this.offsetTop = pos.top;
 		this.offsetBottom = pos.top + pos.height;
 		this.offsetWidth = pos.width;
 		this.offsetHeight = pos.height;
 
-		FRONT.app.registerWaypoint({ id: this.waypoint, instance: this, top: this.offsetTop });
+		FRONT.app.registerWaypoint({ id: this.waypoint, instance: this, top: this.offsetTop, type: 'slide' });
 	},
 
 	// _isVisibleSlideHandler: function( app, viewportScrollMid ) {

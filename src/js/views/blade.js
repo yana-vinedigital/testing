@@ -16,13 +16,10 @@ var Utils = require('utils');
 
 //	Dependencies
 var View = require('ampersand-view');
-var Templates = require('tpl');
 
 //
 //
 //
-
-// var = {};
 
 
 /**
@@ -35,7 +32,10 @@ module.exports = View.extend({
 	props: {
 		// parent: 'state',
 		index: ['number', false, 0],
-		_isBladeVisible: ['boolean', false, false]
+		bladeTheme: ['string', true, 'dark'],
+		bladeOffset: ['number', true, 0],
+		_isBladeVisible: ['boolean', false, false],
+
 		// _isActive: ['boolean', false, false]
 	},
 
@@ -57,39 +57,41 @@ module.exports = View.extend({
 		// 		return this.offsetTop <= this.app.viewportScrollMid && this.offsetBottom > this.app.viewportScrollMid;
 		// 	}
 		// }
+
 	},
 
 	bindings: {
-		'isVisible': {
+		'_isBladeVisible': {
 			type: 'booleanClass',
 			name: '-is-active'
 		}
 	},
 
 	initialize: function() {
-		log( 'blade init', this );
+		var _this = this;
 		// this.app = FRONT.app;
 		// this._reflowHandler = this._reflowHandler.bind(this);
 		// this._reflowHandler();
-
+   
 		// this.listenTo( this.model, 'all', log)
 		// this._isVisibleBladeHandler = this._isVisibleBladeHandler.bind(this);
 
 		this.listenTo( FRONT, 'window:reflow', this._reflowHandler );
-		// this.listenTo( FRONT.app, 'change:viewportScrollMid', this._isVisibleBladeHandler );
+		this.listenTo( FRONT, 'waypoint:active', waypoint => {
+			this._isBladeVisible = Math.floor( waypoint.id ) === this.index;
+		});
 	},
 
 	//	Event Handlers	 ----------------
 
 	_reflowHandler: function() {
-		log( 'reflow')
-		var pos = Utils.DOM.getPosition( this.el );
+		var pos = Utils.DOM.getPosition( this.el, true );
 		this.offsetTop = pos.top;
 		this.offsetBottom = pos.top + pos.height;
 		this.offsetWidth = pos.width;
 		this.offsetHeight = pos.height;
 
-		FRONT.app.registerWaypoint({ id: this.index, instance: this, top: this.offsetTop });
+		FRONT.app.registerWaypoint({ id: this.index, instance: this, top: this.offsetTop, offset: this.bladeOffset, type: 'blade' });
 	},
 
 	// _isVisibleBladeHandler: function( app, viewportScrollMid ) {

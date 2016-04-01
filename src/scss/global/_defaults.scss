@@ -39,9 +39,19 @@ a {
 		text-decoration: underline;
 	}
 
-	&.btn {
+	&.ui-btn {
 		font-family: $BUTTON_FONT;
 	}
+}
+
+
+/*
+ *	Defaults: Nav
+ *	--------------------------------------------------
+ */
+
+ul {
+
 }
 
 
@@ -81,41 +91,45 @@ nav {
 h1, h2, h3, h4, h5, h6 {
 	color: $HEADINGS_COLOR;
 	text-transform: uppercase;
+
+	&.-font-alt {
+		font-family: $FONT_PRIMARY; line-height: 1.25;
+		text-transform: none; letter-spacing: 0;
+	}
+	&.-color-alt {
+		color: $COLOR_BRAND_MAIN;
+	}
 }
 
 h1 {
-	margin-left: 18px; text-indent: 36px;
+	margin-left: 10px; text-indent: 20px;
 	color: $HEADINGS_COLOR;
-	letter-spacing: 18px;
+	letter-spacing: 10px;
 }
 
 h2, h3 {
-	letter-spacing: -1px;
+	letter-spacing: 6px;
+}
+
+h4 {
+	letter-spacing: 3px;
+}
+
+p {
+	&.-lead {
+		@extend .delta;
+	}
 }
 
 blockquote {
-	padding: lines(1.5);
-	border: 2px solid transparentize($COLOR_GREY, 0.75); border-radius: 3px;
+	font-weight: 300;
 
 	p {
-		margin-bottom: lines(0.5);
-		@include font-setting-size(20, 1.25);
+		margin: 0;
 	}
 
 	footer {
-		@include font-setting-size(14, 1);
-		color: $COLOR_GREY_DARK; font-weight: 500;
-
-		a {
-			margin-left: lines(0.25);
-
-			&::before {
-				content: " | ";
-				margin-right: lines(0.25);
-				display: inline;
-				color: transparentize($COLOR_GREY, 0.5);
-			}
-		}
+		color: $COLOR_BRAND_BASE; font-weight: bold; font-style: italic;
 	}
 }
 
@@ -131,6 +145,9 @@ img {
 	display: block;
 }
 
+.outline svg {
+	width: 100%; height: 100%;
+}
 
 
 /*

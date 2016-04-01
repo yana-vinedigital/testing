@@ -12,11 +12,12 @@
 
 %container {
 	width: cols( $TOTAL_COLUMNS ) + $GUTTER;
+	&.-half { width: cols( $TOTAL_COLUMNS/2 ) + $GUTTER; }
 }
 
 @mixin container() {
 	@extend %container;
-	max-width: 100%; 
+	max-width: 85%; 
 	margin-left: auto; margin-right: auto;
 	position: relative;
 	@include clearfix;
@@ -35,9 +36,15 @@
  */
 
 	.row {
-		margin-bottom: 0;
+		margin-bottom: lines(1);
 		position: relative;
 		@include clearfix;
+
+		//	Layout	 --------------------
+
+		&.-margin-none {
+			margin-bottom: 0;
+		}
 	}
 		.col {
 
@@ -94,7 +101,7 @@
 			
 			//	Layout	 --------------------
 
-			&.no-margin {
+			&.-margin-none {
 				margin-bottom: 0;
 			}
 
@@ -132,15 +139,30 @@
  *	- Breakpoints
  *
  *	large-desktop	1920 +
- *	med-desktop 	1440 +
- *	DEFAULT 		1025...1439 (1128)
+ *	med-desktop 	1680 +
+ *	desktop 		1366 +
+ *	DEFAULT 		1025 > 1365
  *	tablet-wide		- 1024
- *	tablet			- 768 (fluid)
- *	smartphone-wide	- 640 (fluid)
- *	smartphone		- 480 (fluid)
- *	mobile			- 320 (fluid)
+ *	tablet			- 768
+ *	smartphone-wide	- 640
+ *	smartphone		- 480
+ *	mobile			- 320
  */
 
+
+
+/*
+ *	Breakpoint:	desktop
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(desktop) {
+
+	%container {
+		width: cols( $TOTAL_COLUMNS ) + $GUTTER;
+		&.-half { width: cols( $TOTAL_COLUMNS/2 ) + $GUTTER; }
+	}
+}
 
 /*
  *	Breakpoint:	med-desktop
@@ -151,6 +173,7 @@
 
 	%container {
 		width: cols( $TOTAL_COLUMNS ) + $GUTTER;
+		&.-half { width: cols( $TOTAL_COLUMNS/2 ) + $GUTTER; }
 	}
 }
 
@@ -164,6 +187,7 @@
 
 	%container {
 		width: cols( $TOTAL_COLUMNS ) + $GUTTER;
+		&.-half { width: cols( $TOTAL_COLUMNS/2 ) + $GUTTER; }
 	}
 }
 
@@ -177,6 +201,19 @@
 
 	%container {
 		width: cols( $TOTAL_COLUMNS ) + $GUTTER;
+		&.-half { width: cols( $TOTAL_COLUMNS/2 ) + $GUTTER; }
+	}
+
+	.col, .cols-fixed .col {
+		
+		&.-wide-tablet {
+			width: percentage( 3/4 );
+		}
+
+		&.-full-tablet {
+			width: percentage( 1 );
+		}
+
 	}
 }
 
@@ -189,21 +226,31 @@
 @include breakpoint(tablet) {
 
 	%container {
-		width: cols( $TOTAL_COLUMNS ) + $GUTTER;
+		width: cols( $TOTAL_COLUMNS ) + $GUTTER; max-width: 90%;
+		&.-half { width: cols( $TOTAL_COLUMNS/2 ) + $GUTTER; }
+	}
+
+	.col, .cols-fixed .col {
+		
+		&.-half,
+		&.-wide {
+			width: percentage( 1 ); max-width: 100%;
+		}
 	}
 
 }
 
 
 /*
- *	Breakpoint:	smartphone
+ *	Breakpoint:	smartphone-wide
  *	--------------------------------------------------
  */
 
 @include breakpoint(smartphone-wide) {
 
 	%container {
-		width: cols( $TOTAL_COLUMNS ) + $GUTTER;
+		width: cols( $TOTAL_COLUMNS ) + $GUTTER; max-width: 100%; 
+		&.-half { width: cols( $TOTAL_COLUMNS ) + $GUTTER; }
 	}
 	
 	.col, .cols-fixed .col {
@@ -212,13 +259,16 @@
 
 		width: percentage( 1 ); max-width: 100%;
 
+
 		//	Column Sizes	 ------------
 
 		&.-small, 
 		&.-quarter,
 		&.-third,
 		&.-half,
+		&.-twothirds,
 		&.-wide,
+		&.-wide-tablet,
 		&.-full {
 			width: percentage( 1 );
 		}
@@ -236,6 +286,7 @@
 
 	%container {
 		width: cols( $TOTAL_COLUMNS ) + $GUTTER;
+		&.-half { width: cols( $TOTAL_COLUMNS ) + $GUTTER; }
 	}
 }
 
@@ -249,6 +300,7 @@
 
 	%container {
 		width: cols( $TOTAL_COLUMNS ) + $GUTTER;
+		&.-half { width: cols( $TOTAL_COLUMNS ) + $GUTTER; }
 	}
 
 }

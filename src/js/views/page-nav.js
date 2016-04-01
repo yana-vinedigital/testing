@@ -16,7 +16,6 @@ var Utils = require('utils');
 
 //	Dependencies
 var View = require('ampersand-view');
-var Templates = require('tpl');
 
 
 //

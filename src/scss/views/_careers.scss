@@ -1,0 +1,99 @@
+
+//
+//	Views / Airlines
+//
+
+
+.view-careers {
+
+	section.header, section.footer {
+		min-height: 0; text-align: inherit;
+	}
+
+	section.intro {
+		.bg {
+			background-image: url("../img/bg-careers-intro.jpg");
+			background-size: cover; background-position: 50% 60%;
+		}
+	}
+
+		.careers-benefits {
+			margin-bottom: lines(3);
+			
+			.ui-feature {
+				&:nth-child(2n+1) {
+					clear: both;
+				}
+			}
+				svg {
+					fill: #817AAA;
+				}
+		}
+		.careers-gallery {
+			.col {
+				margin-bottom: lines(1);
+
+				.img {
+					padding-bottom: 75%;
+					background-size: cover; background-repeat: no-repeat;
+				}
+
+				&:nth-child(1) .img { background-image: url('../img/careers-photo-1.jpg'); }
+				&:nth-child(2) .img { background-image: url('../img/careers-photo-2.jpg'); }
+				&:nth-child(3) .img { background-image: url('../img/careers-photo-3.jpg'); }
+				&:nth-child(4) .img { background-image: url('../img/careers-photo-4.jpg'); }
+			}
+		}
+
+	section.image {
+		.bg {
+			height: 120%; top: -10%;
+			opacity: 0.5;
+			background-image: url("../img/bg-careers-secondary.jpg");
+			background-size: cover; background-position: 50% 0;
+		}
+	}
+
+	section.careers-openings {
+		text-align: left;
+	}
+
+	section.careers-intern {
+		text-align: left;
+		background-color: $COLOR_BRAND_MAIN;
+
+		color: fade-out( $COLOR_BRAND_BASE, 0.4 );
+	}
+
+}
+
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1440 +
+ *	DEFAULT 		1025...1439 (1128)
+ *	tablet-wide		- 1024
+ *	tablet			- 768 (fluid)
+ *	smartphone-wide	- 640 (fluid)
+ *	smartphone		- 480 (fluid)
+ *	mobile			- 320 (fluid)
+ *
+ */
+
+
+
+/*
+ *	Breakpoint:	tablet-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet-wide) {
+
+
+}

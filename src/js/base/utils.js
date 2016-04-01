@@ -13,17 +13,19 @@
 var Utils = {
 
 	//	Lodash	 ------------------------
-	each: 		require('lodash/collection/each'),
-	extend: 	require('lodash/object/assign'),
-	find: 		require('lodash/collection/find'),
-	debounce: 	require('lodash/function/debounce'),
-	defaults: 	require('lodash/object/defaults'),
-	defer: 		require('lodash/function/defer'),
-	delay: 		require('lodash/function/delay'),
+	each: 		require('lodash/each'),
+	extend: 	require('lodash/assign'),
+	find: 		require('lodash/find'),
+	filter: 	require('lodash/filter'),
+	debounce: 	require('lodash/debounce'),
+	defaults: 	require('lodash/defaults'),
+	defer: 		require('lodash/defer'),
+	delay: 		require('lodash/delay'),
+	indexOf: 	require('lodash/indexOf'),
 
-	pluck: 		require('lodash/collection/pluck'),
-	sortBy: 	require('lodash/collection/sortBy'),
-	throttle: 	require('lodash/function/throttle'),
+	map: 		require('lodash/map'),
+	sortBy: 	require('lodash/sortBy'),
+	throttle: 	require('lodash/throttle'),
 	
 	
 	//	Misc	 ------------------------
@@ -69,6 +71,7 @@ Utils.DOM = {
 	addClass: require('amp-add-class'),
 	hasClass: require('amp-has-class'),
 	make: require('domify'),
+	onTransitionEnd: require('./on-transition-end'),
 
 	setAttributes: function ( el, attrs ) {
 		for ( var key in attrs ) {
@@ -77,15 +80,17 @@ Utils.DOM = {
 		}
 	},
 
-	getPosition: function( el ) {
+	getPosition: ( el, withScroll = false ) => {
 		if ( typeof el === 'undefined' ) return 0;
 		var rect = el.getBoundingClientRect();
-		// var scrollTop = document.defaultView.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+		var scrollTop = withScroll ? document.defaultView.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop : 0;
 		
+		console.log( 'getPosition', scrollTop, el );
+
 		return {
 			width: Math.round( rect.width || el.offsetWidth ),
 			height: Math.round( rect.height || el.offsetHeight ),
-			top: Math.round( rect.top )
+			top: Math.round( rect.top + scrollTop )
 		};
 	},
 

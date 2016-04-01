@@ -8,7 +8,44 @@
 .outline-footer {
 	
 }
+	section.footer {
+		padding-bottom: lines(1);
 
+		.footer-nav {
+			li {
+				&.-is-active {
+
+					a {
+						position: relative;
+						color: $COLOR_BRAND_MAIN;
+						opacity: 1;
+
+						&:after {
+							content: '';
+							width: 100%;
+							position: absolute; bottom: em(-10); left: 0;
+							display: block;
+							border-bottom: 2px solid currentColor;
+						}
+					}
+				}
+			}
+		}
+
+		.footer-sub {
+			padding-top: lines(2); margin-bottom: 0;
+			text-align: left;
+			color: fade-out($COLOR_GREY,0.75);
+
+			p {
+				
+			}
+
+			.ui-social-links {
+				float: right;
+			}
+		}
+	}
 
 
 

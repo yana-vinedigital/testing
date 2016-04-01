@@ -17,12 +17,10 @@
 var Templates = {
 
 	Global: {
-
-	},
-
-	Index: {
-		Index: require('../../tpl/index.html')
-	},
+		ContextSignup: require('../../tpl/partials/context-signup.hbs'),
+		ContextSignupAirline: require('../../tpl/partials/context-signup-airline.hbs'),
+		ContextSignupThanks: require('../../tpl/partials/context-signup-thanks.hbs')
+	}
 
 };
 
