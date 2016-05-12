@@ -1,0 +1,48 @@
+
+//
+//  Helpers / Media Queries
+//
+
+
+/*
+ *	Helper: Breakpoints
+ *	--------------------------------------------------
+ *	Sass Media Query Helper for Designers
+ */
+
+@mixin breakpoint-helper {
+	padding: .5em .75em;
+	position: fixed; bottom: 0; right: 0; z-index: 9999;
+	font-family: monospace; font-size: 1.125em;
+	line-height: 1; color: #20D832;
+	background: rgba(0,0,0,.8);
+}
+
+@if $ENV == "dev" {
+	body:before {
+		@include breakpoint-helper;
+
+		@each $bp, $media in $BREAKPOINTS {
+			@include breakpoint($bp) {
+				@if $bp == default {
+					content: "#{$bp} / #{nth($media, 3)} cols";
+				} @else {
+					content: "#{$bp} / #{nth($media, 1)} #{nth($media, 2)}px / #{nth($media, 3)} cols";
+				}
+
+			}
+		}
+	}
+
+}
+
+// 	This is for the JS to identify current breakpoint, tied to JS.
+
+body::after {
+	@each $bp, $media in $BREAKPOINTS {
+		@include breakpoint($bp) {
+			content: "#{$bp}";
+			display: none;
+		}
+	}
+}

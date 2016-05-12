@@ -1,0 +1,135 @@
+
+//
+//	UI / Social Links
+//
+
+
+
+.ui-social-links {
+	// max-width: 75%;
+	margin: 0 auto; //padding-top: lines(1);
+
+	// h4 {
+	// 	margin-top: 0; padding-top: lines(1);
+	// 	border-top: 1px solid fade-out( $COLOR_WHITE, 0.9 );
+	// }
+
+	ul {
+		margin: 0; padding: 0;
+		list-style-type: none;
+
+		li {
+			margin: 0 lines(0.5);
+			display: inline-block;
+			vertical-align: top;
+
+			a {
+				width: lines(2); height: lines(2);
+				padding: lines(0.5);
+				display: block; box-sizing: border-box;
+				border: 2px solid $COLOR_BRAND_MAIN;
+				border-radius: 50%;
+				transition: background-color 0.25s;
+
+				&:hover {
+					background-color: $COLOR_BRAND_MAIN;
+
+					svg {
+						fill: $COLOR_BRAND_BASE;
+					}
+				}
+			}	
+		}
+	}
+	
+	.icon {
+		width: 100%; height: 100%;
+		
+		svg {
+			fill: $COLOR_WHITE;
+			display: block;
+
+			transition: fill 0.25s;
+		}
+	}
+	
+
+
+	//	Sizes	 ----------------
+	
+	&.-small {
+
+		ul li {
+			margin: 0 lines(0.25);
+
+			a {
+				width: lines(1); height: lines(1);
+				padding: lines(0.15);
+				border-width: 0;
+			}
+		}
+	}
+
+	&.-large {
+
+		ul li {
+			margin: 0 lines(0.75);
+
+			a {
+				width: lines(3.5); height: lines(3.5);
+				padding: lines(0.75);
+			}
+		}
+	}
+
+
+}
+
+.share-links {
+	.ui-btn {
+		margin-bottom: lines(0.5);
+
+
+	}
+}
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1680 +
+ *	desktop 		1366 +
+ *	DEFAULT 		1025 > 1365
+ *	tablet-wide		- 1024
+ *	tablet			- 768
+ *	smartphone-wide	- 640
+ *	smartphone		- 480
+ *	mobile			- 320
+ *
+ */
+
+
+/*
+ *	Breakpoint:	smartphone
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( smartphone ) {
+
+	.share-links {
+		.ui-btn {
+			max-width: 65%;
+			margin: 0 auto lines(0.5);
+			display: block;
+
+			+ .ui-btn {
+				margin: 0 auto lines(0.5);
+			}
+		}
+	}
+
+}

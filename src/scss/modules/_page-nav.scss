@@ -1,0 +1,140 @@
+
+//
+//	Modules / Page Nav
+//
+
+
+.page-nav {
+	position: fixed; top: 50%; right: 5%; z-index: 30;
+	transform: translate3d(0,-50%,0); will-change: transform, opacity;
+
+	ul {
+		margin: 0; padding: 0;
+		list-style-type: none;
+
+		li {
+			margin: 0 0 lines(2);
+
+			a {
+				width: 12px; height: 12px;
+				display: block; position: relative;
+				// color: $COLOR_WHITE; //darken( $COLOR_BRAND_BASE, 10);
+				// background-color: currentColor;
+				background-color: transparent;
+				border-radius: 50%;
+				opacity: 1;
+				transition: color 0.5s, background-color 0.5s;
+				// box-shadow: 0 0 2px fade-out( $COLOR_BRAND_BASE, 0.3 );
+
+				&:after {
+					content: '';
+					width: 22px; height: 22px;
+					display: block; position: absolute; top: -6px; left: -6px;
+					border: 1px solid currentColor; border-radius: 50%;
+					transform: scale(0.5);
+					transition: transform 0.5s;
+				}
+
+			}
+
+			&:last-child {
+				margin: 0;
+			}
+
+			// &.-is-section {
+			// 	& + .-is-section {
+			// 		a {
+			// 			&:before {
+			// 				content: '';
+			// 				width: 2px; height: lines(2);
+			// 				display: block; position: absolute; bottom: 100%; left: 50%;
+			// 				background-color: currentColor;
+			// 				opacity: 0.5;
+			// 				transform: translateX(-50%);
+			// 			}
+			// 		}
+			// 	}
+			// }
+
+			&.-is-active {
+				a {
+					color: $COLOR_BRAND_MAIN;
+					background-color: currentColor;
+					opacity: 1;
+
+					&:after {
+						transform: scale(1);
+					}
+				}
+			}
+		}
+	}
+
+	.next-icon {
+		width: lines(1); height: lines(1);
+		margin: lines(-5) lines(-0.25) 0;
+		display: block;
+		position: absolute; top: 50%;
+		transform: translateY(50vh);
+		fill: $COLOR_BRAND_MAIN;
+		transition: fill 1s, opacity 0.3s;
+
+		.-is-waypoint-last & {
+			opacity: 0;
+		}
+	}
+
+	.-waypoint-theme-light & {
+		ul li a {
+			color: $COLOR_BRAND_BASE;
+		}
+		.next-icon {
+			fill: $COLOR_BRAND_BASE;
+		}
+	}
+
+	// &.-is-tour-active {
+	// 	li {
+	// 		&.-is-section {
+	// 			a {
+	// 				color: $COLOR_BRAND_MAIN;
+	// 				opacity: 1;
+	// 			}
+	// 		}
+	// 	}
+	// }
+}
+
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1440 +
+ *	DEFAULT 		1025...1439 (1128)
+ *	tablet-wide		- 1024
+ *	tablet			- 768 (fluid)
+ *	smartphone-wide	- 640 (fluid)
+ *	smartphone		- 480 (fluid)
+ *	mobile			- 320 (fluid)
+ *
+ */
+
+
+
+/*
+ *	Breakpoint:	tablet
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet) {
+
+	.page-nav {
+		display: none;
+	}
+
+}

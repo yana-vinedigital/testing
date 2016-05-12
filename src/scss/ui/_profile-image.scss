@@ -1,0 +1,63 @@
+
+//
+//	UI / Profile Image
+//
+
+
+.ui-profile-image {
+	width: cols(2); height: cols(2);
+	margin: 0 auto;
+	overflow: hidden;
+	text-align: left;
+	border-radius: 50%;
+
+	img {
+		width: 100%;
+	}
+
+
+	//	Sizes	 ----------------
+	
+	&.-small {
+		width: cols(1); height: cols(1);
+	}
+
+	//	Styles	 ----------------
+	
+	&.-left {
+		margin-right: $GUTTER;
+		float: left;
+	}
+
+}
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1680 +
+ *	desktop 		1366 +
+ *	DEFAULT 		1025 > 1365
+ *	tablet-wide		- 1024
+ *	tablet			- 768
+ *	smartphone-wide	- 640
+ *	smartphone		- 480
+ *	mobile			- 320
+ *
+ */
+
+
+/*
+ *	Breakpoint:	tablet-wide 
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( tablet-wide ) {
+
+
+
+}

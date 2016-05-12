@@ -1,0 +1,299 @@
+
+//
+//  Frontier / Forms
+//
+
+
+/*
+ *	Forms: Core
+ *	--------------------------------------------------
+ */
+
+$input-font-size: epsilon;
+$label-font-size: zeta;
+
+form {
+	width: 100%;
+	margin: 0;
+	float: left;
+	
+	fieldset {
+		// min-width: cols(4);
+		margin: lines(1) $GUTTER/-2 lines(1); padding: 0 0 0;
+		display: block;
+		// position: relative; left: 50%;
+		// transform: translateX(-50%);
+		border: none;
+	}
+	label, 
+	.field {
+		width: 100%;
+		padding: 0 $GUTTER/2; margin-bottom: lines(1);
+		position: relative; z-index: 1;
+		float: left; box-sizing: border-box;
+		display: inline-block; vertical-align: top;
+
+		&.-small { width: 25%; }
+		&.-third { width: percentage( 1/3 ); }
+		&.-half { 
+			width: 50%;
+			&:nth-child(2n+1) {
+				clear: both;
+			}
+		}
+		&.-twothirds { width: percentage( 2/3 ); }
+		&.-wide { width: 75%; }
+		&.-full { width: 100%; }
+		
+		//	Field Label	 ----------------
+
+		.label {
+			width: 100%;
+			display: block; position: relative;
+			@include font-setting-size( $label-font-size, 1.5 ); //color: $COLOR_SLATE_DARKEST;
+			font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
+			// opacity: 0.33;
+			transition: color 0.3s;
+			-webkit-touch-callout: none;
+			user-select: none;
+
+			&:before {
+				content: "";
+				width: 100%; height: 3px;
+				position: absolute; top: 0; left: 0;
+				background-color: $COLOR_BRAND_MAIN;
+				// opacity: 0.25;
+				// transform: scale3d(1, 0.5, 1); transform-origin: 50% 100%;
+				transition: transform 0.3s, background-color 0.3s, opacity 0.3s;
+				transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+			}
+		}
+
+		//	Field Message	 ------------
+
+		.message {
+			// position: absolute; bottom: 0; right: $GUTTER/2;
+			text-align: center;
+			
+			p {
+				margin: 0;
+				@include font-setting-size( $label-font-size, 1 ); color: $COLOR_BRAND_MAIN;
+				font-weight: bold;
+			}
+		}
+
+		//	Field Defaults	 ------------
+
+		input:not(.ui-btn), 
+		textarea {
+			@include font-setting-size( $input-font-size, 2 );
+
+			width: 100%;
+			padding: 0; margin: 0 0 lines(0.5);
+			position: relative;
+			display: block; box-sizing: border-box;
+			font-family: $FONT_PRIMARY; color: currentColor; font-weight: normal; line-height: lines(2, $input-font-size) - em(2, $input-font-size);
+			background-color: transparent;
+			border: 0; border-bottom: 1px solid fade-out($COLOR_BRAND_BASE, 0.5); border-radius: 0;
+			outline: 0; resize: none;
+			-webkit-appearance: none;
+			transition: background-color 0.3s, border-color 0.3s;
+
+			&::placeholder {
+				font-weight: 300;
+				color: $COLOR_WHITE;
+				opacity: 0.8;
+			}
+
+			&:-webkit-autofill {
+				-webkit-text-fill-color: $COLOR_WHITE;
+				background-color: transparent;
+				box-shadow: 0 0 0px 1000px $COLOR_BRAND_BASE inset;
+			}
+
+			& + .ui-btn {
+				margin: 0;
+				position: absolute; top: 0; right: $GUTTER/2;
+			}
+
+			//	Sizes	 ----------------
+
+			&.-large {
+				@include font-setting-size( delta, 2.5 );
+				line-height: lines(2.5, delta) - em(1, delta);
+
+				& + .ui-btn {
+					line-height: lines(2.5) - em(4); border-radius: lines(1.25);
+				}
+			}
+
+			//	States	 ----------------
+
+			&:focus {
+				outline: none;
+				border-color: $COLOR_BRAND_BASE;
+			}
+
+			&.input-valid {
+				
+			}
+
+			&.input-invalid {
+
+			}
+
+			//	Styles	 ----------------
+			
+			&.-outline-rounded {
+				@include font-setting-size( $input-font-size, 2 );
+
+				padding: 0 gutters(0.5, $input-font-size);
+				line-height: lines(2, $input-font-size) - em(4, $input-font-size);
+				background-color: fade-out( $COLOR_GREY, 0.95 );
+				border: 2px solid fade-out( $COLOR_WHITE, 0 ); border-radius: lines(1, $input-font-size);
+
+				&~.ui-btn {
+					border-top-left-radius: 0; border-bottom-left-radius: 0;
+				}
+
+				&.-large {
+					@include font-setting-size( $input-font-size, 2.5 );
+					padding: lines(0.25, $input-font-size) gutters(0.75, $input-font-size);
+					line-height: lines(2.5, $input-font-size) - em(4, $input-font-size);
+					border-radius: lines(1.5, $input-font-size);
+
+					&~.ui-btn {
+						padding: lines(0.25) gutters(0.5); 
+						line-height: lines(2.5) - em(4); border-radius: lines(2);
+						border-top-left-radius: 0; border-bottom-left-radius: 0;
+					}
+				}
+
+				&:focus {
+					border-color: $COLOR_BRAND_MAIN;
+					background-color: fade-out( $COLOR_BLACK, 0.8 );
+				}
+			}	
+		}
+
+		//	Textarea	 ----------------
+
+		textarea {
+			min-height: lines(1);
+			overflow: hidden;
+			resize: none;
+		}
+		
+		//	Checkbox	 ----------------
+		
+		
+	}
+
+	input[type="submit"] {
+		-webkit-appearance: none;
+		font-family: $FONT_SECONDARY;
+		outline: none;
+	}
+
+
+	
+	//	Themes
+	//	--------------------------------------------------
+
+	.-theme-light & {
+		input:not(.ui-btn), 
+		textarea {
+
+			&::placeholder {
+				color: $COLOR_WHITE;
+			}
+
+			&:-webkit-autofill {
+				-webkit-text-fill-color: currentColor;
+				background-color: transparent;
+				box-shadow: 0 0 0px 1000px $COLOR_GREY_LIGHT inset;
+			}
+
+		}
+	}
+
+}
+	
+	
+
+
+	
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1440 +
+ *	DEFAULT 		1025...1439 (1128)
+ *	tablet-wide		- 1024
+ *	tablet			- 768 (fluid)
+ *	smartphone-wide	- 640 (fluid)
+ *	smartphone		- 480 (fluid)
+ *	mobile			- 320 (fluid)
+ *
+ */
+
+
+/*
+ *	Breakpoint: tablet-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( tablet-wide ) {
+
+	form {
+		
+		label, 
+		.field {
+
+			&.-half {
+				width: 100%;
+			}
+		}
+	}
+
+}
+
+
+/*
+ *	Breakpoint: smartphone
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( smartphone ) {
+
+	form {
+		
+		label, 
+		.field {
+
+			&.-align-right {
+				text-align: center;
+			}
+
+			input:not(.ui-btn), 
+			textarea {
+				margin-bottom: lines(0.5);
+				
+				& + .ui-btn,
+				&.-outline-rounded + .ui-btn,
+				&.-outline-rounded.-large + .ui-btn {
+					width: 100%;
+					margin-bottom: lines(0.5);
+					position: relative; right: auto;
+					text-align: center;
+					border-radius: lines(1.75, $input-font-size);
+				}
+			}
+		}
+	}
+
+}

@@ -1,0 +1,93 @@
+
+//
+//	Frontier / Mixins / Functions
+//
+
+
+
+/*
+ *	Function: EM -> PX Conversion
+ *	--------------------------------------------------
+ */
+
+@function em( $target, $context: $FONT_SIZE ) {
+	@if type-of( $context ) == string {
+		$context: get-font-size( $context );
+	}
+	@return ( $target / $context ) * 1em;
+}
+
+@function no-unit( $number ) {
+	@return $number / ( $number * 0 + 1 );
+}
+
+
+
+/*
+ *	Function: Baseline spacing
+ *	--------------------------------------------------
+ */
+
+@function lines( $lines: 1, $context: $FONT_SIZE ) {
+	@if type-of( $context ) == string {
+		$context: get-font-size( $context );
+	}
+	@return $lines * ( $LINE_HEIGHT / $context ) * 1em;
+}
+
+
+
+/*
+ *	Function: Gutter size
+ *	--------------------------------------------------
+ */
+
+@function gutters( $gutter: 1, $context: $FONT_SIZE ) {
+	@if type-of( $context ) == string {
+		$context: get-font-size( $context );
+	}
+	@return $gutter * ( $GUTTER_WIDTH / $context ) * 1em;
+}
+
+
+
+/*
+ *	Mixin: Breakpoint Builder
+ *	--------------------------------------------------
+ */
+
+@mixin breakpoint($point) {
+
+	$mq-data: map-get($BREAKPOINTS, $point);
+	$mq-type: #{nth($mq-data, 1)}-width;
+	$mq-size: nth($mq-data, 2);
+	$mq-cols: nth($mq-data, 3);
+	$mq-scale: nth($mq-data, 4);
+
+	@media (#{$mq-type}: em($mq-size)) {
+		$TOTAL_COLUMNS: $mq-cols !global;
+		$BODY_SCALE: $mq-scale !global;
+
+		@content;
+
+		$TOTAL_COLUMNS: $TOTAL_COLUMNS_DEFAULT !global;
+	}
+}
+
+
+
+/*
+ *	Mixin: Clearfix
+ *	--------------------------------------------------
+ */
+
+@mixin clearfix() {
+	&:before,
+	&:after {
+	    content: " ";
+	    display: table;
+	}
+	&:after {
+	    clear: both;
+	}
+}

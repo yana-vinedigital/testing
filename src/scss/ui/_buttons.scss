@@ -1,0 +1,176 @@
+
+//
+//	UI / Buttons
+//
+
+
+.ui-btn {
+	margin: 0; padding: 0 $GUTTER*0.75; box-sizing: border-box;
+	display: inline-block; position: relative;
+	color: $COLOR_GREY; text-transform: uppercase;
+	line-height: lines(2) - em(4); font-weight: bold; letter-spacing: 4px; text-indent: 4px;
+	white-space: nowrap;
+	background-color: transparent;
+	border: 2px solid currentColor; border-radius: lines(1);
+	transition: background-color 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
+
+	.icon {
+		width: lines(0.75); height: lines(0.75);
+		margin: lines(0.5) em(6) 0 em(-6);
+		vertical-align: top;
+		display: inline-block;
+
+		fill: currentColor;
+
+		svg {
+			display: block;
+		}
+	}
+
+	&:hover {
+		text-decoration: none;
+		color: $COLOR_BRAND_BASE;
+		background-color: $COLOR_BRAND_MAIN;
+		border-color: $COLOR_BRAND_MAIN;
+	}
+
+	& + & {
+		margin-left: em(12);
+	}
+
+
+	//	Styles	 ----------------
+
+	&.-alt {
+		color: $COLOR_BRAND_BASE;
+		background-color: $BUTTON_TEXT_COLOR;
+		border-color: $BUTTON_TEXT_COLOR;
+		
+		&:hover {
+			color: $COLOR_BRAND_BASE;
+			border-color: darken($BUTTON_TEXT_COLOR, 15);
+			background-color: darken($BUTTON_TEXT_COLOR, 15);
+		}
+	}
+
+	&.-border {
+		color: $COLOR_BRAND_MAIN;
+		border-color: currentColor;
+		background-color: transparent;
+		box-shadow: none;
+
+		&:hover {
+			background-color: $COLOR_BRAND_MAIN;
+			border-color: $COLOR_BRAND_MAIN;
+		}
+
+		&.-alt {
+			
+		}
+	}
+
+	//	Sizes	 ----------------
+
+	&.-tiny {
+		padding: 0 $GUTTER/4;
+		font-size: 0.825em; font-weight: bold; line-height: 1.25rem; text-transform: none;
+		border-width: 1px; border-radius: 3px;
+	}
+
+	&.-mini {
+		padding: 0 $GUTTER/2;
+		line-height: lines(1.5) - em(4);
+		border-width: 2px; border-radius: 3px;
+	}
+
+	&.-small {
+		padding: 0 $GUTTER/2;
+		line-height: lines(1.5) - em(4);
+	}
+
+	&.-large {
+		@include font-setting-size( epsilon );
+		line-height: lines(2.5, epsilon) - em(4, epsilon); letter-spacing: 6px; text-indent: 6px;
+		border-radius: lines(1.25, epsilon);
+
+		.icon {
+			width: lines(1, epsilon); height: lines(1, epsilon);
+			margin-top: em(16, epsilon);
+		}
+	}
+
+	&.-huge {
+		// @include font-setting-size( delta );
+		// padding: 0 $GUTTER*2;
+		line-height: lines(3, epsilon) - em(4, epsilon); letter-spacing: 6px; text-indent: 6px;
+		border-radius: lines(1.5, epsilon);
+	}
+
+	.btn-list & {
+		width: 100%;
+		margin-bottom: lines(0.5);
+	}
+
+	//	States	 ----------------
+
+	&.-is-success {
+		color: $BUTTON_COLOR;
+		border-color: #B8E986;
+		background-color: #B8E986;
+	} 
+
+	&.-is-error {
+		color: $BUTTON_COLOR;
+		border-color: #FF696C;
+		background-color: #FF696C;
+	}
+
+
+	//	Themes	 ----------------
+	
+	.-theme-light & {
+		color: $COLOR_BRAND_BASE;
+		border-color: $COLOR_BRAND_BASE;
+
+		&:hover {
+			color: $COLOR_WHITE;
+			background-color: $COLOR_BRAND_BASE;
+		}
+	}
+
+}
+
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1680 +
+ *	desktop 		1366 +
+ *	DEFAULT 		1025 > 1365
+ *	tablet-wide		- 1024
+ *	tablet			- 768
+ *	smartphone-wide	- 640
+ *	smartphone		- 480
+ *	mobile			- 320
+ *
+ */
+
+
+/*
+ *	Breakpoint:	tablet-wide 
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( tablet-wide ) {
+
+	.ui-btn {
+		padding-left: $GUTTER/2;
+		padding-right: $GUTTER/2;
+	}
+
+}

@@ -1,0 +1,239 @@
+
+//
+//	Frontier / Typography
+//
+
+
+
+/*
+ *	Typography: Font Sizes
+ *	--------------------------------------------------
+ */
+
+@each $scale, $data in $TYPE_SCALE {
+	
+	$size: nth($data, 1);
+	$lines: nth($data, 2);
+	$element: if( length($data) > 2, nth($data, 3), "" );
+
+	.#{$scale} {
+		@include font-setting($size, $lines);
+	}
+	
+	@if $element != "" {
+		#{$element} { 
+			@extend .#{$scale}; 
+		}
+	}
+
+}
+
+
+/*
+ *	Typography: Headings
+ *	--------------------------------------------------
+ */
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $HEADINGS_FONT; font-weight: normal; color: $HEADINGS_COLOR;
+	text-rendering: optimizelegibility;
+
+	small {
+		@include font-setting(10, 1);
+	}
+
+	&.-alt {
+		color: darken($COLOR_GREY, 20);
+	}
+}
+
+
+/*
+ *	Typography: Paragraphs
+ *	--------------------------------------------------
+ */
+
+p {
+	@include font-setting(16, 1);
+
+	&.small {
+		@include font-setting(12, 1);
+
+	}
+}
+
+
+/*
+ *	Typography: Lists
+ *	--------------------------------------------------
+ */
+
+%unstyled {
+	margin: 0; padding: 0;
+	list-style: none;
+}
+
+ul {
+
+	&.unstyled {
+		@extend %unstyled;
+	}
+}
+
+
+/*
+ *	Typography: Global Options
+ *	--------------------------------------------------
+ */
+
+
+.light { font-weight: 100; }
+.regular { font-weight: 300; }
+.medium { font-weight: 500; }
+.bold { font-weight: 700; }
+.black { font-weight: 900; }
+
+
+//	Styles
+
+.underline { 
+	border-bottom: 1px solid currentColor;
+}
+.italic {
+	font-style: italic;
+}
+.caps {
+	text-transform: uppercase;
+}
+.border {
+	border-bottom: 2px solid currentColor;
+}
+.alt {
+	color: $HEADINGS_COLOR;
+}
+
+
+//	Alignment
+
+.-align-center {
+	text-align: center;
+}
+.-align-left {
+	text-align: left;
+}
+.-align-right {
+	text-align: right;
+}
+
+
+//	Margins
+
+.-margin-half {
+	& + * {
+		margin-top: 0;
+	}
+}
+.-margin-none {
+	margin-bottom: 0;
+
+	& + * {
+		margin-top: 0;
+	}
+}
+
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1680 +
+ *	desktop 		1366 +
+ *	DEFAULT 		1025 > 1365
+ *	tablet-wide		- 1024
+ *	tablet			- 768
+ *	smartphone-wide	- 640
+ *	smartphone		- 480
+ *	mobile			- 320
+ */
+
+
+/*
+ *	Breakpoint:	default
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( default ) {
+	.alpha { @include font-setting( beta ); }
+	.beta { @include font-setting( gamma ); }
+	.gamma { @include font-setting( gamma-beta ); }
+	.delta { @include font-setting( epsilon ); }
+	
+}
+
+/*
+ *	Breakpoint:	desktop
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( desktop ) {
+	.alpha { @include font-setting( beta ); }
+	.beta { @include font-setting( gamma ); }
+	.gamma { @include font-setting( gamma ); }
+	.delta { @include font-setting( delta-beta ); }
+}
+
+/*
+ *	Breakpoint:	med-desktop
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( med-desktop ) {
+	.alpha { @include font-setting( alpha ); }
+	.beta { @include font-setting( beta ); }
+	.delta { @include font-setting( delta ); }
+}
+
+/*
+ *	Breakpoint:	large-desktop
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( large-desktop ) {
+	.alpha { @include font-setting( alpha ); }
+	.beta { @include font-setting( beta ); }
+}
+
+/*
+ *	Breakpoint:	tablet-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( tablet-wide ) {
+	.alpha { @include font-setting( beta ); }
+	.beta { @include font-setting( gamma ); }
+	.gamma { @include font-setting( gamma-beta ); }
+	.delta { @include font-setting( epsilon ); }
+}
+
+/*
+ *	Breakpoint:	tablet
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( tablet ) {
+	.alpha { @include font-setting( gamma ); }
+	.beta { @include font-setting( gamma ); }
+}
+
+/*
+ *	Breakpoint:	mobile
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(mobile) {
+
+}

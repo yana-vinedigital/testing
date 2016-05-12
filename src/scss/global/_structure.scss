@@ -1,0 +1,387 @@
+
+//
+//	Global / Structure
+//
+
+
+
+/*
+ *	Structure: Core
+ *	--------------------------------------------------
+ */
+
+html {
+	&.no-js {
+		.page {
+			position: relative;
+
+			section {
+				opacity: 1;
+
+				.slide-content div,
+				.slide-content-bg,
+				.slide-bg {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	&.-is-context-open,
+	&.-is-scroll-disabled {
+		height: 100%;
+		position: relative;
+		overflow: hidden;
+
+		body {
+			overflow: hidden;
+		}
+
+	}
+}
+	body {
+		width: 100%; height: 100%;
+		position: relative;
+	}
+
+
+
+/*
+ *	Structure: Website Base Containers
+ *	--------------------------------------------------
+ */
+
+.outline {
+
+}
+	.outline-main {
+		position: relative; z-index: 0;
+		transition: filter 0.5s;
+		will-change: filter;
+	
+		.-is-menu-open &,
+		.-is-context-open & {
+			filter: blur(3px);
+		}
+	}
+		.page {
+			min-height: 100vh;
+			position: fixed; top: 0; left: 0; right: 0;
+			overflow: hidden;
+			will-change: transform;
+			transform: translate3d(0,0,0);
+		
+			section {
+				width: 100%; //min-height: 100vh;
+				padding: lines(3) 0 lines(3) 0; margin-bottom: -1px;
+				display: flex; align-items: center; float: left;
+				box-sizing: border-box; position: relative; z-index: 10;
+				overflow: hidden;
+				// opacity: 0;
+				// background-color: $BACKGROUND_COLOR;
+
+				// &:nth-child(2n) {
+				// 	background-color: darken( $COLOR_BRAND_BASE, 5 );
+				// }
+
+				&.-section-auto {
+					height: auto; min-height: 0;
+					padding-top: lines(10);
+					padding-bottom: lines(9);
+				}
+
+				&.-section-thin {
+					padding: lines(1) 0 0;
+				}
+
+				&.-theme-light {
+					color: $COLOR_GREY_DARK;
+					background-color: $COLOR_WHITE;
+
+					h1, h2, h3, h4, h5, h6 {
+						color: $COLOR_BRAND_BASE;
+					}
+				}
+
+				// .section-half {
+				// 	padding: lines(0.5) 0 lines(1);
+				// 	width: 50%; min-height: lines(16);
+				// 	display: flex; align-items: center; float: left;
+				// 	box-sizing: border-box;
+
+				// 	&:nth-child(1) { padding-left: 3%; }
+				// 	&:nth-child(2) { padding-right: 3%; }
+				// }
+
+
+				.divider {
+					width: 100%;
+					position: relative; overflow: hidden;
+					text-align: center;
+
+					svg {
+						width: lines(1); height: lines(1);
+						fill: $COLOR_BRAND_BASE;						
+					}
+
+					.icon {
+						width: cols(1);
+						margin: lines(1.5) auto;
+						position: relative;
+						display: block;
+
+						&:before, 
+						&:after {
+							content: '';
+							width: cols(5); height: 0;
+							display: block; position: absolute; top: lines(0.5);
+							border-bottom: 1px solid $COLOR_GREY;
+							opacity: 0.5;
+						}
+						&:before { left: 100%; }
+						&:after { right: 100%; }
+					}
+
+					
+				}
+
+				.bg {
+					width: 100%; height: 100%;
+					position: absolute; top: 0; left: 0; z-index: 0;
+					background-position: center center; background-repeat: no-repeat; background-size: 100%;
+					transform: translate3d(0,0,0);
+					will-change: transform;
+				}
+
+				&.-is-active {
+					z-index: 20;
+					// background-color: lighten( $COLOR_BRAND_BASE, 10);
+
+				}
+			}
+				.section-headline {
+					margin-bottom: 0;
+				}
+
+		}
+
+			.scroll-icon {
+				width: lines(2); height: lines(2);
+				margin-left: lines(-1);
+				position: absolute; top: 80vh; left: 50%; z-index: 50;
+				opacity: 0;
+				transition: opacity 0.5s;
+
+				svg {
+					fill: $COLOR_BRAND_MAIN;
+				}
+				
+				// &:after {
+				// 	content: '';
+				// 	width: lines(1); height: lines(1);
+				// 	display: block;
+				// 	border: 2px solid $COLOR_GREY; border-width: 0 2px 2px 0;
+				// 	opacity: 0;
+				// 	transform: rotate(45deg);
+				// 	transition: opacity 0.5s;
+				// }
+
+				.-is-scroll-top & {
+					opacity: 1;
+				}
+			}
+
+
+
+
+
+			
+
+
+
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1680 +
+ *	desktop 		1366 +
+ *	DEFAULT 		1025 > 1365
+ *	tablet-wide		- 1024
+ *	tablet			- 768
+ *	smartphone-wide	- 640
+ *	smartphone		- 480
+ *	mobile			- 320
+ *
+ */
+
+
+/*
+ *	Breakpoint:	Default
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(default) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+}
+
+
+/*
+ *	Breakpoint:	Desktop
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(desktop) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+
+}
+
+
+/*
+ *	Breakpoint:	med-desktop
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(med-desktop) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+}
+
+
+/*
+ *	Breakpoint:	large-desktop
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(large-desktop) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+}
+
+
+/*
+ *	Breakpoint:	tablet-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet-wide) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+
+	.outline-main {
+
+	}
+		.page {
+			position: relative;
+
+			section {
+				// display: block;
+				opacity: 1;
+
+				.bg {
+					background-size: cover;
+				}
+			}
+		}
+	
+}
+
+
+/*
+ *	Breakpoint:	tablet
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+	
+	.outline-main {
+		
+	}
+		.page {
+			section {
+				padding: lines(2) 0;
+			}
+		}
+	
+
+}
+
+
+/*
+ *	Breakpoint:	smartphone-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(smartphone-wide) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+
+	.outline-main {
+		
+	}
+		.page {
+			section {
+				padding: lines(1.5) 0;
+
+				&.-section-auto {
+					padding-top: lines(4);
+					padding-bottom: lines(4);
+				}
+			}
+		}
+
+	.scroll-icon {
+		display: none;
+	}
+		
+
+}
+
+
+/*
+ *	Breakpoint:	smartphone
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(smartphone) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+}
+
+
+/*
+ *	Breakpoint:	mobile
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(mobile) {
+
+	body {
+		font-size: em($FONT_SIZE + $BODY_SCALE);
+	}
+	
+}

@@ -1,0 +1,216 @@
+
+//
+//  Global / Defaults
+//
+
+
+
+/*
+ *	Defaults: Core
+ *	--------------------------------------------------
+ */
+
+html {
+	width: 100%; height: 100%;
+}
+	body {
+		width: 100%; height: 100%;
+		overflow-x: hidden;
+		font-family: $FONT_PRIMARY;
+		line-height: $BASE_LINE_HEIGHT; color: $TEXT_COLOR; text-align: $TEXT_ALIGN;
+		-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+		background-color: $BACKGROUND_COLOR;
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+	}
+
+
+
+/*
+ *	Defaults: Anchors
+ *	--------------------------------------------------
+ */
+
+a {
+	color: $LINK_COLOR;
+	font-weight: 500;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+	&.ui-btn {
+		font-family: $BUTTON_FONT;
+	}
+}
+
+
+/*
+ *	Defaults: Nav
+ *	--------------------------------------------------
+ */
+
+ul {
+
+}
+
+
+/*
+ *	Defaults: Nav
+ *	--------------------------------------------------
+ */
+
+nav {
+
+	ul {
+		margin: 0; padding: 0;
+		list-style-type: none;
+
+		li {
+			margin: 0; padding: 0;
+		}
+	}
+
+	&.nav--horizontal {
+
+		li {
+			margin-right: lines(1.5);
+			display: inline-block;
+		}
+	}
+}
+
+
+
+/*
+ *	Defaults: Typography
+ *	--------------------------------------------------
+ */
+
+
+h1, h2, h3, h4, h5, h6 {
+	color: $HEADINGS_COLOR;
+	text-transform: uppercase;
+
+	&.-font-alt {
+		font-family: $FONT_PRIMARY; line-height: 1.25;
+		text-transform: none; letter-spacing: 0;
+	}
+	&.-color-alt {
+		color: $COLOR_BRAND_MAIN;
+	}
+}
+
+h1 {
+	margin-left: 10px; text-indent: 20px;
+	color: $HEADINGS_COLOR;
+	letter-spacing: 10px;
+}
+
+h2, h3 {
+	letter-spacing: 6px;
+}
+
+h4 {
+	letter-spacing: 3px;
+}
+
+p {
+	&.-lead {
+		@extend .delta;
+	}
+}
+
+blockquote {
+	font-weight: 300;
+
+	p {
+		margin: 0;
+	}
+
+	footer {
+		color: $COLOR_BRAND_BASE; font-weight: bold; font-style: italic;
+	}
+}
+
+.-color-alt {
+	color: $COLOR_GREY_DARK;
+}
+
+
+/*
+ *	Defaults: Images
+ *	--------------------------------------------------
+ */
+
+
+img {
+	max-width: 100%;
+	display: block;
+}
+
+.outline svg {
+	width: 100%; height: 100%;
+}
+
+
+/*
+ *	Defaults: Fonts
+ *	--------------------------------------------------
+ */
+
+ @font-face {
+	font-family: 'din-cond';
+	font-style:   normal;
+	font-weight:  bold;
+	src: url('#{$DIR_FONTS}dincond-bold.eot'); /* IE9 Compat Modes */
+	src: url('#{$DIR_FONTS}dincond-bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		 url('#{$DIR_FONTS}dincond-bold.woff') format('woff'), /* Modern Browsers */
+		 url('#{$DIR_FONTS}dincond-bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+		 url('#{$DIR_FONTS}dincond-bold.svg#e0701c5af929bd67babc2defb9ce654c') format('svg'); /* Legacy iOS */
+}
+
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1440 +
+ *	DEFAULT 		1025...1439 (1128)
+ *	tablet-wide		- 1024
+ *	tablet			- 768 (fluid)
+ *	smartphone-wide	- 640 (fluid)
+ *	smartphone		- 480 (fluid)
+ *	mobile			- 320 (fluid)
+ */
+
+
+/*
+ *	Breakpoint:	tablet-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet-wide) {
+
+}
+
+
+/*
+ *	Breakpoint:	smartphone
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(smartphone) {
+
+	.alpha {
+		margin-left: 3px;
+		text-indent: 0;
+		letter-spacing: 6px;
+	}
+	// .gamma { @include font-setting(20, 1.25); }
+
+}

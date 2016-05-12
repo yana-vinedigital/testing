@@ -1,0 +1,55 @@
+
+//
+//	UI / Job Listing
+//
+
+
+.ui-job-listing {
+	position: relative;
+	overflow: hidden;
+
+	&:before {
+		content: '';
+		height: 1px;
+		display: block;
+		position: absolute; top: 0; left: $GUTTER/2; right: $GUTTER/2;
+		border-top: 1px solid fade-out( $COLOR_BRAND_BASE, 0.9 );
+	}
+}
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1680 +
+ *	desktop 		1366 +
+ *	DEFAULT 		1025 > 1365
+ *	tablet-wide		- 1024
+ *	tablet			- 768
+ *	smartphone-wide	- 640
+ *	smartphone		- 480
+ *	mobile			- 320
+ *
+ */
+
+
+/*
+ *	Breakpoint:	tablet-wide 
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( smartphone-wide ) {
+
+	.ui-job-listing {
+		text-align: center;
+
+		.-align-right {
+			text-align: center;
+		}
+	}
+
+}

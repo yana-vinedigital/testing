@@ -1,0 +1,71 @@
+
+//
+//	UI / Feature
+//
+
+
+.ui-feature {
+	margin-bottom: lines(1);
+
+	.feature-icon {
+		width: cols(1); height: cols(1);
+
+		svg {
+			fill: #33435E;
+		}
+	}
+	
+
+	.feature-content {
+		max-width: cols(4);
+		margin: 0 auto;
+	}
+
+	&.-style-left {
+
+		.feature-icon {
+			padding-top: lines(1);
+			float: left;
+
+			svg {
+				
+			}
+		}
+		.feature-content {
+			margin-left: cols(1) + $GUTTER/2;
+			text-align: left;
+		}
+	}
+
+}
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1680 +
+ *	desktop 		1366 +
+ *	DEFAULT 		1025 > 1365
+ *	tablet-wide		- 1024
+ *	tablet			- 768
+ *	smartphone-wide	- 640
+ *	smartphone		- 480
+ *	mobile			- 320
+ *
+ */
+
+
+/*
+ *	Breakpoint:	tablet-wide 
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( tablet-wide ) {
+
+
+
+}

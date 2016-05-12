@@ -1,0 +1,38 @@
+
+//
+//	Frontier / Mixins / Layout
+//
+
+
+
+/*
+ *	Layout: Width (Columns)
+ *	--------------------------------------------------
+ */
+
+@function cols($columns: 1) {
+	@return $columns * ($COLUMN + $GUTTER) - $GUTTER;
+}
+
+@function cols-fluid($columns: 1, $total-columns: $TOTAL_COLUMNS) {
+	@return $columns * (100% / $total-columns);
+}
+
+@mixin width($columns: 1) {
+	width: $columns * ($COLUMN + $GUTTER) - $GUTTER;
+}
+
+@mixin width-fluid($columns: 1, $total-columns: $TOTAL_COLUMNS) {
+	width: $columns * (100% / $total-columns);
+}
+
+
+
+/*
+ *	Layout: Height (Lines)
+ *	--------------------------------------------------
+ */
+
+@mixin height( $lines: 1 ) {
+	height: $LINES_1 * $lines;
+}
