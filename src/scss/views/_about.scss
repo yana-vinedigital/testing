@@ -23,7 +23,7 @@
 				position: relative;
 				display: inline-block; overflow: hidden;
 				vertical-align: top;
-				animation: text-departure-holder 6000ms infinite;
+				animation: text-departure-holder 9000ms infinite;
 				animation-delay: 250ms;
 				will-change: width;
 
@@ -32,7 +32,7 @@
 					overflow: hidden; display: inline-block;
 					position: absolute; top: 0; left: 0;
 					transform: translate3d(0,-100%,0); 
-					animation: text-departure 6000ms infinite;
+					animation: text-departure 9000ms infinite;
 					animation-delay: 0ms;
 					// animation-fill-mode: forwards;
 					opacity: 0;
@@ -45,8 +45,8 @@
 						// display: none;
 					}
 
-					&:nth-child(3) { animation-delay: 2000ms; }
-					&:nth-child(4) { animation-delay: 4000ms; }
+					&:nth-child(3) { animation-delay: 3000ms; }
+					&:nth-child(4) { animation-delay: 6000ms; }
 
 				}
 			}
