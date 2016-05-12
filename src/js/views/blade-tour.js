@@ -28,6 +28,7 @@ var SlideView = View.extend({
 		// app: ['state', true, function() { return FRONT.app; }],
 		parent: 'state',
 		index: ['number', false, 0],
+		isWaypointTrackable: ['boolean', true, true],
 		_isVisible: ['boolean', false, false],
 		_isPrevVisible: ['boolean', false, false]
 	},
@@ -45,7 +46,7 @@ var SlideView = View.extend({
 		waypoint: {
 			deps: ['index', 'parent.index'],
 			fn: function() {
-				return +(this.parent.index + '.' + this.index);
+				return +(this.parent.index + '.' + (this.index + 1));
 			}
 		}
 		// isVisible: {
@@ -62,23 +63,23 @@ var SlideView = View.extend({
 			type: 'booleanClass',
 			name: '-is-active'
 		},
-		'_isPrevVisible': {
-			type: 'booleanClass',
-			name: '-is-prev'
-		}
+		// '_isPrevVisible': {
+		// 	type: 'booleanClass',
+		// 	name: '-is-prev'
+		// }
 	},
 
 	initialize: function() {
-		var _this = this;
 		this._reflowHandler = this._reflowHandler.bind(this);
 		// this._isVisibleSlideHandler = this._isVisibleSlideHandler.bind(this);
 
 		this.listenTo( FRONT, 'window:reflow', this._reflowHandler );
-		this.listenTo( FRONT, 'waypoint:active', function( waypoint ) {
-			_this._isVisible = waypoint.id === _this.waypoint;
-			if ( waypoint.prev ) {
-				_this._isPrevVisible = waypoint.prev.id === _this.waypoint;
-			}
+		this.listenTo( FRONT, 'waypoint:active', waypoint => {
+			this._isVisible = ( waypoint.id === this.waypoint ) || ( this.waypoint === 1.1 && waypoint.id === 1 );
+
+			// if ( waypoint.prev ) {
+			// 	this._isPrevVisible = waypoint.prev.id === this.waypoint;
+			// }
 		});
 
 		// this.listenTo( FRONT.app, 'change:viewportScrollMid', this._isVisibleSlideHandler );
@@ -112,7 +113,12 @@ var SlideView = View.extend({
 
 module.exports = BladeView.extend({
 
+	props: {
+		bladeType: ['string', true, 'tour']
+	},
+
 	initialize: function() {
+		this.isWaypointTrackable = false;
 		BladeView.prototype.initialize.apply(this);
 
 		this.slideObjects = [];

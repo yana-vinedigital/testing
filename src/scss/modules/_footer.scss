@@ -42,6 +42,7 @@
 			}
 
 			.ui-social-links {
+				margin-top: lines(1);
 				float: right;
 			}
 		}
@@ -69,11 +70,15 @@
 
 
 /*
- *	Breakpoint:	tablet-wide
+ *	Breakpoint:	smartphone-wide
  *	--------------------------------------------------
  */
 
-@include breakpoint(tablet-wide) {
+@include breakpoint(smartphone-wide) {
 
+	section.footer {
+
+		
+	}
 
 }

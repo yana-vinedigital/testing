@@ -66,9 +66,19 @@ gulp.task('clean', function() {
  */
 
 gulp.task('images', function() {
+	gulp.src([
+		paths.src.root + '*.{txt,ico}'
+	], { base: paths.src.root, dot: true })
+		.pipe( gulp.dest( paths.dist.root ) );
+
 	return gulp.src([
 		paths.src.img + '**/*.{jpg,png}'
 	], { dot: true })
+		.pipe( $.if( env.isProd, $.imageResize({
+			width: 1280,
+			crop: false,
+			upscale : false
+		})))
 		.pipe( $.if( env.isProd, $.imagemin({
 			progressive: true,
 			optimizationLevel: 6
@@ -92,16 +102,17 @@ gulp.task('fonts', function() {
 
 gulp.task('assets', gulp.parallel(
 
-	//	HTML	---------------
-	// function assets_html() { 
-	// 	return gulp.src([
-	// 		paths.src.root + '*.{html,txt}'
-	// 	], { base: paths.src.root, dot: true })
-	// 		.pipe( gulp.dest( paths.dist.root ) );
-	// },
+	//	Files	---------------
+	function assets_pdf() { 
+		return gulp.src([
+			paths.src.root + 'pdf/*.pdf'
+		], { base: paths.src.root, dot: true })
+			.pipe( gulp.dest( paths.dist.root + 'assets/' ) );
+	},
 
 	//	Images	---------------
 	'images',
+
 
 	//	Fonts	---------------
 	'fonts'
@@ -252,15 +263,15 @@ gulp.task('publish', function() {
 		params: {
 			Bucket: 'seatfrog.newground.io'
 		},
-		accessKeyId: '', 
-		secretAccessKey: '',
+		accessKeyId: 'AKIAIWCVBRIWBIH4VFDA', 
+		secretAccessKey: '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',
 		region: 'ap-southeast-2' 
 	});
 	var headers = {
 		'Cache-Control': 'max-age=315360000, no-transform, public'
 	};
 	// var indexFilter = filter( '!/**/*.html' );
-	return gulp.src('./dist/**/*.{js,html,css,jpg,png,pdf,mp4,webm,eot,woff,ttf,svg}')
+	return gulp.src('./dist/**/*.{js,html,css,jpg,png,pdf,mp4,webm,eot,woff,ttf,svg,ico}')
 		.pipe( publisher.publish(headers) )
 		.pipe( publisher.cache() )
 		.pipe( $.awspublish.reporter() );

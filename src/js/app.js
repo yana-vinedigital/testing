@@ -24,6 +24,18 @@ var FRONT = window.FRONT = window.FRONT || Utils.extend({
 	dirs: {
 		img: '/img/'
 	},
+	breakpoints: [ 
+		'mobile', 
+		'smartphone', 
+		'smartphone-wide', 
+		'tablet', 
+		'tablet-wide', 
+		'default', 
+		'desktop', 
+		'med-desktop', 
+		'large-desktop' 
+	],
+	subscriptionURL: 'http://email.seatfrog.com/t/i/s/hrkruk/',
 	rootEl: document.querySelector('[data-hook=app]'),
 
 }, Events.createEmitter() );

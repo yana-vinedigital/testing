@@ -26,16 +26,22 @@ html {
 			}
 		}
 	}
+
+	&.-is-context-open,
+	&.-is-scroll-disabled {
+		height: 100%;
+		position: relative;
+		overflow: hidden;
+
+		body {
+			overflow: hidden;
+		}
+
+	}
 }
 	body {
 		width: 100%; height: 100%;
 		position: relative;
-
-		&.-is-scroll-disabled {
-			overflow: hidden;
-		}
-
-
 	}
 
 
@@ -51,6 +57,7 @@ html {
 	.outline-main {
 		position: relative; z-index: 0;
 		transition: filter 0.5s;
+		will-change: filter;
 	
 		.-is-menu-open &,
 		.-is-context-open & {
@@ -62,10 +69,11 @@ html {
 			position: fixed; top: 0; left: 0; right: 0;
 			overflow: hidden;
 			will-change: transform;
+			transform: translate3d(0,0,0);
 		
 			section {
 				width: 100%; //min-height: 100vh;
-				padding: lines(3) 0 lines(3) 0;
+				padding: lines(3) 0 lines(3) 0; margin-bottom: -1px;
 				display: flex; align-items: center; float: left;
 				box-sizing: border-box; position: relative; z-index: 10;
 				overflow: hidden;
@@ -78,8 +86,8 @@ html {
 
 				&.-section-auto {
 					height: auto; min-height: 0;
-					padding-top: lines(7);
-					padding-bottom: lines(7);
+					padding-top: lines(10);
+					padding-bottom: lines(9);
 				}
 
 				&.-section-thin {
@@ -335,7 +343,7 @@ html {
 	}
 		.page {
 			section {
-				padding: lines(1) 0;
+				padding: lines(1.5) 0;
 
 				&.-section-auto {
 					padding-top: lines(4);
@@ -343,6 +351,10 @@ html {
 				}
 			}
 		}
+
+	.scroll-icon {
+		display: none;
+	}
 		
 
 }

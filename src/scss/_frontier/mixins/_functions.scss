@@ -38,6 +38,20 @@
 
 
 /*
+ *	Function: Gutter size
+ *	--------------------------------------------------
+ */
+
+@function gutters( $gutter: 1, $context: $FONT_SIZE ) {
+	@if type-of( $context ) == string {
+		$context: get-font-size( $context );
+	}
+	@return $gutter * ( $GUTTER_WIDTH / $context ) * 1em;
+}
+
+
+
+/*
  *	Mixin: Breakpoint Builder
  *	--------------------------------------------------
  */

@@ -12,13 +12,13 @@
 				<nav>
 					<ul>
 						<li{{#is view "home"}} class="-is-active"{{/is}}><a href="/">How it works</a></li>
-						<li{{#is view "airlines"}} class="-is-active"{{/is}}><a href="/airlines.html">Airlines &amp; Partners</a></li>
-						<li{{#is view "pressroom"}} class="-is-active"{{/is}}><a href="/pressroom.html">Pressroom</a></li>
-						<li{{#is view "careers"}} class="-is-active"{{/is}}><a href="/careers.html">Careers</a></li>
-						<li{{#is view "about"}} class="-is-active"{{/is}}><a href="/about.html">About Us</a></li>
-						<li{{#is view "contact"}} class="-is-active"{{/is}}><a href="/contact.html">Contact</a></li>
-						<li{{#is view "privacy"}} class="-is-active"{{/is}}><a href="/privacy.html">Privacy Policy</a></li>
-						<li{{#is view "terms"}} class="-is-active"{{/is}}><a href="/terms.html">Terms of Service</a></li>
+						<li{{#is view "airlines"}} class="-is-active"{{/is}}><a href="/airlines.html">Partner with us</a></li>
+						{{!-- <li{{#is view "pressroom"}} class="-is-active"{{/is}}><a href="/pressroom.html">Pressroom</a></li> --}}
+						<li{{#is view "about"}} class="-is-active"{{/is}}><a href="/about.html">About</a></li>
+						<li{{#is view "careers"}} class="-is-active"{{/is}}><a href="/careers.html">Join the team</a></li>
+						<li{{#is view "contact"}} class="-is-active"{{/is}}><a href="mailto:info@seatfrog.com">Contact</a></li>
+						<li{{#is view "privacy"}} class="-is-active"{{/is}}><a href="/privacy.html">Legal</a></li>
+						{{!-- <li{{#is view "terms"}} class="-is-active"{{/is}}><a href="/terms.html">Terms of Service</a></li> --}}
 					</ul>
 				</nav>
 			</div>
@@ -28,11 +28,7 @@
 			<div class="col -full">
 
 				<div class="ui-social-links -small">
-					<ul>
-						<li><a href="" title="Seatfrog on Facebook"><div class="icon"><svg><use xlink:href="#icon-facebook"></use></svg></div></a></li>
-						<li><a href="" title="Seatfrog on Twitter"><div class="icon"><svg><use xlink:href="#icon-twitter"></use></svg></div></a></li>
-						<li><a href="" title="Seatfrog on Instagram"><div class="icon"><svg><use xlink:href="#icon-instagram"></use></svg></div></a></li>
-					</ul>
+					{{> social-links }}
 				</div>
 
 				<p class="eta">&copy; 2016 SeatFrog. All Rights Reserved.</p>

@@ -133,6 +133,10 @@ blockquote {
 	}
 }
 
+.-color-alt {
+	color: $COLOR_GREY_DARK;
+}
+
 
 /*
  *	Defaults: Images
@@ -203,9 +207,9 @@ img {
 @include breakpoint(smartphone) {
 
 	.alpha {
-		margin-left: 5px;
-		text-indent: 14px;
-		letter-spacing: 10px;
+		margin-left: 3px;
+		text-indent: 0;
+		letter-spacing: 6px;
 	}
 	// .gamma { @include font-setting(20, 1.25); }
 

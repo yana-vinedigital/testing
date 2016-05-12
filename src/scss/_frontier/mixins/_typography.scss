@@ -44,6 +44,8 @@
 
 //	Set font-size and line-height from type-scale NAME or PX, optional LINES override.
 @mixin font-setting-size( $font-size: $FONT_SIZE, $lines: null ) {
+	$font-size-px: 0;
+
 	@if type-of( $font-size ) == string {
 		$font-size-px: get-font-size( $font-size );
 		@if $lines == null {
@@ -66,6 +68,8 @@
 
 //	Set font-size, line-height & margins from type-scale NAME / PX, optional LINES override.
 @mixin font-setting( $font-size: $FONT_SIZE, $lines: null ) {
+	$font-size-px: 0;
+
 	@if type-of( $font-size ) == string {
 		$font-size-px: get-font-size( $font-size );
 

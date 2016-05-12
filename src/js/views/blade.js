@@ -13,6 +13,7 @@ var log = require('bows')('BLADE');
 //	App
 var FRONT = require('app');
 var Utils = require('utils');
+var Carousel = require('../base/carousel');
 
 //	Dependencies
 var View = require('ampersand-view');
@@ -27,13 +28,15 @@ var View = require('ampersand-view');
  *  -------------------------------------
  */
 
-module.exports = View.extend({
+module.exports = View.extend( Carousel, {
 
 	props: {
-		// parent: 'state',
+		parent: 'state',
 		index: ['number', false, 0],
+		bladeType: ['string', true, 'default'],
 		bladeTheme: ['string', true, 'dark'],
 		bladeOffset: ['number', true, 0],
+		isWaypointTrackable: ['boolean', true, true],
 		_isBladeVisible: ['boolean', false, false],
 
 		// _isActive: ['boolean', false, false]
@@ -75,7 +78,22 @@ module.exports = View.extend({
    
 		// this.listenTo( this.model, 'all', log)
 		// this._isVisibleBladeHandler = this._isVisibleBladeHandler.bind(this);
+		// 
+		
+		//	UI	 --------------------
+		this.$_uiCarousel = this.query('[data-component=ui-carousel]');
 
+		if ( this.$_uiCarousel ) {
+			this.$_uiCarouselItems = [].slice.call( this.$_uiCarousel.querySelectorAll('.col') );
+
+			this.carousel = this.initializeCarousel({ 
+				el: this.$_uiCarousel,
+				$items: this.$_uiCarouselItems,
+				app: this.parent.model
+			});
+		}
+
+		//	Events	 ----------------
 		this.listenTo( FRONT, 'window:reflow', this._reflowHandler );
 		this.listenTo( FRONT, 'waypoint:active', waypoint => {
 			this._isBladeVisible = Math.floor( waypoint.id ) === this.index;

@@ -5,18 +5,20 @@
 			<div class="page-nav" data-hook="page-nav">
 				<ul>
 					<li data-nav-waypoint="0"><a href="#"></a></li>
-					<li data-nav-waypoint="1.0" class="-is-section"><a href="#"></a></li>
 					<li data-nav-waypoint="1.1" class="-is-section"><a href="#"></a></li>
 					<li data-nav-waypoint="1.2" class="-is-section"><a href="#"></a></li>
+					<li data-nav-waypoint="1.3" class="-is-section"><a href="#"></a></li>
 					<li data-nav-waypoint="2"><a href="#"></a></li>
-					<!-- <li data-nav-waypoint="3"><a href="#"></a></li> -->
 				</ul>
+				<a href="" class="next-icon" data-hook="next-waypoint">
+					<svg><use xlink:href="#icon-arrow-down"></use></svg>
+				</a>
 			</div>
 			<div class="page" data-hook="page">
 
-				<div class="scroll-icon">
+				<a href="" class="scroll-icon" data-hook="next-waypoint">
 					<svg><use xlink:href="#icon-arrow-down"></use></svg>
-				</div>
+				</a>
 
 				<section class="intro" data-blade="intro">
 					<div class="container" data-parallax="-0.75">
@@ -27,20 +29,14 @@
 						</div>
 						<div class="row">
 							<div class="col -wide -center">
-								<p class="-lead">Use your phone to bid against the other passengers on your flight  for a last minute upgrade with SeatFrog.</p>
+								<p class="-lead">Bid against the other passengers on your flight for a last minute upgrade.</p>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col -half -wide-tablet -center">
-		
-								<form>
-									<fieldset>
-										<label>
-											<input type="text" placeholder="Enter your email" class="-large -outline-rounded"><a href="#" class="ui-btn -alt">Get early access</a>
-										</label>
-									</fieldset>
+							<div class="col subscription-form -twothirds -full-tablet -center">
+								<form action="http://email.seatfrog.com/t/i/s/hrkruk/" method="post" id="subForm" data-hook="form-subscribe">
+									<fieldset data-hook="field-container"></fieldset>
 								</form>
-					
 							</div>
 						</div>
 
@@ -53,73 +49,77 @@
 				<section class="tour" data-blade="tour" data-blade-type="tour" data-blade-theme="light" data-blade-offset="-0.3">
 					<div class="tour-outline">
 						
-						<article class="step1" data-hook="slide" data-waypoint="1.0">
-							<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step1.jpg');"></div>
-							<div class="slide-content">
-								<div class="container">
-									<div class="col -third">
-										<div data-parallax="-1">
+						<article class="step1" data-hook="slide">
+							<div class="slide-container">
+
+								<div class="slide-content" data-parallax="-1">
+									<div class="container">
+										<div class="col -third">
 											<h3 class="step-number">01/</h3>
-											<h2 class="-margin-half">Start your trip with SeatFrog</h2>
-											<h4 class="-alt">Adding your flight is easy</h4>
-											<p class="epsilon">Whether it&rsquo;s 6 months or 6 hours before take off, next time you fly, download the SeatFrog app and add your flight details to grab a last minute upgrade.</p>
+											<h2 class="-margin-half">Add your trip to SeatFrog</h2>
+											<h4 class="-alt">Get started in seconds</h4>
+											<p class="epsilon">Whether its 6 months or 6 hours before take off, next time you fly you don’t need any more witty ones liners, just download the SeatFrog app and add your flight details to grab a last minute upgrade.</p>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="slide-content-bg" data-parallax="-1"></div>
-							<div class="slide-overlay" data-parallax="-0.8">
-								<div class="overlay-blip">
-									<div class="blip-content">
-										<h3>SYD <span><svg><use xlink:href="#icon-plane"></use></svg></span> SFO</h3>
+								<div class="slide-overlay" data-parallax="-0.5">
+									<div class="overlay-blip">
+										<div class="blip-content">
+											<h3>SYD <span><svg><use xlink:href="#icon-plane"></use></svg></span> SFO</h3>
+										</div>
 									</div>
 								</div>
+								<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step1.jpg');"></div>
+								<div class="scroll-icon" data-parallax="-0.5"></div>
 							</div>
-							<div class="scroll-icon" data-parallax="-0.5"></div>
 						</article>
 
-						<article class="step2" data-hook="slide" data-waypoint="1.1">
-							<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step2.jpg');"></div>
-							<div class="slide-content">
-								<div class="container">
-									<div class="col -third">
-										<div data-parallax="-1">
+						<article class="step2" data-hook="slide">
+							<div class="slide-container">
+								<div class="slide-content" data-parallax="-1">
+									<div class="container">
+										<div class="col -third">
 											<h3 class="step-number">02/</h3>
 											<h2 class="-margin-half">Secure your upgrade</h2>
 											<h4 class="-alt">in just a few taps</h4>
-											<p class="epsilon">Bidding opens the day you fly. Out play your fellow passengers to claim your place in business class.</p>
+											<p class="epsilon">Bidding opens the day you fly after frequent flyers have been upgraded. See the current price and what other passengers are bidding. Just make sure you bid more to win the seat before time is up.</p>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="slide-content-bg" data-parallax="-1"></div>
-							<div class="slide-overlay" data-parallax="-0.8">
-								<div class="overlay-blip">
-									<div class="blip-content">
-										<h5 class="-alt">Your bid</h5><h2>$750</h2>
+								<div class="slide-overlay" data-parallax="-0.5">
+									<div class="overlay-blip">
+										<div class="blip-content">
+											<h5 class="-alt">Your bid</h5><h2>$750</h2>
+										</div>
 									</div>
 								</div>
+								<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step2.jpg');"></div>
 							</div>
 						</article>
 
-						<article class="step3" data-hook="slide" data-waypoint="1.2">
-							<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step3.jpg');"></div>
-							<div class="slide-content">
-								<div class="container">
-									<div class="col -third">
-										<div data-parallax="-1">
+						<article class="step3" data-hook="slide">
+							<div class="slide-container">
+								<div class="slide-content" data-parallax="-1">
+									<div class="container">
+										<div class="col -third">
 											<h3 class="step-number">03/</h3>
-											<h2 class="-margin-half">Sit back &amp; relax</h2>
+											<h2 class="-margin-half">Sit back and relax</h2>
 											<h4 class="-alt">Get upgraded in seconds</h4>
-											<p class="epsilon">We’ll send your new boarding pass straight to your phone, so you can jump the queue and make your way straight to your new seat.</p>
+											<p class="epsilon">We’ll send your new boarding pass straight to your mobile, so you can jump the queue, scan at the gate and make your way straight to your new seat.</p>
 										</div>
 									</div>
 								</div>
+								<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step3.jpg');"></div>
 							</div>
-							<div class="slide-content-bg" data-parallax="-1"></div>
 						</article>
-						
+
 					</div>
+					<div class="slide-content-bg" data-parallax="-1"></div>
+					<!-- <div class="tour-bg-outline">
+						<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step1.jpg');"></div>
+						<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step2.jpg');"></div>
+						<div class="slide-bg" data-parallax="-0.95" style="background-image: url('/assets/img/bg-slide-step3.jpg');"></div>
+					</div> -->
 				</section>
 
 				<section class="signup" data-blade="signup" data-blade-offset="-0.6">
@@ -128,28 +128,20 @@
 						<div class="row">
 							<div class="col -full -center">
 								<h1>Sign up for SeatFrog</h1>
-								<p class="-lead">We’ll notify you when we launch</p>
+								<p class="-lead">Get access to last minute upgrades with SeatFrog, sign up for early access.</p>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col -half -wide-tablet -center">
-								<form action="http://email.seatfrog.com/t/i/s/hrkruk/" method="post" id="subForm">
-									<fieldset>
-										<label for="fieldEmail">
-											<input class="-large -outline-rounded" id="fieldEmail" name="cm-hrkruk-hrkruk" type="email" placeholder="Enter your email" required><a href="#" class="ui-btn -alt" data-hook="submit">Get early access</a>
-										</label>
-									</fieldset>
+							<div class="col subscription-form -twothirds -full-tablet -center">
+								<form action="http://email.seatfrog.com/t/i/s/hrkruk/" method="post" id="subForm" data-hook="form-subscribe">
+									<fieldset data-hook="field-container"></fieldset>
 								</form>
 							</div>
 						</div>
 						<div class="row ui-social-links">
-							<div class="col -half -center">
+							<div class="col -full -center">
 								<h4>Connect with us</h4>
-								<ul>
-									<li><a href="" title="Seatfrog on Facebook"><div class="icon"><svg><use xlink:href="#icon-facebook"></use></svg></div></a></li>
-									<li><a href="" title="Seatfrog on Twitter"><div class="icon"><svg><use xlink:href="#icon-twitter"></use></svg></div></a></li>
-									<li><a href="" title="Seatfrog on Instagram"><div class="icon"><svg><use xlink:href="#icon-instagram"></use></svg></div></a></li>
-								</ul>
+								{{> social-links }}
 							</div>
 						</div>
 					</div>
@@ -161,6 +153,11 @@
 				{{> footer }}
 
 			</div>
+
+			<div class="context-tour" data-hook="context-tour">
+
+			</div>
+
 		</div>
 
 	{{/content}}

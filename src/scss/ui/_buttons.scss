@@ -11,13 +11,27 @@
 	line-height: lines(2) - em(4); font-weight: bold; letter-spacing: 4px; text-indent: 4px;
 	white-space: nowrap;
 	background-color: transparent;
-	border: 2px solid $COLOR_GREY; border-radius: lines(1);
+	border: 2px solid currentColor; border-radius: lines(1);
 	transition: background-color 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
+
+	.icon {
+		width: lines(0.75); height: lines(0.75);
+		margin: lines(0.5) em(6) 0 em(-6);
+		vertical-align: top;
+		display: inline-block;
+
+		fill: currentColor;
+
+		svg {
+			display: block;
+		}
+	}
 
 	&:hover {
 		text-decoration: none;
 		color: $COLOR_BRAND_BASE;
-		background-color: $COLOR_GREY;
+		background-color: $COLOR_BRAND_MAIN;
+		border-color: $COLOR_BRAND_MAIN;
 	}
 
 	& + & {
@@ -78,6 +92,11 @@
 		@include font-setting-size( epsilon );
 		line-height: lines(2.5, epsilon) - em(4, epsilon); letter-spacing: 6px; text-indent: 6px;
 		border-radius: lines(1.25, epsilon);
+
+		.icon {
+			width: lines(1, epsilon); height: lines(1, epsilon);
+			margin-top: em(16, epsilon);
+		}
 	}
 
 	&.-huge {
@@ -112,6 +131,11 @@
 	.-theme-light & {
 		color: $COLOR_BRAND_BASE;
 		border-color: $COLOR_BRAND_BASE;
+
+		&:hover {
+			color: $COLOR_WHITE;
+			background-color: $COLOR_BRAND_BASE;
+		}
 	}
 
 }

@@ -14,15 +14,145 @@
 
 	}
 		section.intro {
-
 			.bg {
 				background-image: url("../img/bg-about-intro.jpg");
 				background-size: cover;
+			}
+
+			.text-switch-ani {
+				position: relative;
+				display: inline-block; overflow: hidden;
+				vertical-align: top;
+				animation: text-departure-holder 6000ms infinite;
+				animation-delay: 250ms;
+				will-change: width;
+
+				span {
+					float: left; clear: both;
+					overflow: hidden; display: inline-block;
+					position: absolute; top: 0; left: 0;
+					transform: translate3d(0,-100%,0); 
+					animation: text-departure 6000ms infinite;
+					animation-delay: 0ms;
+					// animation-fill-mode: forwards;
+					opacity: 0;
+					will-change: transform, opacity;
+
+					&:first-child {
+						position: relative;
+						visibility: hidden;
+						animation: none;
+						// display: none;
+					}
+
+					&:nth-child(3) { animation-delay: 2000ms; }
+					&:nth-child(4) { animation-delay: 4000ms; }
+
+				}
+			}
+		}
+
+		section.founders,
+		section.advisors {
+			.profiles {
+				padding-top: lines(1);
+
+				.col {
+					margin-bottom: lines(1);
+
+					&:after {
+						content: '3';
+						display: none;
+					}
+				}
+			}
+				.profile-image {
+
+					position: relative;
+
+					img {
+						margin: 0 auto;
+					}
+				}
+		}
+
+		section.founders {
+				
+			.profile-icon {
+				width: lines(5); height: lines(5);
+				position: absolute; top: 0; left: 0;
+				fill: $COLOR_BRAND_MAIN;
+
+				svg {
+					display: block;
+				}
+			}
+
+			.profile-iain {
+				.profile-icon {
+					top: 20%; left: lines(-2);
+				}
+			}
+			.profile-ben {
+				.profile-icon {
+					top: auto; bottom: 10%; left: lines(-1);
+				}
+			}
+			.profile-dirk {
+				.profile-icon {
+					top: auto; left: auto; bottom: 30%; right: lines(-1);
+				}
 			}
 		}
 
 		section.partners {
 			background-color: $COLOR_GREY_LIGHT;
+
+			.logos {
+				.col {
+					height: lines(8);
+					display: flex; align-items: center; justify-content: center;
+
+					img {
+						max-width: 80%;
+					}
+				}
+			}
+		}
+
+		section.offices {
+			h1 {
+				margin-left: 0;
+				text-indent: 10px;
+			}
+			.office-locations {
+				padding-top: lines(1);
+			}
+				.clock-icon {
+					max-width: cols(2); width: 70%;
+					margin: 0 auto;
+
+					.clock-hand {
+						// transform: rotate(180deg);
+
+						&.-minute {
+							transform-origin: 50% 92%;
+						}
+						&.-hour {
+							transform-origin: 8% 50%;
+						}
+					}
+				}
+
+				.office-syd {
+					.-hour { transform: rotate(210deg); }
+				}
+				.office-nrt {
+					.-hour { transform: rotate(150deg); }
+				}
+				.office-lhr {
+					.-hour { transform: rotate(-90deg); }
+				}
 		}
 
 }
@@ -54,7 +184,34 @@
  *	--------------------------------------------------
  */
 
-@include breakpoint(tablet-wide) {
+@include breakpoint(smartphone-wide) {
 
+	.view-about {
 
+		section.intro {
+			.bg {
+				background-image: url("../img/bg-about-intro.jpg");
+				background-size: cover;
+			}
+
+			.text-switch-ani {
+				padding-right: em(6);
+			}
+		}
+
+		section.advisors {
+			.profiles {
+				padding-top: lines(1);
+
+				.col {
+					margin-bottom: lines(1);
+
+					&:after {
+						content: '1';
+						display: none;
+					}
+				}
+			}
+		}
+	}
 }

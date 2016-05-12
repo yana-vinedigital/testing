@@ -10,7 +10,7 @@
 				<nav>
 					<ul>
 						<li{{#is view "home"}} class="-is-active"{{/is}}><a href="/">How it works</a></li>
-						<li{{#is view "airlines"}} class="-is-active"{{/is}}><a href="/airlines.html">Airlines &amp; Partners</a></li>
+						<li{{#is view "airlines"}} class="-is-active"{{/is}}><a href="/airlines.html">Partner with us</a></li>
 						<li class="cta"><a href="#" class="ui-btn -alt" data-hook="open-sign-up">Sign Up</a></li> 
 					</ul>
 				</nav>
@@ -26,28 +26,29 @@
 					<p><a href="#" class="ui-btn -alt" data-hook="open-sign-up">Sign up</a></p>
 					<nav>
 						<ul>
-							<li{{#is view "home"}} class="-is-active"{{/is}}><a href="/">Home</a></li>
+							<li{{#is view "home"}} class="-is-active"{{/is}}><a href="/">How it works</a></li>
+							<li{{#is view "airlines"}} class="-is-active"{{/is}}><a href="/airlines.html">Partner with us</a></li>
 							<li{{#is view "about"}} class="-is-active"{{/is}}><a href="/about.html">About</a></li>
-							<li{{#is view "airlines"}} class="-is-active"{{/is}}><a href="/airlines.html">Airlines &amp; Partners</a></li>
-							<li{{#is view "careers"}} class="-is-active"{{/is}}><a href="/careers.html">Careers</a></li>
-							<li{{#is view "contact"}} class="-is-active"{{/is}}><a href="/contact.html">Contact</a></li>
+							<li{{#is view "careers"}} class="-is-active"{{/is}}><a href="/careers.html">Join the team</a></li>
+							<li{{#is view "contact"}} class="-is-active"{{/is}}><a href="mailto:info@seatfrog.com">Contact</a></li>
 						</ul>
 					</nav>
 				</div>
 			</div>
 			<div class="row ui-social-links">
 				<div class="col -half">
-					<ul>
-						<li><a href="" title="Seatfrog on Facebook"><div class="icon"><svg><use xlink:href="#icon-facebook"></use></svg></div></a></li>
-						<li><a href="" title="Seatfrog on Twitter"><div class="icon"><svg><use xlink:href="#icon-twitter"></use></svg></div></a></li>
-						<li><a href="" title="Seatfrog on Instagram"><div class="icon"><svg><use xlink:href="#icon-instagram"></use></svg></div></a></li>
-					</ul>
+					{{> social-links }}
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="header-menu-bg" data-hook="header-menu-bg"></div>
-	<div class="page-context" data-hook="page-context"></div>
+	<div class="page-context">
+		<div class="context-actions">
+			<a href="#" class="ui-btn" data-hook="close-context">Close &nbsp;X</a>
+		</div>
+		<div class="context-viewport" data-hook="page-context"></div>
+	</div>
 	<div class="page-overlay" data-hook="page-overlay"></div>
 
 </header>

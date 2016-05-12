@@ -34,7 +34,7 @@ var NavItemView = View.extend({
 		_isActive: {
 			deps: ['parent.waypointActive', 'waypoint'],
 			fn: function() {
-				return this.parent.waypointActive === this.waypoint;
+				return (this.parent.waypointActive === this.waypoint) || ( this.waypoint === 1.1 && this.parent.waypointActive === 1 );
 			}
 		}
 	},
@@ -46,14 +46,14 @@ var NavItemView = View.extend({
 		}
 	},
 
-	events: {
-		'click a': '_clickHandler'
-	},
+	// events: {
+	// 	'click a': '_clickHandler'
+	// },
 
-	_clickHandler: function( e ) {
-		e.preventDefault();
-		FRONT.trigger( 'waypoint:go', this.waypoint );
-	},
+	// _clickHandler: function( e ) {
+	// 	e.preventDefault();
+	// 	FRONT.trigger( 'waypoint:go', this.waypoint );
+	// },
 
 });
 

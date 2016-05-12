@@ -33,6 +33,7 @@
 			.col {
 				margin-bottom: lines(1);
 
+
 				.img {
 					padding-bottom: 75%;
 					background-size: cover; background-repeat: no-repeat;
@@ -46,6 +47,9 @@
 		}
 
 	section.image {
+		padding-top: lines(5); padding-bottom: lines(4);
+		color: $COLOR_WHITE;
+
 		.bg {
 			height: 120%; top: -10%;
 			opacity: 0.5;
@@ -87,13 +91,56 @@
  */
 
 
-
 /*
- *	Breakpoint:	tablet-wide
+ *	Breakpoint:	tablet
  *	--------------------------------------------------
  */
 
-@include breakpoint(tablet-wide) {
+@include breakpoint( tablet ) {
+	
+	.view-careers {
+		section {
+			.careers-gallery {
+				.col {
+					&:after {
+						content: '2';
+						display: none;
+					}
+				}
+			}
+		}
+	}
+	
+}
 
+
+/*
+ *	Breakpoint:	smartphone-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(smartphone-wide) {
+	
+	.view-careers {
+		section {
+			.careers-gallery {
+				.col {
+					&:after {
+						content: '1';
+						display: none;
+					}
+				}
+			}
+		}
+		section.careers-intern,
+		section.careers-openings {
+			text-align: center;
+
+			.-align-right {
+				text-align: center;
+			}
+		}
+
+	}
 
 }

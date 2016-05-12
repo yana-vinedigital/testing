@@ -8,22 +8,35 @@
 
 	section {
 		
+		// .row {
+		// 	background-color: green;
+
+		// 	.col {
+		// 		background-color: red;
+		// 	}
+		// }
 		.section-content {
-			display: flex; align-items: center;
+			display: flex; align-items: center; justify-content: space-around;
 		}
 		.illustration {
+			margin-bottom: lines(1);
+			// text-align: right;
 			text-align: center;
-			order: 2;
 
 			img {
-				// float: right;
+				// width: 100%;
+				// max-width: 70%;
+				float: right;
 				display: inline-block;
 			}
 		}
 
 		&:nth-child(2n) {
-			.illustration {
-				order: 0;
+			.section-content {
+				flex-direction: row-reverse;
+			}
+			.illustration img {
+				float: left;
 			}
 		}
 
@@ -39,19 +52,33 @@
 
 		.bg {
 			opacity: 0.75;
-			background-image: url("../img/bg-airlines-intro.jpg");
+			background-image: url("../img/bg-airlines-intro-2.jpg");
+			background-size: cover;
+		}
+	}
+
+	.section-illustration {
+		min-height: 85vh;
+		text-align: left;
+
+		// .container {
+		// 	max-width: 80%;
+		// }
+			.row {
+				&:after, &:before {
+					display: none;
+				}
+			}
+
+		.bg {
 			background-size: cover;
 		}
 	}
 
 	section.airlines-mobile {
-		min-height: 75vh;
-		text-align: left;
-
 		.bg {
 			background-image: url("../img/bg-airlines-pattern.png");
-			background-size: cover;
-
+			
 			&:before {
 				content: '';
 				width: 100%; height: lines(6);
@@ -62,19 +89,12 @@
 	}
 
 	section.airlines-seats {
-		min-height: 75vh;
-		text-align: left;
-
 
 	}
 
 	section.airlines-nextgen {
-		min-height: 75vh;
-		text-align: left;
-
 		.bg {
 			background-image: url("../img/bg-airlines-pattern.png");
-			background-size: cover;
 		}
 	}
 
@@ -83,6 +103,10 @@
 		
 		form {
 			text-align: left;
+			
+			label .message p {
+				color: currentColor;
+			}
 
 			.submit {
 				float: right;
@@ -90,6 +114,10 @@
 		}
 			fieldset {
 				color: $COLOR_BRAND_BASE;
+
+				input::placeholder {
+					color: currentColor;
+				}
 			}
 	}
 }
@@ -116,17 +144,15 @@
 
 
 /*
- *	Breakpoint:	tablet-wide
+ *	Breakpoint:	tablet
  *	--------------------------------------------------
  */
 
-@include breakpoint(tablet-wide) {
+@include breakpoint(tablet) {
 
 	.view-airlines {
-		section {
-			.section-content {
-				display: block;
-			}
+		.section-illustration {
+			min-height: lines(28);
 		}
 	}
 
@@ -142,10 +168,13 @@
 
 	.view-airlines {
 		section {
+			.section-content {
+				display: block;
+			}
 			.illustration {
 				width: 85%;
-				margin: 0 auto;
-				float: none;
+				margin: lines(1) auto; padding-top: lines(1);
+				float: none; clear: both;
 			}
 		}
 

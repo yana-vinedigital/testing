@@ -17,7 +17,7 @@
 
 @mixin container() {
 	@extend %container;
-	max-width: 85%; 
+	max-width: 85vw; 
 	margin-left: auto; margin-right: auto;
 	position: relative;
 	@include clearfix;
@@ -206,10 +206,13 @@
 
 	.col, .cols-fixed .col {
 		
+		
+		&.-half-tablet {
+			width: percentage( 1/2 );
+		}
 		&.-wide-tablet {
 			width: percentage( 3/4 );
 		}
-
 		&.-full-tablet {
 			width: percentage( 1 );
 		}
@@ -226,13 +229,12 @@
 @include breakpoint(tablet) {
 
 	%container {
-		width: cols( $TOTAL_COLUMNS ) + $GUTTER; max-width: 90%;
+		width: cols( $TOTAL_COLUMNS ) + $GUTTER; max-width: 90vw;
 		&.-half { width: cols( $TOTAL_COLUMNS/2 ) + $GUTTER; }
 	}
 
 	.col, .cols-fixed .col {
-		
-		&.-half,
+	
 		&.-wide {
 			width: percentage( 1 ); max-width: 100%;
 		}
@@ -249,7 +251,7 @@
 @include breakpoint(smartphone-wide) {
 
 	%container {
-		width: cols( $TOTAL_COLUMNS ) + $GUTTER; max-width: 100%; 
+		width: cols( $TOTAL_COLUMNS ) + $GUTTER; max-width: 100vw; 
 		&.-half { width: cols( $TOTAL_COLUMNS ) + $GUTTER; }
 	}
 	

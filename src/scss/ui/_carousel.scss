@@ -1,0 +1,261 @@
+
+
+//
+//	SEATFROG / UI / Carousel
+//
+
+
+/*
+ *	UL Element Styles
+ *	--------------------------------------------------
+ */
+
+//	UI Element Vars	 --------------------
+
+$ui-carousel-viewport-xpadding: width(1) + $GUTTER/2;
+
+//	UI Element Defaults	 ----------------
+
+.ui-carousel {
+
+	&-viewport {
+		width: 100%; height: 100%;
+		position: relative;
+		box-sizing: border-box;
+		overflow: hidden;
+	}
+		&-pane {
+			width: 100%; height: 100%;
+			position: relative;
+			user-select: none;
+			transform: translate3d(0,0,0);
+			will-change: transform;
+		}
+			&-item {
+				white-space: normal;
+				float: none; vertical-align: top;
+				display: inline-block;
+				user-select: none;
+				-webkit-user-drag: none;
+
+				&:after { content: '4'; display: none; }
+				&.half:after { content: '2'; }
+				&.third:after { content: '3'; }
+				&.full:after { content: '1'; }
+			}
+
+	&-nav {
+		&.-left, &.-right {
+			width: width(1); height: width(1);
+			position: absolute; top: 50%; z-index: 99;
+			display: none; cursor: pointer;
+			transform: translateY(-50%);
+			stroke: $COLOR_GREY;
+			fill: none;
+			transition: transform 0.5s;
+		}
+		&.-left {
+			left: 0;
+
+			&:hover { transform: translate(-25%, -50%); }
+		}
+		&.-right {
+			right: 0;
+
+			&:hover { transform: translate(25%, -50%); }
+		}
+	}
+
+	&-points {
+		width: 100%;
+		text-align: center;
+		display: none;
+
+		a {
+			width: em(12); height: em(12);
+			margin: 0 em(3);
+			display: inline-block;
+			background-color: transparent;
+			border: 1px solid $COLOR_GREY; border-radius: 50%;
+
+			&:after {
+				content: '';
+				width: 100%; height: 100%;
+				display: block;
+				background-color: $COLOR_GREY;
+				border-radius: 50%;
+				transform: scale( 0 );
+
+				transition: opacity 0.3s, transform 0.3s;
+			}
+
+			&.is-active {
+				font-weight: bold;
+
+				&:after {
+					transform: scale( 1.2 );
+				}
+			}
+		}
+	}
+
+	img, a {
+		user-select: none;
+		-webkit-user-drag: none;
+	}
+
+	&--vertical {
+		.ui-carousel {
+
+			&-pane {
+				white-space: normal;
+			}
+				&-item {
+
+				}
+
+			&-nav {
+				&.-left, &.-right {
+					top: auto; left: 50%;
+					transform: translateX(-50%);
+				}
+				&.-left {
+					top: 0;
+					&:hover { transform: translate(-50%, -25%); }
+				}
+				&.-right {
+					bottom: 0;
+					&:hover { transform: translate(-50%, 25%); }
+				}
+			}
+		}
+	}
+
+
+	//	UI Element States	 ----------------
+
+	&--active {
+		.ui-carousel-viewport {
+			cursor: grab;
+		}
+			.ui-carousel-pane {
+				white-space: nowrap;
+			}
+				.ui-carousel-points {
+					display: inline-block;
+				}
+
+		&.-has-nav {
+			padding: 0 $ui-carousel-viewport-xpadding;
+		}
+
+		.-left, .-right {
+			display: block;
+		}
+	}
+}
+
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1440 +
+ *	DEFAULT 		1025...1439 (1128)
+ *	tablet-wide		- 1024
+ *	tablet			- 768 (fluid)
+ *	smartphone-wide	- 640 (fluid)
+ *	smartphone		- 480 (fluid)
+ *	mobile			- 320 (fluid)
+ *
+ */
+
+
+
+/*
+ *	Breakpoint:	med-desktop
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(desktop) {
+
+	.ui-carousel {
+
+		&--active {
+			&.-has-nav {
+				padding: 0;
+			}
+
+			.-left { left: width(-0.5); }
+			.-right { right: width(-0.5); }
+		}
+	}
+
+}
+
+
+/*
+ *	Breakpoint:	tablet-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet-wide) {
+
+	.ui-carousel {
+
+		&-viewport {
+			overflow: visible;
+		}
+
+		&--active {
+			&.-has-nav {
+				padding: 0 $ui-carousel-viewport-xpadding/2;
+			}
+
+			.-left, .-right {
+				display: none;
+			}
+		}
+	}
+
+}
+
+
+/*
+ *	Breakpoint:	smartphone-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(smartphone-wide) {
+
+	.ui-carousel {
+
+		&--active {
+			&.-has-nav {
+				padding: 0 $ui-carousel-viewport-xpadding;
+			}
+		}
+	}
+
+}
+
+@media print {
+	.ui-carousel {
+		&-pane {
+			white-space: normal;
+			transform: none !important; //needed to override inline styles by JS
+		}
+		&-nav {
+		&.-left, &.-right {
+			display: none;
+		}
+		}
+		&-points {
+			display: none;
+		}
+	}
+}

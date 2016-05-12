@@ -7,12 +7,12 @@
 
 .ui-social-links {
 	// max-width: 75%;
-	margin: 0 auto; padding-top: lines(1);
+	margin: 0 auto; //padding-top: lines(1);
 
-	h4 {
-		padding-top: lines(1);
-		border-top: 1px solid fade-out( $COLOR_WHITE, 0.8 );
-	}
+	// h4 {
+	// 	margin-top: 0; padding-top: lines(1);
+	// 	border-top: 1px solid fade-out( $COLOR_WHITE, 0.9 );
+	// }
 
 	ul {
 		margin: 0; padding: 0;
@@ -21,6 +21,7 @@
 		li {
 			margin: 0 lines(0.5);
 			display: inline-block;
+			vertical-align: top;
 
 			a {
 				width: lines(2); height: lines(2);
@@ -84,6 +85,14 @@
 
 }
 
+.share-links {
+	.ui-btn {
+		margin-bottom: lines(0.5);
+
+
+	}
+}
+
 
 /*
  * 	Media Queries
@@ -105,12 +114,22 @@
 
 
 /*
- *	Breakpoint:	tablet-wide 
+ *	Breakpoint:	smartphone
  *	--------------------------------------------------
  */
 
-@include breakpoint( tablet-wide ) {
+@include breakpoint( smartphone ) {
 
+	.share-links {
+		.ui-btn {
+			max-width: 65%;
+			margin: 0 auto lines(0.5);
+			display: block;
 
+			+ .ui-btn {
+				margin: 0 auto lines(0.5);
+			}
+		}
+	}
 
 }

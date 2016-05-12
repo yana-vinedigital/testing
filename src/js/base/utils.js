@@ -27,9 +27,11 @@ var Utils = {
 	sortBy: 	require('lodash/sortBy'),
 	throttle: 	require('lodash/throttle'),
 	
-	
 	//	Misc	 ------------------------
-	raf: require('raf')
+	xhr: require('xhr'),
+	jsonp: require('b-jsonp'),
+	raf: require('raf'),
+	qs: require('query-string')
 	
 };
 
@@ -73,19 +75,38 @@ Utils.DOM = {
 	make: require('domify'),
 	onTransitionEnd: require('./on-transition-end'),
 
-	setAttributes: function ( el, attrs ) {
+	matches( el, selector ) { 
+		var p = Element.prototype;
+		var matchesFn = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || function(s) {
+			return [].indexOf.call( document.querySelectorAll(s), this ) !== -1;
+		};
+		return matchesFn.call( el, selector );
+	},
+
+	closest( el, selector ) {
+		if ( typeof el === 'undefined' || selector === '' ) return false;
+		
+		while ( el ) {
+			if ( Utils.DOM.matches( el, selector ) ) {
+				return el;
+			} else {
+				el = el.parentElement;
+			}
+		}
+		return false;
+	},
+
+	setAttributes( el, attrs ) {
 		for ( var key in attrs ) {
 			if ( !attrs.hasOwnProperty( key ) ) { return; }
 			el.setAttribute(key, attrs[key]);
 		}
 	},
 
-	getPosition: ( el, withScroll = false ) => {
+	getPosition( el, withScroll = false ) {
 		if ( typeof el === 'undefined' ) return 0;
 		var rect = el.getBoundingClientRect();
 		var scrollTop = withScroll ? document.defaultView.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop : 0;
-		
-		console.log( 'getPosition', scrollTop, el );
 
 		return {
 			width: Math.round( rect.width || el.offsetWidth ),
@@ -94,13 +115,13 @@ Utils.DOM = {
 		};
 	},
 
-	getAfterAttr: function( el ) {
+	getAfterAttr( el ) {
 		if ( !el ) return undefined;
 		var content = window.getComputedStyle( el, ':after').getPropertyValue('content');
 		return content.replace(/['"]+/g, '');
 	},
 
-	hexToRgb: function( hex ) {
+	hexToRgb( hex ) {
 		var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec( hex );
 		return result ? {
 			r: parseInt(result[1], 16),
