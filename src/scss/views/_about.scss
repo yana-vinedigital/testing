@@ -121,6 +121,7 @@
 		}
 
 		section.offices {
+			background-color: $COLOR_GREY_LIGHT;
 			h1 {
 				margin-left: 0;
 				text-indent: 10px;
@@ -153,6 +154,10 @@
 				.office-lhr {
 					.-hour { transform: rotate(-90deg); }
 				}
+				
+			a {
+				color: $LINK_COLOR_ALTERNATE;
+			}
 		}
 
 }
