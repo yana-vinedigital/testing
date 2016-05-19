@@ -19108,7 +19108,8 @@ var Templates = {
 	Global: {
 		ContextSignup: require('../../tpl/partials/context-signup.hbs'),
 		ContextSignupAirline: require('../../tpl/partials/context-signup-airline.hbs'),
-		ContextSignupThanks: require('../../tpl/partials/context-signup-thanks.hbs')
+		ContextSignupThanks: require('../../tpl/partials/context-signup-thanks.hbs'),
+		ContextSignupThanksPartners: require('../../tpl/partials/context-signup-thanks-partners.hbs')
 	}
 
 };
@@ -19118,7 +19119,7 @@ var Templates = {
 
 module.exports = Templates;
 
-},{"../../tpl/partials/context-signup-airline.hbs":298,"../../tpl/partials/context-signup-thanks.hbs":299,"../../tpl/partials/context-signup.hbs":300}],285:[function(require,module,exports){
+},{"../../tpl/partials/context-signup-airline.hbs":299,"../../tpl/partials/context-signup-thanks-partners.hbs":300,"../../tpl/partials/context-signup-thanks.hbs":301,"../../tpl/partials/context-signup.hbs":302}],285:[function(require,module,exports){
 
 
 //
@@ -20058,7 +20059,7 @@ module.exports = View.extend({
 	}
 });
 
-},{"./blade":291,"./blade-tour":290,"./context-signup":293,"./form-partners":295,"./form-subscribe":296,"./page-nav":297,"ampersand-view":16,"ampersand-view-switcher":15,"app":281,"bows":21,"utils":285}],290:[function(require,module,exports){
+},{"./blade":291,"./blade-tour":290,"./context-signup":293,"./form-partners":296,"./form-subscribe":297,"./page-nav":298,"ampersand-view":16,"ampersand-view-switcher":15,"app":281,"bows":21,"utils":285}],290:[function(require,module,exports){
 
 
 //
@@ -20432,7 +20433,7 @@ module.exports = View.extend({
 	}
 });
 
-},{"../base/templates":284,"./form-subscribe":296,"ampersand-input-view":13,"ampersand-view":16,"app":281,"bows":21,"utils":285}],293:[function(require,module,exports){
+},{"../base/templates":284,"./form-subscribe":297,"ampersand-input-view":13,"ampersand-view":16,"app":281,"bows":21,"utils":285}],293:[function(require,module,exports){
 
 
 //
@@ -20529,7 +20530,46 @@ module.exports = View.extend({
 	}
 });
 
-},{"../base/templates":284,"./context-signup-airline":292,"./context-thanks":294,"./form-subscribe":296,"ampersand-input-view":13,"ampersand-view":16,"app":281,"bows":21,"utils":285}],294:[function(require,module,exports){
+},{"../base/templates":284,"./context-signup-airline":292,"./context-thanks":295,"./form-subscribe":297,"ampersand-input-view":13,"ampersand-view":16,"app":281,"bows":21,"utils":285}],294:[function(require,module,exports){
+
+
+//
+//	SEATFROG / Views / Form Thanks
+//	
+
+'use strict';
+
+//	Dev
+
+var log = require('bows')('FORM-SUBSCRIBE');
+
+//	App
+var FRONT = require('app');
+var Utils = require('utils');
+var Templates = require('../base/templates');
+
+//	Dependencies
+var View = require('ampersand-view');
+
+//
+//
+//
+
+/**
+ *	View / Thanks
+ *  -------------------------------------
+ */
+
+module.exports = View.extend({
+	template: Templates.Global.ContextSignupThanksPartners,
+
+	props: {
+		currentUrl: ['string', false, document.URL]
+	}
+
+});
+
+},{"../base/templates":284,"ampersand-view":16,"app":281,"bows":21,"utils":285}],295:[function(require,module,exports){
 
 
 //
@@ -20589,7 +20629,7 @@ module.exports = View.extend({
 
 });
 
-},{"../base/templates":284,"ampersand-view":16,"app":281,"bows":21,"utils":285}],295:[function(require,module,exports){
+},{"../base/templates":284,"ampersand-view":16,"app":281,"bows":21,"utils":285}],296:[function(require,module,exports){
 
 
 //
@@ -20610,6 +20650,7 @@ var Utils = require('utils');
 var View = require('ampersand-view');
 var InputView = require('ampersand-input-view');
 var FormSubscribeView = require('./form-subscribe');
+var ContextThanksPartnersView = require('../views/context-thanks-partners');
 
 //
 //
@@ -20675,10 +20716,14 @@ module.exports = FormSubscribeView.extend({
 			}],
 			parent: this
 		})];
+	},
+	showThanks: function showThanks() {
+		var view = new ContextThanksPartnersView({ parent: this.parent });
+		FRONT.appView.openContext(view);
 	}
 });
 
-},{"./form-subscribe":296,"ampersand-input-view":13,"ampersand-view":16,"app":281,"bows":21,"utils":285}],296:[function(require,module,exports){
+},{"../views/context-thanks-partners":294,"./form-subscribe":297,"ampersand-input-view":13,"ampersand-view":16,"app":281,"bows":21,"utils":285}],297:[function(require,module,exports){
 
 
 //
@@ -20789,7 +20834,7 @@ module.exports = FormView.extend({
 	}
 });
 
-},{"../views/context-thanks":294,"ampersand-form-view":12,"ampersand-input-view":13,"ampersand-view":16,"app":281,"bows":21,"utils":285}],297:[function(require,module,exports){
+},{"../views/context-thanks":295,"ampersand-form-view":12,"ampersand-input-view":13,"ampersand-view":16,"app":281,"bows":21,"utils":285}],298:[function(require,module,exports){
 
 
 //
@@ -20906,13 +20951,16 @@ module.exports = View.extend({
 
 });
 
-},{"ampersand-view":16,"app":281,"bows":21,"utils":285}],298:[function(require,module,exports){
+},{"ampersand-view":16,"app":281,"bows":21,"utils":285}],299:[function(require,module,exports){
 module.exports = "<div class=\"context context-airline\"><div class=container><div class=row><div class=\"col -wide -center\"><h1>Thank you.</h1><p class=-lead>What airline would you like to see on Seatfrog?</p></div></div><div class=row><div class=\"col -half -center\"><ul class=\"unstyled btn-list\"><li><input type=radio name=input-airline id=airline1 value=Qantas data-hook=\"airline-radio\"><label for=airline1 class=\"ui-btn -outline -huge\">Qantas</label></li><li><input type=radio name=input-airline id=airline2 value=\"Virgin Australia\" data-hook=\"airline-radio\"><label for=airline2 class=\"ui-btn -outline -huge\">Virgin Australia</label></li><li><input type=radio name=input-airline id=other value=\"\" data-hook=\"airline-radio\"><label for=other class=\"ui-btn -outline -huge\">Other</label></li></ul><form action=http://email.seatfrog.com/t/i/s/hrkruk/ method=post id=subForm data-hook=form-signup-airline><fieldset data-hook=field-container></fieldset><input class=\"ui-btn -alt -large\" type=submit value=\"Submit\"></form></div></div></div></div>";
 
-},{}],299:[function(require,module,exports){
+},{}],300:[function(require,module,exports){
+module.exports = "<div class=context><div class=container><div class=row><div class=\"col -wide -center\"><h1>Thank You</h1><p class=-lead>We&rsquo;ll be in touch shortly.</p></div></div></div></div>";
+
+},{}],301:[function(require,module,exports){
 module.exports = "<div class=context><div class=container><div class=row><div class=\"col -wide -center\"><h1>Thanks for being one of the first.</h1><p class=-lead>Nobody likes to travel alone, share with your friends.</p></div></div><div class=\"row share-links\"><div class=\"col -wide -center\"><a href=\"https://www.facebook.com/sharer/sharer.php?u={url}&display=popup\" target=_blank class=\"ui-btn -alt -large\" data-hook=share><span class=icon><svg><use xlink:href=#icon-facebook></use></svg></span> Share</a> <a href=\"https://twitter.com/intent/tweet?text={text}&url={url}\" target=_blank class=\"ui-btn -alt -large\" data-hook=share><span class=icon><svg><use xlink:href=#icon-twitter></use></svg></span> Share</a> <a href=\"mailto:?subject=Seatfrog&body=http%3A%2F%2Fseatfrog.com\" class=\"ui-btn -alt -large\"><span class=icon><svg><use xlink:href=#icon-email></use></svg></span> Email</a></div></div></div></div>";
 
-},{}],300:[function(require,module,exports){
+},{}],302:[function(require,module,exports){
 module.exports = "<div class=context><div class=container><div class=\"row -margin-none\"><div class=\"col -wide -center\"><h1>Sign up for Seatfrog</h1><p class=-lead>Get access to last minute upgrades with Seatfrog.</p></div></div><div class=row><div class=\"col -half -center\"><form action=http://email.seatfrog.com/t/i/s/hrkruk/ method=post id=subForm data-hook=form-signup><fieldset data-hook=field-container></fieldset><input class=\"ui-btn -alt -large\" type=submit value=\"Get early access &rarr;\"></form></div></div></div></div>";
 
 },{}]},{},[288])

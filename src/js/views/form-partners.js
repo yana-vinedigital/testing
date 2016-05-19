@@ -18,6 +18,7 @@ var Utils = require('utils');
 var View = require('ampersand-view');
 var InputView = require('ampersand-input-view');
 var FormSubscribeView = require('./form-subscribe');
+var ContextThanksPartnersView = require('../views/context-thanks-partners');
 
 
 //
@@ -95,6 +96,11 @@ module.exports = FormSubscribeView.extend({
 				parent: this
 			})
 		];
+	},
+	
+	showThanks() {
+		var view = new ContextThanksPartnersView({ parent: this.parent });
+		FRONT.appView.openContext( view );
 	}
 
 });
