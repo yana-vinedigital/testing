@@ -1,2 +1,2 @@
-# website_v2
-Second iteration of our public facing website
+# public_website
+Seatfrog's public facing website

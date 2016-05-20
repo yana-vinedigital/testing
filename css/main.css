@@ -1,0 +1,755 @@
+/**
+ * SCSS: Main
+ */
+/**
+ * Utils: Variables
+ */
+/**
+ * Breakpoints
+ *
+ * @key   {string} - Name of breakpoint
+ * @value {string} - Type of breakpoint (min, max)
+ * @value {int}    - Width that breakpoint starts
+ * @value {int}    - Number of columns for grid
+ * @value {int}    - Gutter width for each column
+ */
+/**
+ * Type-scales
+ *
+ * @key   {string}         - Name of type-scale
+ * @value {int} fontSize   - Font size (px)
+ * @value {int} lines      - Lines tall (@value * $BASE-LINE-HEIGHT)
+ * @value {array} elements - List of all elements you wish to have the styles for
+ */
+/**
+ * Utils: Functions
+ */
+/**
+ * em
+ *
+ * Converts px value to em
+ *
+ * @param {int} $target  - Value to be converted
+ * @param {int} $context - The context the `$target` will be divided by
+ * @return {string}
+ */
+/**
+ * lines
+ *
+ * @param {int} $lines   - Number of lines high you wish the element to be
+ * @param {int} $context - Value of current font-size (Default: $DEFAULT-FONT-SIZE)
+ * @return {string}
+ */
+/**
+ * getKeyOfIndexFromMap
+ *
+ * Returns the name of the key at $index of $map
+ *
+ * @param  {number} $index - The index of the key you want the name of
+ * @param  {map}    $map   - The map you wish to search for $index in
+ * @return {string}
+ */
+/**
+ * getIndexOfKeyFromMap
+ *
+ * Returns the index of the $key in $map
+ *
+ * @param  {map}    $map - The map you wish to search for $key in
+ * @param  {string} $key - The key you wish to get the index of
+ * @return {number}
+ */
+/**
+ * getValueOfKeyFromMap
+ *
+ * Returns the value of $key in $map
+ *
+ * @param  {map}           $map - The map you wish to search for the value of $key in
+ * @param  {string}        $key - The key you wish to get the value for
+ * @return {number|string}
+ */
+/**
+ * getTypeScaleFromBreakpoint
+ *
+ * Returns the value of $type-scale in $breakpoint of $type-scale-map
+ * Searches recursively backwards through $type-scale-map if $type-scale is not found in $breakpoint
+ *
+ * @param  {string}        $type-scale - The property that you wish to get the value of
+ * @param  {string}        $breakpoint - The breakpoint that you wish to search
+ * @return {number|string}
+ */
+/**
+ * getPropertyFromTypeScale
+ *
+ * Returns the value of $property of $type-scale in $breakpoint of $type-scale-map
+ *
+ * @param  {string}        $property       - The property you wish to get the value of
+ * @param  {string}        $type-scale     - The type-scale you wish to get $property from
+ * @param  {string}        $breakpoint     - The breakpoint you want to $property from $type-scale in
+ * @param  {map}           $type-scale-map - The map you wish to search for $breakpoint
+ * @return {number|string}
+ */
+/**
+ * getAllPropertiesFromTypeScale
+ * @param  {string} $type-scale     - The type scale you wish to get the properties of
+ * @param  {string} $breakpoint:    - The breakpoint you wish to get $type-scale from
+ * @param  {map}    $type-scale-map - The map you wish to search for $breakpoint
+ * @return {map}
+ */
+/**
+ * Utils: Mixins
+ */
+/**
+ * breakpoint
+ *
+ * Iterate through $BREAKPOINTS and generate media queries
+ *
+ * @param {string} $breakpoint - Key in $BREAKPOINTS map
+ */
+/**
+ * generateFont
+ *
+ * Generate font-face declaration
+ * Assumes you follow the following directory structure:
+ *
+ * /
+ * |- fonts/
+ *   |- fontname
+ *     |- fontname.eot
+ *     |- fontname.woff
+ *     |- fontname.ttf
+ *     |- fontname.svg
+ *
+ * @param {string} $fontName - Name of the font to be used when declared
+ * @param {string} $fontFileName - Filename of the font
+ * @param {int} $fontWeight - Weight of the font (100, 200, 300, 400, 500, 600, 700, 800 | Default: 400)
+ * @param {string} $fontStyle - Style of the font (normal, italic, oblique | Default: normal)
+ */
+/**
+ * setTypeScale
+ *
+ * @param {string} $type-scale - The style you wish to use from $TYPE-SCALES-MAP
+ * @param {number} $context    - The context of the current type-scale
+ * @param {string} $breakpoint - The breakpoint in which you wish to get the $style from
+ */
+/**
+ * generateTypeScaleStyles
+ *
+ * @param {map} $type-scale-map - The map you want to generate the typescales from (Default: $TYPE-SCALES-MAP)
+ */
+/**
+ * Utils: Placeholders
+ */
+.fluid-grid-example .grid:after, .restricted-grid-example .grid:after, .fixed-grid-example .grid:after {
+  clear: both;
+  content: '';
+  display: table; }
+
+/**
+ * Base: Reset
+ */
+*, *:before, *:after {
+  border: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 100%;
+  font-smoothing: antialiased;
+  line-height: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline; }
+
+address, article, aside, audio, blockquote,
+canvas, dd, div, dl, fieldset, figcaption,
+figure, footer, form, h1, h2, h3, h4, h5, h6,
+header, hr, noscript, ol, output, p, pre,
+section, ul, video {
+  display: block; }
+
+a, abbr, b, bdo, br, button, cite, code, dfn,
+em, i, img, input, kbd, label, map, object, q,
+samp, select, small, span, strong, sub, sup,
+textarea, var {
+  display: inline; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: table; }
+
+/**
+ * Base: Normalise
+ */
+html {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  height: 100%;
+  line-height: 1.5em;
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  width: 100%; }
+
+body {
+  font-size: 100%;
+  font-smoothing: antialiased;
+  height: 100%;
+  min-height: 100%;
+  position: relative;
+  text-rendering: optimizeLegibility;
+  width: 100%; }
+
+img {
+  border: 0;
+  display: block;
+  height: auto;
+  max-width: 100%;
+  width: auto;
+  -ms-interpolation-mode: bicubic; }
+
+/**
+ * Base: Colours
+ */
+/**
+ * Base: Typography
+ */
+html {
+  font-size: 16px;
+  line-height: 1.5em; }
+
+h1 {
+  font-size: 1.9375em;
+  line-height: 1.25806em;
+  text-transform: uppercase; }
+
+h2 {
+  font-size: 1.5625em;
+  line-height: 1.24em;
+  text-transform: uppercase; }
+
+h3 {
+  font-size: 1.25em;
+  line-height: 1.25em;
+  text-transform: uppercase; }
+
+h4 {
+  font-size: 1.25em;
+  line-height: 1.25em;
+  text-transform: uppercase; }
+
+h5 {
+  font-size: 1.25em;
+  line-height: 1.25em;
+  text-transform: uppercase; }
+
+h6 {
+  font-size: 1em;
+  line-height: 1.5em;
+  text-transform: uppercase; }
+
+p {
+  font-size: 1em;
+  line-height: 1.5em; }
+
+@font-face {
+  font-family: 'DINPro-CondMedium';
+  src: url("../fonts/DINPro-CondMedium.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/DINPro-CondMedium.eot?#iefix") format("embedded-opentype"), url("../fonts/DINPro-CondMedium.woff") format("woff"), url("../fonts/DINPro-CondMedium.ttf") format("truetype"), url("../fonts/DINPro-CondMedium.svg#5aff3a337d88b8a8ef9cd385b2af247d") format("svg");
+  /* Legacy iOS */
+  font-style: normal;
+  font-weight: normal; }
+
+@font-face {
+  font-family: 'DINPro-Regular';
+  src: url("../fonts/DINPro-Regular.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/DINPro-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/DINPro-Regular.woff") format("woff"), url("../fonts/DINPro-Regular.ttf") format("truetype"), url("../fonts/DINPro-Regular.svg#57984163b7a8df750038d0f2b70383f2") format("svg");
+  /* Legacy iOS */
+  font-style: normal;
+  font-weight: normal; }
+
+/**
+ * Layout: Header
+ */
+/**
+ * Layout: Navigation
+ */
+/**
+ * Layout: Sidebar
+ */
+/**
+ * Layout: Footer
+ */
+/**
+ * Components: Buttons
+ */
+/**
+ * Components: Global Overlay
+ *
+ * Usage:
+ *
+ * <div id="global-overlay">
+ *     <div class="table">
+ *         <div class="td">
+ *             <div class="modal">
+ *             </div>
+ *         </div>
+ *     </div>
+ * </div>
+ *
+ * Features:
+ *
+ * - Modal that stays centered to the screen
+ *   but allows scrolling if the height of the
+ *   content is taller than the viewport
+ *
+ * - Adding the class "fullscreen" to the
+ *   #global-overlay element makes the
+ *   modal fill the viewport, whilst
+ *   still retaining its scrolling ability
+ *   if the content is too tall
+ */
+#global-overlay {
+  display: none; }
+
+body.modal-visible {
+  overflow: hidden; }
+  body.modal-visible #global-overlay {
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    left: 0;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    width: 100%; }
+    body.modal-visible #global-overlay .table {
+      background-color: rgba(0, 0, 0, 0.2);
+      display: table;
+      height: 100%;
+      width: 100%; }
+      body.modal-visible #global-overlay .table .td {
+        display: table-cell;
+        padding: 1.875em 0;
+        vertical-align: middle; }
+        body.modal-visible #global-overlay .table .td .modal {
+          background-color: #ffffff;
+          color: #000000;
+          cursor: default;
+          margin: 0 auto;
+          width: 50%; }
+    body.modal-visible #global-overlay.fullscreen .table {
+      display: block; }
+      body.modal-visible #global-overlay.fullscreen .table .td {
+        display: block;
+        height: 100%;
+        padding: 0; }
+        body.modal-visible #global-overlay.fullscreen .table .td .modal {
+          height: 100%;
+          margin: 0;
+          overflow-y: auto;
+          width: 100%; }
+
+/**
+ * Pages: Home
+ */
+.grid {
+  background-color: #00FFFF; }
+
+.col {
+  float: left;
+  width: 33.33333%;
+  background-color: rgba(0, 0, 0, 0.1);
+  text-align: center; }
+
+.col:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.5); }
+
+.fluid-grid-example .grid {
+  margin: 0 auto 0 auto;
+  width: 100%; }
+
+.restricted-grid-example .grid {
+  margin: 0 auto 0 auto;
+  width: 100%;
+  max-width: 31.25em; }
+
+.fixed-grid-example .grid {
+  margin: 0 auto 0 auto;
+  width: 18.75em; }
+
+@media (min-width: 0em) {
+  .phone-only {
+    display: block; }
+  .desktop-only {
+    display: none; } }
+
+@media (min-width: 48em) {
+  .phone-only {
+    display: none; }
+  .desktop-only {
+    display: block; } }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal; }
+
+body {
+  background-color: #1b1b1b;
+  font-family: 'DINPro-Regular';
+  font-size: 12px; }
+  body .marker {
+    width: 60px;
+    height: 2px;
+    margin: 0 auto;
+    background-color: #e5f400; }
+    @media (min-width: 48em) {
+      body .marker {
+        width: 85px;
+        height: 3px; } }
+  body .header-icon {
+    background-image: url("/img/logo.png");
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    left: 4.25%;
+    background-size: 32px 32px;
+    top: 17px; }
+  body nav.header {
+    padding: 0 6.25%;
+    width: 100%;
+    display: none; }
+    @media (min-width: 48em) {
+      body nav.header {
+        display: block;
+        margin: 0 auto;
+        padding-left: 6.25%;
+        padding-right: 6.25%;
+        position: fixed;
+        height: 80px; }
+        body nav.header .inner {
+          padding-left: 0;
+          padding-right: 0;
+          max-width: 1240px;
+          margin: 0 auto;
+          position: relative; }
+        body nav.header .logo {
+          position: absolute;
+          top: 55px;
+          left: -14px;
+          transition: all 0.1s ease-out; }
+        body nav.header .name {
+          position: absolute;
+          top: 69px;
+          left: 60px;
+          font-size: 35px;
+          color: #fff;
+          font-family: 'DINPro-CondMedium';
+          text-transform: uppercase;
+          transition: all 0.1s ease-out; }
+          body nav.header .name a {
+            text-decoration: none;
+            color: #fff; }
+          body nav.header .name a:hover {
+            text-decoration: none;
+            color: #9da0b1; }
+        body nav.header .menu {
+          position: absolute;
+          font-family: 'DINPro-CondMedium';
+          right: 0px;
+          color: #fff;
+          text-transform: uppercase;
+          font-size: 20px;
+          top: 69px;
+          transition: all 0.1s ease-out; }
+          body nav.header .menu a {
+            margin-left: 31px;
+            color: #fff;
+            text-decoration: none; }
+          body nav.header .menu a:hover {
+            color: #9da0b1;
+            text-decoration: none; } }
+  body nav.header.stick {
+    transition: all 0.2s ease-out;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(157, 160, 177, 0.162); }
+    @media (min-width: 48em) {
+      body nav.header.stick .inner .logo {
+        -webkit-transform: translate(13px, -41px) scale(0.75);
+        transform: translate(13px, -41px) scale(0.75); }
+      body nav.header.stick .inner .name {
+        -webkit-transform: translate(-15px, -42px) scale(0.7, 0.7);
+        transform: translate(-15px, -42px) scale(0.7, 0.7); }
+      body nav.header.stick .inner .menu {
+        -webkit-transform: translate(0, -40px);
+        transform: translate(0, -40px); } }
+  body .card {
+    clear: both; }
+  body .card-1 {
+    padding-left: 6.25%;
+    padding-right: 6.25%;
+    padding-bottom: 94px;
+    background-image: url("../img/bg.jpg");
+    background-size: cover;
+    background-position: center center;
+    padding-bottom: 0; }
+    @media (min-width: 48em) {
+      body .card-1 {
+        height: 906px;
+        margin-bottom: 0; } }
+    body .card-1 .arrow {
+      background-image: url("../img/arrow.png");
+      width: 100%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      height: 20px;
+      clear: both;
+      height: 93px; }
+      @media (min-width: 48em) {
+        body .card-1 .arrow {
+          height: auto;
+          padding-top: 409px; } }
+    body .card-1 h1 {
+      font-size: 42px;
+      color: #9da0b1;
+      text-align: center;
+      text-transform: uppercase;
+      font-family: 'DINPro-CondMedium';
+      padding-top: 74px;
+      line-height: 1.05em;
+      padding-bottom: 24px; }
+      @media (min-width: 48em) {
+        body .card-1 h1 {
+          font-size: 75px;
+          padding-top: 271px;
+          max-width: 849px;
+          text-align: center;
+          margin: 0 auto;
+          letter-spacing: 1px; } }
+    body .card-1 p {
+      font-size: 20px;
+      color: #9da0b1;
+      text-transform: uppercase;
+      font-family: 'DINPro-CondMedium';
+      padding-top: 23px;
+      line-height: 28px;
+      text-align: center;
+      padding-bottom: 19px; }
+      @media (min-width: 48em) {
+        body .card-1 p {
+          padding-top: 42px;
+          font-size: 28px;
+          padding-bottom: 50px; } }
+    body .card-1 .signup {
+      max-width: 307px;
+      margin: 0 auto; }
+      @media (min-width: 48em) {
+        body .card-1 .signup {
+          max-width: none;
+          width: 686px;
+          margin: 0 auto;
+          padding: 0px 26px; } }
+      body .card-1 .signup .email {
+        padding-bottom: 13px; }
+        @media (min-width: 48em) {
+          body .card-1 .signup .email {
+            width: 427px;
+            float: left; } }
+        body .card-1 .signup .email input {
+          -webkit-appearance: none;
+          line-height: normal;
+          border-radius: 5px;
+          border: 2px solid #9da0b1;
+          display: block;
+          width: 100%;
+          font-size: 15px;
+          font-family: 'DINPro-CondMedium';
+          text-transform: uppercase;
+          padding: 10px 10px 10px 38px;
+          background-image: url("../img/mail-icon.png");
+          background-repeat: no-repeat;
+          background-position: 16px 14px;
+          color: #9da0b1; }
+          @media (min-width: 48em) {
+            body .card-1 .signup .email input {
+              font-size: 22px;
+              padding: 20px 10px 20px 60px;
+              background-image: url("../img/mail-lrg.png");
+              background-position: 23px 25px; } }
+      @media (min-width: 48em) {
+        body .card-1 .signup .submit {
+          float: left;
+          margin-left: 19px;
+          width: 184px; } }
+      body .card-1 .signup .submit input {
+        -webkit-appearance: none;
+        line-height: normal;
+        width: 100%;
+        display: block;
+        border-radius: 5px;
+        padding: 10px 0;
+        font-size: 15px;
+        text-transform: uppercase;
+        font-family: 'DINPro-CondMedium';
+        background-color: #9da0b1;
+        border: 2px solid #9da0b1;
+        cursor: pointer; }
+        @media (min-width: 48em) {
+          body .card-1 .signup .submit input {
+            font-size: 22px;
+            padding: 20px 0; } }
+        body .card-1 .signup .submit input:hover {
+          background-color: #616479;
+          border-color: #616479; }
+  body .card-2 {
+    background-color: #222;
+    padding: 0 6.25%; }
+    @media (min-width: 48em) {
+      body .card-2 {
+        margin: 0 auto;
+        padding-left: 6.25%;
+        padding-right: 6.25%; }
+        body .card-2 .pane {
+          float: left;
+          width: 50%; }
+          body .card-2 .pane.left {
+            padding-right: 1.8%; }
+          body .card-2 .pane.right {
+            padding-left: 1.8%; }
+        body .card-2 .inner {
+          padding-left: 0;
+          padding-right: 0;
+          max-width: 1240px;
+          margin: 0 auto;
+          padding-top: 60px;
+          padding-bottom: 22px; } }
+    @media (min-width: 768px) and (max-width: 1300px) {
+      body .card-2 .pane {
+        float: none;
+        width: 686px;
+        margin: 0 auto; }
+        body .card-2 .pane.left {
+          padding-right: 0;
+          padding-left: 26px;
+          padding-right: 26px; }
+        body .card-2 .pane.right {
+          padding-left: 0;
+          padding-left: 26px;
+          padding-right: 26px; } }
+    body .card-2 h2 {
+      font-size: 30px;
+      color: #fff;
+      font-family: 'DINPro-CondMedium';
+      padding-top: 27px;
+      padding-bottom: 10px; }
+      @media (min-width: 48em) {
+        body .card-2 h2 {
+          font-size: 45px;
+          padding-bottom: 31px; } }
+      @media (min-width: 768px) and (max-width: 1300px) {
+        body .card-2 h2 {
+          font-size: 35px; } }
+    body .card-2 p {
+      color: #fff;
+      font-size: 17px;
+      line-height: 28px;
+      padding-bottom: 42px; }
+      @media (min-width: 768px) and (max-width: 1300px) {
+        body .card-2 p {
+          font-size: 15px;
+          line-height: 25px; } }
+    body .card-2 h3 {
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 26px;
+      font-family: 'DINPro-CondMedium';
+      padding-top: 34px; }
+      @media (min-width: 48em) {
+        body .card-2 h3 {
+          padding-bottom: 12px; } }
+    body .card-2 a {
+      display: block;
+      border-bottom: 2px solid #656565;
+      font-family: 'DINPro-CondMedium';
+      color: #fff;
+      font-size: 20px;
+      margin-top: 13px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding-bottom: 10px; }
+      body .card-2 a .right {
+        display: none; }
+      @media (min-width: 48em) {
+        body .card-2 a {
+          font-size: 25px;
+          margin-bottom: 25px; }
+          body .card-2 a .right {
+            display: block;
+            float: right; } }
+    body .card-2 a:hover {
+      color: #4e4e4e; }
+    @media (min-width: 0em) {
+      body .card-2 {
+        padding-bottom: 28px; } }
+  body .card-3 {
+    color: #fff;
+    padding: 0 6.25%; }
+    @media (min-width: 48em) {
+      body .card-3 {
+        margin: 0 auto;
+        padding-left: 6.25%;
+        padding-right: 6.25%; }
+        body .card-3 .inner {
+          padding-left: 0;
+          padding-right: 0;
+          max-width: 1240px;
+          margin: 0 auto;
+          padding-top: 60px;
+          padding-bottom: 22px; } }
+    @media (min-width: 768px) and (max-width: 1300px) {
+      body .card-3 .inner {
+        width: 686px;
+        margin: 0 auto;
+        padding: 60px 26px 0; } }
+    body .card-3 .get-in-touch {
+      text-transform: uppercase;
+      font-size: 26px;
+      font-family: 'DINPro-CondMedium';
+      padding-top: 28px;
+      padding-bottom: 21px; }
+    body .card-3 a {
+      display: block;
+      float: left;
+      text-indent: -999em; }
+    body .card-3 a:hover {
+      opacity: 0.7; }
+    body .card-3 .mail {
+      background-image: url("../img/mail.png");
+      width: 56px;
+      height: 54px; }
+    body .card-3 .fb {
+      width: 64px;
+      height: 54px;
+      background-image: url("../img/fb.png"); }
+    body .card-3 .tw {
+      width: 60px;
+      height: 54px;
+      background-image: url("../img/tw.png"); }
+    body .card-3 .insta {
+      width: 58px;
+      height: 54px;
+      background-image: url("../img/insta.png"); }
+    body .card-3 .copy {
+      font-size: 10px;
+      padding-top: 13px;
+      clear: both;
+      padding-bottom: 24px; }
+      @media (min-width: 48em) {
+        body .card-3 .copy {
+          font-size: 13px;
+          padding-top: 22px;
+          padding-bottom: 60px; } }
+
+#thanks {
+  display: none; }
