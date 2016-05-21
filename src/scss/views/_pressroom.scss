@@ -4,10 +4,14 @@
 //
 
 
-.view-contact {
+.view-pressroom {
 
 	section.header, section.footer {
 		min-height: 0; text-align: inherit;
+	}
+	
+section.recent-articles {
+		text-align: left;
 	}
 
 }
