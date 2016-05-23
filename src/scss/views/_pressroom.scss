@@ -19,6 +19,9 @@
 	
 	section.recent-articles {
 		text-align: left;
+		a {
+			color: $COLOR_BRAND_BASE;
+		}
 	}
 
 }
