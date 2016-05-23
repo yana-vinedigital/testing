@@ -10,7 +10,14 @@
 		min-height: 0; text-align: inherit;
 	}
 	
-section.recent-articles {
+	section.intro {
+
+		.bg {
+			background-image: url("../img/bg-press-intro.jpg");
+		}
+	}
+	
+	section.recent-articles {
 		text-align: left;
 	}
 
