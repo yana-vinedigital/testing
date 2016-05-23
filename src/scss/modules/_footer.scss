@@ -38,7 +38,9 @@
 			color: fade-out($COLOR_GREY,0.75);
 
 			p {
-				
+				a {
+					color: fade-out($COLOR_GREY,0.75);
+				}
 			}
 
 			.ui-social-links {
