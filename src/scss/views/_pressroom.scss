@@ -53,3 +53,30 @@
 
 
 }
+
+
+
+/*
+ *	Breakpoint:	smartphone-wide
+ *	--------------------------------------------------
+ */
+ 
+ @include breakpoint(smartphone-wide) {
+	 .view-pressroom {
+		
+		section.intro {
+
+		}
+		
+		section.recent-articles {
+			text-align: center;
+			
+			.-align-right {
+				text-align: center;
+			}
+		}
+		
+	}
+		 
+ }
+ 
