@@ -23,6 +23,7 @@ section.intro {
 		content: '';
 		width: 100%; height: lines(5);
 		position: absolute; bottom: -1px; left: 0; z-index: 10;
+		transform: translate3d(0,0,0);
 		background-image: linear-gradient( 180deg, transparentize( $COLOR_BRAND_BASE, 1 ), $COLOR_BRAND_BASE );
 	}
 

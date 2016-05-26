@@ -39,7 +39,7 @@ html {
 
 	}
 }
-	body {
+	html, body {
 		width: 100%; height: 100%;
 		position: relative;
 	}
@@ -52,7 +52,7 @@ html {
  */
 
 .outline {
-
+	height: 100vh;
 }
 	.outline-main {
 		position: relative; z-index: 0;
@@ -70,6 +70,7 @@ html {
 			overflow: hidden;
 			will-change: transform;
 			transform: translate3d(0,0,0);
+			backface-visibility: hidden;
 		
 			section {
 				width: 100%; //min-height: 100vh;
