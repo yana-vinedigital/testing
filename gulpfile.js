@@ -67,7 +67,7 @@ gulp.task('clean', function() {
 
 gulp.task('images', function() {
 	gulp.src([
-		paths.src.root + '*.{txt,ico}'
+		paths.src.root + '*.{txt,ico,xml}'
 	], { base: paths.src.root, dot: true })
 		.pipe( gulp.dest( paths.dist.root ) );
 
