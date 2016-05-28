@@ -58,9 +58,13 @@
 	}
 
 	.section-illustration {
-		min-height: 85vh;
+		padding: 0;
 		text-align: left;
 
+		.section-flex {
+			min-height: 85vh;
+			padding: lines(3) 0;
+		}
 		// .container {
 		// 	max-width: 80%;
 		// }
@@ -152,7 +156,9 @@
 
 	.view-airlines {
 		.section-illustration {
-			min-height: lines(28);
+			.section-flex {
+				min-height: lines(28);
+			}
 		}
 	}
 
@@ -175,6 +181,10 @@
 				width: 85%;
 				margin: lines(1) auto; padding-top: lines(1);
 				float: none; clear: both;
+
+				img {
+					float: none;
+				}
 			}
 		}
 

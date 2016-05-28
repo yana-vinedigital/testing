@@ -201,7 +201,7 @@ gulp.task('css', function() {
 		.pipe( $.sass({
 			precision: 12
 		}).on('error', $.sass.logError ))
-		.pipe( $.autoprefixer( 'last 2 versions', '> 1%', 'ie 9' ) )
+		.pipe( $.autoprefixer( 'last 2 versions', '> 1%', 'ie 10' ) )
 		.pipe( $.if( !env.isProd, $.sourcemaps.write() ))
 		.pipe( $.filter( '**/*.css', { restore: false }) )
 		.pipe( $.if( env.isProd, $.cssmin() ))
@@ -239,21 +239,21 @@ gulp.task('svg', function() {
  */
 
 gulp.task('server', function() {
-	// return $.browserSync({
-	// 	server: {
-	// 		baseDir: paths.dist.root
-	// 	},
-	// 	files: [
-	// 		paths.dist.root + '**/*.html',
-	// 		paths.dist.js + '*.js'
-	// 	],
-	// 	notify: false,
-	// 	ghostMode: false
-	// });
-	$.connect.server({
-		root: paths.dist.root,
-		livereload: false
+	return $.browserSync({
+		server: {
+			baseDir: paths.dist.root
+		},
+		files: [
+			paths.dist.root + '**/*.html',
+			paths.dist.js + '*.js'
+		],
+		notify: false,
+		ghostMode: false
 	});
+	// $.connect.server({
+	// 	root: paths.dist.root,
+	// 	livereload: false
+	// });
 });
 
 

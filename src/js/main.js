@@ -152,10 +152,9 @@ var AppState = State.extend({
 		_currentWaypoint: {
 			deps: ['_isWaypointsReady', '_currentWaypointTop', '_waypoints'],
 			fn: function() {
-				if ( !this._isWaypointsReady || !this._currentWaypointTop ) return;
-				console.log( 'this._waypoints', this._waypoints, this._currentWaypointTop );
+				if ( !this._isWaypointsReady || typeof this._currentWaypointTop === 'undefined' ) return;
 				var waypoint = Utils.find( this._waypoints, { top: this._currentWaypointTop } );
-				if ( !waypoint ) debugger;
+				// if ( !waypoint ) debugger;
 				return waypoint;
 			}
 		},
@@ -199,7 +198,6 @@ var AppState = State.extend({
 		//	_currentWaypointTop
 		this.on('change:_isWaypointsReady change:_scrollPos change:_waypointMap', Utils.throttle(() => {
 			if ( !this._isWaypointsReady ) return;
-			console.log('_currentWaypointTop', this.getCurrentWaypointBlade())
 			this._currentWaypointTop = this.getCurrentWaypointBlade();
 		}, 50));
 		//	_isScrollTopSection

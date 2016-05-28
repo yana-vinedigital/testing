@@ -19050,7 +19050,7 @@ var CarouselView = View.extend({
 	reset: function reset() {
 		this._selectedIndex = 0;
 		this._selectedPosition = 0;
-		this.$pane.style[FRONT.app.transformProperty] = '';
+		this.$pane.style[FRONT.app._transformProperty] = '';
 	},
 
 	//	Private Methods	 ----------------
@@ -19856,10 +19856,9 @@ var AppState = State.extend({
 		_currentWaypoint: {
 			deps: ['_isWaypointsReady', '_currentWaypointTop', '_waypoints'],
 			fn: function fn() {
-				if (!this._isWaypointsReady || !this._currentWaypointTop) return;
-				console.log('this._waypoints', this._waypoints, this._currentWaypointTop);
+				if (!this._isWaypointsReady || typeof this._currentWaypointTop === 'undefined') return;
 				var waypoint = Utils.find(this._waypoints, { top: this._currentWaypointTop });
-				if (!waypoint) debugger;
+				// if ( !waypoint ) debugger;
 				return waypoint;
 			}
 		},
@@ -19905,7 +19904,6 @@ var AppState = State.extend({
 		//	_currentWaypointTop
 		this.on('change:_isWaypointsReady change:_scrollPos change:_waypointMap', Utils.throttle(function () {
 			if (!_this._isWaypointsReady) return;
-			console.log('_currentWaypointTop', _this.getCurrentWaypointBlade());
 			_this._currentWaypointTop = _this.getCurrentWaypointBlade();
 		}, 50));
 		//	_isScrollTopSection

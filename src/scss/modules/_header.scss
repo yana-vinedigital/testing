@@ -372,6 +372,10 @@ $header-menu-ease: $EASE_OUT_QUINT;
 		position: absolute;
 		transform: none;
 
+		.-is-menu-open & {
+			position: fixed;
+		}
+
 		.header {
 			
 		}

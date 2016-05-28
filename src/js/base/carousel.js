@@ -582,7 +582,7 @@ var CarouselView = View.extend({
 	reset: function() {
 		this._selectedIndex	= 0;
 		this._selectedPosition = 0;
-		this.$pane.style[ FRONT.app.transformProperty ] = '';
+		this.$pane.style[ FRONT.app._transformProperty ] = '';
 	},
 
 	//	Private Methods	 ----------------

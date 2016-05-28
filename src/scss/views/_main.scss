@@ -7,16 +7,19 @@
 
 section.intro {
 	min-height: 100vh;
-	padding-top: lines(4);
+	padding: 0;
 	z-index: 0;
 	color: $COLOR_WHITE;
 	transform: translate3d(0,0,0); will-change: transform, opacity;
 	background-color: $COLOR_BRAND_BASE;
 	// transition: opacity 0.5s;
 
-	.container {
-		transform: translate3d(0,0,0); will-change: transform, opacity;
+	.section-flex {
+		padding-top: lines(4);
 	}
+		.container {
+			transform: translate3d(0,0,0); will-change: transform, opacity;
+		}
 
 
 	&:after {
@@ -187,7 +190,9 @@ section.footer {
 @include breakpoint(smartphone-wide) {
 
 	section.intro {
-		padding-top: lines(3);
+		.section-flex {
+			padding-top: lines(4);
+		}
 	}
 	section.footer {
 		padding-top: lines(2);

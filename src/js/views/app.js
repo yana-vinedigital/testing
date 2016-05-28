@@ -152,7 +152,7 @@ module.exports = View.extend({
 		this.listenTo( this.model, 'change:_currentBlade', ( model, waypoint, options ) => {
 			FRONT.trigger( 'blade:active', waypoint );
 		});
-		this.listenTo( this.model, 'change:_currentWaypoint', ( model, waypoint, options ) => { 
+		this.listenTo( this.model, 'change:_currentWaypoint', ( model, waypoint, options ) => {
 			FRONT.trigger( 'waypoint:active', waypoint );
 			this._prevWaypoint = waypoint;
 		});
