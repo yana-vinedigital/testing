@@ -1,0 +1,52 @@
+{{#extend "master" view="404"}}
+	{{#content "head"}}
+
+		<title>Seatfrog – 404</title>
+		<meta name="keywords" content="airline auctions, bid on flight, seat, upgrades, passenger experience, ancillary revenue, merchandising">
+		<meta name="description" content="Whoops - something went wrong.">
+		<meta property="og:title" content="Seatfrog – 404">
+		<meta property="og:site_name" content="Seatfrog">
+		<meta property="og:url" content="http://www.seatfrog.com/404.html">
+		<meta property="og:description" content="Whoops - something went wrong.">
+		<meta property="og:type" content="website">
+		<meta property="fb:app_id" content="">
+	{{/content}}
+    
+    {{#content "main"}}
+
+        <div class="outline-main" data-hook="main">
+            <div class="page" data-hook="page">
+
+                <section class="intro -section-auto" data-blade="intro">
+                    <div class="container" data-parallax="-0.75">
+                        <div class="row -margin-none">
+                            <div class="col -twothirds -center">
+                                <h2 class="section-headline">Page not found</h2>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="bg" data-parallax="-0.85"></div>
+                </section>
+
+                <section class="-theme-light content" data-blade="content" data-blade-theme="light">
+
+                    <div class="container">
+                        
+                        <div class="row">
+                            <div class="col -wide -center">
+                                <h2>Error - Page Not Found</h2>
+								<p>Sorry, but the page you are looking for cannot be found. Try checking the URL for errors, then refreshing the page.<br />Go back to our <a href="http://www.seatfrog.com">homepage</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                {{> footer }}
+
+            </div>
+        </div>
+
+    {{/content}}
+{{/extend}}
