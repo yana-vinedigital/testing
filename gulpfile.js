@@ -206,9 +206,9 @@ gulp.task('css', function() {
 		.pipe( $.filter( '**/*.css', { restore: false }) )
 		.pipe( $.if( env.isProd, $.cssmin() ))
 		.pipe( gulp.dest( paths.dist.css ))
-		.pipe( $.browserSync.reload({ 
-			stream: true 
-		}));
+		// .pipe( $.browserSync.reload({ 
+		// 	stream: true 
+		// }));
 });
 
 
@@ -239,16 +239,20 @@ gulp.task('svg', function() {
  */
 
 gulp.task('server', function() {
-	return $.browserSync({
-		server: {
-			baseDir: paths.dist.root
-		},
-		files: [
-			paths.dist.root + '**/*.html',
-			paths.dist.js + '*.js'
-		],
-		notify: false,
-		ghostMode: false
+	// return $.browserSync({
+	// 	server: {
+	// 		baseDir: paths.dist.root
+	// 	},
+	// 	files: [
+	// 		paths.dist.root + '**/*.html',
+	// 		paths.dist.js + '*.js'
+	// 	],
+	// 	notify: false,
+	// 	ghostMode: false
+	// });
+	$.connect.server({
+		root: paths.dist.root,
+		livereload: false
 	});
 });
 

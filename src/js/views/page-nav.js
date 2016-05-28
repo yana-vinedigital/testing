@@ -93,6 +93,7 @@ module.exports = View.extend({
 		this._setupNavItems();
 
 		this.listenTo( FRONT, 'waypoint:active', function( waypoint ) {
+			if ( !waypoint ) return;
 			_this.waypointActive = +(waypoint.id);
 		});
 	},

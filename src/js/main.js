@@ -7,9 +7,6 @@
 
 'use strict';
 
-//	Dev
-var log = require('bows')('MAIN');
-
 //	Modernizr Tests
 require('browsernizr/lib/prefixed');
 require('browsernizr/test/css/transforms3d');
@@ -51,10 +48,10 @@ var AppState = State.extend({
 		_transformProperty: 'string',
 		_hasTransforms3d: ['boolean', true, false],
 		_isTouch: ['boolean', true, false],
+		_isParallaxEnabled: ['boolean', true, false],
 
 		_isMenuOpen: ['boolean', false, false],
 		_isContextOpen: ['boolean', true, false],
-		_isScrollDisabled: ['boolean', false, false],
 		_scrollFriction: ['number', true, 0.15],
 		_scrollOffset: ['number', true, window.pageYOffset],
 		_scrollPos: ['number', true, window.pageYOffset],
@@ -62,11 +59,12 @@ var AppState = State.extend({
 		_waypoints: ['array', false, () => []],
 		_isWaypointsReady: ['boolean', false, false],
 		_waypointMap: ['array', false, () => []],
+		_bladeObjects: ['array', false, () => []],
 		_bladeMap: ['array', false, () => []]
 	},
 
 	session: {
-		_currentWaypointTop: ['number', true, 0],
+		_currentWaypointTop: 'number',
 		_currentBladeTop: ['number', true, 0],
 		_isScrollTopSection: ['boolean', false, true],
 	},
@@ -99,7 +97,7 @@ var AppState = State.extend({
 		},
 		_scrollNeedsUpdate: {
 			deps: ['_scrollDiff'],
-			fn: function() {
+			fn() {
 				return Math.abs( this._scrollDiff ) > 1;
 			}
 		},
@@ -154,8 +152,11 @@ var AppState = State.extend({
 		_currentWaypoint: {
 			deps: ['_isWaypointsReady', '_currentWaypointTop', '_waypoints'],
 			fn: function() {
-				if ( !this._isWaypointsReady ) return;
-				return Utils.find( this._waypoints, { top: this._currentWaypointTop } );
+				if ( !this._isWaypointsReady || !this._currentWaypointTop ) return;
+				console.log( 'this._waypoints', this._waypoints, this._currentWaypointTop );
+				var waypoint = Utils.find( this._waypoints, { top: this._currentWaypointTop } );
+				if ( !waypoint ) debugger;
+				return waypoint;
 			}
 		},
 		_waypointTheme: {
@@ -189,7 +190,6 @@ var AppState = State.extend({
 		this._hasTransforms3d = Modernizr.csstransforms3d;
 		this._isTouch = Modernizr.touchevents;
 
-		
 		// 	Async Derived Properties	 ------------
 
 		//	_currentBladeTop
@@ -198,6 +198,8 @@ var AppState = State.extend({
 		}, 250));
 		//	_currentWaypointTop
 		this.on('change:_isWaypointsReady change:_scrollPos change:_waypointMap', Utils.throttle(() => {
+			if ( !this._isWaypointsReady ) return;
+			console.log('_currentWaypointTop', this.getCurrentWaypointBlade())
 			this._currentWaypointTop = this.getCurrentWaypointBlade();
 		}, 50));
 		//	_isScrollTopSection
@@ -223,6 +225,13 @@ var AppState = State.extend({
 
 		this._waypointMap = Utils.map( waypoints, 'top' ).reverse();
 		this._bladeMap = Utils.map( blades, 'bladeTop' ).reverse();
+
+		console.log('registerWaypoint', this._bladeMap.length, this._bladeObjects.length);
+		
+		if ( this._bladeMap.length >= this._bladeObjects.length ) {
+			this._isWaypointsReady = true;
+			console.log('_isWaypointsReady');
+		}
 	},
 
 	getCurrentWaypointLogo() {

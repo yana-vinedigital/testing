@@ -19704,11 +19704,8 @@ module.exports = {
 
 'use strict';
 
-//	Dev
-
-var log = require('bows')('MAIN');
-
 //	Modernizr Tests
+
 require('browsernizr/lib/prefixed');
 require('browsernizr/test/css/transforms3d');
 require('browsernizr/test/touchevents');
@@ -19747,10 +19744,10 @@ var AppState = State.extend({
 		_transformProperty: 'string',
 		_hasTransforms3d: ['boolean', true, false],
 		_isTouch: ['boolean', true, false],
+		_isParallaxEnabled: ['boolean', true, false],
 
 		_isMenuOpen: ['boolean', false, false],
 		_isContextOpen: ['boolean', true, false],
-		_isScrollDisabled: ['boolean', false, false],
 		_scrollFriction: ['number', true, 0.15],
 		_scrollOffset: ['number', true, window.pageYOffset],
 		_scrollPos: ['number', true, window.pageYOffset],
@@ -19762,13 +19759,16 @@ var AppState = State.extend({
 		_waypointMap: ['array', false, function () {
 			return [];
 		}],
+		_bladeObjects: ['array', false, function () {
+			return [];
+		}],
 		_bladeMap: ['array', false, function () {
 			return [];
 		}]
 	},
 
 	session: {
-		_currentWaypointTop: ['number', true, 0],
+		_currentWaypointTop: 'number',
 		_currentBladeTop: ['number', true, 0],
 		_isScrollTopSection: ['boolean', false, true]
 	},
@@ -19856,8 +19856,11 @@ var AppState = State.extend({
 		_currentWaypoint: {
 			deps: ['_isWaypointsReady', '_currentWaypointTop', '_waypoints'],
 			fn: function fn() {
-				if (!this._isWaypointsReady) return;
-				return Utils.find(this._waypoints, { top: this._currentWaypointTop });
+				if (!this._isWaypointsReady || !this._currentWaypointTop) return;
+				console.log('this._waypoints', this._waypoints, this._currentWaypointTop);
+				var waypoint = Utils.find(this._waypoints, { top: this._currentWaypointTop });
+				if (!waypoint) debugger;
+				return waypoint;
 			}
 		},
 		_waypointTheme: {
@@ -19901,6 +19904,8 @@ var AppState = State.extend({
 		}, 250));
 		//	_currentWaypointTop
 		this.on('change:_isWaypointsReady change:_scrollPos change:_waypointMap', Utils.throttle(function () {
+			if (!_this._isWaypointsReady) return;
+			console.log('_currentWaypointTop', _this.getCurrentWaypointBlade());
 			_this._currentWaypointTop = _this.getCurrentWaypointBlade();
 		}, 50));
 		//	_isScrollTopSection
@@ -19925,6 +19930,13 @@ var AppState = State.extend({
 
 		this._waypointMap = Utils.map(waypoints, 'top').reverse();
 		this._bladeMap = Utils.map(blades, 'bladeTop').reverse();
+
+		console.log('registerWaypoint', this._bladeMap.length, this._bladeObjects.length);
+
+		if (this._bladeMap.length >= this._bladeObjects.length) {
+			this._isWaypointsReady = true;
+			console.log('_isWaypointsReady');
+		}
 	},
 	getCurrentWaypointLogo: function getCurrentWaypointLogo() {
 		var _this2 = this;
@@ -19967,7 +19979,7 @@ FRONT.on('dom:ready', function () {
 	FRONT.trigger('viewport:update');
 });
 
-},{"./base/templates":298,"./data/schema":300,"./views/app":303,"ampersand-state":14,"app":295,"bows":21,"browsernizr":23,"browsernizr/lib/prefixed":44,"browsernizr/test/css/transforms3d":54,"browsernizr/test/touchevents":55,"utils":299}],303:[function(require,module,exports){
+},{"./base/templates":298,"./data/schema":300,"./views/app":303,"ampersand-state":14,"app":295,"browsernizr":23,"browsernizr/lib/prefixed":44,"browsernizr/test/css/transforms3d":54,"browsernizr/test/touchevents":55,"utils":299}],303:[function(require,module,exports){
 
 
 //
@@ -19976,11 +19988,8 @@ FRONT.on('dom:ready', function () {
 
 'use strict';
 
-//	Dev
-
-var log = require('bows')('APPVIEW');
-
 //	App
+
 var FRONT = require('app');
 var Utils = require('utils');
 
@@ -20068,8 +20077,7 @@ module.exports = View.extend({
 		this._animFramePending = false;
 		this._bladeCurrentIndex = 0;
 
-		this.$_parallaxObjects = [];
-		this.bladeObjects = [];
+		this._parallaxObjects = [];
 
 		//	Bind	 ----------------
 		this._updateScroll = this._updateScroll.bind(this);
@@ -20127,7 +20135,6 @@ module.exports = View.extend({
 			FRONT.trigger('blade:active', waypoint);
 		});
 		this.listenTo(this.model, 'change:_currentWaypoint', function (model, waypoint, options) {
-			// if ( typeof _this._prevWaypoint !== 'undefined' ) waypoint.prev = _this._prevWaypoint;
 			FRONT.trigger('waypoint:active', waypoint);
 			_this2._prevWaypoint = waypoint;
 		});
@@ -20144,27 +20151,10 @@ module.exports = View.extend({
 		Utils.raf(this._updateViewport);
 	},
 	_breakpointHandler: function _breakpointHandler(model, breakpoint) {
-		// log('breakpoint', breakpoint);
 		FRONT.trigger('breakpoint', breakpoint);
 	},
 	_scrollHandler: function _scrollHandler(e) {
-		// log('_scrollHandler')
-		if (this._scrollFrameRequested || this.model._isScrollDisabled) return;
-		this._scrollFrameRequested = true;
-		// Utils.raf( this._updateScroll );
 		this._updateScroll();
-	},
-	_scrollAnimationHandler: function _scrollAnimationHandler(time) {
-		Utils.raf(this._scrollAnimationHandler);
-		if (!this.model._scrollNeedsUpdate || this._animFramePending) return;
-		this._animFramePending = true;
-
-		this.model._scrollPos = +(this.model._scrollPos + this.model._scrollVelocity).toFixed(2);
-
-		// this._updatePositions();
-		this._updateParallaxPositions();
-
-		this._animFramePending = false;
 	},
 	_keyupHandler: function _keyupHandler(e) {
 		if (e.keyCode === 27 && (this.model._isMenuOpen || this.model._isContextOpen)) {
@@ -20229,29 +20219,65 @@ module.exports = View.extend({
 		var waypoint = this.model.getNextWaypoint();
 		this._setScroll(waypoint.top);
 	},
+	enableParallax: function enableParallax() {
+		this.disableParallax(false);
+
+		this.$_parallaxElements = this.queryAll('[data-parallax]');
+		this.$_main.style.height = this.$_page.offsetHeight + 'px';
+		var scroll = this.model._scrollPos = this._getScroll();
+		this.model._scrollOffset = scroll;
+		this.$_page.style[this.model._transformProperty] = 'translate3d(0,' + scroll * -1 + 'px,0)';
+
+		this._setupParallax();
+		this._isParallaxEnabled = true;
+	},
+	disableParallax: function disableParallax() {
+		var _this3 = this;
+
+		var reset = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+
+		if (!this._isParallaxEnabled || !this.$_parallaxElements) return;
+
+		this._parallaxObjectsLength = 0;
+		this._parallaxObjects.length = 0;
+
+		if (reset) {
+			this.$_page.style[this.model._transformProperty] = 'translate3d(0,0,0)';
+			this.$_main.style.height = 'auto';
+			if (this.$_intro) this.$_intro.style.opacity = 1;
+			if (this.$_tour) this.$_tour.style.opacity = 1;
+		}
+
+		this.$_parallaxElements.forEach(function (el, i) {
+			el.style[_this3.model._transformProperty] = '';
+		});
+
+		this._isParallaxEnabled = false;
+	},
 
 
 	//	Private Methods	 ----------------
 
 	_setupBlades: function _setupBlades() {
-		var _this3 = this;
+		var _this4 = this;
 
-		var $_blades = this.$_page.querySelectorAll('[data-blade]');
+		this.$_blades = this.$_page.querySelectorAll('[data-blade]');
+
 		var bladeTypes = {
 			default: BladeView,
 			tour: BladeTourView
 		};
 
-		Utils.each($_blades, function (el, i) {
+		Utils.each(this.$_blades, function (el, i) {
 			var bladeViewType = el.getAttribute('data-blade-type') || 'default';
 			var bladeTheme = el.getAttribute('data-blade-theme') || 'dark';
 			var bladeOffset = +(el.getAttribute('data-blade-offset') || 0);
-			var bladeView = new bladeTypes[bladeViewType]({ el: el, index: i, bladeTheme: bladeTheme, bladeOffset: bladeOffset, parent: _this3 });
-			_this3.bladeObjects.push(bladeView);
+			var bladeView = new bladeTypes[bladeViewType]({ el: el, index: i, bladeTheme: bladeTheme, bladeOffset: bladeOffset, parent: _this4 });
+			_this4.model._bladeObjects.push(bladeView);
 		});
 	},
 	_setupParallax: function _setupParallax() {
-		var _this4 = this;
+		var _this5 = this;
 
 		var windowHeightHalf = this.model._windowHeight / 2;
 
@@ -20262,37 +20288,24 @@ module.exports = View.extend({
 				offset: pos.top + pos.height / 2,
 				parallax: el.getAttribute('data-parallax') || 1
 			};
-			el.style[_this4.model._transformProperty] = 'translate3d(0,' + (_this4.model._scrollPos * item.parallax * -1 + (item.offset < windowHeightHalf ? 0 : item.offset - windowHeightHalf) * item.parallax) + 'px,0)';
-			_this4.$_parallaxObjects.push(item);
+			el.style[_this5.model._transformProperty] = 'translate3d(0,' + (_this5.model._scrollPos * item.parallax * -1 + (item.offset < windowHeightHalf ? 0 : item.offset - windowHeightHalf) * item.parallax) + 'px,0)';
+			_this5._parallaxObjects.push(item);
 		});
 
-		this.parallaxObjectsLength = this.$_parallaxObjects.length - 1;
+		this._parallaxObjectsLength = this._parallaxObjects.length - 1;
 	},
-	_updateParallax: function _updateParallax() {
-		var _this5 = this;
+	_requestScrollAnimation: function _requestScrollAnimation() {
+		if (this._animFramePending) return;
+		this._animFramePending = true;
+		Utils.raf(this._scrollAnimationHandler);
+	},
+	_scrollAnimationHandler: function _scrollAnimationHandler(time) {
+		this._animFramePending = false;
+		if (!this.model._scrollNeedsUpdate) return;
+		this._requestScrollAnimation();
 
-		this.$_parallaxElements = this.queryAll('[data-parallax]');
-		this.$_parallaxObjects.length = 0;
-		this.parallaxObjectsLength = 0;
-
-		this.$_main.style.height = this.$_page.offsetHeight + 'px';
-
-		var scroll = this.model._scrollPos = this._getScroll();
-		this.model._scrollOffset = scroll;
-
-		this.$_page.style[this.model._transformProperty] = 'translate3d(0,' + scroll * -1 + 'px,0)';
-
-		// var logoPos = Utils.DOM.getPosition( this.$_logo, true );
-		// this.model._logoOffset = Math.round( logoPos.top + ( logoPos.height / 2 ) );
-
-		this.$_parallaxElements.forEach(function (el, i) {
-			el.style[_this5.model._transformProperty] = '';
-		});
-
-		this._setupParallax();
-		// Utils.raf(function() {
-		// 	_this._setupParallax();
-		// });
+		this.model._scrollPos = +(this.model._scrollPos + this.model._scrollVelocity).toFixed(2);
+		this._updateParallaxPositions();
 	},
 	_updateParallaxPositions: function _updateParallaxPositions() {
 		var windowHeight = this.model._windowHeight;
@@ -20327,58 +20340,48 @@ module.exports = View.extend({
 			}
 		}
 
-		for (var i = this.parallaxObjectsLength; i >= 0; i--) {
-			var item = this.$_parallaxObjects[i];
+		for (var i = this._parallaxObjectsLength; i >= 0; i--) {
+			var item = this._parallaxObjects[i];
 			item.el.style[this.model._transformProperty] = 'translate3d(0,' + (scrollPos * item.parallax * -1 + (item.offset < windowHeightHalf ? 0 : item.offset - windowHeightHalf) * item.parallax) + 'px,0)';
 		}
 	},
 	_updateViewport: function _updateViewport() {
-
 		var scroll = this.model._scrollOffset = this._getScroll();
 		this.model._windowWidth = window.innerWidth;
 		this.model._windowHeight = window.innerHeight;
 		this.model._breakpoint = Utils.DOM.getAfterAttr(document.body);
 		this.model._scrollPos = scroll;
 
-		this._updateScroll();
-		// this._updatePositions();
-		!this.model._isDeviceBreakpoint && this._updateParallax();
+		if (this.model._isDeviceBreakpoint) {
+			this.disableParallax();
+		} else {
+			this.enableParallax();
+		}
 
 		FRONT.trigger('window:reflow', { width: this.model._windowWidth, height: this.model._windowHeight });
-		this.model._isWaypointsReady = true;
 	},
 	_setupScroll: function _setupScroll() {
 		var logoPos = Utils.DOM.getPosition(this.$_logo, false);
 		this.model._logoOffset = Math.round(logoPos.top + logoPos.height / 2);
-
-		this._updateViewport();
-
-		if (!this.model._isDeviceBreakpoint) {
-			// this._updatePositions();
-			this._updateParallaxPositions(); // Is this needed?
-			this._scrollAnimationHandler();
-		}
 	},
 	_updateScroll: function _updateScroll() {
 		var scroll = this.model._scrollOffset = this._getScroll();
-		// log( '_updateScroll', scroll );
 
 		if (this.model._isDeviceBreakpoint) {
 			this.model._scrollPos = scroll;
-			// this._updatePositions();
+		} else {
+			this._requestScrollAnimation();
 		}
-
-		this._scrollFrameRequested = false;
 	},
 	_getScroll: function _getScroll() {
-		return document.defaultView.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+		return window.pageYOffset || document.documentElement.scrollTop;
 	},
 	_setScroll: function _setScroll(y) {
 		window.scrollTo(0, y);
 	}
 });
 
-},{"./blade":305,"./blade-tour":304,"./context-signup":307,"./form-partners":310,"./form-subscribe":311,"./page-nav":312,"ampersand-view":16,"ampersand-view-switcher":15,"app":295,"bows":21,"utils":299}],304:[function(require,module,exports){
+},{"./blade":305,"./blade-tour":304,"./context-signup":307,"./form-partners":310,"./form-subscribe":311,"./page-nav":312,"ampersand-view":16,"ampersand-view-switcher":15,"app":295,"utils":299}],304:[function(require,module,exports){
 
 
 //
@@ -21245,6 +21248,7 @@ module.exports = View.extend({
 		this._setupNavItems();
 
 		this.listenTo(FRONT, 'waypoint:active', function (waypoint) {
+			if (!waypoint) return;
 			_this.waypointActive = +waypoint.id;
 		});
 	},
