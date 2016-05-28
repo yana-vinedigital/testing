@@ -224,11 +224,11 @@ var AppState = State.extend({
 		this._waypointMap = Utils.map( waypoints, 'top' ).reverse();
 		this._bladeMap = Utils.map( blades, 'bladeTop' ).reverse();
 
-		console.log('registerWaypoint', this._bladeMap.length, this._bladeObjects.length);
+		// console.log('registerWaypoint', this._bladeMap.length, this._bladeObjects.length);
 		
 		if ( this._bladeMap.length >= this._bladeObjects.length ) {
 			this._isWaypointsReady = true;
-			console.log('_isWaypointsReady');
+			// console.log('_isWaypointsReady');
 		}
 	},
 

@@ -53,3 +53,25 @@
 
 
 }
+
+
+
+/*
+ *	Breakpoint:	smartphone-wide
+ *	--------------------------------------------------
+ */
+ 
+ @include breakpoint(smartphone-wide) {
+	 .view-privacy {
+		
+		section.intro {
+
+		}
+		
+		section.content {
+			text-align: center;
+		}
+		
+	}
+		 
+ }
