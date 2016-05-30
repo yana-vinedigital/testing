@@ -109,6 +109,6 @@ module.exports = View.extend({
 
 		this._isAirlineSelected = true;
 		this._isAirlineOtherSelected = inputTarget.getAttribute('id') === 'other';
-		this.v_formSignupAirline.setValue( 'cm-f-udgv', inputTarget.value );
+		this.v_formSignupAirline.setValue( 'cm-f-btrdut', inputTarget.value );
 	}
 });
