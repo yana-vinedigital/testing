@@ -12,7 +12,8 @@
 
 html {
 	// overflow: hidden;
-
+	
+	&.-is-ie,
 	&.no-js {
 		.page {
 			position: relative;
@@ -53,13 +54,21 @@ html {
  *	--------------------------------------------------
  */
 
-.outline {
-	// width: 100%; height: 100%;
-// 	height: 100vh;
-// 	// position: fixed; top: 0; left: 0;
-	overflow: hidden;
-	position: relative;
-}
+// .outline {
+// 	// width: 100%; height: 100%;
+// // 	height: 100vh;
+// // 	// position: fixed; top: 0; left: 0;
+// 	overflow: hidden;
+// 	position: relative;
+// }
+	.outline-header,
+	.outline-main,
+	.outline-footer {
+		svg {
+			width: 100%; height: 100%;
+		}
+	}
+
 	.outline-main {
 		width: 100%;
 		position: relative; z-index: 0;
@@ -204,7 +213,12 @@ html {
 			}
 
 
-
+.browser-outdated {
+	width: 100%; height: 100%;
+	padding: lines(3) 0 0 0;
+	position: fixed; top: 0; left: 0; z-index: 999;
+	background-color: $COLOR_BRAND_BASE;
+}
 
 
 			

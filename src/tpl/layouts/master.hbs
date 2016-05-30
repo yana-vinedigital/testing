@@ -10,21 +10,24 @@
 		<link rel="icon" href="/favicon.ico">
 		{{!-- // <script type="text/javascript" src="https://www.google.com/jsapi"></script> --}}
 	</head>
-	<body class="{{#if view }} view-{{ view }}{{/if}}">
-		<!--[if lt IE 9]>
-			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<body class="{{#if view }} view-{{ view }}{{/if}}" data-hook="app">
+		<!--[if lt IE 10]>
+			<div class="browser-outdated">
+				<h3>You are using an <strong>outdated</strong> browser.</h3>
+				<p>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><p><a href="mailto:info@seatfrog.com">Contact us</a></p>
+			</div>
 		<![endif]-->
 
 		{{> sprite.symbol }}
 		
-		<div class="outline" data-hook="app">
+		{{!-- <div class="outline"> --}}
 			
 			{{> header }}
 
 			{{#block "main"}}{{/block}}
 
 			<footer class="outline-footer" data-region="footer"></footer>
-		</div>
+		{{!-- </div> --}}
 
 		<script src="assets/js/main.js"></script>
 		<!--Google Analytics-->

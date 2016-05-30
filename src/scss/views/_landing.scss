@@ -359,6 +359,79 @@ section.signup {
 // }
 
 
+html.-is-ie {
+	section.tour {
+		height: 300vh;
+		opacity: 1;
+	}
+		.tour-outline {
+			padding: 0;
+		}
+		
+		article {
+			overflow: hidden;
+
+			&:nth-child(2n) {
+				.slide-container:after {
+					transform: skewX(-10deg);
+				}
+			}
+		}
+			.slide-container {
+				&:after {
+					content: '';
+					width: 60%; height: 100%;
+					position: absolute; top: 0; left: -10%;
+					background-color: $COLOR_WHITE;
+					transform: skewX(10deg);
+				}
+			}
+
+			.slide-content {
+				opacity: 1;
+
+				.container {
+					margin-top: 0;
+					opacity: 1;
+
+					.col {
+						width: 40%;
+					}
+				}
+			}
+
+			.slide-content-bg {
+				display: none;
+			}
+
+			.slide-overlay {
+				left: 45%;
+
+				.overlay-blip {
+					opacity: 1;
+					transform: scale(0.75);
+				}
+			}
+
+			.slide-bg {
+				width: 60%; height: 100%;
+				top: auto;
+				opacity: 1;
+			}
+
+		article {
+
+			&.step1 {
+				.slide-overlay {
+					top: auto; bottom: 0;
+
+					.overlay-blip {
+						top: auto; bottom: lines(5);
+					}
+				}
+			}
+		}
+}
 
 
 /*

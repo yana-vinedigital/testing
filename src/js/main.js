@@ -21,6 +21,7 @@ var Templates = require('./base/templates');
 
 //	Dependencies
 var Modernizr = require('browsernizr');
+var Browser = require('detect-browser');
 var State = require('ampersand-state');
 
 //	Views
@@ -40,6 +41,8 @@ var AppView = require('./views/app');
 var AppState = State.extend({
 
 	props: {
+		_browser: ['object'],
+
 		_windowWidth: ['number', true, window.innerWidth],
 		_windowHeight: ['number', true, window.innerHeight],
 		_breakpoint: ['string', true, 'default'],
@@ -70,6 +73,12 @@ var AppState = State.extend({
 	},
 	
 	derived: {
+		_isBrowserIE: {
+			deps: ['_browser'],
+			fn() {
+				return this._browser.name == 'ie';
+			}
+		},
 		_isDeviceBreakpoint: {
 			deps: ['_breakpoint'],
 			fn: function() {
@@ -185,6 +194,7 @@ var AppState = State.extend({
 	},
 
 	initialize() {
+		this._browser = Browser;
 		this._transformProperty = Modernizr.prefixed('transform');
 		this._hasTransforms3d = Modernizr.csstransforms3d;
 		this._isTouch = Modernizr.touchevents;

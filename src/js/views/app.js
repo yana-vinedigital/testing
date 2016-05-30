@@ -59,6 +59,10 @@ module.exports = View.extend({
 	},
 
 	bindings: {
+		'model._isBrowserIE': {
+			type: 'booleanClass',
+			name: '-is-ie'
+		},
 		'model._isMenuOpen': {
 			type: 'booleanClass',
 			name: '-is-menu-open'
@@ -385,7 +389,7 @@ module.exports = View.extend({
 		this.model._breakpoint = Utils.DOM.getAfterAttr( document.body );
 		this.model._scrollPos = scroll;
 
-		if ( this.model._isDeviceBreakpoint ) {
+		if ( this.model._isDeviceBreakpoint || this.model._isBrowserIE ) {
 			this.disableParallax();
 		} else {
 			this.enableParallax();
@@ -404,7 +408,7 @@ module.exports = View.extend({
 		if ( !this._scrollFramePending ) {
 			Utils.raf(() => {
 				var scroll = this.model._scrollOffset = this._getScroll();
-				if ( this.model._isDeviceBreakpoint ) {
+				if ( this.model._isDeviceBreakpoint || this.model._isBrowserIE ) {
 					this.model._scrollPos = scroll;
 				} else {
 					this._requestScrollAnimation();
