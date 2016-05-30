@@ -20725,7 +20725,7 @@ module.exports = View.extend({
 					}],
 					parent: this
 				}), new InputView({
-					template: '<label data-hook="input-airline" class="input-airline"><input type="text" id="fieldudgv" placeholder="" class="-large" required /><div data-hook="message-container" class="message message-below message-error"><p data-hook="message-text"></p></div></label>',
+					template: '<label data-hook="input-airline" class="input-airline"><input type="text" id="fieldbtrdut" placeholder="" class="-large" required /><div data-hook="message-container" class="message message-below message-error"><p data-hook="message-text"></p></div></label>',
 					name: 'cm-f-btrdut',
 					label: 'Airline',
 					placeholder: 'Name of the airline',
