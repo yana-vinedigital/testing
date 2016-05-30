@@ -20071,7 +20071,7 @@ module.exports = View.extend({
 		var _this2 = this;
 
 		var _this = this;
-		this._scrollFrameRequested = false;
+		this._scrollFramePending = false;
 		this._animFramePending = false;
 		this._bladeCurrentIndex = 0;
 
@@ -20277,7 +20277,8 @@ module.exports = View.extend({
 	_setupParallax: function _setupParallax() {
 		var _this5 = this;
 
-		var windowHeightHalf = this.model._windowHeight / 2;
+		var windowHeight = this.model._windowHeight;
+		var windowHeightHalf = windowHeight / 2;
 
 		this.$_parallaxElements.forEach(function (el, i) {
 			var pos = Utils.DOM.getPosition(el, true);
@@ -20286,24 +20287,24 @@ module.exports = View.extend({
 				offset: pos.top + pos.height / 2,
 				parallax: el.getAttribute('data-parallax') || 1
 			};
-			el.style[_this5.model._transformProperty] = 'translate3d(0,' + (_this5.model._scrollPos * item.parallax * -1 + (item.offset < windowHeightHalf ? 0 : item.offset - windowHeightHalf) * item.parallax) + 'px,0)';
+			el.style[_this5.model._transformProperty] = 'translate3d(0,' + (_this5.model._scrollPos * item.parallax * -1 + (item.offset < windowHeight ? 0 : item.offset - windowHeightHalf) * item.parallax) + 'px,0)';
 			_this5._parallaxObjects.push(item);
 		});
 
 		this._parallaxObjectsLength = this._parallaxObjects.length - 1;
 	},
+	_scrollAnimationHandler: function _scrollAnimationHandler(time) {
+		this._animFramePending = false;
+		if (this.model._scrollNeedsUpdate) {
+			this._requestScrollAnimation();
+			this.model._scrollPos = +(this.model._scrollPos + this.model._scrollVelocity).toFixed(2);
+			this._updateParallaxPositions();
+		}
+	},
 	_requestScrollAnimation: function _requestScrollAnimation() {
 		if (this._animFramePending) return;
 		this._animFramePending = true;
 		Utils.raf(this._scrollAnimationHandler);
-	},
-	_scrollAnimationHandler: function _scrollAnimationHandler(time) {
-		this._animFramePending = false;
-		if (!this.model._scrollNeedsUpdate) return;
-		this._requestScrollAnimation();
-
-		this.model._scrollPos = +(this.model._scrollPos + this.model._scrollVelocity).toFixed(2);
-		this._updateParallaxPositions();
 	},
 	_updateParallaxPositions: function _updateParallaxPositions() {
 		var windowHeight = this.model._windowHeight;
@@ -20340,7 +20341,7 @@ module.exports = View.extend({
 
 		for (var i = this._parallaxObjectsLength; i >= 0; i--) {
 			var item = this._parallaxObjects[i];
-			item.el.style[this.model._transformProperty] = 'translate3d(0,' + (scrollPos * item.parallax * -1 + (item.offset < windowHeightHalf ? 0 : item.offset - windowHeightHalf) * item.parallax) + 'px,0)';
+			item.el.style[this.model._transformProperty] = 'translate3d(0,' + (scrollPos * item.parallax * -1 + (item.offset < windowHeight ? 0 : item.offset - windowHeightHalf) * item.parallax) + 'px,0)';
 		}
 	},
 	_updateViewport: function _updateViewport() {
@@ -20354,6 +20355,7 @@ module.exports = View.extend({
 			this.disableParallax();
 		} else {
 			this.enableParallax();
+			this._updateParallaxPositions();
 		}
 
 		FRONT.trigger('window:reflow', { width: this.model._windowWidth, height: this.model._windowHeight });
@@ -20363,13 +20365,20 @@ module.exports = View.extend({
 		this.model._logoOffset = Math.round(logoPos.top + logoPos.height / 2);
 	},
 	_updateScroll: function _updateScroll() {
-		var scroll = this.model._scrollOffset = this._getScroll();
+		var _this6 = this;
 
-		if (this.model._isDeviceBreakpoint) {
-			this.model._scrollPos = scroll;
-		} else {
-			this._requestScrollAnimation();
+		if (!this._scrollFramePending) {
+			Utils.raf(function () {
+				var scroll = _this6.model._scrollOffset = _this6._getScroll();
+				if (_this6.model._isDeviceBreakpoint) {
+					_this6.model._scrollPos = scroll;
+				} else {
+					_this6._requestScrollAnimation();
+				}
+				_this6._scrollFramePending = false;
+			});
 		}
+		this._scrollFramePending = true;
 	},
 	_getScroll: function _getScroll() {
 		return window.pageYOffset || document.documentElement.scrollTop;

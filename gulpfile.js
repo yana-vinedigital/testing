@@ -239,21 +239,21 @@ gulp.task('svg', function() {
  */
 
 gulp.task('server', function() {
-	return $.browserSync({
-		server: {
-			baseDir: paths.dist.root
-		},
-		files: [
-			paths.dist.root + '**/*.html',
-			paths.dist.js + '*.js'
-		],
-		notify: false,
-		ghostMode: false
-	});
-	// $.connect.server({
-	// 	root: paths.dist.root,
-	// 	livereload: false
+	// return $.browserSync({
+	// 	server: {
+	// 		baseDir: paths.dist.root
+	// 	},
+	// 	files: [
+	// 		paths.dist.root + '**/*.html',
+	// 		paths.dist.js + '*.js'
+	// 	],
+	// 	notify: false,
+	// 	ghostMode: false
 	// });
+	return $.connect.server({
+		root: paths.dist.root,
+		livereload: false
+	});
 });
 
 
