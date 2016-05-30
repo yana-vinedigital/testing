@@ -69,7 +69,7 @@ module.exports = View.extend({
 					new InputView({
 						type: 'hidden',
 						template: '<label class="input-email"><input type="hidden" id="fieldEmail" placeholder="" required /></label>',
-						name: 'cm-hrkruk-hrkruk',
+						name: 'cm-dkiiju-dkiiju',
 						value: this.dataEmail,
 						required: true,
 						tests: [
@@ -83,7 +83,7 @@ module.exports = View.extend({
 					}),
 					new InputView({
 						template: '<label data-hook="input-airline" class="input-airline"><input type="text" id="fieldudgv" placeholder="" class="-large" required /><div data-hook="message-container" class="message message-below message-error"><p data-hook="message-text"></p></div></label>',
-						name: 'cm-f-udgv',
+						name: 'cm-f-btrdut',
 						label: 'Airline',
 						placeholder: 'Name of the airline',
 						tests: [

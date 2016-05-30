@@ -126,29 +126,29 @@ var AppState = State.extend({
 		// 		}, 250, { leading: true, trailing: true })();
 		// 	}
 		// },
-		_currentBlade: {
-			deps: ['_isWaypointsReady', '_currentBladeTop'],
-			fn: function() {
-				if ( typeof this._currentBladeTop === 'undefined' || !this._isWaypointsReady ) return;
-				let blade = Utils.find( this._waypoints, { bladeTop: this._currentBladeTop, type: 'blade' } );
-				return blade; //typeof blade === 'undefined' ? undefined : blade;
-			}
-		},
+		// _currentBlade: {
+		// 	deps: ['_isWaypointsReady', '_currentBladeTop'],
+		// 	fn: function() {
+		// 		if ( typeof this._currentBladeTop === 'undefined' || !this._isWaypointsReady ) return;
+		// 		let blade = Utils.find( this._waypoints, { bladeTop: this._currentBladeTop, type: 'blade' } );
+		// 		return blade; //typeof blade === 'undefined' ? undefined : blade;
+		// 	}
+		// },
 		// _currentBladeId: {
 		// 	deps: ['_currentBlade'],
 		// 	fn() {
 		// 		return this._currentBlade.id;
 		// 	}
 		// },
-		_headerTheme: {
-			deps: ['_isWaypointsReady', '_currentBlade', '_isDeviceBreakpoint'],
-			fn: function() {
-				if ( !this._isWaypointsReady ) return;
-				if ( this._isDeviceBreakpoint || typeof this._currentBlade === 'undefined' ) return;
-				if ( typeof this._currentBlade.instance.bladeTheme === 'undefined' ) return 'dark';
-				return this._currentBlade.instance.bladeTheme;
-			}
-		},
+		// _headerTheme: {
+		// 	deps: ['_isWaypointsReady', '_currentBlade', '_isDeviceBreakpoint'],
+		// 	fn: function() {
+		// 		if ( !this._isWaypointsReady ) return;
+		// 		if ( this._isDeviceBreakpoint || typeof this._currentBlade === 'undefined' ) return;
+		// 		if ( typeof this._currentBlade.instance.bladeTheme === 'undefined' ) return 'dark';
+		// 		return this._currentBlade.instance.bladeTheme;
+		// 	}
+		// },
 		_currentWaypoint: {
 			deps: ['_isWaypointsReady', '_currentWaypointTop', '_waypoints'],
 			fn: function() {
@@ -192,9 +192,9 @@ var AppState = State.extend({
 		// 	Async Derived Properties	 ------------
 
 		//	_currentBladeTop
-		this.on('change:_isWaypointsReady change:_scrollPos change:_bladeMap', Utils.throttle(() => {
-			this._currentBladeTop = this.getCurrentWaypointLogo();
-		}, 250));
+		// this.on('change:_isWaypointsReady change:_scrollPos change:_bladeMap', Utils.throttle(() => {
+		// 	this._currentBladeTop = this.getCurrentWaypointLogo();
+		// }, 250));
 		//	_currentWaypointTop
 		this.on('change:_isWaypointsReady change:_scrollPos change:_waypointMap', Utils.throttle(() => {
 			if ( !this._isWaypointsReady ) return;
@@ -202,7 +202,7 @@ var AppState = State.extend({
 		}, 50));
 		//	_isScrollTopSection
 		this.on('change:_windowHeight change:_scrollPos change:_isDeviceBreakpoint', Utils.throttle(() => {
-			this._isScrollTopSection = ( this._scrollPos < this._windowHeight * 0.25 ) && !this._isDeviceBreakpoint;
+			this._isScrollTopSection = ( this._scrollPos < this._windowHeight * 0.25 )
 		}, 250));
 	},
 
@@ -225,19 +225,18 @@ var AppState = State.extend({
 		this._bladeMap = Utils.map( blades, 'bladeTop' ).reverse();
 
 		// console.log('registerWaypoint', this._bladeMap.length, this._bladeObjects.length);
-		
-		if ( this._bladeMap.length >= this._bladeObjects.length ) {
+		if ( this._waypointMap.length >= this._bladeObjects.length ) {
 			this._isWaypointsReady = true;
 			// console.log('_isWaypointsReady');
 		}
 	},
 
-	getCurrentWaypointLogo() {
-		var waypoint = Utils.find( this._bladeMap, ( top ) => {
-			return top <= ( this._scrollPos + this._logoOffset );
-		});
-		return typeof waypoint === 'undefined' ? 0 : waypoint;
-	},
+	// getCurrentWaypointLogo() {
+	// 	var waypoint = Utils.find( this._bladeMap, ( top ) => {
+	// 		return top <= ( this._scrollPos + this._logoOffset );
+	// 	});
+	// 	return typeof waypoint === 'undefined' ? 0 : waypoint;
+	// },
 
 	getCurrentWaypointBlade() {
 		var waypoint = Utils.find( this._waypointMap, ( top ) => {

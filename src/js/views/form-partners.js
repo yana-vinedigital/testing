@@ -33,13 +33,13 @@ var ContextThanksPartnersView = require('../views/context-thanks-partners');
 
 module.exports = FormSubscribeView.extend({
 
-	template: '<form action="http://email.seatfrog.com/t/i/s/uljthu/" method="post" id="subForm" data-hook="form-partners"><fieldset data-hook="field-container"></fieldset></form>',
+	template: '<form action="http://email.seatfrog.com/t/i/s/uljto/" method="post" id="subForm" data-hook="form-partners"><fieldset data-hook="field-container"></fieldset></form>',
 
 	fields() {
 		return [
 			new InputView({
 				template: '<label class="field -half"><input type="text" id="fieldFirstName" class="-large" required /><div data-hook="message-container" class="message message-below message-error"><p data-hook="message-text"></p></div></label>',
-				name: 'cm-f-uktdjh',
+				name: 'cm-f-uktdty',
 				label: 'First name',
 				placeholder: 'First name',
 				required: true,
@@ -48,7 +48,7 @@ module.exports = FormSubscribeView.extend({
 			}),
 			new InputView({
 				template: '<label class="field -half"><input type="text" id="fieldSurname" class="-large" required /><div data-hook="message-container" class="message message-below message-error"><p data-hook="message-text"></p></div></label>',
-				name: 'cm-f-uktdjk',
+				name: 'cm-f-uktdtj',
 				label: 'Surname',
 				placeholder: 'Surname',
 				required: true,
@@ -57,7 +57,7 @@ module.exports = FormSubscribeView.extend({
 			}),
 			new InputView({
 				template: '<label class="field -half"><input type="text" id="fieldOrganisation" class="-large" required /><div data-hook="message-container" class="message message-below message-error"><p data-hook="message-text"></p></div></label>',
-				name: 'cm-f-uktdyk',
+				name: 'cm-f-uktdc',
 				label: 'Organisation',
 				placeholder: 'Organisation',
 				required: true,
@@ -66,13 +66,13 @@ module.exports = FormSubscribeView.extend({
 			}),
 			new InputView({
 				template: '<label class="field -half"><input type="text" id="fieldContactNumber" class="-large" required /><div data-hook="message-container" class="message message-below message-error"><p data-hook="message-text"></p></div></label>',
-				name: 'cm-f-uktdyu',
+				name: 'cm-f-uktdv',
 				label: 'Contact number',
 				placeholder: 'Contact number',
 				required: true,
 				tests: [
 					function ( value ) { 
-						if ( !/^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{2})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/gm.test( value ) ) { 
+						if ( !/^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{2})[-. )]*)?((\d{2,4})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/gm.test( value ) ) { 
 							return 'Please enter a valid phone number.'; 
 						}
 					}
@@ -82,7 +82,7 @@ module.exports = FormSubscribeView.extend({
 			new InputView({
 				template: '<label class="field -half"><input type="email" id="fieldEmail" class="-large" required /><div data-hook="message-container" class="message message-below message-error"><p data-hook="message-text"></p></div></label>',
 				type: 'email',
-				name: 'cm-uljthu-uljthu',
+				name: 'cm-uljto-uljto',
 				label: 'Email address',
 				placeholder: 'Email address',
 				required: true,

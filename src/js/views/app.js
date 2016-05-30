@@ -42,13 +42,13 @@ module.exports = View.extend({
 	},
 
 	derived: {
-		headerTheme: {
-			deps: ['model._headerTheme'],
-			fn: function() {
-				if ( typeof this.model._headerTheme === 'undefined' ) return false;
-				return '-header-theme-' + this.model._headerTheme;
-			}
-		},
+		// headerTheme: {
+		// 	deps: ['model._headerTheme'],
+		// 	fn: function() {
+		// 		if ( typeof this.model._headerTheme === 'undefined' ) return false;
+		// 		return '-header-theme-' + this.model._headerTheme;
+		// 	}
+		// },
 		waypointTheme: {
 			deps: ['model._waypointTheme'],
 			fn: function() {
@@ -75,7 +75,7 @@ module.exports = View.extend({
 			type: 'booleanClass',
 			name: '-is-waypoint-last'
 		},
-		'headerTheme': { type: 'class' },
+		// 'headerTheme': { type: 'class' },
 		'waypointTheme': { type: 'class' }
 	},
 
