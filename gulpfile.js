@@ -94,7 +94,7 @@ gulp.task('images', function() {
 
 gulp.task('fonts', function() {
 	return gulp.src([
-			paths.src.font + '*.{eot,woff,ttf,svg}'
+			paths.src.font + '*.{eot,woff,woff2,ttf,svg}'
 		], { dot: true })
 			.pipe( gulp.dest( paths.dist.font ) );
 });

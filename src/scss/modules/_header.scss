@@ -100,7 +100,7 @@ $header-menu-ease: $EASE_OUT_QUINT;
 			text-decoration: none;
 		
 			h1 {
-				@include font-setting-size( 25, 2 );
+				@include font-setting-size( 25, 1.9 );
 				margin: 0;
 				position: relative;
 				letter-spacing: 6px; text-align: left; text-indent: 0;
