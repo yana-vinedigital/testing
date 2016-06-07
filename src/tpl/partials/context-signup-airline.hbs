@@ -9,14 +9,14 @@
 		<div class="row">
 			<div class="col -half -center">
 				<ul class="unstyled btn-list">
-					<li><input type="radio" name="input-airline" id="airline1" value="Qantas" data-hook="airline-radio" /><label for="airline1" class="ui-btn -outline -huge">Qantas</label></li>
-					<li><input type="radio" name="input-airline" id="airline2" value="Virgin Australia" data-hook="airline-radio" /><label for="airline2" class="ui-btn -outline -huge">Virgin Australia</label></li>
-					<li><input type="radio" name="input-airline" id="other" value="" data-hook="airline-radio" /><label for="other" class="ui-btn -outline -huge">Other</label></li>
+					<li><input type="radio" name="input-airline" id="airline1" value="Qantas" data-hook="airline-radio" onClick="ga('send', 'event', 'Signup', 'Click Button', 'Airline - Qantas');"/><label for="airline1" class="ui-btn -outline -huge">Qantas</label></li>
+					<li><input type="radio" name="input-airline" id="airline2" value="Virgin Australia" data-hook="airline-radio" onClick="ga('send', 'event', 'Signup', 'Click Button', 'Airline - Virgin Australia');"/><label for="airline2" class="ui-btn -outline -huge">Virgin Australia</label></li>
+					<li><input type="radio" name="input-airline" id="other" value="" data-hook="airline-radio" onClick="ga('send', 'event', 'Signup', 'Click Button', 'Airline - Other');"/><label for="other" class="ui-btn -outline -huge">Other</label></li>
 				</ul>
 
-				<form action="http://email.seatfrog.com/t/i/s/dkiiju/" method="post" id="subForm" data-hook="form-signup-airline">
+				<form action="http://email.seatfrog.com/t/i/s/dkiiju/" method="post" id="subForm" data-hook="form-signup-airline" onSubmit="ga('send', 'event', 'Signup', 'Submit Form', 'Airline Questionnaire');">
 					<fieldset data-hook="field-container"></fieldset>
-					<input class="ui-btn -alt -large" type="submit" value="Submit" />
+					<input class="ui-btn -alt -large" type="submit" value="Submit"/>
 				</form>
 
 			</div>
