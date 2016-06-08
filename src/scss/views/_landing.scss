@@ -192,6 +192,7 @@ section.tour {
 					}
 						svg {
 							transform: rotate(90deg);
+							transform-origin: 50% 50%;
 							fill: $COLOR_WHITE;
 						}
 				}
