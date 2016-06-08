@@ -92,9 +92,9 @@ var AppState = State.extend({
 			}
 		},
 		_scrollDiff: {
-			deps: ['_scrollOffset', '_scrollPos'],
+			deps: ['_scrollOffset', '_scrollPos', '_isDevice'],
 			fn: function() {
-				if ( this._isTouch ) return 0;
+				if ( this._isDevice ) return 0;
 				return +(this._scrollOffset - this._scrollPos).toFixed(1);
 			}
 		},
