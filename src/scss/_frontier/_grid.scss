@@ -162,6 +162,13 @@
 		width: cols( $TOTAL_COLUMNS ) + $GUTTER;
 		&.-half { width: cols( $TOTAL_COLUMNS/2 ) + $GUTTER; }
 	}
+
+	.col, .cols-fixed .col {
+		
+		&.-half-desktop {
+			width: percentage( 1/2 );
+		}
+	}
 }
 
 /*
@@ -209,6 +216,9 @@
 		
 		&.-half-tablet {
 			width: percentage( 1/2 );
+		}
+		&.-twothirds-tablet {
+			width: percentage( 2/3 );
 		}
 		&.-wide-tablet {
 			width: percentage( 3/4 );

@@ -195,6 +195,16 @@ $header-menu-ease: $EASE_OUT_QUINT;
 
 						}
 
+						a.ui-btn {
+							padding: 0 $GUTTER/2;
+							color: $COLOR_WHITE;
+							border-color: $COLOR_BRAND_MAIN;
+
+							&:hover {
+								color: $COLOR_BRAND_BASE;
+							}
+						}
+
 						&.-is-active {
 							a {
 								color: $COLOR_BRAND_MAIN;

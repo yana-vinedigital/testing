@@ -84,12 +84,19 @@ module.exports = View.extend( Carousel, {
 		this.$_uiCarousel = this.query('[data-component=ui-carousel]');
 
 		if ( this.$_uiCarousel ) {
-			this.$_uiCarouselItems = [].slice.call( this.$_uiCarousel.querySelectorAll('.col') );
+			this.$_uiCarouselItems = [].slice.call( this.$_uiCarousel.querySelectorAll('.carousel-item') );
 
 			this.carousel = this.initializeCarousel({ 
 				el: this.$_uiCarousel,
 				$items: this.$_uiCarouselItems,
-				app: this.parent.model
+				app: this.parent.model,
+				// hasNav: false,
+				// hasPoints: false,
+				// hasPercentageLayout: false,
+				// breakpoints: {
+				// 	type: 'max',
+				// 	target: 'desktop'
+				// }
 			});
 		}
 

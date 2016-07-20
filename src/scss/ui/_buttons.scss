@@ -65,11 +65,21 @@
 		}
 
 		&.-alt {
-			
+			color: $COLOR_WHITE;
+			border-color: $COLOR_BRAND_MAIN;
+
+			&:hover {
+				color: $COLOR_BRAND_BASE;
+			}
 		}
 	}
 
 	//	Sizes	 ----------------
+
+	&.-block {
+		width: 100%;
+		display: block;
+	}
 
 	&.-tiny {
 		padding: 0 $GUTTER/4;
@@ -90,6 +100,7 @@
 
 	&.-large {
 		@include font-setting-size( epsilon );
+		padding: 0 $GUTTER*0.5;
 		line-height: lines(2.5, epsilon) - em(4, epsilon); letter-spacing: 6px; text-indent: 6px;
 		border-radius: lines(1.25, epsilon);
 
@@ -111,6 +122,10 @@
 		margin-bottom: lines(0.5);
 	}
 
+	.btn-group & {
+		margin-bottom: lines(0.5);
+	}
+
 	//	States	 ----------------
 
 	&.-is-success {
@@ -129,7 +144,8 @@
 	//	Themes	 ----------------
 	
 	.-theme-light & {
-		color: $COLOR_BRAND_BASE;
+		// color: $COLOR_BRAND_BASE;
+		background-color: $COLOR_BRAND_BASE;
 		border-color: $COLOR_BRAND_BASE;
 
 		&:hover {
@@ -171,6 +187,23 @@
 	.ui-btn {
 		padding-left: $GUTTER/2;
 		padding-right: $GUTTER/2;
+	}
+
+}
+
+
+/*
+ *	Breakpoint:	smartphone-wide 
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( smartphone-wide ) {
+
+	.ui-btn {
+		.btn-group & {
+			width: 100%;
+			margin-left: 0;
+		}
 	}
 
 }

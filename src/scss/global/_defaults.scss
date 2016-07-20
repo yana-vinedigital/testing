@@ -118,10 +118,23 @@ h4 {
 p {
 	&.-lead {
 		@extend .delta;
+
+		&.-color-alt {
+			color: $COLOR_BRAND_BASE;
+		}
+	}
+
+	&.-lead-mid {
+		@extend .delta-beta;
+
+		&.-color-alt {
+			color: $COLOR_BRAND_BASE;
+		}
 	}
 }
 
 blockquote {
+	margin: lines(1) 0;
 	font-weight: 300;
 
 	p {

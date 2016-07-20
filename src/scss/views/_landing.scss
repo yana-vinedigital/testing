@@ -311,41 +311,59 @@ section.experience {
 section.signup {
 	padding: lines(6) 0 lines(5);
 
-	.ui-social-links {
-		margin-bottom: lines(1);
+	// .ui-social-links {
+	// 	margin-bottom: lines(1);
 
-		> .col {
-			padding-top: lines(1);
-			position: relative;
+	// 	> .col {
+	// 		padding-top: lines(1);
+	// 		position: relative;
 			
-			&:after {
-				content: '';
-				position: absolute; top: 0; left: $GUTTER/2; right: $GUTTER/2;
-				border-top: 1px solid fade-out( $COLOR_WHITE, 0.9 );
-			}
-		}
-			h4 {
-				@include font-setting-size( delta, 2 );
-				margin: 0 $GUTTER/2 0 0;
-				display: inline-block; 
-				vertical-align: top;
-			}
-			ul {
-				display: inline-block;
-				vertical-align: top;
-			}
-	}
+	// 		&:after {
+	// 			content: '';
+	// 			position: absolute; top: 0; left: $GUTTER/2; right: $GUTTER/2;
+	// 			border-top: 1px solid fade-out( $COLOR_WHITE, 0.9 );
+	// 		}
+	// 	}
+	// 		h4 {
+	// 			@include font-setting-size( delta, 2 );
+	// 			margin: 0 $GUTTER/2 0 0;
+	// 			display: inline-block; 
+	// 			vertical-align: top;
+	// 		}
+	// 		ul {
+	// 			display: inline-block;
+	// 			vertical-align: top;
+	// 		}
+	// }
 
 	.bg {
 		height: 100%;
 		position: absolute; top: 0;
 		background-image: url("../img/bg-footer-signup.jpg");
-		background-position: top center;
-		opacity: 0.9;
+		background-position: center center;
+		opacity: 0.25;
 	}
 
 }
 
+section.media {
+	padding-top: lines(1.5); padding-bottom: lines(1.5);
+	background-color: #212338;
+
+	.media-gallery {
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+		.brand-img {
+			max-width: 20%;
+			padding: lines(1) gutters(0.5); box-sizing: border-box;
+			float: left;
+			flex-shrink: 1;
+			opacity: 0.35;
+		}
+}
 
 
 
@@ -602,6 +620,12 @@ html.-is-ie {
 				width: 65%; top: 0;
 			}
 	}
+
+	section.media {
+		.brand-img {
+			max-width: 33%;
+		}
+	}
 }
 
 
@@ -715,6 +739,12 @@ html.-is-ie {
 			background-position: 50% lines(5);
 		}
 		
+	}
+
+	section.media {
+		.brand-img {
+			max-width: 50%;
+		}
 	}
 
 }

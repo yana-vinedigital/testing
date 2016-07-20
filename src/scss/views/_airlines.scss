@@ -48,11 +48,23 @@
 
 	section.intro {
 		min-height: 100vh;
-		text-align: center;
+		text-align: left;
+
+		.section-content {
+			flex-direction: row;
+		}
+
+		h1 {
+			text-indent: 0; margin-left: 0;
+		}
+
+		.intro-image {
+			margin-bottom: -70%;
+		}
 
 		.bg {
 			opacity: 0.75;
-			background-image: url("../img/bg-airlines-intro-2.jpg");
+			background-image: url("../img/bg-airlines-intro-3.jpg");
 			background-size: cover;
 		}
 	}
@@ -77,6 +89,24 @@
 		.bg {
 			background-size: cover;
 		}
+	}
+
+	section.airlines-media {
+		padding-top: lines(1); padding-bottom: lines(1);
+		background-color: $COLOR_GREY_LIGHT;
+
+		.media-gallery {
+			display: flex;
+			justify-content: space-around;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+			.brand-img {
+				max-width: 25%;
+				padding: lines(1) gutters(0.5); box-sizing: border-box;
+				float: left;
+				flex-shrink: 1;
+			}
 	}
 
 	section.airlines-mobile {
@@ -146,6 +176,23 @@
  */
 
 
+/*
+ *	Breakpoint:	tablet-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet-wide) {
+
+	.view-airlines {
+		section.intro {
+			.intro-image {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+}
+
 
 /*
  *	Breakpoint:	tablet
@@ -188,11 +235,26 @@
 			}
 		}
 
+		section.intro {
+			text-align: center;
+			
+			.intro-image {
+				display: none;
+			}
+		}
+
+		section.airlines-media {
+			.brand-img {
+				max-width: 50%;
+			}
+		}
+
 		section.airlines-mobile,
 		section.airlines-seats,
 		section.airlines-nextgen {
 			text-align: center;
 		}
+
 	}
 
 }
