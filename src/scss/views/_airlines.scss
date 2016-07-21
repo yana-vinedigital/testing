@@ -59,7 +59,7 @@
 		}
 
 		.intro-image {
-			margin-bottom: -70%;
+			margin-bottom: -60%;
 		}
 
 		.bg {
@@ -88,6 +88,20 @@
 
 		.bg {
 			background-size: cover;
+		}
+	}
+
+	section.airlines-partners {
+		p {
+			text-align: left;
+
+			&.partner-cite {
+				color: $COLOR_BRAND_BASE; font-style: italic;
+			}
+		}
+
+		.partners-content {
+			position: relative;
 		}
 	}
 
@@ -153,6 +167,13 @@
 					color: currentColor;
 				}
 			}
+			
+			.findout-quote {
+
+			}
+				.ui-profile-image {
+					margin-top: lines(0.5);
+				}
 	}
 }
 
@@ -243,9 +264,15 @@
 			}
 		}
 
+		section.airlines-partners {
+			p {
+				text-align: center;
+			}
+		}
+
 		section.airlines-media {
 			.brand-img {
-				max-width: 50%;
+				width: 50%; max-width: 50%;
 			}
 		}
 
@@ -253,6 +280,12 @@
 		section.airlines-seats,
 		section.airlines-nextgen {
 			text-align: center;
+		}
+		
+		section.airlines-findout {
+			.findout-quote {
+				display: none;
+			}
 		}
 
 	}

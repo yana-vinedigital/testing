@@ -33,6 +33,7 @@ module.exports = View.extend( Carousel, {
 	props: {
 		parent: 'state',
 		index: ['number', false, 0],
+		bladeName: ['string', true, 'default'],
 		bladeType: ['string', true, 'default'],
 		bladeTheme: ['string', true, 'dark'],
 		bladeOffset: ['number', true, 0],
@@ -116,7 +117,7 @@ module.exports = View.extend( Carousel, {
 		this.offsetWidth = pos.width;
 		this.offsetHeight = pos.height;
 
-		FRONT.app.registerWaypoint({ id: this.index, instance: this, top: this.offsetTop, offset: this.bladeOffset, type: 'blade' });
+		FRONT.app.registerWaypoint({ id: this.index, name: this.bladeName, instance: this, top: this.offsetTop, offset: this.bladeOffset, type: 'blade' });
 	},
 
 	// _isVisibleBladeHandler: function( app, viewportScrollMid ) {

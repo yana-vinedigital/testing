@@ -150,7 +150,8 @@
 
 		&:hover {
 			color: $COLOR_WHITE;
-			background-color: $COLOR_BRAND_BASE;
+			background-color: lighten($COLOR_BRAND_BASE, 10);
+			border-color: lighten($COLOR_BRAND_BASE, 10);
 		}
 	}
 

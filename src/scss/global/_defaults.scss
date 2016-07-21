@@ -24,6 +24,15 @@ html {
 	}
 
 
+/*
+ *	Defaults: Grid
+ *	--------------------------------------------------
+ */
+
+.-hide-desktop {
+	display: none;
+}
+
 
 /*
  *	Defaults: Anchors
@@ -205,6 +214,24 @@ img {
  */
 
 @include breakpoint(tablet-wide) {
+
+}
+
+
+/*
+ *	Breakpoint:	smartphone-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(smartphone-wide) {
+
+	.-hide-desktop {
+		display: inherit;
+	}
+	.-hide-mobile {
+		display: none;
+	}
+
 
 }
 

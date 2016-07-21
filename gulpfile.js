@@ -206,9 +206,9 @@ gulp.task('css', function() {
 		.pipe( $.filter( '**/*.css', { restore: false }) )
 		.pipe( $.if( env.isProd, $.cssmin() ))
 		.pipe( gulp.dest( paths.dist.css ))
-		// .pipe( $.browserSync.reload({ 
-		// 	stream: true 
-		// }));
+		.pipe( $.browserSync.reload({ 
+			stream: true 
+		}));
 });
 
 
