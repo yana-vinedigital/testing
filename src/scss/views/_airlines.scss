@@ -47,8 +47,16 @@
 	}
 
 	section.intro {
-		min-height: 100vh;
+		height: 56vw; min-height: lines(30);
 		text-align: left;
+
+		.section-flex {
+			min-height: 100%;
+		}
+
+		.scroll-icon {
+			top: 85%;
+		}
 
 		.section-content {
 			flex-direction: row;
@@ -66,6 +74,10 @@
 			opacity: 0.75;
 			background-image: url("../img/bg-airlines-intro-3.jpg");
 			background-size: cover;
+		}
+
+		&:after {
+			height: lines(2);
 		}
 	}
 
@@ -206,9 +218,32 @@
 
 	.view-airlines {
 		section.intro {
-			.intro-image {
-				margin-bottom: 0;
+			height: 60vw; min-height: lines(25);
+
+			
+
+			.intro-content {
+				padding-bottom: lines(1); 
+
+				p {
+					@include font-setting( 16, 1 );
+				}
 			}
+				h1 {
+					@include font-setting( 48, 2 );
+				}
+
+			.intro-device {
+				width: percentage(2/5);
+			}
+				.intro-image {
+					margin-bottom: -40%;
+				}
+
+			.scroll-icon {
+				display: none;
+			}
+
 		}
 	}
 
@@ -226,6 +261,20 @@
 		.section-illustration {
 			.section-flex {
 				min-height: lines(28);
+			}
+		}
+		section.intro {
+			height: auto; min-height: lines(23);
+
+			h1 {
+				@include font-setting( 32, 1.25 );
+			}
+
+			.intro-device {
+				width: percentage(1/2);
+			}
+			.intro-content {
+				padding-bottom: lines(1);
 			}
 		}
 	}
