@@ -47,7 +47,7 @@
 	}
 
 	section.intro {
-		height: 56vw; min-height: lines(30);
+		height: 56vw; min-height: lines(30); max-height: 100vh;
 		text-align: left;
 
 		.section-flex {
@@ -219,8 +219,6 @@
 	.view-airlines {
 		section.intro {
 			height: 60vw; min-height: lines(25);
-
-			
 
 			.intro-content {
 				padding-bottom: lines(1); 
