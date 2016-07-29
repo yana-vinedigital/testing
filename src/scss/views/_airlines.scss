@@ -312,6 +312,17 @@
 
 		section.intro {
 			text-align: center;
+
+			.intro-content {
+				padding-bottom: lines(1); 
+
+				p {
+					@include font-setting( 16, 1 );
+				}
+			}
+				h1 {
+					@include font-setting( 48, 2 );
+				}
 			
 			.intro-image {
 				display: none;
