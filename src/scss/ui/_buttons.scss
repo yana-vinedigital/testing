@@ -147,9 +147,10 @@
 		// color: $COLOR_BRAND_BASE;
 		background-color: $COLOR_BRAND_BASE;
 		border-color: $COLOR_BRAND_BASE;
+		color: $COLOR_WHITE;
 
 		&:hover {
-			color: $COLOR_WHITE;
+			color: $COLOR_GREY;
 			background-color: darken($COLOR_BRAND_BASE, 10);
 			border-color: darken($COLOR_BRAND_BASE, 10);
 		}
