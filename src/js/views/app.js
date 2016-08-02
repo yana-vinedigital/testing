@@ -90,6 +90,7 @@ module.exports = View.extend({
 		'click [data-hook=next-waypoint]': '_clickNextWaypointHandler',
 		'click [data-hook=close-context]': '_clickCloseContextHandler',
 		'click [data-nav-waypoint]': '_clickWaypointHandler',
+		'change [data-hook=expand-checkbox]': '_changeExpandHandler',
 		'touchstart [data-hook=page-overlay]': '_clickOverlayHandler'
 	},
 
@@ -104,12 +105,14 @@ module.exports = View.extend({
 		//	Bind	 ----------------
 		this._updateScroll = this._updateScroll.bind( this );
 		this._viewportHandler = Utils.debounce( this._viewportHandler.bind( this ), 250 );
+		this._isWaypointsReadyHandler = this._isWaypointsReadyHandler.bind( this );
 		this._updateViewport = this._updateViewport.bind( this );
 		this._scrollHandler = this._scrollHandler.bind( this );
 		this._scrollAnimationHandler = this._scrollAnimationHandler.bind( this );
 		this._keyupHandler = this._keyupHandler.bind( this );
 		
 		// 	DOM	 --------------------
+		this.$_header = this.query('[data-region=header]');
 		this.$_viewport = this.queryByHook('app');
 		this.$_main = this.queryByHook('main');
 		this.$_pageNav = this.queryByHook('page-nav');
@@ -153,6 +156,7 @@ module.exports = View.extend({
 		this.listenTo( this.model, 'change:_breakpoint', this._breakpointHandler );
 		this.listenTo( FRONT, 'waypoint:go', this.goToWaypoint );
 		this.listenTo( FRONT, 'viewport:update', this._updateViewport );
+		this.listenToOnce( this.model, 'change:_isWaypointsReady', this._isWaypointsReadyHandler );
 		this.listenTo( this.model, 'change:_currentBlade', ( model, waypoint, options ) => {
 			FRONT.trigger( 'blade:active', waypoint );
 		});
@@ -221,6 +225,20 @@ module.exports = View.extend({
 		this.goToNextWaypoint();
 	},
 
+	_isWaypointsReadyHandler( e ) {
+		if ( !this.model._isWaypointsReady ) return;
+
+		if ( window.location.hash.substring(1).length > 0 ) {
+			var hash = window.location.hash.substring(1);
+			this.goToWaypointName( hash );
+		}
+	},
+
+	_changeExpandHandler( e ) {
+		e.preventDefault();
+		this._updateViewport();
+	},
+
 	//	Public Methods	 ----------------
 	
 	openMenu() {
@@ -246,12 +264,20 @@ module.exports = View.extend({
 
 	goToWaypoint( waypointId ) {
 		var waypoint = Utils.find( this.model._waypoints, { id: waypointId });
-		this._setScroll( waypoint.top );
+		var headerHeight = this.model._isDeviceBreakpoint ? 0 : this.model._headerHeight;
+		var yPos = Math.max( waypoint.top - headerHeight + 1, 0 );
+		this._setScroll( yPos );
+	},
+
+	goToWaypointName( waypointName ) {
+		var waypoint = Utils.find( this.model._waypoints, { name: waypointName });
+		if ( !waypoint ) return;
+		this.goToWaypoint( waypoint.id );
 	},
 
 	goToNextWaypoint() {
 		var waypoint = this.model.getNextWaypoint();
-		this._setScroll( waypoint.top );
+		this.goToWaypoint( waypoint.id );
 	},
 
 	enableParallax() {
@@ -298,10 +324,11 @@ module.exports = View.extend({
 		};
 
 		Utils.each( this.$_blades, ( el, i ) => {
+			var bladeName = el.getAttribute('data-blade') || 'default';
 			var bladeViewType = el.getAttribute('data-blade-type') || 'default';
 			var bladeTheme = el.getAttribute('data-blade-theme') || 'dark';
 			var bladeOffset = +(el.getAttribute('data-blade-offset') || 0);
-			var bladeView = new bladeTypes[ bladeViewType ]({ el: el, index: i, bladeTheme: bladeTheme, bladeOffset: bladeOffset, parent: this });
+			var bladeView = new bladeTypes[ bladeViewType ]({ el: el, index: i, bladeName: bladeName, bladeTheme: bladeTheme, bladeOffset: bladeOffset, parent: this });
 			this.model._bladeObjects.push( bladeView );
 		});
 	},
@@ -386,6 +413,7 @@ module.exports = View.extend({
 		var scroll = this.model._scrollOffset = this._getScroll();
 		this.model._windowWidth = window.innerWidth;
 		this.model._windowHeight = window.innerHeight;
+		this.model._headerHeight = this.$_header.offsetHeight;
 		this.model._breakpoint = Utils.DOM.getAfterAttr( document.body );
 		this.model._scrollPos = scroll;
 

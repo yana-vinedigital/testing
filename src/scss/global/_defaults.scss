@@ -24,6 +24,15 @@ html {
 	}
 
 
+/*
+ *	Defaults: Grid
+ *	--------------------------------------------------
+ */
+
+.-hide-desktop {
+	display: none;
+}
+
 
 /*
  *	Defaults: Anchors
@@ -118,10 +127,23 @@ h4 {
 p {
 	&.-lead {
 		@extend .delta;
+
+		&.-color-alt {
+			color: $COLOR_BRAND_BASE;
+		}
+	}
+
+	&.-lead-mid {
+		@extend .delta-beta;
+
+		&.-color-alt {
+			color: $COLOR_BRAND_BASE;
+		}
 	}
 }
 
 blockquote {
+	margin: lines(1) 0;
 	font-weight: 300;
 
 	p {
@@ -192,6 +214,24 @@ img {
  */
 
 @include breakpoint(tablet-wide) {
+
+}
+
+
+/*
+ *	Breakpoint:	smartphone-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(smartphone-wide) {
+
+	.-hide-desktop {
+		display: inherit;
+	}
+	.-hide-mobile {
+		display: none;
+	}
+
 
 }
 

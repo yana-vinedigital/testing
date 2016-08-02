@@ -45,6 +45,7 @@ var AppState = State.extend({
 
 		_windowWidth: ['number', true, window.innerWidth],
 		_windowHeight: ['number', true, window.innerHeight],
+		_headerHeight: ['number', true, 0],
 		_breakpoint: ['string', true, 'default'],
 		_logoOffset: ['number', true, 0],
 

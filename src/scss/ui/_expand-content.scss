@@ -1,0 +1,76 @@
+
+//
+//	UI / Expandable Content
+//
+
+
+.ui-expand-checkbox {
+	display: none;
+
+	&:checked ~ .ui-expand-content {
+		display: inherit;
+	}
+
+	&:checked ~ .ui-expand {
+		.show { display: none; }
+		.hide { display: block; }
+
+		&:after {
+			background: transparent;
+		}
+	}
+}
+
+.ui-expand {
+	width: 100%;
+	box-sizing: border-box; display: none; 
+	cursor: pointer;
+
+	p {
+		color: $COLOR_BRAND_BASE; display: none;
+		text-align: center;
+
+		span {
+			width: 23px; height: 23px;
+			margin: -2px 0 0 em(6);
+			position: relative; display: inline-block; vertical-align: middle;
+			border: 1px solid $COLOR_GREY; border-radius: 50%;
+
+			&:after {
+				content: '';
+				width: 8px; height: 8px;
+				// margin-left: $GUTTER/2;
+				display: block;
+				position: absolute; top: 0; left: 0;
+				border: 1px solid currentColor; border-width: 0 1px 1px 0;
+				transform: translate(7px,5px) rotate(45deg);
+			}
+		}
+
+		&.show { display: block; }
+		&.hide {
+			span:after {
+				transform: translate(7px,9px) rotate(-135deg);
+			}
+		}
+	}
+
+}
+
+
+/*
+ *	Breakpoint:	smartphone-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(smartphone-wide) {
+
+	.ui-expand {
+		display: block;
+	}
+	.ui-expand-content {
+		display: none;
+	}
+
+
+}

@@ -47,13 +47,37 @@
 	}
 
 	section.intro {
-		min-height: 100vh;
-		text-align: center;
+		height: 56vw; min-height: lines(30); max-height: lines(45);
+		text-align: left;
+
+		.section-flex {
+			min-height: 100%;
+		}
+
+		.scroll-icon {
+			top: 85%;
+		}
+
+		.section-content {
+			flex-direction: row;
+		}
+
+		h1 {
+			text-indent: 0; margin-left: 0;
+		}
+
+		.intro-image {
+			margin-bottom: -60%;
+		}
 
 		.bg {
 			opacity: 0.75;
-			background-image: url("../img/bg-airlines-intro-2.jpg");
+			background-image: url("../img/bg-airlines-intro-3.jpg");
 			background-size: cover;
+		}
+
+		&:after {
+			height: lines(2);
 		}
 	}
 
@@ -77,6 +101,38 @@
 		.bg {
 			background-size: cover;
 		}
+	}
+
+	section.airlines-partners {
+		p {
+			text-align: left;
+
+			&.partner-cite {
+				color: $COLOR_BRAND_BASE; font-style: italic;
+			}
+		}
+
+		.partners-content {
+			position: relative;
+		}
+	}
+
+	section.airlines-media {
+		padding-top: lines(1); padding-bottom: lines(1);
+		background-color: $COLOR_GREY_LIGHT;
+
+		.media-gallery {
+			display: flex;
+			justify-content: space-around;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+			.brand-img {
+				max-width: 25%;
+				padding: lines(1) gutters(0.5); box-sizing: border-box;
+				float: left;
+				flex-shrink: 1;
+			}
 	}
 
 	section.airlines-mobile {
@@ -104,6 +160,7 @@
 
 	section.airlines-findout {
 		background-color: $COLOR_GREY_LIGHT;
+		padding: lines(3.5) 0;
 		
 		form {
 			text-align: left;
@@ -123,6 +180,19 @@
 					color: currentColor;
 				}
 			}
+			
+			.findout-quote {
+				blockquote {
+					footer {
+						font-style: normal;
+					}
+
+				}
+
+			}
+				.ui-profile-image {
+					margin-top: lines(0.5);
+				}
 	}
 }
 
@@ -146,6 +216,44 @@
  */
 
 
+/*
+ *	Breakpoint:	tablet-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet-wide) {
+
+	.view-airlines {
+		section.intro {
+			height: 60vw; min-height: lines(25);
+
+			.intro-content {
+				padding-bottom: lines(1); 
+
+				p {
+					@include font-setting( 16, 1 );
+				}
+			}
+				h1 {
+					@include font-setting( 48, 2 );
+				}
+
+			.intro-device {
+				width: percentage(2/5);
+			}
+				.intro-image {
+					margin-bottom: -40%;
+				}
+
+			.scroll-icon {
+				display: none;
+			}
+
+		}
+	}
+
+}
+
 
 /*
  *	Breakpoint:	tablet
@@ -158,6 +266,20 @@
 		.section-illustration {
 			.section-flex {
 				min-height: lines(28);
+			}
+		}
+		section.intro {
+			height: auto; min-height: lines(23);
+
+			h1 {
+				@include font-setting( 32, 1.25 );
+			}
+
+			.intro-device {
+				width: percentage(1/2);
+			}
+			.intro-content {
+				padding-bottom: lines(1);
 			}
 		}
 	}
@@ -188,11 +310,51 @@
 			}
 		}
 
+		section.intro {
+			text-align: center;
+
+			.intro-content {
+				padding-bottom: lines(1); 
+
+				p {
+					@include font-setting( 16, 1 );
+				}
+			}
+				h1 {
+					@include font-setting( 48, 2 );
+				}
+			
+			.intro-image {
+				display: none;
+			}
+		}
+
+		section.airlines-partners {
+			p {
+				text-align: center;
+			}
+		}
+
+		section.airlines-media {
+			.brand-img {
+				width: 50%; max-width: 50%;
+			}
+		}
+
 		section.airlines-mobile,
 		section.airlines-seats,
 		section.airlines-nextgen {
 			text-align: center;
 		}
+
+		section.airlines-findout {
+
+			.findout-quote {
+				padding-top: lines(0.5);
+			}
+
+		}
+
 	}
 
 }

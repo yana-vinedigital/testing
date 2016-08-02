@@ -33,6 +33,7 @@ module.exports = View.extend( Carousel, {
 	props: {
 		parent: 'state',
 		index: ['number', false, 0],
+		bladeName: ['string', true, 'default'],
 		bladeType: ['string', true, 'default'],
 		bladeTheme: ['string', true, 'dark'],
 		bladeOffset: ['number', true, 0],
@@ -84,12 +85,19 @@ module.exports = View.extend( Carousel, {
 		this.$_uiCarousel = this.query('[data-component=ui-carousel]');
 
 		if ( this.$_uiCarousel ) {
-			this.$_uiCarouselItems = [].slice.call( this.$_uiCarousel.querySelectorAll('.col') );
+			this.$_uiCarouselItems = [].slice.call( this.$_uiCarousel.querySelectorAll('.carousel-item') );
 
 			this.carousel = this.initializeCarousel({ 
 				el: this.$_uiCarousel,
 				$items: this.$_uiCarouselItems,
-				app: this.parent.model
+				app: this.parent.model,
+				// hasNav: false,
+				// hasPoints: false,
+				// hasPercentageLayout: false,
+				// breakpoints: {
+				// 	type: 'max',
+				// 	target: 'desktop'
+				// }
 			});
 		}
 
@@ -109,7 +117,7 @@ module.exports = View.extend( Carousel, {
 		this.offsetWidth = pos.width;
 		this.offsetHeight = pos.height;
 
-		FRONT.app.registerWaypoint({ id: this.index, instance: this, top: this.offsetTop, offset: this.bladeOffset, type: 'blade' });
+		FRONT.app.registerWaypoint({ id: this.index, name: this.bladeName, instance: this, top: this.offsetTop, offset: this.bladeOffset, type: 'blade' });
 	},
 
 	// _isVisibleBladeHandler: function( app, viewportScrollMid ) {
