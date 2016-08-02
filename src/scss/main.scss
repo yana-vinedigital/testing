@@ -13,7 +13,7 @@
 //	Dev Mode	---------------
 // 	DO NOT EDIT: Dynamically updated via gulpfile
 
-$ENV: "dev"; 
+$ENV: "prod"; 
 @debug $ENV;
 
 //	Project Paths	-----------
