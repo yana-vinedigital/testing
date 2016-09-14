@@ -74,6 +74,10 @@
 						margin: 0 auto;
 					}
 				}
+
+				.board-member {
+					font-size: 0.75em;
+				}
 		}
 
 		section.founders {
@@ -86,6 +90,10 @@
 				svg {
 					display: block;
 				}
+			}
+
+			.board-member {
+				font-size: 0.5em;
 			}
 
 			.profile-iain {
