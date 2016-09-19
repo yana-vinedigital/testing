@@ -75,9 +75,6 @@
 					}
 				}
 
-				.board-member {
-					font-size: 0.75em;
-				}
 		}
 
 		section.founders {
@@ -90,10 +87,6 @@
 				svg {
 					display: block;
 				}
-			}
-
-			.board-member {
-				font-size: 0.5em;
 			}
 
 			.profile-iain {
@@ -110,6 +103,27 @@
 				.profile-icon {
 					top: auto; left: auto; bottom: 30%; right: lines(-1);
 				}
+			}
+		}
+
+		section.board {
+			background-color: $COLOR_GREY_LIGHT;
+			h1 {
+				margin-left: 0;
+				text-indent: 10px;
+			}
+
+			.board-members {
+				padding-top: lines(1);
+			}
+
+			.board-member {
+				font-size: 0.6em;
+				line-height: 0.5em;
+			}
+				
+			a {
+				color: $LINK_COLOR_ALTERNATE;
 			}
 		}
 
