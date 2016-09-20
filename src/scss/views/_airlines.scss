@@ -215,6 +215,24 @@
  *
  */
 
+/*
+ *	Breakpoint:	default
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(default) {
+
+	.view-airlines {
+
+		section.airlines-media {
+			.brand-img {
+				width: 16.66%; max-width: 16.66%;
+			}
+		}
+
+	}
+
+}
 
 /*
  *	Breakpoint:	tablet-wide
@@ -248,7 +266,13 @@
 			.scroll-icon {
 				display: none;
 			}
+			
+		}
 
+		section.airlines-media {
+			.brand-img {
+				width: 33%; max-width: 33%;
+			}
 		}
 
 	}
@@ -283,6 +307,7 @@
 				padding-bottom: lines(1);
 			}
 		}
+
 	}
 
 }
