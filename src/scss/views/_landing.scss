@@ -469,6 +469,7 @@ html.-is-ie {
  *	mobile			- 320 (fluid)
  *
  */
+ 
 
 
 /*
@@ -487,9 +488,25 @@ html.-is-ie {
 
 }
 
+/*
+ *	Breakpoint:	default
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(default) {
+
+	section.media {
+		.brand-img {
+			width: 16.66%; max-width: 16.66%;
+		}
+	}
+
+}
+
+
 
 /*
- *	Breakpoint:	tablet
+ *	Breakpoint:	tablet-wide
  *	--------------------------------------------------
  */
 
@@ -578,6 +595,12 @@ html.-is-ie {
 		}
 	}
 
+	section.media {
+		.brand-img {
+			width: 33.33%; max-width: 33.33%;
+		}
+	}
+
 
 }
 
@@ -621,11 +644,6 @@ html.-is-ie {
 			}
 	}
 
-	section.media {
-		.brand-img {
-			max-width: 33%;
-		}
-	}
 }
 
 
