@@ -79,6 +79,15 @@ module.exports = FormSubscribeView.extend({
 				required: true,
 				tests: [],
 				parent: this
+			}),
+			new InputView({
+				template: '<label class="field -full"><input type="text" id="fieldMessage" class="-large" /><div data-hook="message-container" class="message message-below message-error"><p data-hook="message-text"></p></div></label>',
+				name: 'cm-f-mjrjyu',
+				label: 'Message',
+				placeholder: 'Message',
+				required: false,
+				tests: [],
+				parent: this
 			})
 			// new InputView({
 			// 	template: '<label class="field -half"><input type="text" id="fieldContactNumber" class="-large" required /><div data-hook="message-container" class="message message-below message-error"><p data-hook="message-text"></p></div></label>',
