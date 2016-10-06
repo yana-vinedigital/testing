@@ -470,6 +470,20 @@ html.-is-ie {
  *
  */
  
+/*
+ *	Breakpoint:	large-desktop
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(large-desktop) {
+
+	section.signup {
+		.-wider {
+			width: 55%;
+		}
+	}
+
+}
 
 
 /*
@@ -486,6 +500,12 @@ html.-is-ie {
 		}
 	}
 
+	section.signup {
+		.-wider {
+			width: 65%;
+		}
+	}
+
 }
 
 /*
@@ -498,6 +518,12 @@ html.-is-ie {
 	section.media {
 		.brand-img {
 			width: 16.66%; max-width: 16.66%;
+		}
+	}
+
+	section.signup {
+		.-wider {
+			width: 65%;
 		}
 	}
 
@@ -592,6 +618,12 @@ html.-is-ie {
 					}
 				}
 			}
+		}
+	}
+
+	section.signup {
+		.-wider {
+			width: 80%;
 		}
 	}
 
