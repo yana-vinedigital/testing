@@ -1,0 +1,53 @@
+<header class="outline-header" data-region="header">
+	<section class="header">
+
+		<div class="row">
+			<div class="col -half header-logo" data-hook="logo">
+				<a href="/" class="logo"><span><svg><use xlink:href="#logo"></use></svg><span class="title">Seatfrog</span></a>
+				<span class="logo-virgin"><img src="/assets/img/logo-virgin-trains-w.png" /></span>
+			</div>
+			<div class="col -half header-nav">
+				<nav>
+					<ul>
+						<li class="cta"><a href="/download.html" class="ui-btn -alt -border" target="_blank">Download</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+	</section>
+
+	<div class="header-menu" data-hook="header-menu">
+		<div class="container">
+			<div class="row">
+				<div class="col -half -left menu-items">
+					<p><a href="#" class="ui-btn -alt" data-hook="open-sign-up" onClick="ga('send', 'event', 'Signup', 'Show Form', 'Menu Navigation Button');">Sign up</a></p>
+					<nav>
+						<ul>
+							<li{{#is view "home"}} class="-is-active"{{/is}}><a href="/">How it works</a></li>
+							<li{{#is view "airlines"}} class="-is-active"{{/is}}><a href="/partner-with-seatfrog.html">Partner with us</a></li>
+							<li{{#is view "about"}} class="-is-active"{{/is}}><a href="/about-seatfrog.html">About</a></li>
+							<li{{#is view "careers"}} class="-is-active"{{/is}}><a href="/jobs-at-seatfrog.html">Join the team</a></li>
+							<li{{#is view "pressroom"}} class="-is-active"{{/is}}><a href="/pressroom.html">Press</a></li>
+							<li{{#is view "contact"}} class="-is-active"{{/is}}><a href="mailto:info@seatfrog.com" onClick="ga('send', 'event', 'Enquiry', 'Click', 'Menu Contact Link')">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<div class="row ui-social-links">
+				<div class="col -half">
+					{{> social-links }}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="header-menu-bg" data-hook="header-menu-bg"></div>
+	<div class="page-context">
+		<div class="context-actions">
+			<a href="#" class="ui-btn" data-hook="close-context">Close &nbsp;X</a>
+		</div>
+		<div class="context-viewport" data-hook="page-context"></div>
+	</div>
+	<div class="page-overlay" data-hook="page-overlay"></div>
+
+</header>

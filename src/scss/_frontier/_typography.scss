@@ -134,10 +134,28 @@ ul {
 	}
 }
 .-margin-none {
-	margin-bottom: 0;
+	margin-bottom: 0 !important;
 
 	& + * {
 		margin-top: 0;
+	}
+}
+
+.-width-match-headline {
+	display: table;
+
+	.-center & {
+		margin: 0 auto;
+	}
+
+	// > :first-child {
+	// 	display: inline;
+	// }
+
+	p:not(:first-child) {
+		margin-top: 0;
+		display: table-caption;
+		caption-side: bottom;
 	}
 }
 

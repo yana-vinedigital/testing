@@ -43,19 +43,12 @@
 				<p>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><p><a href="mailto:info@seatfrog.com">Contact us</a></p>
 			</div>
 		<![endif]-->
-
 		{{> sprite.symbol }}
+		{{> header }}
+
+		{{#block "main"}}{{/block}}
 		
-		{{!-- <div class="outline"> --}}
-			
-			{{> header }}
-
-			{{#block "main"}}{{/block}}
-
-			<footer class="outline-footer" data-region="footer"></footer>
-		{{!-- </div> --}}
-
+		<footer class="outline-footer" data-region="footer"></footer>
 		<script src="assets/js/main.js"></script>
-
 	</body>
 </html>

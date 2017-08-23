@@ -96,33 +96,34 @@ $header-menu-ease: $EASE_OUT_QUINT;
 
 		.logo {
 			margin: 0;
+			position: relative;
 			display: block; float: left;
-			text-decoration: none;
+			color: $COLOR_WHITE; text-transform: uppercase;
+			font-family: $FONT_SECONDARY; text-decoration: none;
+			transition: color 0.5s;
 		
-			h1 {
+			&:after {
+				content: '';
+				width: em(48); height: em(48);
+				display: block; position: absolute; top: 0; left: em(-8); z-index: 0;
+				background-color: $COLOR_BRAND_MAIN;
+				border-radius: em(7);
+				opacity: 0;
+				transition: opacity 0.5s;
+			}
+
+			.title {
 				@include font-setting-size( 25, 1.9 );
 				margin: 0;
-				position: relative;
 				letter-spacing: 6px; text-align: left; text-indent: 0;
-				transition: color 0.5s;
+			}
 
-				&:after {
-					content: '';
-					width: em(48, 25); height: em(48, 25);
-					display: block; position: absolute; top: 0; left: em(-8, 25); z-index: 0;
-					background-color: $COLOR_BRAND_MAIN;
-					border-radius: em(7);
-					opacity: 0;
-					transition: opacity 0.5s;
-				}
-
-				svg {
-					width: em(32, 25); height: em(28, 25);
-					margin: em(10, 25) $GUTTER/2 em(10, 25) 0;
-					float: left; position: relative; z-index: 10;
-					fill: $COLOR_BRAND_MAIN;
-					transition: fill 0.5s;
-				}
+			svg {
+				width: em(32); height: em(28);
+				margin: em(10) em(13) em(10) 0;
+				float: left; position: relative; z-index: 10;
+				fill: $COLOR_BRAND_MAIN;
+				transition: fill 0.5s;
 			}
 
 			.-header-theme-light:not(.-is-menu-open) & {
@@ -196,7 +197,8 @@ $header-menu-ease: $EASE_OUT_QUINT;
 						}
 
 						a.ui-btn {
-							padding: 0 $GUTTER/2;
+							padding-left: $GUTTER/2;
+							padding-right: $GUTTER/2;
 							color: $COLOR_WHITE;
 							border-color: $COLOR_BRAND_MAIN;
 
@@ -394,11 +396,6 @@ $header-menu-ease: $EASE_OUT_QUINT;
 		.-is-menu-open & {
 			position: fixed;
 		}
-
-
-		.header {
-			
-		}
 		.header-logo {
 			width: 100%;
 		}
@@ -467,7 +464,7 @@ $header-menu-ease: $EASE_OUT_QUINT;
 			// transform: none;
 			// padding: 0 $GUTTER/4;
 
-			.logo span {
+			.logo .title {
 				display: none;
 			}
 
@@ -512,7 +509,6 @@ $header-menu-ease: $EASE_OUT_QUINT;
 	.outline-header {
 		padding-top: lines(1);
 
-		
 		.header {
 			max-width: 100%;
 			transform: none;
@@ -521,6 +517,7 @@ $header-menu-ease: $EASE_OUT_QUINT;
 			.-is-menu-open & {
 				transform: none;
 			}
+			
 		}
 		.menu {
 			margin-right: lines(1); padding-right: lines(1);

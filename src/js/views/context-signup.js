@@ -19,8 +19,8 @@ var Templates = require('../base/templates');
 var View = require('ampersand-view');
 var InputView = require('ampersand-input-view');
 var FormSubscribeView = require('./form-subscribe');
-var ContextThanksView = require('./context-thanks');
-var ContextSignupAirlineView = require('./context-signup-airline');
+// var ContextThanksView = require('./context-thanks');
+// var ContextSignupAirlineView = require('./context-signup-airline');
 
 //
 //
@@ -65,12 +65,12 @@ module.exports = View.extend({
 					})
 				];
 			},
-			submitCallback( data ) {
-				this.submitSubscription( data, () => {
-					_this.showAirline( data['cm-dkiiju-dkiiju'] );
-				});
-				return false;
-			},
+			// submitCallback( data ) {
+			// 	this.submitSubscription( data, () => {
+			// 		_this.showAirline( data['cm-dkiiju-dkiiju'] );
+			// 	});
+			// 	return false;
+			// },
 			parent: this,
 		});
 
@@ -90,10 +90,10 @@ module.exports = View.extend({
 
 	//	Public Methods	 ----------------
 
-	showAirline( email ) {
-		var view = new ContextSignupAirlineView({ parent: this.parent, dataEmail: email });
-		FRONT.appView.openContext( view );
-	},
+	// showAirline( email ) {
+	// 	var view = new ContextSignupAirlineView({ parent: this.parent, dataEmail: email });
+	// 	FRONT.appView.openContext( view );
+	// },
 
 	//	Private Methods	 ----------------
 

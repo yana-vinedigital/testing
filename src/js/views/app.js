@@ -19,6 +19,7 @@ var View = require('ampersand-view');
 var PageNavView = require('./page-nav');
 var BladeView = require('./blade');
 var BladeTourView = require('./blade-tour');
+var BladeDownloadView = require('./blade-download');
 var FormSubscribeView = require('./form-subscribe');
 var FormPartnersView = require('./form-partners');
 var ContextSignupView = require('./context-signup');
@@ -55,6 +56,14 @@ module.exports = View.extend({
 				if ( typeof this.model._waypointTheme === 'undefined' ) return false;
 				return '-waypoint-theme-' + this.model._waypointTheme;
 			}
+		},
+		mobileOsClass: {
+			deps: ['model._os'],
+			fn: function() {
+				if ( this.model._os === 'AndroidOS' ) return '-is-android';
+				if ( this.model._os === 'iOS' ) return '-is-ios';
+
+			}
 		}
 	},
 
@@ -80,7 +89,10 @@ module.exports = View.extend({
 			name: '-is-waypoint-last'
 		},
 		// 'headerTheme': { type: 'class' },
-		'waypointTheme': { type: 'class' }
+		'waypointTheme': { type: 'class' },
+		'mobileOsClass': {
+			type: 'class'
+		}
 	},
 
 	events: {
@@ -282,13 +294,13 @@ module.exports = View.extend({
 
 	enableParallax() {
 		this.disableParallax( false );
-		
+
 		this.$_parallaxElements = this.queryAll('[data-parallax]');
 		this.$_main.style.height = this.$_page.offsetHeight + 'px';
 		var scroll = this.model._scrollPos = this._getScroll();
 		this.model._scrollOffset = scroll;
 		this.$_page.style[ this.model._transformProperty ] = 'translate3d(0,' + (scroll * -1) + 'px,0)';
-
+		
 		this._setupParallax();
 		this._isParallaxEnabled = true;
 	},
@@ -320,7 +332,8 @@ module.exports = View.extend({
 
 		var bladeTypes = {
 			default: BladeView,
-			tour: BladeTourView
+			tour: BladeTourView,
+			download: BladeDownloadView
 		};
 
 		Utils.each( this.$_blades, ( el, i ) => {
@@ -400,6 +413,7 @@ module.exports = View.extend({
 				this.$_tour.style.opacity = this.tourOpacity;
 			}
 		}
+		// if ( !this._parallaxObjectsLength ) return;
 
 		for (var i = this._parallaxObjectsLength; i >= 0; i--) {
 			var item = this._parallaxObjects[i];
@@ -413,10 +427,10 @@ module.exports = View.extend({
 		var scroll = this.model._scrollOffset = this._getScroll();
 		this.model._windowWidth = window.innerWidth;
 		this.model._windowHeight = window.innerHeight;
-		this.model._headerHeight = this.$_header.offsetHeight;
+		this.model._headerHeight = this.$_header && this.$_header.offsetHeight || 0;
 		this.model._breakpoint = Utils.DOM.getAfterAttr( document.body );
 		this.model._scrollPos = scroll;
-
+		
 		if ( this.model._isDeviceBreakpoint || this.model._isBrowserIE ) {
 			this.disableParallax();
 		} else {

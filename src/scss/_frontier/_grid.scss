@@ -13,6 +13,7 @@
 %container {
 	width: cols( $TOTAL_COLUMNS ) + $GUTTER;
 	&.-half { width: cols( $TOTAL_COLUMNS/2 ) + $GUTTER; }
+	&.-span-full { width: 100%; max-width: 100%; }
 }
 
 @mixin container() {
@@ -44,6 +45,14 @@
 
 		&.-margin-none {
 			margin-bottom: 0;
+		}
+
+		&.-margin-2 {
+			margin-bottom: lines(2);
+		}
+
+		&.-flex {
+			display: flex;
 		}
 	}
 		.col {

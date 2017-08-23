@@ -649,8 +649,8 @@ var CarouselView = View.extend({
 		
 		this.$navPrev.className = 'ui-carousel-nav -left';
 		this.$navNext.className = 'ui-carousel-nav -right';
-		this.$navPrev.innerHTML = '<svg><use xlink:href="#icon-arrow-left"/></svg>';
-		this.$navNext.innerHTML = '<svg><use xlink:href="#icon-arrow-right"/></svg>';
+		this.$navPrev.innerHTML = '<svg><use xlink:href="#icon-caret-left"/></svg>';
+		this.$navNext.innerHTML = '<svg><use xlink:href="#icon-caret-right"/></svg>';
 
 		this.el.appendChild( this.$navPrev );
 		this.el.appendChild( this.$navNext );

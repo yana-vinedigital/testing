@@ -1,0 +1,43 @@
+
+//
+//  Frontier / Images
+//
+
+
+/*
+ *	Images: Core
+ *	--------------------------------------------------
+ */
+
+
+.image-retina {
+
+	display: inline-block;
+
+	img {
+		max-width: 50%;
+		margin-right: -50%;
+	}
+}
+	
+	
+
+
+	
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1440 +
+ *	DEFAULT 		1025...1439 (1128)
+ *	tablet-wide		- 1024
+ *	tablet			- 768 (fluid)
+ *	smartphone-wide	- 640 (fluid)
+ *	smartphone		- 480 (fluid)
+ *	mobile			- 320 (fluid)
+ *
+ */

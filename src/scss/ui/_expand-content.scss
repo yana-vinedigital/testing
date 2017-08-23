@@ -8,7 +8,7 @@
 	display: none;
 
 	&:checked ~ .ui-expand-content {
-		display: inherit;
+		display: block;
 	}
 
 	&:checked ~ .ui-expand {
@@ -26,7 +26,7 @@
 	box-sizing: border-box; display: none; 
 	cursor: pointer;
 
-	p {
+	p.delta {
 		color: $COLOR_BRAND_BASE; display: none;
 		text-align: center;
 

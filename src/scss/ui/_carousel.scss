@@ -12,7 +12,7 @@
 
 //	UI Element Vars	 --------------------
 
-$ui-carousel-viewport-xpadding: width(1) + $GUTTER/2;
+$ui-carousel-viewport-xpadding: cols(1) + $GUTTER/2;
 
 //	UI Element Defaults	 ----------------
 
@@ -46,7 +46,7 @@ $ui-carousel-viewport-xpadding: width(1) + $GUTTER/2;
 
 	&-nav {
 		&.-left, &.-right {
-			width: width(1); height: width(1);
+			width: em(24); height: em(48);
 			position: absolute; top: 50%; z-index: 99;
 			display: none; cursor: pointer;
 			transform: translateY(-50%);
@@ -72,7 +72,7 @@ $ui-carousel-viewport-xpadding: width(1) + $GUTTER/2;
 		display: none;
 
 		a {
-			width: em(12); height: em(12);
+			width: em(7); height: em(7);
 			margin: 0 em(3);
 			display: inline-block;
 			background-color: transparent;
@@ -186,12 +186,12 @@ $ui-carousel-viewport-xpadding: width(1) + $GUTTER/2;
 	.ui-carousel {
 
 		&--active {
-			&.-has-nav {
-				padding: 0;
-			}
+			// &.-has-nav {
+			// 	padding: 0;
+			// }
 
-			.-left { left: width(-0.5); }
-			.-right { right: width(-0.5); }
+			// .-left { left: cols(-0.5); }
+			// .-right { right: cols(-0.5); }
 		}
 	}
 

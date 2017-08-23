@@ -88,7 +88,7 @@ var SlideView = View.extend({
 	//	Event Handlers	 ----------------
 
 	_reflowHandler: function() {
-		var pos = Utils.DOM.getPosition( this.el, true );
+		var pos = Utils.DOM.getPosition( this.el, false );
 		this.offsetTop = pos.top;
 		this.offsetBottom = pos.top + pos.height;
 		this.offsetWidth = pos.width;

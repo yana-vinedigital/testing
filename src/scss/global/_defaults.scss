@@ -55,13 +55,12 @@ a {
 
 
 /*
- *	Defaults: Nav
+ *	Defaults: Colors
  *	--------------------------------------------------
  */
 
-ul {
+.-color-white { color: $COLOR_WHITE; }
 
-}
 
 
 /*
@@ -111,17 +110,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	margin-left: 10px; text-indent: 20px;
+	margin-left: 5px; //text-indent: 20px;
 	color: $HEADINGS_COLOR;
-	letter-spacing: 10px;
+	letter-spacing: 5px;
 }
 
 h2, h3 {
-	letter-spacing: 6px;
+	letter-spacing: 3px;
 }
 
 h4 {
-	letter-spacing: 3px;
+	letter-spacing: 2px;
 }
 
 p {

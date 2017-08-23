@@ -18,9 +18,14 @@ var Templates = {
 
 	Global: {
 		ContextSignup: require('../../tpl/partials/context-signup.hbs'),
-		ContextSignupAirline: require('../../tpl/partials/context-signup-airline.hbs'),
+		// ContextSignupAirline: require('../../tpl/partials/context-signup-airline.hbs'),
 		ContextSignupThanks: require('../../tpl/partials/context-signup-thanks.hbs'),
 		ContextSignupThanksPartners: require('../../tpl/partials/context-signup-thanks-partners.hbs')
+	},
+
+	Download: {
+		Form: require('../../tpl/partials/download-form.hbs'),
+		Thanks: require('../../tpl/partials/download-thanks.hbs'),
 	}
 
 };

@@ -13,7 +13,7 @@
 //	Dev Mode	---------------
 // 	DO NOT EDIT: Dynamically updated via gulpfile
 
-$ENV: "prod"; 
+$ENV: "dev"; 
 @debug $ENV;
 
 //	Project Paths	-----------
@@ -57,6 +57,7 @@ $DIR_FONTS: "../font/";
 
 @import "global/defaults";
 @import "global/forms";
+@import "global/images";
 @import "global/structure";
 
 //	UI	------------------------
@@ -83,6 +84,8 @@ $DIR_FONTS: "../font/";
 @import "views/landing";
 @import "views/about";
 @import "views/airlines";
+@import "views/partner";
+@import "views/download";
 @import "views/careers";
 @import "views/contact";
 @import "views/pressroom";
