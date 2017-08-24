@@ -12,9 +12,10 @@ $header-menu-ease: $EASE_OUT_QUINT;
 .outline-header {
 	width: 100%; height: lines(5);
 	position: fixed; top: 0; z-index: 100;
-	background-color: fade-out($COLOR_BRAND_BASE, 0.1);
+	background-color: fade-out($COLOR_BRAND_BASE, 0.2);
 	transition: background-color 0.5s;
 	will-change: background-color;
+	-webkit-backdrop-filter: blur(8px);
 	
 	// &:after {
 	// 	content: '';
@@ -26,6 +27,7 @@ $header-menu-ease: $EASE_OUT_QUINT;
 	.-is-scroll-top &,
 	.-is-menu-open & {
 		background-color: transparent;
+		-webkit-backdrop-filter: none;
 	}
 
 	.header {

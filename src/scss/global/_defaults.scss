@@ -101,10 +101,11 @@ h1, h2, h3, h4, h5, h6 {
 	text-transform: uppercase;
 
 	&.-font-alt {
-		font-family: $FONT_PRIMARY; line-height: 1.25;
+		font-family: $FONT_PRIMARY;
 		text-transform: none; letter-spacing: 0;
 	}
-	&.-color-alt {
+	&.-color-alt,
+	.-color-alt {
 		color: $COLOR_BRAND_MAIN;
 	}
 }

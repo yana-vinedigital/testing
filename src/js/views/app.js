@@ -18,7 +18,7 @@ var View = require('ampersand-view');
 //	Views
 var PageNavView = require('./page-nav');
 var BladeView = require('./blade');
-var BladeTourView = require('./blade-tour');
+// var BladeTourView = require('./blade-tour');
 var BladeDownloadView = require('./blade-download');
 var FormSubscribeView = require('./form-subscribe');
 var FormPartnersView = require('./form-partners');
@@ -139,7 +139,7 @@ module.exports = View.extend({
 		this.$_formSubscribe = [].slice.call( this.queryAll('[data-hook=form-subscribe]') );
 		this.$_formPartners = this.queryByHook('form-partners');
 		this.$_intro = this.query('[data-blade=intro]');
-		this.$_tour = this.query('[data-blade=tour]');
+		// this.$_tour = this.query('[data-blade=tour]');
 
 		// 	Views	 ----------------
 		if ( this.$_contextRegion ) {
@@ -315,7 +315,7 @@ module.exports = View.extend({
 			this.$_page.style[ this.model._transformProperty ] = 'translate3d(0,0,0)';
 			this.$_main.style.height = 'auto';
 			if ( this.$_intro ) this.$_intro.style.opacity = 1;
-			if ( this.$_tour ) this.$_tour.style.opacity = 1;
+			// if ( this.$_tour ) this.$_tour.style.opacity = 1;
 		}
 
 		this.$_parallaxElements.forEach( ( el, i ) => {
@@ -332,7 +332,7 @@ module.exports = View.extend({
 
 		var bladeTypes = {
 			default: BladeView,
-			tour: BladeTourView,
+			// tour: BladeTourView,
 			download: BladeDownloadView
 		};
 
@@ -386,7 +386,7 @@ module.exports = View.extend({
 		var windowHeightHalf = windowHeight / 2;
 		var scrollPos = this.model._scrollPos;
 		var introOpacityPrev = this.introOpacity || 1;
-		var tourOpacityPrev = this.tourOpacity || 0;
+		// var tourOpacityPrev = this.tourOpacity || 0;
 
 		this.$_page.style[ this.model._transformProperty ] = `translate3d(0,${(scrollPos * -1)}px,0)`;
 
@@ -397,22 +397,22 @@ module.exports = View.extend({
 			}
 		}
 
-		if ( this.$_tour && scrollPos > windowHeight*0.5 && scrollPos < windowHeight * 4.5 ) {
-			if ( scrollPos > windowHeight*0.5 && scrollPos <= windowHeight ) {
-				//	( Starting Y position ) / ( transition distance );
-				var opacity = ((scrollPos - windowHeight*0.5) / (windowHeight*0.5));
-			} else if ( scrollPos > windowHeight && scrollPos < windowHeight * 4.5 ) {
-				var opacity = 1 - (( scrollPos - windowHeight*4 ) / (windowHeight*0.5));
-			} else {
-				var opacity = 0;
-			}
+		// if ( this.$_tour && scrollPos > windowHeight*0.5 && scrollPos < windowHeight * 4.5 ) {
+		// 	if ( scrollPos > windowHeight*0.5 && scrollPos <= windowHeight ) {
+		// 		//	( Starting Y position ) / ( transition distance );
+		// 		var opacity = ((scrollPos - windowHeight*0.5) / (windowHeight*0.5));
+		// 	} else if ( scrollPos > windowHeight && scrollPos < windowHeight * 4.5 ) {
+		// 		var opacity = 1 - (( scrollPos - windowHeight*4 ) / (windowHeight*0.5));
+		// 	} else {
+		// 		var opacity = 0;
+		// 	}
 
-			let opacityCurve = +(Math.pow( opacity , 2 )).toFixed(2)
-			this.tourOpacity = Utils.MATH.clamp( opacityCurve, 0, 1 );
-			if ( this.tourOpacity !== tourOpacityPrev ) {
-				this.$_tour.style.opacity = this.tourOpacity;
-			}
-		}
+		// 	let opacityCurve = +(Math.pow( opacity , 2 )).toFixed(2)
+		// 	this.tourOpacity = Utils.MATH.clamp( opacityCurve, 0, 1 );
+		// 	if ( this.tourOpacity !== tourOpacityPrev ) {
+		// 		this.$_tour.style.opacity = this.tourOpacity;
+		// 	}
+		// }
 		// if ( !this._parallaxObjectsLength ) return;
 
 		for (var i = this._parallaxObjectsLength; i >= 0; i--) {
