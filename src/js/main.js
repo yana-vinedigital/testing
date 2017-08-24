@@ -205,6 +205,9 @@ var AppState = State.extend({
 		this._hasTransforms3d = Modernizr.csstransforms3d;
 		this._isTouch = Modernizr.touchevents;
 
+		//	If QS has ?downloadapp=1 - redirect to appropriate app store.
+		this.checkDownloadRedirect();
+
 		// 	Async Derived Properties	 ------------
 
 		//	_currentBladeTop
@@ -220,6 +223,17 @@ var AppState = State.extend({
 		this.on('change:_windowHeight change:_scrollPos change:_isDeviceBreakpoint', Utils.throttle(() => {
 			this._isScrollTopSection = ( this._scrollPos < this._windowHeight * 0.25 )
 		}, 250));
+	},
+
+	checkDownloadRedirect() {
+		if ( Utils.getQsParam('downloadapp') !== '1' ) return;
+
+		if ( this._os === 'iOS' ) {
+			return window.location.replace( 'itms://appstore.com/keynote' );
+		}
+		if ( this._os === 'AndroidOS' ) {
+			return window.location.replace( 'https://play.google.com' );
+		}
 	},
 
 	registerWaypoint( waypoint ) {

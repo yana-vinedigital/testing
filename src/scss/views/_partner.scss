@@ -83,7 +83,7 @@
 	}
 
 	section.partner-bid {
-		padding: lines(4) 0;
+		padding: lines(3) 0;
 		text-align: left;
 		overflow: visible;
 		position: relative; z-index: 30;
@@ -93,10 +93,15 @@
 			// @include font-size( gamma-beta );
 		}
 
+		.-width-match-headline {
+			margin: 0 auto;
+		}
+
 		.illustration { 
 			display: flex; align-items: flex-start;
-			position: absolute; bottom: lines(-3); right: 0;
+			position: absolute; bottom: lines(-4); right: 0;
 			// transform: translateX(10%);
+			pointer-events: none;
 
 			.device-iphone,
 			.device-android {
@@ -122,11 +127,13 @@
 		}
 			.device-iphone {
 				width: 53%; max-width: em(318);
+				min-width: em(270);
 				// margin-top: lines(1);
 				// transform: translateY(40%);
 			}
 			.device-android {
 				width: 47%; max-width: em(282);
+				min-width: em(251);
 			}
 	}
 
@@ -368,17 +375,15 @@
  *	--------------------------------------------------
  */
 
-@include breakpoint(default) {
+@include breakpoint(desktop) {
 
-	// .view-airlines {
+	.view-partner {
 
-	// 	section.airlines-media {
-	// 		.brand-img {
-	// 			width: 16.66%; max-width: 16.66%;
-	// 		}
-	// 	}
+		section.partner-bid {
+			padding: lines(4) 0;
+		}
 
-	// }
+	}
 
 }
 
@@ -392,23 +397,24 @@
 	.view-partner {
 		
 		section.partner-bid {
-			padding-bottom: lines(2);
+			padding: lines(2) 0;
 
 			.illustration {
-				margin-bottom: lines(-2);
-				position: relative; bottom: 0;
+				// margin-bottom: lines(-2);
+				// position: relative; 
+				bottom: lines(-2);
 
-				&:before {
-					display: none;
-				}
+				// &:before {
+				// 	display: none;
+				// }
 
 				.device-iphone,
 				.device-android {
-					transform: translateY(0);
+					// transform: translateY(0);
 				}
 
 				.device-android {
-					padding-top: 8.5%;
+					// padding-top: 8.5%;
 				}
 			}
 		}
@@ -422,6 +428,7 @@
 		section.partner-process {
 			padding-bottom: lines(8);
 			// background-size: 120% 100%;
+			background-color: $COLOR_BRAND_BASE;
 			background-image: none;
 		}
 
@@ -511,7 +518,7 @@
 	
 	.view-partner {
 		section.partner-bid {
-			padding-bottom: 0;
+			padding-bottom: lines(2);
 		}
 
 		section.partner-process {
@@ -575,7 +582,7 @@
 		}
 
 		section.partner-bid {
-			padding: 0;
+			padding-top: 0; padding-bottom: lines(2);
 			text-align: center;
 
 			.-flex {
@@ -596,7 +603,7 @@
 			.illustration {
 				margin-bottom: 0; margin-top: lines(-3);
 				padding: 0 10%;
-				z-index: 0;
+				position: relative; bottom: 0; z-index: 0;
 				order: 0;
 
 				&:before {
@@ -607,11 +614,31 @@
 
 				.device-iphone,
 				.device-android {
+					min-width: 0;
 					margin-bottom: lines(-5);
-					// transform: translateY(22%);
+					transform: translateY(0);
 					padding: 0;
 				}
 			}
+
+			// .illustration {
+			// 	// margin-bottom: lines(-2);
+			// 	// position: relative; 
+			// 	bottom: lines(-2);
+
+			// 	// &:before {
+			// 	// 	display: none;
+			// 	// }
+
+			// 	.device-iphone,
+			// 	.device-android {
+			// 		// transform: translateY(0);
+			// 	}
+
+			// 	.device-android {
+			// 		// padding-top: 8.5%;
+			// 	}
+			// }
 		}
 
 		section.partner-process {

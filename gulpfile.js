@@ -165,9 +165,47 @@ gulp.task('html', function() {
  *  --------------------------------------------------
  */
 
-gulp.task('js', function() {
-	var browserify = $.browserify({
-		entries: paths.src.js + 'main.js',
+gulp.task('js', function( next ) {
+
+	var bundles = [
+		paths.src.js + 'main.js',
+		paths.src.js + 'main-download.js'
+	];
+
+	var tasks = bundles.map( function( entry ) {
+		return $.browserify({
+			entries: entry,
+			transform: [
+				$.stringify({
+					extensions: ['.hbs'], 
+					minify: true
+				}),
+				$.babelify.configure({
+					presets: ['es2015']
+				})
+			],
+			debug: !env.isProd
+		}).bundle()
+			.pipe( $.vinylSourceStream( entry ) )
+			.pipe( $.rename({
+				extname: '.bundle.js',
+				dirname: '' 
+			}))
+			.pipe( $.vinylBuffer() )
+			.pipe( $.sourcemaps.init({ loadMaps: true }) )
+			.pipe( $.if( env.isProd, $.uglify() ))
+			.on( 'error', gutil.log )
+			.pipe( $.sourcemaps.write('./') )
+			.pipe( gulp.dest( paths.dist.js ) );
+	});
+
+	$.eventStream.merge( tasks ).on( 'end', next );
+
+/*	$.browserify({
+		entries: [
+			paths.src.js + 'main.js',
+			paths.src.js + 'main-download.js'
+		],
 		transform: [
 			$.stringify({
 				extensions: ['.hbs'], 
@@ -178,20 +216,20 @@ gulp.task('js', function() {
 			})
 		],
 		debug: !env.isProd
-	});
+	}); */
 
 	// env.isProd && gulp.src([ paths.src.js + '**/*.js' ])
 	// 	.pipe( $.jshint() )
 	// 	.pipe( $.jshint.reporter('jshint-stylish') );
 
-	return browserify.bundle()
+	/* return browserify.bundle()
 		.pipe( $.vinylSourceStream( 'main.js' ) )
 		.pipe( $.vinylBuffer() )
 		.pipe( $.sourcemaps.init({ loadMaps: true }) )
 		.pipe( $.if( env.isProd, $.uglify() ))
 		.on( 'error', gutil.log )
 		.pipe( $.sourcemaps.write('./') )
-		.pipe( gulp.dest( paths.dist.js ) );
+		.pipe( gulp.dest( paths.dist.js ) ); */
 });
 
 //	Helpers		---------------
