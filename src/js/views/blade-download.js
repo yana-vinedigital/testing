@@ -102,8 +102,6 @@ module.exports = BladeView.extend({
 
 	submitDownload( data, next ) {
 		if ( this._isSubmitted ) return;
-		// var data = Utils.qs.stringify( data );
-		// log('data', data )
 
 		this._isSubmitted = true;
 		this.dataPhone = data.fieldPhone;
@@ -113,11 +111,6 @@ module.exports = BladeView.extend({
 			this.showThanks();
 			next();
 		}, 2000)
-
-		// Utils.jsonp( this.el.action, data, { name: 'callback' }, function( err, resp ) {
-		// 	// console.log('response', err, resp);
-		// 	
-		// });
 	},
 
 	resetDownload() {
