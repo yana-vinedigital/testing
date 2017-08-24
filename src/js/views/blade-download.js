@@ -107,10 +107,21 @@ module.exports = BladeView.extend({
 		this.dataPhone = data.fieldPhone;
 		this.showLoader();
 
-		setTimeout( () => {
+		Utils.xhr({
+			method: 'post',
+			uri: 'https://d2ieh1yqse.execute-api.us-east-1.amazonaws.com/dev/ios',
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				phoneNumber: this.dataPhone
+			})
+		}, function (err, resp, body) {
+			log(err, resp, body);
+			if ( err || resp.statusCode !== 200 ) return false;
 			this.showThanks();
-			next();
-		}, 2000)
+			return next();
+		});
 	},
 
 	resetDownload() {
