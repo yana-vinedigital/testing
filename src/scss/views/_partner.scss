@@ -1,10 +1,10 @@
 
 //
-//	Views / Partner
+//	Views / Virgin
 //
 
 
-.view-partner {
+.view-virgin {
 
 	
 	.-color-brand {
@@ -166,8 +166,8 @@
 
 	section.partner-process {
 		z-index: 35;
-		background-image: url("../img/bg-pattern-dark.jpg"); background-repeat: no-repeat; background-size: 100%;
-		background-position: bottom center;
+		background-image: url("../img/bg-pattern-dark.jpg"); background-repeat: no-repeat; background-size: cover;
+		background-position: 50% 50%;
 
 		.feature-icon {
 			width: lines(2); height: lines(2);
@@ -193,6 +193,10 @@
 
 		.-flex {
 			align-items: center;
+		}
+
+		a:not(.ui-btn) {
+			color: $COLOR_VIRGIN_RED;
 		}
 
 		.bg {
@@ -286,6 +290,7 @@
 
 			&.icon-tw { fill: $COLOR_TWITTER; }
 			&.icon-fb { fill: $COLOR_FACEBOOK; }
+			&.icon-li { fill: $COLOR_LINKEDIN; }
 		}
 	}
 
@@ -377,7 +382,7 @@
 
 @include breakpoint(desktop) {
 
-	.view-partner {
+	.view-virgin {
 
 		section.partner-bid {
 			padding: lines(4) 0;
@@ -394,7 +399,7 @@
 
 @include breakpoint(tablet-wide) {
 
-	.view-partner {
+	.view-virgin {
 		
 		section.partner-bid {
 			padding: lines(2) 0;
@@ -516,7 +521,7 @@
 
 @include breakpoint(tablet) {
 	
-	.view-partner {
+	.view-virgin {
 		section.partner-bid {
 			padding-bottom: lines(2);
 		}
@@ -544,7 +549,7 @@
 		margin: 0 auto;
 	}
 
-	.view-partner {
+	.view-virgin {
 
 		.header-logo {
 			justify-content: center;
@@ -676,7 +681,7 @@
 
 @include breakpoint(smartphone) {
 	
-	.view-partner {
+	.view-virgin {
 
 		section.partner-bid {
 

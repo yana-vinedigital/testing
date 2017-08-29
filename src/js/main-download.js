@@ -28,10 +28,10 @@ var DownloadView = View.extend({
 		var endpoint = 'http://seatfrog.com';
 
 		if ( this._os === 'iOS' ) {
-			endpoint = 'itms://appstore.com/keynote';
+			endpoint = FRONT.appStoreURL;
 		}
 		if ( this._os === 'AndroidOS' ) {
-			endpoint = 'https://play.google.com';
+			endpoint = FRONT.playStoreURL;
 		}
 		return window.location.replace( endpoint );
 	}

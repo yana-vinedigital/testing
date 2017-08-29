@@ -29,7 +29,8 @@ html {
 			}
 		}
 	}
-
+	
+	&.-is-menu-open,
 	&.-is-context-open,
 	&.-is-scroll-disabled {
 		height: 100%;

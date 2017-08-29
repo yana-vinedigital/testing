@@ -16,18 +16,28 @@ $header-menu-ease: $EASE_OUT_QUINT;
 	transition: background-color 0.5s;
 	will-change: background-color;
 	-webkit-backdrop-filter: blur(8px);
-	
-	// &:after {
-	// 	content: '';
-	// 	width: 100%; height: lines(10);
-	// 	position: absolute; top: -1px; left: 0; z-index: 0;
-	// 	// background-image: linear-gradient( 0deg, transparentize( $COLOR_BRAND_BASE, 1 ), transparentize( $COLOR_BRAND_BASE, 0.1 ) 90% );
-	// }
+
+	&:before {
+		content: '';
+		width: 50%; height: lines(5);
+		opacity: 0;
+		position: fixed; top: 0; left: 0; z-index: 50;
+		background-color: fade-out($COLOR_BRAND_BASE, 0.1);
+		transition: opacity 0;
+		pointer-events: none;
+	}
 	
 	.-is-scroll-top &,
 	.-is-menu-open & {
 		background-color: transparent;
 		-webkit-backdrop-filter: none;
+	}
+
+	.-is-menu-open & {
+		&:before {
+			opacity: 1;
+			transition: opacity 0.5s 0.5s;
+		}
 	}
 
 	.header {
@@ -240,7 +250,7 @@ $header-menu-ease: $EASE_OUT_QUINT;
 		width: 100%; height: 100vh;
 		padding-top: lines(5.5); box-sizing: border-box;
 		text-align: left;
-		overflow: hidden;
+		overflow: auto; -webkit-overflow-scrolling: touch;
 		position: absolute; top: 0; left: -100%; z-index: 40;
 		opacity: 0;
 		transform: translate3d(-2%,0,0);
@@ -252,16 +262,24 @@ $header-menu-ease: $EASE_OUT_QUINT;
 			min-height: 100%;
 			left: 50%;
 		}
-			nav {
-				padding: lines(2) 0 lines(7);
-				position: relative;
+			.header-menu_cta {
+				display: flex; align-items: center;
 
-				&:before {
-					content: '';
-					width: 80%; height: 0;
-					position: absolute; top: 0; left: 0;
-					border-top: 1px solid fade-out($COLOR_GREY, 0.9);
+				p {
+					margin-left: 0; margin-right: 0;
 				}
+
+				.header-menu_cta_info {
+					max-width: cols(2);
+					padding-left: lines(1.5); margin-left: lines(1.5);
+					color: $COLOR_GREY;
+					border-left: 1px solid fade-out($COLOR_GREY, 0.9);
+				}
+			}
+				
+
+			nav {
+				position: relative;
 
 				ul {
 					list-style-type: none;
@@ -280,7 +298,7 @@ $header-menu-ease: $EASE_OUT_QUINT;
 						}
 					}
 						a { 
-							@include font-setting-size( gamma-beta, 3 );
+							@include font-setting-size( gamma-beta, 2.75 );
 							color: $COLOR_WHITE; font-weight: 300; text-decoration: none;
 							transition: color 0.3s;
 
@@ -288,6 +306,27 @@ $header-menu-ease: $EASE_OUT_QUINT;
 								color: $COLOR_BRAND_MAIN;
 							}
 						}
+				}
+
+				&.header-menu_primary {
+					padding: lines(1) 0;
+
+					&:before {
+						content: '';
+						width: 80%; height: 0;
+						position: absolute; top: 0; left: 0;
+						border-top: 1px solid fade-out($COLOR_GREY, 0.9);
+					}
+				}
+
+				&.header-menu_secondary {
+					padding: lines(1) 0 lines(7);
+
+					ul {
+						a {
+							@include font-setting-size( gamma-delta, 2 );
+						}
+					}
 				}
 			}
 
@@ -365,7 +404,12 @@ $header-menu-ease: $EASE_OUT_QUINT;
 
 @include breakpoint( med-desktop ) {
 
-	.outline-header {		
+	.outline-header {
+
+		&:before {
+			content: '';
+			width: 50%; height: lines(6.5);
+		}
 
 		.-is-scroll-top &,
 		.-is-menu-open & {
@@ -394,6 +438,10 @@ $header-menu-ease: $EASE_OUT_QUINT;
 		position: absolute;
 		background-color: transparent;
 		transform: none;
+
+		&:before {
+			width: 61.8%;
+		}
 
 		.-is-menu-open & {
 			position: fixed;
@@ -431,16 +479,46 @@ $header-menu-ease: $EASE_OUT_QUINT;
 		.header-menu {
 			padding-top: lines(4);
 
-			nav {
-				ul {
-					li {
-						a {
-							@include font-setting-size( delta, 2 );
+			.container {
+				left: 38.2%;
+			}
+				.col {
+					width: 61.8%;
+				}
+					nav {
+
+						&.header-menu_primary:before {
+							width: 90%;
+						}	
+
+						ul {
+							li {
+								a {
+									@include font-setting-size( delta, 2 );
+								}
+							}
+						}
+
+						&.header-menu_secondary {
+							padding: 0 0 lines(7);
+
+							ul {
+								a {
+									@include font-setting-size( delta-gamma );
+								}
+							}
 						}
 					}
-				}
+
+			.-is-menu-open & {
+				left: -38.2%;
 			}
 		}
+		.header-menu-bg {
+			width: 61.8%;
+		}
+
+
 
 }
 
@@ -455,6 +533,9 @@ $header-menu-ease: $EASE_OUT_QUINT;
 	.outline-header {
 		height: auto;
 		
+		&:before {
+			width: 80%; height: lines(4);
+		}
 
 		&:after {
 			display: none;
@@ -482,21 +563,16 @@ $header-menu-ease: $EASE_OUT_QUINT;
 				.col {
 					width: 80%;
 				}
-					nav {
-						padding-top: lines(2);
-
-						&:before {
-							width: 90%;
-						}							
-					}
 
 			.-is-menu-open & {
 				left: -20%;
 			}
 		}
+
 		.header-menu-bg {
 			width: 80%;
 		}
+		
 
 }
 
@@ -543,4 +619,44 @@ $header-menu-ease: $EASE_OUT_QUINT;
 		}
 	}
 
+}
+
+
+/*
+ *	Breakpoint:	smartphone
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( smartphone ) {
+	
+	.outline-header {
+		&:before {
+			width: 100%; height: lines(4);
+		}
+	}
+
+	.header-menu {
+
+		.container {
+			left: 0;
+		}
+			.col {
+				width: 100%;
+			}
+				nav {
+
+					&.header-menu_primary:before {
+						width: 100%;
+					}
+				}
+
+		.-is-menu-open & {
+			left: 0;
+		}
+	}
+
+	.header-menu-bg {
+		width: 100%;
+	}
+		
 }

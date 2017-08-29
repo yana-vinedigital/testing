@@ -38,27 +38,38 @@ module.exports = FormView.extend( DataTypeFunctionMixin, {
 
 	props: {
 		parent: 'state',
+		message: 'string',
 		dataPhone: ['string', true, ''],
 		submitDownload: { type: 'function', required: true },
 		showLoader: { type: 'function', required: true }
 	},
 
+	bindings: {
+		'message': {
+			selector: '[data-hook=form-message]',
+			type: ( el, value ) => {
+				if ( !value || value == '' ) return;
+				return el.innerHTML = '<p>' + value + '</p>';
+			}
+		}
+	},
+
 	fields() {
 		return [
 			new InputView({
-				template: '<label data-hook="input-phone"><input type="text" id="fieldPhone" placeholder="E.g. 07777123456" class="-large" required="" name="fieldPhone" tabindex="0"><div data-hook="message-container" class="message message-below message-error" data-anddom-display="" data-anddom-hidden="true" style="display: none;"><p data-hook="message-text">This field is required.</p></div></label>',
+				template: '<label data-hook="input-phone"><input type="text" id="fieldPhone" placeholder="e.g. 07777123456" class="-large" required="" name="fieldPhone" tabindex="0"><div data-hook="message-container" class="message message-below message-error" data-anddom-display="" data-anddom-hidden="true" style="display: none;"><p data-hook="message-text">This field is required.</p></div></label>',
 				name: 'fieldPhone',
 				label: 'Enter your phone number',
 				value: this.dataPhone,
-				placeholder: '+44 7',
+				placeholder: 'e.g. 07777123456',
 				required: true,
-				// tests: [
-				// 	function ( value ) { 
-				// 		if ( !/^(((\+44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$/.test( value ) ) { 
-				// 			return 'Please enter a valid UK mobile phone number.'; 
-				// 		}
-				// 	}
-				// ],
+				tests: [
+					function ( value ) { 
+						if ( !/^(\+?(07|447|04|614)\d{8,9})$/.test( value ) ) { 
+							return 'Please enter a valid UK mobile phone number.'; 
+						}
+					}
+				],
 				parent: this
 			})
 		];
@@ -86,10 +97,7 @@ module.exports = FormView.extend( DataTypeFunctionMixin, {
 	//	Event Handlers	 ----------------
 
 	submitCallback( data ) {
-		this.submitDownload( data, () => { 
-			this.clear();
-		});
-		return false;
+		return this.submitDownload( data );
 	}
 
 });
