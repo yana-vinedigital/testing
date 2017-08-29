@@ -18,30 +18,81 @@
 		}
 	}
 
-	section.experience {
+	.download-links {
+		margin: 0 0 lines(1);
+		display: flex;
 
-		&:before {
-			content: '';
-			width: 100%; height: lines(10);
-			position: absolute; top: -1px; left: 0; z-index: 40;
-			// background-image: linear-gradient( 0deg, transparentize( $COLOR_BRAND_BASE, 1 ), $COLOR_BRAND_BASE );
-		}
-
-		svg {
-			width: cols(1); height: cols(1);
-			fill: #E8A262;
-		}
-
-		.bg {
-			opacity: 0.5;
-			background-image: url("../img/bg-experience.jpg");
-			background-position: bottom center;
+		a {
+			margin: 0 gutters(0.5) 0 0;
 		}
 	}
 
+}
+
+	section.landing-process {
+
+	}
+		.landing-process_device {
+			position: relative;
+			overflow: hidden;
+
+			&:before {
+				content: '';
+				width: 100%; height: 100%;
+				display: block;
+				position: absolute; bottom: -50%; left: 0; z-index: 0;
+				background-image: radial-gradient(50% 50%, rgba(39,41,57,0.2) 0%, rgba(39,41,57,0) 100%);
+			}
+
+			.device-outline {
+				width: 100%; max-width: em(210);
+				margin: 0 auto;
+			}
+				.device {
+					width: 100%; height: 0;
+					padding-bottom: 127%;
+					position: relative;
+					background-color: $COLOR_WHITE;
+					border: 2px solid rgba(39,41,57,0.1); border-radius: 19%/16%;
+					border-bottom-width: 0;
+					border-bottom-left-radius: 0;
+					border-bottom-right-radius: 0;
+
+					&:before {
+						content: '';
+						width: 20%; height: 2%;
+						position: absolute; top: 9%; left: 50%;
+						background-color: #e5e5e5;
+						border-radius: 10px;
+						transform: translateX(-50%);
+					}
+				}
+					.device_screen {
+						position: absolute; top: 20%; left: 5%; right: 5%; bottom: 0;
+						background-color: $COLOR_BRAND_BASE;
+
+						img {
+							width: 100%; height: auto;
+							opacity: 0.95;
+						}
+					}
+		}
+		.landing-process_features {
+
+			.feature-icon {
+				width: cols(1); height: cols(1);
+				margin: 0 auto;
+				display: none;
+				
+				svg {
+					fill: $COLOR_BRAND_BLUE;
+				}
+			}
+		}
+
 	section.landing-travel {
 		height: 56vw; min-height: lines(20); max-height: lines(30);
-		padding: 0;
+		padding: 0 cols(1);
 		
 		.travel-slider {
 			width: 100%;
@@ -50,6 +101,7 @@
 
 			.ui-carousel-viewport {
 				display: flex;
+				overflow: visible;
 			}
 				.carousel-item {
 					width: 100%; height: 100%;
@@ -78,7 +130,7 @@
 	}
 
 	section.landing-companion {
-		height: 56vw; min-height: lines(20); max-height: lines(30);
+		height: 56vw; min-height: lines(35); max-height: lines(40);
 		background-image: radial-gradient(at 50% 0%, #383856 0%, #1E1F30 70%);
 
 		.container {
@@ -90,6 +142,24 @@
 			}
 		}
 	}
+		.landing-companion_logo {
+			width: cols(1); height: cols(1);
+			margin: 0 auto;
+
+			svg {
+				fill: $COLOR_BRAND_MAIN;
+			}
+		}
+		.landing-companion_things {
+			max-width: em(602);
+			margin: 0 auto;
+			position: relative;
+
+			img {
+				width: 100%; height: auto;
+				position: absolute; top: 0; left: 0;
+			}
+		}
 
 	section.landing-media {
 		padding-top: lines(1.5); padding-bottom: lines(1.5);
@@ -130,92 +200,13 @@
 		}
 	}
 
-	.download-links {
-		margin: 0 0 lines(1);
-		display: flex;
-
-		a {
-			margin: 0 gutters(0.5) 0 0;
-		}
-	}
-
-}
+	
 	
 
 
 
 html.-is-ie {
-	section.tour {
-		height: 300vh;
-		opacity: 1;
-	}
-		.tour-outline {
-			padding: 0;
-		}
-		
-		article {
-			overflow: hidden;
-
-			&:nth-child(2n) {
-				.slide-container:after {
-					transform: skewX(-10deg);
-				}
-			}
-		}
-			.slide-container {
-				&:after {
-					content: '';
-					width: 60%; height: 100%;
-					position: absolute; top: 0; left: -10%;
-					background-color: $COLOR_WHITE;
-					transform: skewX(10deg);
-				}
-			}
-
-			.slide-content {
-				opacity: 1;
-
-				.container {
-					margin-top: 0;
-					opacity: 1;
-
-					.col {
-						width: 40%;
-					}
-				}
-			}
-
-			.slide-content-bg {
-				display: none;
-			}
-
-			.slide-overlay {
-				left: 45%;
-
-				.overlay-blip {
-					opacity: 1;
-					transform: scale(0.75);
-				}
-			}
-
-			.slide-bg {
-				width: 60%; height: 100%;
-				top: auto;
-				opacity: 1;
-			}
-
-		article {
-
-			&.step1 {
-				.slide-overlay {
-					top: auto; bottom: 0;
-
-					.overlay-blip {
-						top: auto; bottom: lines(5);
-					}
-				}
-			}
-		}
+	
 }
 
 
@@ -243,11 +234,7 @@ html.-is-ie {
 
 @include breakpoint(large-desktop) {
 
-	section.signup {
-		.-wider {
-			width: 55%;
-		}
-	}
+	
 
 }
 
@@ -258,43 +245,12 @@ html.-is-ie {
  */
 
 @include breakpoint(desktop) {
-
-	section.tour {
-
-		.slide-content {
-			// padding: 0 $GUTTER*5 0 $GUTTER*3;
-		}
+	
+	.landing-process_features,
+	.landing-process_device {
+		padding: 0 cols(1);
 	}
-
-	section.signup {
-		.-wider {
-			width: 65%;
-		}
-	}
-
 }
-
-/*
- *	Breakpoint:	default
- *	--------------------------------------------------
- */
-
-@include breakpoint(default) {
-
-	section.media {
-		.brand-img {
-			width: 16.66%; max-width: 16.66%;
-		}
-	}
-
-	section.signup {
-		.-wider {
-			width: 65%;
-		}
-	}
-
-}
-
 
 
 /*
@@ -303,102 +259,6 @@ html.-is-ie {
  */
 
 @include breakpoint(tablet-wide) {
-
-	section.tour {
-		height: 300vh;
-		opacity: 1;
-
-		.tour-outline {
-			padding: 0;
-		}
-		
-		article {
-			// height: auto;
-			overflow: hidden;
-
-			&:nth-child(2n) {
-				.slide-container:after {
-					transform: skewX(-10deg);
-					// left: 21%;
-				}
-			}
-
-
-		}
-			.slide-container {
-				&:after {
-					content: '';
-					width: 60%; height: 100%;
-					position: absolute; top: 0; left: -10%;
-					background-color: $COLOR_WHITE;
-					transform: skewX(10deg);
-				}
-			}
-
-			.slide-content {
-				opacity: 1;
-
-				.container {
-					margin-top: 0;
-					opacity: 1;
-
-					.col {
-						width: 40%;
-					}
-				}
-			}
-
-			.slide-content-bg {
-				display: none;
-			}
-
-			.slide-overlay {
-				left: 45%;
-				
-				// transition-delay: 0.75s;
-
-				.overlay-blip {
-					opacity: 1;
-					transform: scale(0.75);
-					// transition-duration: 0.5s;
-					// transition-timing-function: linear;
-				}
-			}
-
-			.slide-bg {
-				width: 60%; height: 100%;
-				top: auto;
-				//position: relative; top: auto; bottom: auto; float: left;
-				opacity: 1;
-				// transition-delay: 0.5s;
-			}
-
-		article {
-
-			&.step1 {
-				.slide-overlay {
-					top: auto; bottom: 0;
-
-					.overlay-blip {
-						top: auto; bottom: lines(5);
-					}
-				}
-			}
-		}
-	}
-
-	section.signup {
-		.-wider {
-			width: 80%;
-		}
-	}
-
-	section.media {
-		.brand-img {
-			width: 33.33%; max-width: 33.33%;
-		}
-	}
-
 
 }
 
@@ -409,39 +269,22 @@ html.-is-ie {
  */
 
 @include breakpoint(tablet) {
+	
+	section.landing-process {
 
-	section.tour {
-		height: auto;
-
-		.tour-outline {
-			height: auto;
-			position: relative;
-		}
-		article {
-			height: auto;
-
-		}
-			.slide-container {
-				height: 75vh; min-height: lines(30);
-			}
-			.slide-content {
-				// display: block; position: relative;
-
-				.container {
-					.col {
-						width: 45%;
-					}
-				}
-			}
-			.slide-content-bg {
-				width: 65%;
-				left: -20%;
-			}
-			.slide-bg {
-				width: 65%; top: 0;
-			}
 	}
+		.landing-process_device {
+			display: none;
+		}
+		.landing-process_features {
 
+			.col {
+				width: 100%;
+			}
+				.feature-icon {
+					display: block;
+				}
+		}
 }
 
 
@@ -455,111 +298,6 @@ html.-is-ie {
 	section.intro {
 		.bg {
 			background-position: 50% 50%;
-		}
-	}
-
-	section.tour {
-		article {
-			&:nth-child(2n) {
-				.slide-content-bg:after {
-					transform: none;
-					left: 0;
-				}
-			}
-
-
-			&.step1,
-			&.step2 {
-				.slide-overlay {
-					top: auto; bottom: 0; left: 5%;
-
-					.overlay-blip {
-						margin-top: 0;
-						transform: scale(0.5);
-						top: auto; bottom: lines(5);
-						// top: auto; right: auto; bottom: lines(5); left: 5%;
-					}
-				}
-			}
-
-			&.-is-active {
-				.slide-overlay {
-					.overlay-blip {
-						transform: scale(0.8);
-					}
-				}
-			}
-
-
-		}
-			.slide-container {
-				height: auto; min-height: 0;
-
-				&:after {
-					display: none;
-				}
-			}
-			.slide-content {
-				padding-bottom: lines(1);
-				display: block; text-align: center;
-				position: relative; top: auto; left: auto; bottom: auto;
-				background-color: $COLOR_WHITE;
-
-				.container {
-					.col {
-						width: inherit;
-					}
-				}
-				.step-number {
-					@include font-setting-size( delta );
-					width: lines(2, delta); height: lines(1, delta);
-					margin: 0 auto;
-				}
-			}
-			.slide-content-bg {
-				display: none;
-			}
-			.slide-bg {
-				width: 100%; height: 50vh;
-				position: relative; top: auto; bottom: auto;
-
-				&:before {
-					display: none;
-				}
-			}
-			// .slide-overlay {
-			// 	display: none;
-			// }
-	}
-
-	section.experience {
-		
-	}
-
-	section.signup {
-		padding: lines(2) 0;
-		.ui-social-links {
-
-			h4 {
-				@include font-setting-size(epsilon, 2);
-				margin-right: em(12);
-			}
-			ul li {
-				margin: 0 em(3);
-			}
-			
-		}
-
-		.bg {
-			background-size: 300%;
-			background-position: 50% lines(5);
-		}
-		
-	}
-
-	section.media {
-		.brand-img {
-			width: 50%; max-width: 50%;
 		}
 	}
 

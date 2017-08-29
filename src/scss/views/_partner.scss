@@ -172,6 +172,10 @@
 		.feature-icon {
 			width: lines(2); height: lines(2);
 			margin: 0 auto;
+
+			svg {
+				fill: $COLOR_BRAND_MAIN;
+			}
 		}
 
 		.process-features {

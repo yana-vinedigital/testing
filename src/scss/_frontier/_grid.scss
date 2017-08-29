@@ -13,6 +13,7 @@
 %container {
 	width: cols( $TOTAL_COLUMNS ) + $GUTTER;
 	&.-half { width: cols( $TOTAL_COLUMNS/2 ) + $GUTTER; }
+	&.-narrow { width: cols( $TOTAL_COLUMNS - 2 ) + $GUTTER; }
 	&.-span-full { width: 100%; max-width: 100%; }
 }
 

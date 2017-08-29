@@ -48,8 +48,8 @@
 		
 		&:hover {
 			color: $COLOR_BRAND_BASE;
-			border-color: darken($BUTTON_TEXT_COLOR, 15);
-			background-color: darken($BUTTON_TEXT_COLOR, 15);
+			border-color: darken($BUTTON_TEXT_COLOR, 10);
+			background-color: darken($BUTTON_TEXT_COLOR, 10);
 		}
 	}
 
