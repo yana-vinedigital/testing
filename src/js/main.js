@@ -229,10 +229,10 @@ var AppState = State.extend({
 		if ( Utils.getQsParam('downloadapp') !== '1' ) return;
 
 		if ( this._os === 'iOS' ) {
-			return window.location.replace( 'itms://appstore.com/keynote' );
+			return window.location.replace( FRONT.appStoreURL );
 		}
 		if ( this._os === 'AndroidOS' ) {
-			return window.location.replace( 'https://play.google.com' );
+			return window.location.replace( FRONT.playStoreURL );
 		}
 	},
 

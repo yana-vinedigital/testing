@@ -73,8 +73,9 @@ module.exports = BladeView.extend({
 
 	//	Public Methods	 ----------------
 	
-	showForm: function() {
+	showForm: function( message = null ) {
 		var view = new FormDownloadView({
+			message: message,
 			dataPhone: this.dataPhone,
 			submitDownload: this.submitDownload, 
 			showLoader: this.showLoader 
@@ -100,17 +101,26 @@ module.exports = BladeView.extend({
 		this._isViewLoading = true;
 	},
 
-	submitDownload( data, next ) {
+	submitDownload( data ) {
 		if ( this._isSubmitted ) return;
 
 		this._isSubmitted = true;
-		this.dataPhone = data.fieldPhone;
+		this.dataPhone = data.fieldPhone.replace(/\s/g,'');
 		this.showLoader();
 
-		setTimeout( () => {
-			this.showThanks();
-			next();
-		}, 2000)
+		Utils.xhr({
+			method: 'post',
+			uri: FRONT.smsURL,
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				phoneNumber: this.dataPhone
+			})
+		}, ( err, resp, body ) => {
+			if ( err || resp.statusCode !== 200 ) return this.showForm('Something seems to have gone wrong, please try again.');
+			return this.showThanks();
+		});
 	},
 
 	resetDownload() {
