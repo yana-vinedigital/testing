@@ -35,7 +35,7 @@ var FRONT = window.FRONT = window.FRONT || Utils.extend({
 		'med-desktop', 
 		'large-desktop' 
 	],
-	subscriptionURL: 'http://email.seatfrog.com/t/i/s/hrkruk/',
+	subscriptionURL: 'http://email.seatfrog.com/t/i/s/qiynh/',
 	appStoreURL: 'https://itunes.apple.com/app/seatfrog/id1129001637',
 	playStoreURL: 'https://play.google.com/store/apps/details?id=au.com.seatfrog.icarus',
 	smsURL: 'https://d2ieh1yqse.execute-api.us-east-1.amazonaws.com/dev/sms',

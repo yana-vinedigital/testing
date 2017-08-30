@@ -33,7 +33,7 @@ var ContextThanksView = require('../views/context-thanks');
 
 module.exports = FormView.extend({
 
-	template: '<form action="http://email.seatfrog.com/t/i/s/dkiiju/" method="post" id="subForm" data-hook="form-subscribe"><fieldset data-hook="field-container"></fieldset></form>',
+	template: '<form action="http://email.seatfrog.com/t/i/s/qiynh/" method="post" id="subForm" data-hook="form-subscribe"><fieldset data-hook="field-container"></fieldset></form>',
 	
 	autoAppend: true,
 	autoRender: true,
@@ -51,7 +51,7 @@ module.exports = FormView.extend({
 		return [
 			new InputView({
 				template: '<label data-hook="input-email"><input type="email" id="fieldEmail" placeholder="" class="-large -outline-rounded" required /><input type="submit" value="Get early access" class="ui-btn -alt" data-hook="submit-form" /><div data-hook="message-container" class="message message-below message-error"><p data-hook="message-text"></p></div></label>',
-				name: 'cm-dkiiju-dkiiju',
+				name: 'cm-qiynh-qiynh',
 				label: 'Email',
 				placeholder: 'Enter your email',
 				required: true,

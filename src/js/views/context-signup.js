@@ -50,7 +50,7 @@ module.exports = View.extend({
 				return [
 					new InputView({
 						template: '<label data-hook="input-email"><input type="email" id="fieldEmail" placeholder="" class="-large" required /><div data-hook="message-container" class="message message-below message-error"><p data-hook="message-text"></p></div></label>',
-						name: 'cm-dkiiju-dkiiju',
+						name: 'cm-qiynh-qiynh',
 						label: 'Email',
 						placeholder: 'Enter your email',
 						required: true,
@@ -67,7 +67,7 @@ module.exports = View.extend({
 			},
 			// submitCallback( data ) {
 			// 	this.submitSubscription( data, () => {
-			// 		_this.showAirline( data['cm-dkiiju-dkiiju'] );
+			// 		_this.showAirline( data['cm-qiynh-qiynh'] );
 			// 	});
 			// 	return false;
 			// },
