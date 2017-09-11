@@ -65,7 +65,7 @@ module.exports = FormView.extend( DataTypeFunctionMixin, {
 				required: true,
 				tests: [
 					function ( value ) { 
-						if ( !/^(\+?(07|447|04|614)\d{8,9})$/.test( value ) ) { 
+						if ( !/^(\+?(07|447)\d{8,9})$/.test( value ) ) { 
 							return 'Please enter a valid UK mobile phone number.'; 
 						}
 					}
