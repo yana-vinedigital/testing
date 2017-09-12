@@ -118,6 +118,7 @@ module.exports = BladeView.extend({
 				phoneNumber: this.dataPhone
 			})
 		}, ( err, resp, body ) => {
+			if (body.status === "ERROR") return this.showForm('Please enter a valid UK mobile phone number.');
 			if ( err || resp.statusCode !== 200 ) return this.showForm('Something seems to have gone wrong, please try again.');
 			return this.showThanks();
 		});
