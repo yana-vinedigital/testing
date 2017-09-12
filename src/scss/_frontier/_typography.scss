@@ -234,6 +234,7 @@ ul {
 	.alpha { @include font-setting( 56, 2.25 ); }
 	.beta { @include font-setting( gamma ); }
 	.gamma { @include font-setting( gamma-beta ); }
+	.gamma-beta { @include font-setting( gamma-delta ); }
 	.delta { @include font-setting( epsilon ); }
 }
 
@@ -245,13 +246,16 @@ ul {
 @include breakpoint( tablet ) {
 	.alpha { @include font-setting( gamma ); }
 	.beta { @include font-setting( gamma ); }
+	.gamma-beta { @include font-setting( delta ); }
+	.gamma-delta { @include font-setting( delta ); }
+	.delta-beta { @include font-setting( delta-gamma ); }
 }
 
 /*
- *	Breakpoint:	mobile
+ *	Breakpoint:	smartphone-wide
  *	--------------------------------------------------
  */
 
-@include breakpoint(mobile) {
-
+@include breakpoint( smartphone-wide ) {
+	.alpha { @include font-setting( gamma ); }
 }

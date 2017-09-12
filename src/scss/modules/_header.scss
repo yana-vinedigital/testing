@@ -154,6 +154,10 @@ $header-menu-ease: $EASE_OUT_QUINT;
 			
 		}
 
+		.logo-virgin {
+			width: em(97); 
+		}
+
 		.header-nav {
 			opacity: 1;
 			transition: opacity $header-menu-transition $header-menu-ease;

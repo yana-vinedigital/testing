@@ -56,10 +56,16 @@
  *	--------------------------------------------------
  */
 
-@mixin breakpoint($point) {
+@mixin breakpoint( $point, $direction: null ) {
 
 	$mq-data: map-get($BREAKPOINTS, $point);
-	$mq-type: #{nth($mq-data, 1)}-width;
+	$mq-type: 'min-width';
+	@if type-of( $direction ) == string {
+		$mq-type: #{$direction}-width;
+	} @else {
+		$mq-type: #{nth($mq-data, 1)}-width;
+	}
+	
 	$mq-size: nth($mq-data, 2);
 	$mq-cols: nth($mq-data, 3);
 	$mq-scale: nth($mq-data, 4);

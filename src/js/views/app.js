@@ -110,8 +110,8 @@ module.exports = View.extend({
 		var _this = this;
 		this._scrollFramePending = false;
 		this._animFramePending = false;
-		this._bladeCurrentIndex = 0
-
+		this._bladeCurrentIndex = 0;
+		this._isParallaxEnabled = false;
 		this._parallaxObjects = [];
 
 		//	Bind	 ----------------
@@ -307,7 +307,6 @@ module.exports = View.extend({
 
 	disableParallax( reset = true ) {
 		if ( !this._isParallaxEnabled || !this.$_parallaxElements ) return;
-
 		this._parallaxObjectsLength = 0;
 		this._parallaxObjects.length = 0;
 		
@@ -386,7 +385,6 @@ module.exports = View.extend({
 		var windowHeightHalf = windowHeight / 2;
 		var scrollPos = this.model._scrollPos;
 		var introOpacityPrev = this.introOpacity || 1;
-		// var tourOpacityPrev = this.tourOpacity || 0;
 
 		this.$_page.style[ this.model._transformProperty ] = `translate3d(0,${(scrollPos * -1)}px,0)`;
 
@@ -396,24 +394,6 @@ module.exports = View.extend({
 				this.$_intro.style.opacity = this.introOpacity;
 			}
 		}
-
-		// if ( this.$_tour && scrollPos > windowHeight*0.5 && scrollPos < windowHeight * 4.5 ) {
-		// 	if ( scrollPos > windowHeight*0.5 && scrollPos <= windowHeight ) {
-		// 		//	( Starting Y position ) / ( transition distance );
-		// 		var opacity = ((scrollPos - windowHeight*0.5) / (windowHeight*0.5));
-		// 	} else if ( scrollPos > windowHeight && scrollPos < windowHeight * 4.5 ) {
-		// 		var opacity = 1 - (( scrollPos - windowHeight*4 ) / (windowHeight*0.5));
-		// 	} else {
-		// 		var opacity = 0;
-		// 	}
-
-		// 	let opacityCurve = +(Math.pow( opacity , 2 )).toFixed(2)
-		// 	this.tourOpacity = Utils.MATH.clamp( opacityCurve, 0, 1 );
-		// 	if ( this.tourOpacity !== tourOpacityPrev ) {
-		// 		this.$_tour.style.opacity = this.tourOpacity;
-		// 	}
-		// }
-		// if ( !this._parallaxObjectsLength ) return;
 
 		for (var i = this._parallaxObjectsLength; i >= 0; i--) {
 			var item = this._parallaxObjects[i];
@@ -430,7 +410,7 @@ module.exports = View.extend({
 		this.model._headerHeight = this.$_header && this.$_header.offsetHeight || 0;
 		this.model._breakpoint = Utils.DOM.getAfterAttr( document.body );
 		this.model._scrollPos = scroll;
-		
+
 		if ( this.model._isDeviceBreakpoint || this.model._isBrowserIE ) {
 			this.disableParallax();
 		} else {
@@ -450,7 +430,7 @@ module.exports = View.extend({
 		if ( !this._scrollFramePending ) {
 			Utils.raf(() => {
 				var scroll = this.model._scrollOffset = this._getScroll();
-				if ( this.model._isDeviceBreakpoint || this.model._isBrowserIE ) {
+				if ( !this._isParallaxEnabled || this.model._isDeviceBreakpoint || this.model._isBrowserIE ) {
 					this.model._scrollPos = scroll;
 				} else {
 					this._requestScrollAnimation();

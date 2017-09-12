@@ -241,13 +241,10 @@ img {
  *	--------------------------------------------------
  */
 
-@include breakpoint(smartphone) {
+@include breakpoint(smartphone-wide) {
 
 	.alpha {
-		margin-left: 3px;
-		text-indent: 0;
-		letter-spacing: 6px;
+		letter-spacing: 3px;
 	}
-	// .gamma { @include font-setting(20, 1.25); }
 
 }

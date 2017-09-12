@@ -16,16 +16,27 @@
 		.subscription-form {
 			max-width: cols(7);
 		}
-	}
 
-	.download-links {
-		margin: 0 0 lines(1);
-		display: flex;
-
-		a {
-			margin: 0 gutters(0.5) 0 0;
+		.intro_devices {
+			display: none;
 		}
 	}
+		.intro_download-cta {
+			display: none;
+
+			.btn-group {
+				margin: 0;
+			}
+		}
+
+		.download-links {
+			margin: 0 0 lines(1);
+			display: flex;
+
+			a {
+				margin: 0 gutters(0.5) 0 0;
+			}
+		}
 
 }
 
@@ -79,8 +90,12 @@
 		}
 		.landing-process_features {
 
+			.col {
+				margin-bottom: lines(1);
+			}
+
 			.feature-icon {
-				width: cols(1); height: cols(1);
+				width: lines(2); height: lines(2);
 				margin: 0 auto;
 				display: none;
 				
@@ -92,7 +107,8 @@
 
 	section.landing-travel {
 		height: 56vw; min-height: lines(20); max-height: lines(30);
-		padding: 0 cols(1);
+		padding: 0;
+		background-color: #181818;
 		
 		.travel-slider {
 			width: 100%;
@@ -103,34 +119,64 @@
 				display: flex;
 				overflow: visible;
 			}
-				.carousel-item {
-					width: 100%; height: 100%;
-					padding: lines(5) 0; box-sizing: border-box;
-
-					&:after {
-						content: '1';
-						display: none;
-					}
+				.ui-carousel-pane {
+					display: flex; align-items: stretch;
 				}
-					.container {
-						height: 100%;
-						display: flex; align-items: center;
-					}
-						.row {
-							width: 100%;
+					.carousel-item {
+						width: 100%;
+						padding: lines(5) 0; box-sizing: border-box;
+						position: relative;
+						flex: 0 0 100%;
+
+						&:after {
+							content: '1';
+							display: none;
 						}
+
+						.bg {
+							width: 100%; height: 100%;
+							position: absolute; top: 0; left: 0; z-index: 0;
+							background-size: cover; background-repeat: no-repeat;
+							background-position: 20% 0;
+						}
+					}
+						.container {
+							height: 100%;
+							display: flex; align-items: center;
+							transform: translate3d(0,0,0);
+						}
+							.row {
+								width: 100%;
+							}
 
 			.ui-carousel-points {
 				position: absolute; bottom: lines(2);
 			}
+
+			.ui-carousel-nav {
+				&.-left {
+					left: cols(1);
+				}
+				&.-right {
+					right: cols(1);
+				}
+			}
 		}
 			.travel-content {
+				float: right;
 				padding: 0 15% 0 5%;
 			}
 	}
+		.landing-travel_flight .bg {
+			background-image: url("../img/bg-travel-flight.jpg");
+		}
+		.landing-travel_train .bg {
+			background-image: url("../img/bg-travel-train.jpg");
+		}
 
 	section.landing-companion {
-		height: 56vw; min-height: lines(35); max-height: lines(40);
+		// height: 56vw; min-height: lines(35); max-height: lines(40);
+		padding: lines(5) 0;
 		background-image: radial-gradient(at 50% 0%, #383856 0%, #1E1F30 70%);
 
 		.container {
@@ -150,41 +196,94 @@
 				fill: $COLOR_BRAND_MAIN;
 			}
 		}
-		.landing-companion_things {
-			max-width: em(602);
-			margin: 0 auto;
+		.landing-companion_illustration {
 			position: relative;
-
-			img {
-				width: 100%; height: auto;
-				position: absolute; top: 0; left: 0;
-			}
 		}
+			.landing-companion_things {
+				width: 100%; max-width: em(602);
+				margin: 0 auto; padding-bottom: 70%;
+				position: absolute; top: 0; left: 50%;
+				transform: translate(-50%,-35%);
+
+				img {
+					width: 100%; height: auto;
+					position: absolute; top: 0; left: 0;
+				}
+
+				.landing-companion_things_msg {
+					display: none;
+					position: relative;
+				}
+			}
+
 
 	section.landing-media {
-		padding-top: lines(1.5); padding-bottom: lines(1.5);
+		padding-top: lines(1.5); padding-bottom: lines(2);
 		background-image: linear-gradient(0deg, #292458 16%, #382F8E 100%);
-
-		.media-gallery {
-			display: flex;
-			justify-content: space-around;
-			flex-wrap: wrap;
-			align-items: center;
+	
+		h3 {
+			font-weight: 300;
 		}
-			.brand-img {
-				max-width: 20%;
-				padding: lines(1) gutters(0.5); box-sizing: border-box;
-				float: left;
-				flex-shrink: 1;
-				opacity: 0.35;
+
+		.media-slider {
+			width: 100%;
+			padding: 0;
+			position: relative;
+		}
+			.ui-carousel-viewport {
+				height: auto;
+				margin-bottom: lines(1);
+				display: flex;
+				overflow: visible;
 			}
+				.ui-carousel-pane {
+					display: flex; align-items: stretch;
+				}
+					.carousel-item {
+						width: 100%;
+						padding: 0 0 lines(1); box-sizing: border-box;
+						position: relative;
+						flex: 0 0 100%;
+
+						&:after {
+							content: '1';
+							display: none;
+						}
+					}
+
+			.ui-carousel-nav {
+				display: none;
+			}
+
+			
 	}
 
 	section.landing-download {
-		height: 32vw; min-height: lines(10); max-height: lines(20);
+		height: 32vw; min-height: lines(15); max-height: lines(23);
+
+		.container {
+			display: flex;
+
+			.row {
+				width: 100%;
+				display: flex; align-items: center;
+			}
+		}
+
+		.landing-download_content {
+			padding-left: 5%;
+		}
+
+		.download-cta {
+			display: none;
+		}
 
 		.illustration {
+			padding-left: 10%;
+			align-self: flex-start;
+
 			img {
+				width: 65%; min-width: cols(2.5);
 				margin-bottom: -50%;
 			}
 		}
@@ -199,6 +298,11 @@
 			}
 		}
 	}
+		.landing-download_app-icon {
+			width: em(80); height: em(80);
+			margin: 0 auto;
+			display: none;
+		}
 
 	
 	
@@ -227,29 +331,116 @@ html.-is-ie {
  *
  */
  
-/*
- *	Breakpoint:	large-desktop
- *	--------------------------------------------------
- */
 
-@include breakpoint(large-desktop) {
-
-	
-
-}
 
 
 /*
- *	Breakpoint:	Desktop
+ *	Breakpoint:	Tablet MIN
  *	--------------------------------------------------
  */
 
-@include breakpoint(desktop) {
+@include breakpoint(tablet, min) {
 	
 	.landing-process_features,
 	.landing-process_device {
 		padding: 0 cols(1);
 	}
+
+	section.landing-media {
+
+		.media-logo {
+			display: none;
+		}
+
+		.carousel-item {
+			padding-top: lines(1);
+		}
+
+		.ui-carousel-points {
+			width: cols(8); max-width: 100%;
+			padding: lines(1.5) gutters(1); margin: 0 auto; box-sizing: border-box;
+			position: relative;
+			display: flex; align-items: center;
+			justify-content: space-around;
+
+			&:before {
+				content: '';
+				width: 100%; height: 1px;
+				position: absolute; top: 0; left: 0;
+				background-image: radial-gradient(50% 100%, #FFFFFF 0%, rgba(255,255,255,0.00) 100%);
+				opacity: 0.35;
+			}
+
+			a {
+				width: em(135); height: lines(1.5);
+				margin: 0 gutters(0.5);
+				background-color: transparent; border: none;
+				background-size: contain; background-repeat: no-repeat; background-position: 50% 50%;
+				border-radius: 0;
+				opacity: 0.2;
+				transition: opacity 0.5s;
+
+				&:after {
+					display: none;
+				}
+
+				&:nth-child(1) {
+					background-image: url('../img/logo-tc-w.png'); 
+				}
+				&:nth-child(2) {
+					background-image: url('../img/logo-amadeus.png'); 
+				}
+				&:nth-child(3) {
+					background-image: url('../img/logo-cnt-w.png'); 
+				}
+				&:nth-child(4) {
+					background-image: url('../img/logo-gq.png'); 
+				}
+
+				&.is-active {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+
+}
+
+
+
+/*
+ *	Breakpoint:	desktop
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(desktop) {
+
+	section.landing-download {
+		.landing-download_content {
+			padding-left: 10%;
+		}
+	}
+
+}
+
+/*
+ *	Breakpoint:	desktop-med
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(med-desktop) {
+
+	.landing-companion_things {
+		transform: translate(-50%,-30%);
+	}
+
+	section.landing-download {
+		.landing-download_content {
+			padding-left: 10%;
+		}
+	}
+
 }
 
 
@@ -260,6 +451,27 @@ html.-is-ie {
 
 @include breakpoint(tablet-wide) {
 
+	section.landing-travel {
+		height: auto;
+		padding: 0;
+
+		.travel-content {
+			padding: 0;
+		}
+	}
+
+	section.landing-companion {
+		// height: 56vw; min-height: lines(35); max-height: lines(40);
+		padding: lines(3) 0 lines(2);
+
+	}
+
+	section.landing-download {
+		.landing-download_content {
+			padding-left: gutters(0.5);
+			padding-right: 0;
+		}
+	}
 }
 
 
@@ -270,8 +482,53 @@ html.-is-ie {
 
 @include breakpoint(tablet) {
 	
-	section.landing-process {
+	.view-home {
 
+		.btn-group {
+			margin: 0;
+		}
+
+		section.intro {
+			height: auto; min-height: 0;
+			
+			h2 {
+				margin: 0;
+			}
+
+			.section-flex {
+				text-align: center;
+
+				.col {
+					width: 100%;
+				}
+			}
+
+			.intro_download-cta {
+				display: block;
+			}
+
+			.intro_download-links {
+				display: none;
+			}
+			
+			.intro_devices {
+				margin-bottom: 0;
+				display: block;
+
+				.devices {
+					padding: 0 gutters(1.5);
+					display: flex; justify-content: center; align-items: flex-start;
+				}
+			}
+			
+		}
+
+	}
+
+	section.landing-process {
+		.-margin-2 {
+			margin-bottom: lines(1);
+		}
 	}
 		.landing-process_device {
 			display: none;
@@ -285,6 +542,74 @@ html.-is-ie {
 					display: block;
 				}
 		}
+
+	section.landing-travel {
+		height: auto;
+		padding: 0;
+
+		.travel-slider {
+			.carousel-item {
+				padding: lines(2) 0 lines(3);
+
+				.bg {
+					opacity: 0.5;
+				}
+			}
+				.travel-content {
+					width: 100%;
+					padding: 0 gutters(0.5);
+					text-align: center;
+				}
+		}
+	}
+
+	section.landing-companion {
+		padding: lines(2) 0 lines(1);
+
+		.container {
+			text-align: center;
+
+			ul {
+				text-align: left;
+			}
+		}
+			.col {
+				width: 100%;
+			}
+	}
+		.landing-companion_logo {
+			width: lines(2); height: lines(2);
+		}
+
+		.landing-companion_things {
+			margin: lines(1) auto 0; padding-bottom: 0;
+			position: relative;
+			transform: translateY(0);
+
+			img {
+				width: auto;
+				margin: 0 auto;
+				display: none; 
+			}
+
+			.landing-companion_things_msg {
+				display: block;
+			}
+		}
+
+	section.landing-media {
+		.media-logo {
+			width: em(135); height: lines(1.5);
+			margin: lines(1.5) auto 0;
+			display: flex; align-items: center; justify-content: center;
+			text-align: center;
+
+			img {
+				margin: 0 auto;
+				max-height: 100%;
+			}
+		}
+	}
 }
 
 
@@ -300,5 +625,27 @@ html.-is-ie {
 			background-position: 50% 50%;
 		}
 	}
+
+	section.landing-download {
+		.illustration {
+			display: none;
+		}
+		.landing-download_content {
+			width: 100%;
+			padding: 0 gutters(0.5);
+			text-align: center;
+		}
+			.download-links {
+				display: none;
+			}
+			.download-cta {
+				padding-top: lines(1);
+				display: block;
+			}
+	}	
+		.landing-download_app-icon {
+			display: block;
+		}
+
 
 }
