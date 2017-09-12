@@ -5,8 +5,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		{{#block "head"}}{{/block}}
-		<link rel="stylesheet" href="/assets/css/main.css">
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="/assets/css/main.css">
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
 		<link rel="icon" href="/favicon.ico">
 		{{!-- // <script type="text/javascript" src="https://www.google.com/jsapi"></script> --}}
 		
@@ -34,33 +35,6 @@
 		src="https://www.facebook.com/tr?id=1812730908959195&ev=PageView&noscript=1"
 		/></noscript>
 		<!-- End Facebook Pixel Code -->
-
-		<!-- Add Cookie Consent Code -->
-		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-		<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
-		<script>
-			window.addEventListener("load", function(){
-			window.cookieconsent.initialise({
-			"palette": {
-				"popup": {
-				"background": "#1e1f2f",
-				"text": "#ffffff"
-				},
-				"button": {
-				"background": "#d8ed1f",
-				"text": "#1e1f2f"
-				}
-			},
-			"theme": "classic",
-			"content": {
-				"message": "This site uses cookies. By continuing to browse the site you are agreeing to our use of cookies. ",
-				"link": "Find out more",
-				"href": "http://www.seatfrog.com/privacy.html"
-			}
-			})});
-		</script>
-		<!-- End Cookie Consent Code -->
-
 		
 	</head>
 	<body class="{{#if view }} view-{{ view }}{{/if}}" data-hook="app">
@@ -77,5 +51,6 @@
 		
 		<footer class="outline-footer" data-region="footer"></footer>
 		<script src="/assets/js/main.bundle.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 	</body>
 </html>

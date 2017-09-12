@@ -35,7 +35,7 @@ var FRONT = window.FRONT = window.FRONT || Utils.extend({
 		'med-desktop', 
 		'large-desktop' 
 	],
-	subscriptionURL: 'http://email.seatfrog.com/t/i/s/hrkruk/',
+	subscriptionURL: 'http://email.seatfrog.com/t/i/s/qiynh/',
 	appStoreURL: 'https://itunes.apple.com/app/seatfrog/id1129001637',
 	playStoreURL: 'https://play.google.com/store/apps/details?id=au.com.seatfrog.icarus',
 	appDeepLink: 'seatfrog://login',
@@ -52,6 +52,24 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 window.addEventListener('load', function () {
 	FRONT.trigger('dom:ready');
+	window.cookieconsent.initialise({
+		"palette": {
+			"popup": {
+				"background": "#1e1f2f",
+				"text": "#ffffff"
+			},
+			"button": {
+				"background": "#d8ed1f",
+				"text": "#1e1f2f"
+			}
+		},
+		"theme": "classic",
+		"content": {
+			"message": "This site uses cookies. By continuing to browse the site you are agreeing to our use of cookies. ",
+			"link": "Find out more",
+			"href": "http://www.seatfrog.com/privacy.html"
+		}
+	});
 });
 
 
