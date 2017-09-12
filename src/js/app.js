@@ -38,6 +38,7 @@ var FRONT = window.FRONT = window.FRONT || Utils.extend({
 	subscriptionURL: 'http://email.seatfrog.com/t/i/s/hrkruk/',
 	appStoreURL: 'https://itunes.apple.com/app/seatfrog/id1129001637',
 	playStoreURL: 'https://play.google.com/store/apps/details?id=au.com.seatfrog.icarus',
+	appDeepLink: 'seatfrog://login',
 	// smsURL: 'https://d2ieh1yqse.execute-api.us-east-1.amazonaws.com/dev/sms',
 	'smsURL': 'https://twk9zgo54k.execute-api.us-east-1.amazonaws.com/dev/sms',
 	rootEl: document.querySelector('[data-hook=app]'),

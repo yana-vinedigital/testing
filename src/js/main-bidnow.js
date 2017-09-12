@@ -21,14 +21,14 @@ var MD = new MobileDetect( window.navigator.userAgent );
 //
 
 
-var DownloadView = View.extend({
+var BidNowView = View.extend({
 
 	initialize() {
 		this._os = MD.os();
-		var endpoint = 'http://seatfrog.com/virgintrainseastcoast.html';
+        var endpoint = 'http://seatfrog.com/virgintrainseastcoast.html';
 
 		if ( this._os === 'iOS' ) {
-			endpoint = FRONT.appStoreURL;
+			endpoint = FRONT.appDeepLink;
 		}
 		if ( this._os === 'AndroidOS' ) {
 			endpoint = FRONT.playStoreURL;
@@ -46,5 +46,5 @@ var DownloadView = View.extend({
  */
 
 FRONT.on('dom:start', () => {
-	FRONT.downloadView = new DownloadView({ el: document.documentElement });
+	FRONT.bidNowView = new BidNowView({ el: document.documentElement });
 });
