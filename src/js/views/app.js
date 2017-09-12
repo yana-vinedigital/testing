@@ -110,8 +110,8 @@ module.exports = View.extend({
 		var _this = this;
 		this._scrollFramePending = false;
 		this._animFramePending = false;
-		this._bladeCurrentIndex = 0
-
+		this._bladeCurrentIndex = 0;
+		this._isParallaxEnabled = false;
 		this._parallaxObjects = [];
 
 		//	Bind	 ----------------
@@ -450,7 +450,7 @@ module.exports = View.extend({
 		if ( !this._scrollFramePending ) {
 			Utils.raf(() => {
 				var scroll = this.model._scrollOffset = this._getScroll();
-				if ( this.model._isDeviceBreakpoint || this.model._isBrowserIE ) {
+				if ( !this._isParallaxEnabled || this.model._isDeviceBreakpoint || this.model._isBrowserIE ) {
 					this.model._scrollPos = scroll;
 				} else {
 					this._requestScrollAnimation();
