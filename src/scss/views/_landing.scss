@@ -20,6 +20,10 @@
 		.intro_devices {
 			display: none;
 		}
+
+		.intro_copy {
+			width: 40%;
+		}
 	}
 		.intro_download-cta {
 			display: none;
@@ -126,6 +130,7 @@
 						width: 100%;
 						padding: lines(5) 0; box-sizing: border-box;
 						position: relative;
+						display: flex; align-items: center;
 						flex: 0 0 100%;
 
 						&:after {
@@ -150,7 +155,7 @@
 							}
 
 			.ui-carousel-points {
-				position: absolute; bottom: lines(2);
+				position: absolute; bottom: lines(2); left: 0;
 			}
 
 			.ui-carousel-nav {
@@ -187,6 +192,11 @@
 				width: 100%;
 			}
 		}
+
+		.bg {
+			background-image: url('../img/landing-things-bg.png'); background-repeat: no-repeat; background-position: 50% 50%;
+			background-size: auto;
+		}
 	}
 		.landing-companion_logo {
 			width: cols(1); height: cols(1);
@@ -218,12 +228,13 @@
 
 
 	section.landing-media {
-		padding-top: lines(1.5); padding-bottom: lines(2);
+		padding-top: lines(2); padding-bottom: lines(2);
+		flex-flow: column wrap;
 		background-image: linear-gradient(0deg, #292458 16%, #382F8E 100%);
 	
-		h3 {
-			font-weight: 300;
-		}
+		// h3 {
+		// 	font-weight: 300;
+		// }
 
 		.media-slider {
 			width: 100%;
@@ -259,7 +270,7 @@
 	}
 
 	section.landing-download {
-		height: 32vw; min-height: lines(15); max-height: lines(23);
+		height: 30vw; min-height: lines(15); max-height: lines(19);
 
 		.container {
 			display: flex;
@@ -458,6 +469,9 @@ html.-is-ie {
 		.travel-content {
 			padding: 0;
 		}
+		.travel-slider .bg {
+			opacity: 0.3;
+		}
 	}
 
 	section.landing-companion {
@@ -488,12 +502,12 @@ html.-is-ie {
 			margin: 0;
 		}
 
+		.header-nav {
+			display: none;
+		}
+
 		section.intro {
 			height: auto; min-height: 0;
-			
-			h2 {
-				margin: 0;
-			}
 
 			.section-flex {
 				text-align: center;
@@ -552,7 +566,7 @@ html.-is-ie {
 				padding: lines(2) 0 lines(3);
 
 				.bg {
-					opacity: 0.5;
+					opacity: 0.25;
 				}
 			}
 				.travel-content {
@@ -576,6 +590,11 @@ html.-is-ie {
 			.col {
 				width: 100%;
 			}
+
+		.bg {
+			background-position: 50% 14%;
+			background-size: 100%;
+		}
 	}
 		.landing-companion_logo {
 			width: lines(2); height: lines(2);
@@ -583,7 +602,7 @@ html.-is-ie {
 
 		.landing-companion_things {
 			margin: lines(1) auto 0; padding-bottom: 0;
-			position: relative;
+			position: relative; left: 0;
 			transform: translateY(0);
 
 			img {
@@ -593,7 +612,9 @@ html.-is-ie {
 			}
 
 			.landing-companion_things_msg {
+				width: 330px; max-width: 100%;
 				display: block;
+				// image-rendering: optimizeQuality;
 			}
 		}
 
@@ -624,6 +645,10 @@ html.-is-ie {
 		.bg {
 			background-position: 50% 50%;
 		}
+	}
+
+	section.landing-process {
+		padding-bottom: lines(2);
 	}
 
 	section.landing-download {

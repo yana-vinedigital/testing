@@ -37,6 +37,7 @@
 			padding: lines(0.5) 0;
 			position: absolute; bottom: 0; left: 0; z-index: 20;
 			background-color: fade-out( $COLOR_BRAND_BLUE, 0.25 );
+			transform: translate3d(0,0,0);
 		}
 
 	section.pwu-upsell {
@@ -193,14 +194,57 @@
 					// position: absolute; top: 0; left: 0;
 				}
 
+				.screen-blinkers {
+					width: 100%; height: 100%;
+					position: absolute; top: 0; left: 0;
+					opacity: 0.5;
+
+					span {
+						padding: 0 0 0 lines(1);
+						display: block;
+						position: absolute; top: 15%; left: 40%;
+						color: $COLOR_GREY_DARK;
+						animation: item-pulse 2s 0s infinite alternate;
+
+						&:after {
+							content: '';
+							width: 8px; height: 8px;
+							position: absolute; top: 8px; left: 0;
+							background-color: $COLOR_BRAND_MAIN;
+							border-radius: 50%;
+							box-shadow: 0 0 20px $COLOR_BRAND_MAIN;
+						}
+
+						&:nth-child(2) { top: 75%; left: 10%; animation-delay: 0.5s; }
+						&:nth-child(3) { top: 80%; left: 80%; animation-delay: 1s; }
+					}
+				}
+
 		}
 
 		.pwu-maximise_cta {
+			margin-bottom: lines(2);
 			position: relative; z-index: 25;
+		}
+
+		.pwu-maximise_feature-title {
+			position: relative; z-index: 35;
+
+			&:before {
+				content: '';
+				width: 50%; height: lines(6);
+				position: absolute; z-index: 0; top: lines(-1); left: 25%;
+				background-image: radial-gradient(50% 50%, $COLOR_BRAND_BASE 50%, fade-out($COLOR_BRAND_BASE, 1) 100%);
+			}
+
+			h3 {
+				position: relative; z-index: 5;
+				text-shadow: 0 3px 10px $COLOR_BRAND_BASE;
+			}
 		}
 		
 		.pwu-maximise_feature-icons {
-			padding: lines(4) calc( #{gutters(0.5) - lines(3.4)} + 16.5% ) 0;
+			padding: lines(2) calc( #{gutters(0.5) - lines(3.4)} + 16.5% ) 0;
 			display: flex; align-items: center;
 			position: relative; z-index: 20;
 
@@ -216,7 +260,7 @@
 
 					&:before {
 						content: '';
-						width: 0; height: lines(6);
+						width: 0; height: lines(10);
 						position: absolute; bottom: 100%; left: 50%;
 						border-left: 1px solid $COLOR_GREY_DARK;
 						opacity: 0.1;
@@ -230,9 +274,13 @@
 					border: 1px solid fade-out( $COLOR_WHITE, 0.925 );
 					border-radius: 50%;
 
-					svg {
-						fill: $COLOR_BRAND_MAIN;
+					div {
+						display: block; width: 100%; height: 100%;
 					}
+
+						svg {
+							fill: $COLOR_BRAND_MAIN;
+						}
 				}
 
 				.feature-line {
@@ -263,7 +311,7 @@
 		}
 
 	section.pwu-features {
-		padding: lines(4) 0 ;
+		padding: lines(3) 0 lines(4);
 		background-image: linear-gradient(0deg, #292458 16%, #382F8E 100%);
 		overflow: visible;
 
@@ -274,29 +322,46 @@
 			border-left: 1px solid $COLOR_GREY_DARK;
 			opacity: 0.2;
 		}
-		
-		.row {
-			display: flex; align-items: center;
-		}
-			.col {
-				width: 30%;
-			}
-				.-right {
-					margin-left: auto;
-				}
 
+		p {
+			color: $COLOR_GREY_DARK;
+		}
+		
 		.illustration {
 			width: 40%;
 			position: relative; align-self: center;
 		}
-
-		
 	}
+		.pwu-features_title {
+			position: relative; z-index: 10;
+
+			&:before {
+				content: '';
+				width: 30%; height: 130%;
+				position: absolute; z-index: 0; top: -15%; left: 35%;
+				background-image: radial-gradient(50% 50%, #363085 50%, fade-out(#363085, 1) 100%);
+			}
+
+			h3 {
+				position: relative; z-index: 5;
+			}
+		}
+		.pwu-features_layout {
+			.row {
+				display: flex; align-items: center;
+			}
+				.col {
+					width: 30%;
+				}
+					.-right {
+						margin-left: auto;
+					}
+		}
 		.pwu-features_device-outline {
 			width: auto;
 			margin: 0 gutters(0.5);
 			position: absolute; top: 0;
-			transform: translateY(-10%);
+			transform: translateY(0%);
 		}
 			.pwu-features_device {
 				max-width: em(561);
@@ -321,13 +386,13 @@
 				}
 
 	section.pwu-testimonials {
-		padding: lines(5) 0 lines(6);
+		padding: lines(3) 0 lines(6);
 		background-image: url('../img/bg-pwu-testimonials.jpg'); background-repeat: no-repeat; background-size: cover;
 		background-color: $COLOR_BRAND_BASE;
 	}
 		.pwu-testimonials_cards {
 			max-width: cols(10);
-			margin: 0 auto lines(3); padding: 0;
+			margin: 0 auto lines(5); padding: 0;
 			// display: flex; justify-content: center;
 			text-align: left;
 			
@@ -361,6 +426,15 @@
 	}
 	100% { 
 		transform: translate3d(5%,-5%,0); 
+	}
+}
+
+@keyframes item-pulse {
+	0% { 
+		opacity: 0;
+	}
+	100% { 
+		opacity: 1;
 	}
 }
 
@@ -422,7 +496,7 @@
 		}
 			.pwu-features_device-outline {
 				margin: 0;
-				transform: translateY(-15%);
+				transform: translateY(-5%);
 			}
 
 
@@ -496,7 +570,8 @@
 			}
 
 		section.pwu-features {
-			
+			padding-top: lines(2);
+
 			p {
 				display: none;
 			}
@@ -504,7 +579,7 @@
 		}
 			.pwu-features_device-outline {
 				margin: 0;
-				transform: translateY(-25%);
+				transform: translateY(-5%);
 			}
 
 		section.pwu-testimonials {
@@ -523,6 +598,10 @@
 @include breakpoint(tablet) {
 
 	.view-pwu {
+
+		.header-nav {
+			display: none;
+		}
 
 		section.pwu-upsell {
 
@@ -568,7 +647,7 @@
 			}
 
 		section.pwu-features {
-			padding: lines(3) 0;
+			// padding: lines(3) 0;
 			background-image: linear-gradient(180deg, #292458 16%, #382F8E 100%);
 
 			h4 {
@@ -583,43 +662,51 @@
 			.container {
 				padding-bottom: lines(10.5);
 			}
-				.row {
-					flex-flow: column wrap;
-					margin: 0;
-					position: static;
-
-					&:last-child {
-						.col:last-child {
-							&:before {
-								height: 200%;
-							}
-						}
-					}
-				}
-					.col {
-						width: 100%; max-width: cols(4);
-						padding-left: gutters(2); margin: 0 auto;
-						flex: 0 0 auto;
-						position: relative;
-
-						&:before {
-							content: '';
-							width: 0; height: 100%;
-							position: absolute; top: em(5); left: gutters(1.25);
-							border-left: 1px solid $COLOR_GREY_DARK;
-							opacity: 0.2;
-						}
-					}
+				
 					
 			.illustration {
 				width: 100%;
 				position: static;
+				display: block;
 
 				&:before {
 					display: none;
 				}
 			}
 		}
+			.pwu-features_title {
+				&:before {
+					display: none;
+				}
+			}
+			.pwu-features_layout {
+				flex-flow: column wrap;
+				margin: 0;
+				position: static;
+
+				&:last-child {
+					.col:last-child {
+						&:before {
+							height: 200%;
+						}
+					}
+				}
+			
+				.col {
+					width: 100%; max-width: cols(4);
+					padding-left: gutters(2); margin: 0 auto;
+					flex: 0 0 auto; float: none; display: inline-block;
+					position: relative;
+
+					&:before {
+						content: '';
+						width: 0; height: 100%;
+						position: absolute; top: 0; left: gutters(1.25);
+						border-left: 1px solid $COLOR_GREY_DARK;
+						opacity: 0.2;
+					}
+				}
+			}
 			.pwu-features_device-outline {
 				width: em(320);
 				margin: 0;
@@ -632,8 +719,12 @@
 			padding: lines(0) 0 lines(4);
 			overflow: visible;
 		}
+			.pwu-testimonials_title {
+				display: none;
+			}
 			.pwu-testimonials_cards {
 				margin-top: lines(-1);
+				margin-bottom: lines(2);
 
 				.col {
 					width: 100%;

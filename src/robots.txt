@@ -8,3 +8,5 @@
 # To allow search engines from seeing the site altogether, uncomment the next two lines:
 User-agent: *
 Allow: /
+
+SITEMAP: http://www.seatfrog.com/sitemap.xml

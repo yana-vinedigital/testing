@@ -125,6 +125,10 @@ ul {
 	text-align: right;
 }
 
+.-lines-3 {
+	line-height: 1.5 !important;
+}
+
 
 //	Margins
 
@@ -188,7 +192,7 @@ ul {
 	.alpha { @include font-setting( beta ); }
 	.beta { @include font-setting( gamma ); }
 	.gamma { @include font-setting( gamma-beta ); }
-	.delta { @include font-setting( epsilon ); }
+	// .delta { @include font-setting( epsilon ); }
 	
 }
 
