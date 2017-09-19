@@ -1,0 +1,69 @@
+
+//
+//	UI / Cards
+//
+
+
+.ui-card {
+	padding: lines(2) lines(2) lines(1); box-sizing: border-box;
+	background-color: $COLOR_BRAND_BASE;
+	border-left: em(6) solid $COLOR_BRAND_MAIN;
+	box-shadow: 15px 15px 25px 0 rgba(0,0,0,0.32);
+
+	//	Styles	 ----------------
+
+	//	Sizes	 ----------------
+
+	//	States	 ----------------
+
+	//	Themes	 ----------------
+
+}
+
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1680 +
+ *	desktop 		1366 +
+ *	DEFAULT 		1025 > 1365
+ *	tablet-wide		- 1024
+ *	tablet			- 768
+ *	smartphone-wide	- 640
+ *	smartphone		- 480
+ *	mobile			- 320
+ *
+ */
+
+
+/*
+ *	Breakpoint:	tablet 
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( tablet ) {
+
+	.ui-card {
+		padding: lines(1.5) lines(1.5) lines(0.5);
+	}
+
+}
+
+
+/*
+ *	Breakpoint:	smartphone-wide 
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( smartphone-wide ) {
+
+	.ui-card {
+
+	}
+
+}

@@ -60,6 +60,8 @@ a {
  */
 
 .-color-white { color: $COLOR_WHITE; }
+.-color-grey { color: $COLOR_GREY_DARK !important; }
+.-color-base { color: $COLOR_BRAND_BASE; }
 
 
 
@@ -101,10 +103,11 @@ h1, h2, h3, h4, h5, h6 {
 	text-transform: uppercase;
 
 	&.-font-alt {
-		font-family: $FONT_PRIMARY; line-height: 1.25;
+		font-family: $FONT_PRIMARY;
 		text-transform: none; letter-spacing: 0;
 	}
-	&.-color-alt {
+	&.-color-alt,
+	.-color-alt {
 		color: $COLOR_BRAND_MAIN;
 	}
 }
@@ -240,13 +243,10 @@ img {
  *	--------------------------------------------------
  */
 
-@include breakpoint(smartphone) {
+@include breakpoint(smartphone-wide) {
 
 	.alpha {
-		margin-left: 3px;
-		text-indent: 0;
-		letter-spacing: 6px;
+		letter-spacing: 3px;
 	}
-	// .gamma { @include font-setting(20, 1.25); }
 
 }

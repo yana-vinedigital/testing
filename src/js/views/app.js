@@ -18,11 +18,12 @@ var View = require('ampersand-view');
 //	Views
 var PageNavView = require('./page-nav');
 var BladeView = require('./blade');
-var BladeTourView = require('./blade-tour');
+// var BladeTourView = require('./blade-tour');
 var BladeDownloadView = require('./blade-download');
 var FormSubscribeView = require('./form-subscribe');
-var FormPartnersView = require('./form-partners');
+// var FormPartnersView = require('./form-partners');
 var ContextSignupView = require('./context-signup');
+var ContextRequestDemo = require('./context-request-demo');
 
 
 //
@@ -98,6 +99,7 @@ module.exports = View.extend({
 	events: {
 		'click [data-hook=open-menu]': '_toggleMenuHandler',
 		'click [data-hook=open-sign-up]': '_clickSignupHandler',
+		'click [data-hook=open-request-demo]': '_clickRequestDemoHandler',
 		'click [data-hook=page-overlay]': '_clickOverlayHandler',
 		'click [data-hook=next-waypoint]': '_clickNextWaypointHandler',
 		'click [data-hook=close-context]': '_clickCloseContextHandler',
@@ -137,9 +139,9 @@ module.exports = View.extend({
 		
 		this.$_contextRegion = this.queryByHook('page-context');
 		this.$_formSubscribe = [].slice.call( this.queryAll('[data-hook=form-subscribe]') );
-		this.$_formPartners = this.queryByHook('form-partners');
+		// this.$_formPartners = this.queryByHook('form-request-demo');
 		this.$_intro = this.query('[data-blade=intro]');
-		this.$_tour = this.query('[data-blade=tour]');
+		// this.$_tour = this.query('[data-blade=tour]');
 
 		// 	Views	 ----------------
 		if ( this.$_contextRegion ) {
@@ -156,6 +158,10 @@ module.exports = View.extend({
 				this.registerSubview( v_formSubscribe );
 			});
 		}
+		// if ( this.$_formPartners ) {
+		// 	this.v_formPartners = new FormPartnersView({ el: this.$_formPartners, parent: this });
+		// 	this.registerSubview( this.v_formPartners );
+		// }
 		if ( this.$_formPartners ) {
 			this.v_formPartners = new FormPartnersView({ el: this.$_formPartners, parent: this });
 			this.registerSubview( this.v_formPartners );
@@ -211,6 +217,12 @@ module.exports = View.extend({
 	_clickSignupHandler( e ) {
 		e.preventDefault();
 		var view = new ContextSignupView({ parent: this });
+		this.openContext( view );
+	},
+
+	_clickRequestDemoHandler( e ) {
+		e.preventDefault();
+		var view = new ContextRequestDemo({ parent: this });
 		this.openContext( view );
 	},
 
@@ -307,7 +319,6 @@ module.exports = View.extend({
 
 	disableParallax( reset = true ) {
 		if ( !this._isParallaxEnabled || !this.$_parallaxElements ) return;
-
 		this._parallaxObjectsLength = 0;
 		this._parallaxObjects.length = 0;
 		
@@ -315,7 +326,7 @@ module.exports = View.extend({
 			this.$_page.style[ this.model._transformProperty ] = 'translate3d(0,0,0)';
 			this.$_main.style.height = 'auto';
 			if ( this.$_intro ) this.$_intro.style.opacity = 1;
-			if ( this.$_tour ) this.$_tour.style.opacity = 1;
+			// if ( this.$_tour ) this.$_tour.style.opacity = 1;
 		}
 
 		this.$_parallaxElements.forEach( ( el, i ) => {
@@ -332,7 +343,7 @@ module.exports = View.extend({
 
 		var bladeTypes = {
 			default: BladeView,
-			tour: BladeTourView,
+			// tour: BladeTourView,
 			download: BladeDownloadView
 		};
 
@@ -386,7 +397,6 @@ module.exports = View.extend({
 		var windowHeightHalf = windowHeight / 2;
 		var scrollPos = this.model._scrollPos;
 		var introOpacityPrev = this.introOpacity || 1;
-		var tourOpacityPrev = this.tourOpacity || 0;
 
 		this.$_page.style[ this.model._transformProperty ] = `translate3d(0,${(scrollPos * -1)}px,0)`;
 
@@ -396,24 +406,6 @@ module.exports = View.extend({
 				this.$_intro.style.opacity = this.introOpacity;
 			}
 		}
-
-		if ( this.$_tour && scrollPos > windowHeight*0.5 && scrollPos < windowHeight * 4.5 ) {
-			if ( scrollPos > windowHeight*0.5 && scrollPos <= windowHeight ) {
-				//	( Starting Y position ) / ( transition distance );
-				var opacity = ((scrollPos - windowHeight*0.5) / (windowHeight*0.5));
-			} else if ( scrollPos > windowHeight && scrollPos < windowHeight * 4.5 ) {
-				var opacity = 1 - (( scrollPos - windowHeight*4 ) / (windowHeight*0.5));
-			} else {
-				var opacity = 0;
-			}
-
-			let opacityCurve = +(Math.pow( opacity , 2 )).toFixed(2)
-			this.tourOpacity = Utils.MATH.clamp( opacityCurve, 0, 1 );
-			if ( this.tourOpacity !== tourOpacityPrev ) {
-				this.$_tour.style.opacity = this.tourOpacity;
-			}
-		}
-		// if ( !this._parallaxObjectsLength ) return;
 
 		for (var i = this._parallaxObjectsLength; i >= 0; i--) {
 			var item = this._parallaxObjects[i];
@@ -430,7 +422,7 @@ module.exports = View.extend({
 		this.model._headerHeight = this.$_header && this.$_header.offsetHeight || 0;
 		this.model._breakpoint = Utils.DOM.getAfterAttr( document.body );
 		this.model._scrollPos = scroll;
-		
+
 		if ( this.model._isDeviceBreakpoint || this.model._isBrowserIE ) {
 			this.disableParallax();
 		} else {

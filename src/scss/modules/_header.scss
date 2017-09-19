@@ -12,9 +12,10 @@ $header-menu-ease: $EASE_OUT_QUINT;
 .outline-header {
 	width: 100%; height: lines(5);
 	position: fixed; top: 0; z-index: 100;
-	background-color: fade-out($COLOR_BRAND_BASE, 0.1);
+	background-color: fade-out($COLOR_BRAND_BASE, 0.2);
 	transition: background-color 0.5s;
 	will-change: background-color;
+	-webkit-backdrop-filter: blur(8px);
 
 	&:before {
 		content: '';
@@ -29,6 +30,7 @@ $header-menu-ease: $EASE_OUT_QUINT;
 	.-is-scroll-top &,
 	.-is-menu-open & {
 		background-color: transparent;
+		-webkit-backdrop-filter: none;
 	}
 
 	.-is-menu-open & {
@@ -44,8 +46,6 @@ $header-menu-ease: $EASE_OUT_QUINT;
 		transform: translate3d( 0, lines(1.5), 0 );
 		transition: transform 0.5s;
 		will-change: transform;
-
-		
 
 		.row {
 			margin-bottom: 0;
@@ -154,6 +154,10 @@ $header-menu-ease: $EASE_OUT_QUINT;
 			
 		}
 
+		.logo-virgin {
+			width: em(97); 
+		}
+
 		.header-nav {
 			opacity: 1;
 			transition: opacity $header-menu-transition $header-menu-ease;
@@ -257,7 +261,6 @@ $header-menu-ease: $EASE_OUT_QUINT;
 		transition: transform $header-menu-transition, opacity $header-menu-transition, left 0s $header-menu-transition;
 		transition-timing-function: $header-menu-ease;
 		will-change: transform, opacity;
-
 		
 		.container {
 			min-height: 100%;
@@ -418,8 +421,6 @@ $header-menu-ease: $EASE_OUT_QUINT;
 				transform: translate3d( 0, lines(3.5), 0 );
 			}
 		}
-
-
 	}
 		.header-menu {
 			padding-top: lines(8);

@@ -12,7 +12,6 @@ var Utils = require('utils');
 var Events = require('ampersand-events');
 
 
-
 /**
  *	Application Singleton
  *  -------------------------------------
@@ -53,10 +52,10 @@ window.addEventListener('DOMContentLoaded', function () {
 window.addEventListener('load', function () {
 	FRONT.trigger('dom:ready');
 	window.cookieconsent.initialise({
-		"palette": {
+		 "palette": {
 			"popup": {
 				"background": "#1e1f2f",
-				"text": "#ffffff"
+				"text": "#CBCBD0"
 			},
 			"button": {
 				"background": "#d8ed1f",
@@ -65,10 +64,11 @@ window.addEventListener('load', function () {
 		},
 		"theme": "classic",
 		"content": {
-			"message": "This site uses cookies. By continuing to browse the site you are agreeing to our use of cookies. ",
+			"message": "This site uses cookies. By continuing to browse the site you are agreeing to our use of cookies.",
 			"link": "Find out more",
 			"href": "http://www.seatfrog.com/privacy.html"
 		}
+
 	});
 });
 

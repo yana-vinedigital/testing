@@ -58,8 +58,6 @@ module.exports = View.extend({
 	render() {
 		this.renderWithTemplate( this );
 
-		log('this.dataEmail', this.dataEmail);
-
 		this.$_formSignupAirline = this.queryByHook('form-signup-airline');
 		this.v_formSignupAirline = new FormSubscribeView({
 			dataEmail: this.dataEmail,

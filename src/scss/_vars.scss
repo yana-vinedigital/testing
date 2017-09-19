@@ -16,6 +16,7 @@
 // 	Brand Palette
 $COLOR_BRAND_MAIN: 		#D7ED1F; //	Bright green
 $COLOR_BRAND_BASE: 		#1E1F2F; //	Midnight blue #151526 // #272938
+$COLOR_BRAND_BLUE: 		#6B2BEB; //	Midnight blue #151526 // #272938
 $COLOR_VIRGIN_RED: 		#CC1C00;
 
 // 	...
@@ -76,9 +77,11 @@ $TYPE_SCALE: (
 	alpha:				(84 3.5 h1),
 	beta: 				(72 3 h2),
 	gamma: 				(48 2 h3),
+		gamma-alpha: 	(42 2.5),
 		gamma-beta: 	(36 1.5),
 		gamma-gamma: 	(32 1.5),
 		gamma-delta: 	(28 1.5),
+		gamma-epsilon: 	(28 2),
 	delta: 				(24 1.5 h4),
 		delta-beta: 	(22 1.375),
 		delta-gamma: 	(20 1.375),
