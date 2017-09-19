@@ -31,8 +31,8 @@
 					<nav class="header-menu_primary">
 						<ul>
 							<li{{#is view "home"}} class="-is-active"{{/is}}><a href="/">How it works</a></li>
-							<!-- <li{{#is view "virgin"}} class="-is-active"{{/is}}><a href="/virgintrainseastcoast.html">Virgin Trains East Coast</a></li>
-							<li><a href="http://help.seatfrog.com" target="_blank" title="Help">Help</a></li> -->
+							<li{{#is view "virgin"}} class="-is-active"{{/is}}><a href="/virgintrainseastcoast.html">Virgin Trains East Coast</a></li>
+							<li><a href="http://help.seatfrog.com" target="_blank" title="Help">Help</a></li>
 						</ul>
 					</nav>
 					<nav class="header-menu_secondary">
@@ -56,7 +56,7 @@
 	<div class="header-menu-bg" data-hook="header-menu-bg"></div>
 	<div class="page-context">
 		<div class="context-actions">
-			<a href="#" class="ui-btn" data-hook="close-context">Close &nbsp;X</a>
+			<a href="#" class="ui-btn -alt -border" data-hook="close-context">Close <span class="close-icon"><svg><use xlink:href="#icon-close"></use></svg></span></a>
 		</div>
 		<div class="context-viewport" data-hook="page-context"></div>
 	</div>

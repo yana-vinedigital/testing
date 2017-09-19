@@ -75,6 +75,8 @@ p {
 
 ul {
 
+	padding-left: em(18);
+
 	&.unstyled {
 		@extend %unstyled;
 	}

@@ -25,6 +25,26 @@
 		.-is-context-open & {
 			display: inline-block;
 		}
+
+		.ui-btn {
+			padding-right: lines(3);
+			position: relative;
+
+			&:hover {
+				.close-icon {
+					fill: $COLOR_BRAND_BASE;
+				}
+			}
+		}
+
+		.close-icon {
+			width: em(11); height: em(11);
+			padding: em(9);
+			position: absolute; top: 0; right: em(20);
+			display: block;
+
+			fill: $COLOR_WHITE;
+		}
 	}
 
 	.context-viewport {
@@ -192,6 +212,11 @@
 				transform: translate3d( 0, lines(2), 0 );
 			}
 		// }
+
+		.context {
+			padding: lines(6) 0; 
+
+		}
 	}
 
 }
