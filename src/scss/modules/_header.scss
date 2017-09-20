@@ -557,6 +557,10 @@ $header-menu-ease: $EASE_OUT_QUINT;
 
 		}
 
+		.header-nav {
+			display: none;
+		}
+
 	}
 		.header-menu {
 			padding-top: lines(4);
