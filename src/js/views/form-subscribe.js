@@ -33,7 +33,7 @@ var ContextThanksView = require('../views/context-thanks');
 
 module.exports = FormView.extend({
 
-	template: '<form action="http://email.seatfrog.com/t/i/s/qiynh/" method="post" id="subForm" data-hook="form-subscribe"><fieldset data-hook="field-container"></fieldset></form>',
+	template: '<form action="https://seatfrog.createsend.com/t/i/s/qiynh/" method="post" id="subForm" data-hook="form-subscribe"><fieldset data-hook="field-container"></fieldset></form>',
 	
 	autoAppend: true,
 	autoRender: true,
