@@ -58,8 +58,6 @@ module.exports = View.extend({
 	render() {
 		this.renderWithTemplate( this );
 
-		log('this.dataEmail', this.dataEmail);
-
 		this.$_formSignupAirline = this.queryByHook('form-signup-airline');
 		this.v_formSignupAirline = new FormSubscribeView({
 			dataEmail: this.dataEmail,
@@ -69,7 +67,7 @@ module.exports = View.extend({
 					new InputView({
 						type: 'hidden',
 						template: '<label class="input-email"><input type="hidden" id="fieldEmail" placeholder="" required /></label>',
-						name: 'cm-dkiiju-dkiiju',
+						name: 'cm-qiynh-qiynh',
 						value: this.dataEmail,
 						required: true,
 						tests: [

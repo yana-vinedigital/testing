@@ -75,6 +75,8 @@ p {
 
 ul {
 
+	padding-left: em(18);
+
 	&.unstyled {
 		@extend %unstyled;
 	}
@@ -125,6 +127,10 @@ ul {
 	text-align: right;
 }
 
+.-lines-3 {
+	line-height: 1.5 !important;
+}
+
 
 //	Margins
 
@@ -134,10 +140,28 @@ ul {
 	}
 }
 .-margin-none {
-	margin-bottom: 0;
+	margin-bottom: 0 !important;
 
 	& + * {
 		margin-top: 0;
+	}
+}
+
+.-width-match-headline {
+	display: table;
+
+	.-center & {
+		margin: 0 auto;
+	}
+
+	// > :first-child {
+	// 	display: inline;
+	// }
+
+	p:not(:first-child) {
+		margin-top: 0;
+		display: table-caption;
+		caption-side: bottom;
 	}
 }
 
@@ -170,7 +194,7 @@ ul {
 	.alpha { @include font-setting( beta ); }
 	.beta { @include font-setting( gamma ); }
 	.gamma { @include font-setting( gamma-beta ); }
-	.delta { @include font-setting( epsilon ); }
+	// .delta { @include font-setting( epsilon ); }
 	
 }
 
@@ -216,6 +240,7 @@ ul {
 	.alpha { @include font-setting( 56, 2.25 ); }
 	.beta { @include font-setting( gamma ); }
 	.gamma { @include font-setting( gamma-beta ); }
+	.gamma-beta { @include font-setting( gamma-delta ); }
 	.delta { @include font-setting( epsilon ); }
 }
 
@@ -227,13 +252,16 @@ ul {
 @include breakpoint( tablet ) {
 	.alpha { @include font-setting( gamma ); }
 	.beta { @include font-setting( gamma ); }
+	.gamma-beta { @include font-setting( delta ); }
+	.gamma-delta { @include font-setting( delta ); }
+	.delta-beta { @include font-setting( delta-gamma ); }
 }
 
 /*
- *	Breakpoint:	mobile
+ *	Breakpoint:	smartphone-wide
  *	--------------------------------------------------
  */
 
-@include breakpoint(mobile) {
-
+@include breakpoint( smartphone-wide ) {
+	.alpha { @include font-setting( gamma ); }
 }

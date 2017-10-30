@@ -1,25 +1,42 @@
+# Compiled
+# ------------
 dist/*
+build/*
+client/assets
 
+# Dependencies
+# ------------
 node_modules
 bower_components
 bower
 
-.tmp
+# Logs
+# ------------
 lib-cov
+logs
 *.seed
 *.log
 *.out
 *.pid
 npm-debug.log
 
+# OS
+# ------------
+.DS_Store
+.tmp
+
+# IDE
+# ------------
 *~
 *#
-.DS_STORE
 .netbeans
 nbproject
 .idea
 *.sublime-project
 codekit-config.json
 
+# Dev
+# ------------
 .sass-cache
-
+.awspublish*
+aws-credentials.json

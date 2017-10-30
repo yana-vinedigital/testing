@@ -22,10 +22,13 @@ var Templates = require('./base/templates');
 //	Dependencies
 var Modernizr = require('browsernizr');
 var Browser = require('detect-browser');
+var MobileDetect = require('mobile-detect');
 var State = require('ampersand-state');
 
 //	Views
 var AppView = require('./views/app');
+
+var MD = new MobileDetect( window.navigator.userAgent );
 
 
 //
@@ -41,7 +44,8 @@ var AppView = require('./views/app');
 var AppState = State.extend({
 
 	props: {
-		_browser: ['object'],
+		_browser: 'object',
+		_os: 'string',
 
 		_windowWidth: ['number', true, window.innerWidth],
 		_windowHeight: ['number', true, window.innerHeight],
@@ -196,9 +200,13 @@ var AppState = State.extend({
 
 	initialize() {
 		this._browser = Browser;
+		this._os = MD.os();
 		this._transformProperty = Modernizr.prefixed('transform');
 		this._hasTransforms3d = Modernizr.csstransforms3d;
 		this._isTouch = Modernizr.touchevents;
+
+		//	If QS has ?downloadapp=1 - redirect to appropriate app store.
+		this.checkDownloadRedirect();
 
 		// 	Async Derived Properties	 ------------
 
@@ -215,6 +223,17 @@ var AppState = State.extend({
 		this.on('change:_windowHeight change:_scrollPos change:_isDeviceBreakpoint', Utils.throttle(() => {
 			this._isScrollTopSection = ( this._scrollPos < this._windowHeight * 0.25 )
 		}, 250));
+	},
+
+	checkDownloadRedirect() {
+		if ( Utils.getQsParam('downloadapp') !== '1' ) return;
+
+		if ( this._os === 'iOS' ) {
+			return window.location.replace( FRONT.appStoreURL );
+		}
+		if ( this._os === 'AndroidOS' ) {
+			return window.location.replace( FRONT.playStoreURL );
+		}
 	},
 
 	registerWaypoint( waypoint ) {

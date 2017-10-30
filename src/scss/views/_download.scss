@@ -1,0 +1,196 @@
+
+//
+//	Views / Download
+//
+
+
+.view-download {
+
+	.-color-white {
+		color: $COLOR_WHITE !important;
+	}
+
+	.download-region {
+		overflow: hidden;
+
+		transition: height 1s;
+	}
+
+	section.download {
+		min-height: 100vh;
+		padding: 10vh 0;
+
+		p {
+			color: $COLOR_GREY_SLATE;
+		}
+
+		.message,
+		.form-message {
+			p {
+				color: #FF3B30;
+			}
+		}
+
+		.download-iphone {
+			width: em(159); height: em(170);
+			margin: 0 auto;
+			position: relative;
+			background-image: url("../img/download-iphone.png"); background-repeat: no-repeat;
+			background-size: contain;
+		}
+			.download-iphone-overlay {
+				width: 84.5%;
+				position: absolute; top: 22%; left: 9%;
+				overflow: hidden;
+
+				img {
+					width: 100%;
+					transform: translate(-0.5%, -100%) scale(1.01);
+					transition: transform 1s;
+				}
+			}
+
+		.bg {
+			background-image: url("../img/bg-pattern-dark.jpg");
+			background-size: cover;
+
+			&:before, &:after {
+				display: none;
+			}
+		}
+
+		&:after {
+			display: none;
+		}
+
+		&.-is-sent {
+			.download-iphone-overlay img {
+				transform: translate(-0.5%, 0%) scale(1.01);
+			}
+		}
+
+	}
+	
+	label {
+		max-width: cols(5);
+		margin: 0 auto;
+		float: none;
+	}
+
+		input:not(.ui-btn) {
+
+			border-bottom: 1px solid $COLOR_BRAND_MAIN;
+
+			&::placeholder {
+				opacity: 0.2;
+			}
+
+			&:focus {
+				border-color: $COLOR_WHITE;
+			}
+
+			&.input-invalid {
+				border-color: #FF3B30;
+			}
+		}
+
+	.download-links {
+		margin: lines(2) auto lines(1);
+		display: flex; justify-content: center;
+
+		a {
+			margin: 0 gutters(0.25);
+		}
+	}
+
+	
+	.download-loader {
+		padding-top: lines(2);
+		display: flex; justify-content: center; align-items: center;
+		min-height: lines(10);
+
+		.loader {
+			width: cols(1); height: cols(1);
+			margin: 0 auto;
+			position: relative;
+			border-radius: 50%;
+
+			&:after {
+				content: '';
+				width: 100%; height: 100%;
+				position: absolute; top: -6px; left: -6px; z-index: 0;
+				border: 6px solid $COLOR_BRAND_MAIN; border-radius: 50%;
+				animation: pulse 1s infinite ease-out;
+			}
+		}
+	}
+
+	.download-tryagain {
+		margin-bottom: lines(2);
+	}
+	
+}
+
+
+
+/*
+ * 	Media Queries
+ *	--------------------------------------------------
+ *
+ *	- Breakpoints
+ *
+ *	large-desktop	1920 +
+ *	med-desktop 	1440 +
+ *	DEFAULT 		1025...1439 (1128)
+ *	tablet-wide		- 1024
+ *	tablet			- 768 (fluid)
+ *	smartphone-wide	- 640 (fluid)
+ *	smartphone		- 480 (fluid)
+ *	mobile			- 320 (fluid)
+ *
+ */
+
+/*
+ *	Breakpoint:	default
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(default) {
+
+
+}
+
+/*
+ *	Breakpoint:	tablet-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet-wide) {
+
+	
+
+}
+
+
+/*
+ *	Breakpoint:	tablet
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(tablet-wide) {
+	
+	
+
+}
+
+
+/*
+ *	Breakpoint: smartphone-wide
+ *	--------------------------------------------------
+ */
+
+@include breakpoint(smartphone-wide) {
+
+	
+
+}

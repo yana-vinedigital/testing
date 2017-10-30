@@ -5,8 +5,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		{{#block "head"}}{{/block}}
-		<link rel="stylesheet" href="assets/css/main.css">
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="/assets/css/main.css">
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
 		<link rel="icon" href="/favicon.ico">
 		{{!-- // <script type="text/javascript" src="https://www.google.com/jsapi"></script> --}}
 		
@@ -71,19 +72,13 @@
 				<p>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><p><a href="mailto:info@seatfrog.com">Contact us</a></p>
 			</div>
 		<![endif]-->
-
 		{{> sprite.symbol }}
+		{{> header }}
+
+		{{#block "main"}}{{/block}}
 		
-		{{!-- <div class="outline"> --}}
-			
-			{{> header }}
-
-			{{#block "main"}}{{/block}}
-
-			<footer class="outline-footer" data-region="footer"></footer>
-		{{!-- </div> --}}
-
-		<script src="assets/js/main.js"></script>
-
+		<footer class="outline-footer" data-region="footer"></footer>
+		<script src="/assets/js/main.bundle.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 	</body>
 </html>

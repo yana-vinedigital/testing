@@ -57,11 +57,13 @@ $DIR_FONTS: "../font/";
 
 @import "global/defaults";
 @import "global/forms";
+@import "global/images";
 @import "global/structure";
 
 //	UI	------------------------
 
 @import "ui/buttons";
+@import "ui/cards";
 @import "ui/feature";
 @import "ui/job-listing";
 @import "ui/press-listing";
@@ -82,7 +84,9 @@ $DIR_FONTS: "../font/";
 @import "views/main";
 @import "views/landing";
 @import "views/about";
-@import "views/airlines";
+@import "views/partner-with-us";
+@import "views/partner";
+@import "views/download";
 @import "views/careers";
 @import "views/contact";
 @import "views/pressroom";

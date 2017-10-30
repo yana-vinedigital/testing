@@ -103,7 +103,7 @@ form {
 			&::placeholder {
 				font-weight: 300;
 				color: $COLOR_WHITE;
-				opacity: 0.8;
+				opacity: 0.5;
 			}
 
 			&:-webkit-autofill {
@@ -183,9 +183,19 @@ form {
 		//	Textarea	 ----------------
 
 		textarea {
-			min-height: lines(1);
+			padding: 0 em(16, $input-font-size);
+			min-height: lines(1, $input-font-size);
+
 			overflow: hidden;
 			resize: none;
+
+			border: 1px solid fade-out($COLOR_BRAND_BASE, 0.5);
+
+			&.-large {
+				padding: lines(0.5, delta) lines(1, delta) lines(0.75, delta);
+				min-height: lines(1, delta);
+				line-height: lines(1.5, delta);
+			}
 		}
 		
 		//	Checkbox	 ----------------

@@ -29,7 +29,8 @@ html {
 			}
 		}
 	}
-
+	
+	&.-is-menu-open,
 	&.-is-context-open,
 	&.-is-scroll-disabled {
 		height: 100%;
@@ -61,6 +62,10 @@ html {
 // 	overflow: hidden;
 // 	position: relative;
 // }
+	.cc-banner {
+		text-align: left;
+	}
+
 	.outline-header,
 	.outline-main,
 	.outline-footer {
@@ -86,6 +91,7 @@ html {
 			will-change: transform;
 			transform: translate3d(0,0,0);
 			backface-visibility: hidden;
+			overflow: hidden;
 		
 			section {
 				width: 100%; //min-height: 100vh;
@@ -220,7 +226,32 @@ html {
 	background-color: $COLOR_BRAND_BASE;
 }
 
+.-hide-lge {
+	display: none !important;
+}
+.-hide-sml {
+	display: block !important;
+}
 
+
+.-show-ios,
+.-show-android {
+	display: none !important;
+}
+.-is-ios,
+.-is-android {
+	.-show-desktop {
+		display: none !important;
+	}
+}
+.-is-ios .-show-ios {
+	display: block !important;
+}
+.-is-android {
+	.-show-android {
+		display: block !important;
+	}
+}
 			
 
 
@@ -325,6 +356,13 @@ html {
 				}
 			}
 		}
+
+	.-hide-lge {
+		display: block !important;
+	}
+	.-hide-sml {
+		display: none !important;
+	}
 	
 }
 

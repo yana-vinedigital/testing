@@ -71,18 +71,38 @@ gulp.task('images', function() {
 	], { base: paths.src.root, dot: true })
 		.pipe( gulp.dest( paths.dist.root ) );
 
+	gulp.src([
+		paths.src.img + '**/*.png'
+	]).pipe( gulp.dest( paths.dist.img ) );
+
 	return gulp.src([
-		paths.src.img + '**/*.{jpg,png}'
-	], { dot: true })
-		.pipe( $.if( env.isProd, $.imageResize({
+		paths.src.img + '**/*.jpg'
+	])
+		.pipe( $.if( env.isProd, $.responsive({
+			'*': {
+				width: 1280,
+				withoutEnlargement: true,
+				withoutAdaptiveFiltering: true
+			}
+		}, {
+			quality: 95,
+			progressive: true,
+			compressionLevel: 9,
+			withMetadata: false,
+			withoutAdaptiveFiltering: true,
+			errorOnEnlargement: false
+		})))
+		/* .pipe( $.if( env.isProd, $.imageResize({
 			width: 1280,
 			crop: false,
-			upscale : false
-		})))
-		.pipe( $.if( env.isProd, $.imagemin({
-			progressive: true,
-			optimizationLevel: 6
-		})))
+			upscale : false,
+			quality: 1
+		})))*/
+		/* .pipe( $.if( env.isProd, $.imagemin([
+			//$.imagemin.jpegtran({ progressive: true, arithmetic: true }),
+			$.imagemin.optipng({ optimizationLevel: 5 }),
+		]))) */
+
 		.pipe( gulp.dest( paths.dist.img ) );
 });
 
@@ -145,9 +165,48 @@ gulp.task('html', function() {
  *  --------------------------------------------------
  */
 
-gulp.task('js', function() {
-	var browserify = $.browserify({
-		entries: paths.src.js + 'main.js',
+gulp.task('js', function( next ) {
+
+	var bundles = [
+		paths.src.js + 'main.js',
+		paths.src.js + 'main-download.js',
+		paths.src.js + 'main-bidnow.js'
+	];
+
+	var tasks = bundles.map( function( entry ) {
+		return $.browserify({
+			entries: entry,
+			transform: [
+				$.stringify({
+					extensions: ['.hbs'], 
+					minify: true
+				}),
+				$.babelify.configure({
+					presets: ['es2015']
+				})
+			],
+			debug: !env.isProd
+		}).bundle()
+			.pipe( $.vinylSourceStream( entry ) )
+			.pipe( $.rename({
+				extname: '.bundle.js',
+				dirname: '' 
+			}))
+			.pipe( $.vinylBuffer() )
+			.pipe( $.sourcemaps.init({ loadMaps: true }) )
+			.pipe( $.if( env.isProd, $.uglify() ))
+			.on( 'error', gutil.log )
+			.pipe( $.sourcemaps.write('./') )
+			.pipe( gulp.dest( paths.dist.js ) );
+	});
+
+	$.eventStream.merge( tasks ).on( 'end', next );
+
+/*	$.browserify({
+		entries: [
+			paths.src.js + 'main.js',
+			paths.src.js + 'main-download.js'
+		],
 		transform: [
 			$.stringify({
 				extensions: ['.hbs'], 
@@ -158,20 +217,20 @@ gulp.task('js', function() {
 			})
 		],
 		debug: !env.isProd
-	});
+	}); */
 
 	// env.isProd && gulp.src([ paths.src.js + '**/*.js' ])
 	// 	.pipe( $.jshint() )
 	// 	.pipe( $.jshint.reporter('jshint-stylish') );
 
-	return browserify.bundle()
+	/* return browserify.bundle()
 		.pipe( $.vinylSourceStream( 'main.js' ) )
 		.pipe( $.vinylBuffer() )
 		.pipe( $.sourcemaps.init({ loadMaps: true }) )
 		.pipe( $.if( env.isProd, $.uglify() ))
 		.on( 'error', gutil.log )
 		.pipe( $.sourcemaps.write('./') )
-		.pipe( gulp.dest( paths.dist.js ) );
+		.pipe( gulp.dest( paths.dist.js ) ); */
 });
 
 //	Helpers		---------------
@@ -258,24 +317,18 @@ gulp.task('server', function() {
 
 
 /*
- *  Task: AWS S3 Publish - newground.io
+ *  Task: AWS S3 Publish - frontage.io
  *  --------------------------------------------------
  */
+var awsConfig = require('./aws-credentials.json');
 
 gulp.task('publish', function() {
-	var publisher = $.awspublish.create({ 
-		params: {
-			Bucket: 'seatfrog.newground.io'
-		},
-		accessKeyId: 'AKIAIWCVBRIWBIH4VFDA', 
-		secretAccessKey: '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',
-		region: 'ap-southeast-2' 
-	});
+	var publisher = $.awspublish.create( awsConfig );
 	var headers = {
 		'Cache-Control': 'max-age=315360000, no-transform, public'
 	};
 	// var indexFilter = filter( '!/**/*.html' );
-	return gulp.src('./dist/**/*.{js,html,css,jpg,png,pdf,mp4,webm,eot,woff,ttf,svg,ico}')
+	return gulp.src('./dist/**/*.{js,html,css,jpg,png,pdf,mp4,webm,eot,woff,woff2,ttf,svg,ico}')
 		.pipe( publisher.publish(headers) )
 		.pipe( publisher.cache() )
 		.pipe( $.awspublish.reporter() );

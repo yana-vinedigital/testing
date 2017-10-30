@@ -1,0 +1,21 @@
+<form action="" method="post" id="downloadForm" data-hook="form-download" onSubmit="ga('send', 'event', 'SMS', 'Submit Form', 'Download - Text App Link');">
+	<div class="row">
+		<div class="col -full">
+			<h1>Download Seatfrog</h1>
+			<p class="delta-gamma">Enter your mobile phone number and we&rsquo;ll text you a download link.</p>
+			<div class="form-message" data-hook="form-message"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col -wide -center">
+			<fieldset data-hook="field-container"></fieldset>
+			<input class="ui-btn -alt -large" type="submit" value="Text me the link" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col -wide -center download-links">
+			<a href="https://itunes.apple.com/app/seatfrog/id1129001637" target="_blank" onClick="ga('send', 'event', 'Download', 'Click Button', 'Apple Download')"><img src="/assets/img/download-badge-apple.png" /></a>
+			<a href="https://play.google.com/store/apps/details?id=au.com.seatfrog.icarus" target="_blank" onClick="ga('send', 'event', 'Download', 'Click Button', 'Android Download')"><img src="/assets/img/download-badge-android.png" /></a>
+		</div>
+	</div>
+</form>

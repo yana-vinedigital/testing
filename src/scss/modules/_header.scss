@@ -12,20 +12,32 @@ $header-menu-ease: $EASE_OUT_QUINT;
 .outline-header {
 	width: 100%; height: lines(5);
 	position: fixed; top: 0; z-index: 100;
-	background-color: fade-out($COLOR_BRAND_BASE, 0.1);
+	background-color: fade-out($COLOR_BRAND_BASE, 0.2);
 	transition: background-color 0.5s;
 	will-change: background-color;
-	
-	// &:after {
-	// 	content: '';
-	// 	width: 100%; height: lines(10);
-	// 	position: absolute; top: -1px; left: 0; z-index: 0;
-	// 	// background-image: linear-gradient( 0deg, transparentize( $COLOR_BRAND_BASE, 1 ), transparentize( $COLOR_BRAND_BASE, 0.1 ) 90% );
-	// }
+	-webkit-backdrop-filter: blur(8px);
+
+	&:before {
+		content: '';
+		width: 50%; height: lines(5);
+		opacity: 0;
+		position: fixed; top: 0; left: 0; z-index: 50;
+		background-color: fade-out($COLOR_BRAND_BASE, 0.1);
+		transition: opacity 0;
+		pointer-events: none;
+	}
 	
 	.-is-scroll-top &,
 	.-is-menu-open & {
 		background-color: transparent;
+		-webkit-backdrop-filter: none;
+	}
+
+	.-is-menu-open & {
+		&:before {
+			opacity: 1;
+			transition: opacity 0.5s 0.5s;
+		}
 	}
 
 	.header {
@@ -96,33 +108,34 @@ $header-menu-ease: $EASE_OUT_QUINT;
 
 		.logo {
 			margin: 0;
+			position: relative;
 			display: block; float: left;
-			text-decoration: none;
+			color: $COLOR_WHITE; text-transform: uppercase;
+			font-family: $FONT_SECONDARY; text-decoration: none;
+			transition: color 0.5s;
 		
-			h1 {
+			&:after {
+				content: '';
+				width: em(48); height: em(48);
+				display: block; position: absolute; top: 0; left: em(-8); z-index: 0;
+				background-color: $COLOR_BRAND_MAIN;
+				border-radius: em(7);
+				opacity: 0;
+				transition: opacity 0.5s;
+			}
+
+			.title {
 				@include font-setting-size( 25, 1.9 );
 				margin: 0;
-				position: relative;
 				letter-spacing: 6px; text-align: left; text-indent: 0;
-				transition: color 0.5s;
+			}
 
-				&:after {
-					content: '';
-					width: em(48, 25); height: em(48, 25);
-					display: block; position: absolute; top: 0; left: em(-8, 25); z-index: 0;
-					background-color: $COLOR_BRAND_MAIN;
-					border-radius: em(7);
-					opacity: 0;
-					transition: opacity 0.5s;
-				}
-
-				svg {
-					width: em(32, 25); height: em(28, 25);
-					margin: em(10, 25) $GUTTER/2 em(10, 25) 0;
-					float: left; position: relative; z-index: 10;
-					fill: $COLOR_BRAND_MAIN;
-					transition: fill 0.5s;
-				}
+			svg {
+				width: em(32); height: em(28);
+				margin: em(10) em(13) em(10) 0;
+				float: left; position: relative; z-index: 10;
+				fill: $COLOR_BRAND_MAIN;
+				transition: fill 0.5s;
 			}
 
 			.-header-theme-light:not(.-is-menu-open) & {
@@ -139,6 +152,10 @@ $header-menu-ease: $EASE_OUT_QUINT;
 				}
 			}
 			
+		}
+
+		.logo-virgin {
+			width: em(97); 
 		}
 
 		.header-nav {
@@ -196,7 +213,8 @@ $header-menu-ease: $EASE_OUT_QUINT;
 						}
 
 						a.ui-btn {
-							padding: 0 $GUTTER/2;
+							padding-left: $GUTTER/2;
+							padding-right: $GUTTER/2;
 							color: $COLOR_WHITE;
 							border-color: $COLOR_BRAND_MAIN;
 
@@ -236,7 +254,7 @@ $header-menu-ease: $EASE_OUT_QUINT;
 		width: 100%; height: 100vh;
 		padding-top: lines(5.5); box-sizing: border-box;
 		text-align: left;
-		overflow: hidden;
+		overflow: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch;
 		position: absolute; top: 0; left: -100%; z-index: 40;
 		opacity: 0;
 		transform: translate3d(-2%,0,0);
@@ -248,16 +266,24 @@ $header-menu-ease: $EASE_OUT_QUINT;
 			min-height: 100%;
 			left: 50%;
 		}
-			nav {
-				padding: lines(2) 0 lines(7);
-				position: relative;
+			.header-menu_cta {
+				display: flex; align-items: center;
 
-				&:before {
-					content: '';
-					width: 80%; height: 0;
-					position: absolute; top: 0; left: 0;
-					border-top: 1px solid fade-out($COLOR_GREY, 0.9);
+				p {
+					margin-left: 0; margin-right: 0;
 				}
+
+				.header-menu_cta_info {
+					max-width: cols(2);
+					padding-left: lines(1.5); margin-left: lines(1.5);
+					color: $COLOR_GREY;
+					border-left: 1px solid fade-out($COLOR_GREY, 0.9);
+				}
+			}
+				
+
+			nav {
+				position: relative;
 
 				ul {
 					list-style-type: none;
@@ -276,7 +302,7 @@ $header-menu-ease: $EASE_OUT_QUINT;
 						}
 					}
 						a { 
-							@include font-setting-size( gamma-beta, 3 );
+							@include font-setting-size( gamma-beta, 2.75 );
 							color: $COLOR_WHITE; font-weight: 300; text-decoration: none;
 							transition: color 0.3s;
 
@@ -284,6 +310,27 @@ $header-menu-ease: $EASE_OUT_QUINT;
 								color: $COLOR_BRAND_MAIN;
 							}
 						}
+				}
+
+				&.header-menu_primary {
+					padding: lines(1) 0;
+
+					&:before {
+						content: '';
+						width: 80%; height: 0;
+						position: absolute; top: 0; left: 0;
+						border-top: 1px solid fade-out($COLOR_GREY, 0.9);
+					}
+				}
+
+				&.header-menu_secondary {
+					padding: lines(1) 0 lines(7);
+
+					ul {
+						a {
+							@include font-setting-size( gamma-delta, 2 );
+						}
+					}
 				}
 			}
 
@@ -361,7 +408,12 @@ $header-menu-ease: $EASE_OUT_QUINT;
 
 @include breakpoint( med-desktop ) {
 
-	.outline-header {		
+	.outline-header {
+
+		&:before {
+			content: '';
+			width: 50%; height: lines(6.5);
+		}
 
 		.-is-scroll-top &,
 		.-is-menu-open & {
@@ -391,13 +443,12 @@ $header-menu-ease: $EASE_OUT_QUINT;
 		background-color: transparent;
 		transform: none;
 
-		.-is-menu-open & {
-			position: fixed;
+		&:before {
+			width: 61.8%;
 		}
 
-
-		.header {
-			
+		.-is-menu-open & {
+			position: fixed;
 		}
 		.header-logo {
 			width: 100%;
@@ -432,16 +483,46 @@ $header-menu-ease: $EASE_OUT_QUINT;
 		.header-menu {
 			padding-top: lines(4);
 
-			nav {
-				ul {
-					li {
-						a {
-							@include font-setting-size( delta, 2 );
+			.container {
+				left: 38.2%;
+			}
+				.col {
+					width: 61.8%;
+				}
+					nav {
+
+						&.header-menu_primary:before {
+							width: 90%;
+						}	
+
+						ul {
+							li {
+								a {
+									@include font-setting-size( delta, 2 );
+								}
+							}
+						}
+
+						&.header-menu_secondary {
+							padding: 0 0 lines(7);
+
+							ul {
+								a {
+									@include font-setting-size( delta-gamma );
+								}
+							}
 						}
 					}
-				}
+
+			.-is-menu-open & {
+				left: -38.2%;
 			}
 		}
+		.header-menu-bg {
+			width: 61.8%;
+		}
+
+
 
 }
 
@@ -456,6 +537,9 @@ $header-menu-ease: $EASE_OUT_QUINT;
 	.outline-header {
 		height: auto;
 		
+		&:before {
+			width: 80%; height: lines(4);
+		}
 
 		&:after {
 			display: none;
@@ -467,10 +551,14 @@ $header-menu-ease: $EASE_OUT_QUINT;
 			// transform: none;
 			// padding: 0 $GUTTER/4;
 
-			.logo span {
+			.logo .title {
 				display: none;
 			}
 
+		}
+
+		.header-nav {
+			display: none;
 		}
 
 	}
@@ -483,21 +571,16 @@ $header-menu-ease: $EASE_OUT_QUINT;
 				.col {
 					width: 80%;
 				}
-					nav {
-						padding-top: lines(2);
-
-						&:before {
-							width: 90%;
-						}							
-					}
 
 			.-is-menu-open & {
 				left: -20%;
 			}
 		}
+
 		.header-menu-bg {
 			width: 80%;
 		}
+		
 
 }
 
@@ -512,7 +595,6 @@ $header-menu-ease: $EASE_OUT_QUINT;
 	.outline-header {
 		padding-top: lines(1);
 
-		
 		.header {
 			max-width: 100%;
 			transform: none;
@@ -521,6 +603,7 @@ $header-menu-ease: $EASE_OUT_QUINT;
 			.-is-menu-open & {
 				transform: none;
 			}
+			
 		}
 		.menu {
 			margin-right: lines(1); padding-right: lines(1);
@@ -544,4 +627,44 @@ $header-menu-ease: $EASE_OUT_QUINT;
 		}
 	}
 
+}
+
+
+/*
+ *	Breakpoint:	smartphone
+ *	--------------------------------------------------
+ */
+
+@include breakpoint( smartphone ) {
+	
+	.outline-header {
+		&:before {
+			width: 100%; height: lines(4);
+		}
+	}
+
+	.header-menu {
+
+		.container {
+			left: 0;
+		}
+			.col {
+				width: 100%;
+			}
+				nav {
+
+					&.header-menu_primary:before {
+						width: 100%;
+					}
+				}
+
+		.-is-menu-open & {
+			left: 0;
+		}
+	}
+
+	.header-menu-bg {
+		width: 100%;
+	}
+		
 }

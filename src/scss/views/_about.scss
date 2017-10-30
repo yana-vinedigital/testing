@@ -52,6 +52,13 @@
 			}
 		}
 
+		section.about-intro {
+
+			.about-intro_title {
+				padding-right: 5%;
+			}
+		}
+
 		section.founders,
 		section.advisors {
 			.profiles {
@@ -61,7 +68,7 @@
 					margin-bottom: lines(1);
 
 					&:after {
-						content: '3';
+						content: '6';
 						display: none;
 					}
 				}
@@ -225,6 +232,10 @@
 			.text-switch-ani {
 				padding-right: em(6);
 			}
+		}
+
+		section.about-intro .-align-left {
+			text-align: center;
 		}
 
 		section.advisors {

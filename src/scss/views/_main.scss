@@ -40,7 +40,7 @@ section.intro {
 
 	.bg {
 		z-index: 5;
-		background-image: url("../img/bg-intro-3.jpg");
+		background-image: url("../img/bg-intro-4.jpg");
 		background-size: cover;
 		transform: translate3d(0,0,0);
 		// background-image: url("../img/bg-mask.png"); background-size: 100% 100%;
@@ -173,6 +173,10 @@ section.footer {
 	section.intro {
 		// min-height: 0;
 		// padding: 0 0 lines(1);
+		
+		.bg {
+			background-image: url("../img/bg-pattern-denim.jpg");
+		}
 
 		&:after {
 			display: none;

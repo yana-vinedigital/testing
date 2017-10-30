@@ -91,19 +91,20 @@ module.exports = View.extend( Carousel, {
 				el: this.$_uiCarousel,
 				$items: this.$_uiCarouselItems,
 				app: this.parent.model,
-				// hasNav: false,
+				hasNav: true,
 				// hasPoints: false,
 				// hasPercentageLayout: false,
-				// breakpoints: {
-				// 	type: 'max',
-				// 	target: 'desktop'
-				// }
+				breakpoints: {
+					type: 'min',
+					target: 'mobile'
+				}
 			});
 		}
 
 		//	Events	 ----------------
 		this.listenTo( FRONT, 'window:reflow', this._reflowHandler );
 		this.listenTo( FRONT, 'waypoint:active', waypoint => {
+			if ( !waypoint ) return;
 			this._isBladeVisible = Math.floor( waypoint.id ) === this.index;
 		});
 	},

@@ -84,5 +84,7 @@
 
 	margin: ( $LINE_HEIGHT / $font-size-px ) * 1em auto;
 	&.-margin-half { margin-bottom: ( $LINE_HEIGHT / $font-size-px ) * 0.5em; }
+	// &.-margin-1 { margin-bottom: ( $LINE_HEIGHT / $font-size-px ) * 1em; }
+	&.-margin-2 { margin-bottom: ( $LINE_HEIGHT / $font-size-px ) * 1.5em; }
 	@include font-setting-size( $font-size, $lines );
 }
