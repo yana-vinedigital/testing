@@ -40,6 +40,9 @@ var FRONT = window.FRONT = window.FRONT || Utils.extend({
 	appDeepLink: 'seatfrog://login',
 	// smsURL: 'https://d2ieh1yqse.execute-api.us-east-1.amazonaws.com/dev/sms',
 	'smsURL': 'https://twk9zgo54k.execute-api.us-east-1.amazonaws.com/dev/sms',
+	appStoreReviewURL: 'https://itunes.apple.com/app/id1129001637?action=write-review',
+	playStoreReviewURL: 'https://play.google.com/store/apps/details?id=au.com.seatfrog.icarus',
+	facebookReviewURL: 'https://www.facebook.com/SeatFrog/reviews/',
 	rootEl: document.querySelector('[data-hook=app]'),
 
 }, Events.createEmitter() );

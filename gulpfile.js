@@ -170,7 +170,8 @@ gulp.task('js', function( next ) {
 	var bundles = [
 		paths.src.js + 'main.js',
 		paths.src.js + 'main-download.js',
-		paths.src.js + 'main-bidnow.js'
+		paths.src.js + 'main-bidnow.js',
+		paths.src.js + 'main-rateapp.js'
 	];
 
 	var tasks = bundles.map( function( entry ) {
