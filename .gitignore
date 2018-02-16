@@ -40,3 +40,4 @@ codekit-config.json
 .sass-cache
 .awspublish*
 aws-credentials.json
+package-lock.json
