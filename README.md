@@ -60,3 +60,18 @@ Process
 - Once the update is complete, reverse the redirect and update the other bucket
 - Siteground updates can be completed using FTP
 
+Troubleshooting
+========================
+
+If `gulp build` fails due to broken packages:
+
+```
+npm outdated        # list installed versions and available updates
+npm install -g npm-check-updates
+ncu                 # short for 'npm-check-updates'. list modules
+ncu -u              # update module versions in package.json
+npm i               # short for 'npm install'. install new versions
+ncu                 # check everything is fine
+npm outdated 	    # check everything is fine
+```
+
