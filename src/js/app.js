@@ -43,6 +43,8 @@ var FRONT = window.FRONT = window.FRONT || Utils.extend({
 	appStoreReviewURL: 'https://itunes.apple.com/app/id1129001637?action=write-review',
 	playStoreReviewURL: 'https://play.google.com/store/apps/details?id=au.com.seatfrog.icarus',
 	facebookReviewURL: 'https://www.facebook.com/SeatFrog/reviews/',
+	appStoreURLVTEC: 'https://itunes.apple.com/app/apple-store/id1129001637?pt=118038351&ct=VirginTrainsEC_Email&mt=8',
+	playStoreURLVTEC: 'https://play.google.com/store/apps/details?id=au.com.seatfrog.icarus&referrer=utm_source%3DVirginTrainsEC%26utm_medium%3Demail',
 	rootEl: document.querySelector('[data-hook=app]'),
 
 }, Events.createEmitter() );
