@@ -62,7 +62,7 @@ module.exports = BladeView.extend({
 		this.resetDownload = this.resetDownload.bind(this);
 
 		this.$_downloadRegion = this.query('[data-region=download]');
-		this.v_downloadRegion = new Region( this.$_downloadRegion );
+		this.v_downloadRegion = new Region({ el: this.$_downloadRegion });
 		this.registerSubview( this.v_downloadRegion );
 
 		// this.showThanks();

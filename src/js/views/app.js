@@ -145,7 +145,7 @@ module.exports = View.extend({
 
 		// 	Views	 ----------------
 		if ( this.$_contextRegion ) {
-			this.v_contextRegion = new Region( this.$_contextRegion );
+			this.v_contextRegion = new Region({ el: this.$_contextRegion });
 			this.registerSubview( this.v_contextRegion );
 		}
 		if ( this.$_pageNav ) {
