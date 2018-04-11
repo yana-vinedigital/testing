@@ -45,6 +45,10 @@ var FRONT = window.FRONT = window.FRONT || Utils.extend({
 	facebookReviewURL: 'https://www.facebook.com/SeatFrog/reviews/',
 	appStoreURLVTEC: 'https://itunes.apple.com/app/apple-store/id1129001637?pt=118038351&ct=VirginTrainsEC_Email&mt=8',
 	playStoreURLVTEC: 'https://play.google.com/store/apps/details?id=au.com.seatfrog.icarus&referrer=utm_source%3DVirginTrainsEC%26utm_medium%3Demail',
+	appStoreURLVTEC1: 'https://itunes.apple.com/app/apple-store/id1129001637?pt=118038351&ct=VirginTrainsEC_SMS_1&mt=8',
+	playStoreURLVTEC1: 'https://play.google.com/store/apps/details?id=au.com.seatfrog.icarus&referrer=utm_source%3DVirginTrainsEC%26utm_medium%3DSMS1',
+	appStoreURLVTEC2: 'https://itunes.apple.com/app/apple-store/id1129001637?pt=118038351&ct=VirginTrainsEC_SMS_2&mt=8',
+	playStoreURLVTEC2: 'https://play.google.com/store/apps/details?id=au.com.seatfrog.icarus&referrer=utm_source%3DVirginTrainsEC%26utm_medium%3DSMS2',
 	rootEl: document.querySelector('[data-hook=app]'),
 
 }, Events.createEmitter() );
