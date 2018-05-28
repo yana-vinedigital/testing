@@ -39,10 +39,10 @@
 					background-size: cover; background-repeat: no-repeat;
 				}
 
-				&:nth-child(1) .img { background-image: url('../img/careers-photo-1.jpg'); }
+				&:nth-child(1) .img { background-image: url('../img/careers-photo-8.jpg'); }
 				&:nth-child(2) .img { background-image: url('../img/careers-photo-2.jpg'); }
 				&:nth-child(3) .img { background-image: url('../img/careers-photo-3.jpg'); }
-				&:nth-child(4) .img { background-image: url('../img/careers-photo-5.jpg'); }
+				&:nth-child(4) .img { background-image: url('../img/careers-photo-6.jpg'); }
 			}
 		}
 
@@ -60,6 +60,9 @@
 
 	section.careers-openings {
 		text-align: left;
+		a {
+			color: $COLOR_BRAND_BASE;
+		}
 	}
 
 	section.careers-intern {
