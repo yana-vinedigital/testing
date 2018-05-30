@@ -1,7 +1,8 @@
-# Script for building with concourse
-
-FROM node:6.5.0-wheezy
-
-RUN npm install -g git+https://git@github.com/gulpjs/gulp.git#4.0
-ADD package.json /package.json
-RUN npm install
+FROM node:9
+RUN apt install git python && \
+    npm install -g git+https://git@github.com/gulpjs/gulp.git#4.0
+COPY . /var/website-v2
+WORKDIR /var/website-v2
+RUN rm -rf node_modules
+RUN npm i
+RUN gulp prod
