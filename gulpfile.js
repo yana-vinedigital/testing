@@ -174,7 +174,10 @@ gulp.task('js', function( next ) {
 		paths.src.js + 'main-rateapp.js',
 		paths.src.js + 'main-vtecredirect.js',
 		paths.src.js + 'main-vtecredirect1.js',
-		paths.src.js + 'main-vtecredirect2.js'
+		paths.src.js + 'main-vtecredirect2.js',
+		paths.src.js + 'main-lnerlaunchredirect.js',
+		paths.src.js + 'main-lnerbidnowredirect.js',
+		paths.src.js + 'main-lnerfollowupredirect.js'
 	];
 
 	var tasks = bundles.map( function( entry ) {
