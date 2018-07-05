@@ -49,6 +49,10 @@ var FRONT = window.FRONT = window.FRONT || Utils.extend({
 	playStoreURLVTEC1: 'https://play.google.com/store/apps/details?id=au.com.seatfrog.icarus&referrer=utm_source%3DVirginTrainsEC%26utm_medium%3DSMS1',
 	appStoreURLVTEC2: 'https://itunes.apple.com/app/apple-store/id1129001637?pt=118038351&ct=VirginTrainsEC_SMS_2&mt=8',
 	playStoreURLVTEC2: 'https://play.google.com/store/apps/details?id=au.com.seatfrog.icarus&referrer=utm_source%3DVirginTrainsEC%26utm_medium%3DSMS2',
+	appStoreURLLNER: 'https://itunes.apple.com/app/apple-store/id1129001637?pt=118038351&ct=email_lnerlaunch_s&mt=8',
+	playStoreURLLNER: 'https://play.google.com/store/apps/details?id=au.com.seatfrog.icarus&referrer=utm_source%3Demail%26utm_campaign%3Dlnerlaunch_s',
+	appStoreURLLNER1: 'https://itunes.apple.com/app/apple-store/id1129001637?pt=118038351&ct=email_lnerfollowup_s&mt=8',
+	playStoreURLLNER1: 'https://play.google.com/store/apps/details?id=au.com.seatfrog.icarus&referrer=utm_source%3Demail%26utm_campaign%3Dlnerfollowup_s',
 	rootEl: document.querySelector('[data-hook=app]'),
 
 }, Events.createEmitter() );

@@ -29,10 +29,10 @@ var LNERLaunchRedirectView = View.extend({
         var endpoint = 'http://seatfrog.com/lner.html';
 
 		if ( this._os === 'iOS' ) {
-			endpoint = FRONT.appStoreURLVTEC;
+			endpoint = FRONT.appStoreURLLNER;
 		}
 		if ( this._os === 'AndroidOS' ) {
-			endpoint = FRONT.playStoreURLVTEC;
+			endpoint = FRONT.playStoreURLLNER;
 		}
 		return window.location.replace( endpoint );
 	}
